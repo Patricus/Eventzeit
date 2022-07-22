@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { makeEvent } from "../../../store/event";
+import { makeEvent, aquireEvent } from "../../../store/event";
 
 function EventForm({ formType }) {
+  const eventId = useParams();
+
   const [name, setName] = useState("");
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState("");
   const [category, setCategory] = useState(1);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -19,7 +21,24 @@ function EventForm({ formType }) {
 
   const dispatch = useDispatch();
 
-  const submit = async e => {
+  useEffect(() => {
+    if (eventId) {
+      const event = useSelector((state) => state.events[eventId]);
+      setName(event.name);
+      setDate(event.date);
+      setCategory(event.category);
+      setDescription(event.description);
+      setImage(event.image);
+      setOccupancy(event.occupancy);
+      setPrice(event.price);
+      setStreetAddress(event.streetAddress);
+      setState(event.state);
+      setCity(event.city);
+      setZipCode(event.zipCode);
+    }
+  }, []);
+
+  const submit = async (e) => {
     e.preventDefault();
     setErrors([]);
 
@@ -29,26 +48,50 @@ function EventForm({ formType }) {
     }
 
     try {
-      const event = await dispatch(
-        makeEvent({
-          user_id: userId,
-          category,
-          name,
-          event_image_url: image,
-          date,
-          description,
-          price,
-          max_occupancy: occupancy,
-          street_address: streetAddress,
-          city,
-          state,
-          zip_code: zipCode,
-        })
-      );
-    } catch (e) {}
+      if (formType) {
+        const event = await dispatch(
+          makeEvent({
+            user_id: userId,
+            category,
+            name,
+            event_image_url: image,
+            date,
+            description,
+            price,
+            max_occupancy: occupancy,
+            street_address: streetAddress,
+            city,
+            state,
+            zip_code: zipCode,
+          })
+        );
+      } else {
+        const event = await dispatch(
+          editEvent({
+            user_id: userId,
+            category,
+            name,
+            event_image_url: image,
+            date,
+            description,
+            price,
+            max_occupancy: occupancy,
+            street_address: streetAddress,
+            city,
+            state,
+            zip_code: zipCode,
+          })
+        );
+      }
+    } catch (e) {
+      const data = await e.json()
+      if (data && data.errors) {
+        setErrors(data.errors)
+      }
+    }
   };
 
-  const userId = useSelector(state => state.session.user.id);
+  const userId = useSelector((state) => state.session.user.id);
 
   return (
     <form onSubmit={submit}>
@@ -58,22 +101,37 @@ function EventForm({ formType }) {
       <div>
         <ul>
           {errors &&
-            errors.map(error => {
+            errors.map((error) => {
               return <li>{error}</li>;
             })}
         </ul>
       </div>
       <div>
         <label htmlFor="name">Name:</label>
-        <input name="name" type="text" value={name} onChange={e => setName(e.target.value)}></input>
+        <input
+          name="name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="date">Date:</label>
-        <input name="date" type="date" value={date} onChange={e => setDate(e.target.value)}></input>
+        <input
+          name="date"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="time">Time:</label>
-        <input name="time" type="time" value={time} onChange={e => setTime(e.target.value)}></input>
+        <input
+          name="time"
+          type="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="category">Category:</label>
@@ -81,7 +139,8 @@ function EventForm({ formType }) {
           name="category"
           type="select"
           value={category}
-          onChange={e => setCategory(e.target.value)}>
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value={"Water"}>Water</option>
           <option value={"Fire"}>Fire</option>
           <option value={"Earth"}>Earth</option>
@@ -95,7 +154,8 @@ function EventForm({ formType }) {
           name="description"
           type="text"
           value={description}
-          onChange={e => setDescription(e.target.value)}></input>
+          onChange={(e) => setDescription(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="image">Image:</label>
@@ -103,7 +163,8 @@ function EventForm({ formType }) {
           name="image"
           type="text"
           value={image}
-          onChange={e => setImage(e.target.value)}></input>
+          onChange={(e) => setImage(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="occupany">Occupancy:</label>
@@ -112,7 +173,8 @@ function EventForm({ formType }) {
           type="number"
           min="1"
           value={occupancy}
-          onChange={e => setOccupancy(e.target.value)}></input>
+          onChange={(e) => setOccupancy(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="price">Price:</label>
@@ -121,7 +183,8 @@ function EventForm({ formType }) {
           type="number"
           min="0"
           value={price}
-          onChange={e => setPrice(e.target.value)}></input>
+          onChange={(e) => setPrice(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="streetAddress">Street Address:</label>
@@ -129,7 +192,8 @@ function EventForm({ formType }) {
           name="streetAddress"
           type="text"
           value={streetAddress}
-          onChange={e => setStreetAddress(e.target.value)}></input>
+          onChange={(e) => setStreetAddress(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="state">State:</label>
@@ -137,11 +201,17 @@ function EventForm({ formType }) {
           name="state"
           type="text"
           value={state}
-          onChange={e => setState(e.target.value)}></input>
+          onChange={(e) => setState(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="city">City:</label>
-        <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)}></input>
+        <input
+          name="city"
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="zipCode">Zip Code:</label>
@@ -151,9 +221,16 @@ function EventForm({ formType }) {
           min="00000"
           max="99999"
           value={zipCode}
-          onChange={e => setZipCode(e.target.value)}></input>
+          onChange={(e) => setZipCode(e.target.value)}
+        ></input>
       </div>
-      <div>{formType ? <button>Create Event</button> : <button>Update Event</button>}</div>
+      <div>
+        {formType ? (
+          <button>Create Event</button>
+        ) : (
+          <button>Update Event</button>
+        )}
+      </div>
     </form>
   );
 }
