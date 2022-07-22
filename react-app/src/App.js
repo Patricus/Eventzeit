@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import Footer from "./components/Global/Elements/Footer";
+import CreateEvent from "./components/Events/Pages/CreateEvent";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +46,9 @@ function App() {
           <main>
             <h1>My Home Page</h1>
           </main>
+        </ProtectedRoute>
+        <ProtectedRoute path="/events/create" exact={true}>
+          <CreateEvent />
         </ProtectedRoute>
       </Switch>
       <Footer />
