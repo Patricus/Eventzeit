@@ -9,37 +9,105 @@ function EventForm({ formType }) {
   const [image, setImage] = useState("");
   const [occupancy, setOccupancy] = useState(1);
   const [price, setPrice] = useState(0);
-  const [coordinateLat, setCoordinateLat] = useState(0.0);
-  const [coordinateLng, setCoordinateLng] = useState(0.0);
+  const [streetAddress, setStreetAddress] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState(0);
 
-  const submit = (e) => {
-    e.preventDefault()
-  }
+  const submit = e => {
+    e.preventDefault();
+  };
 
   return (
     <form onSubmit={submit}>
-      <div>Event Form</div>
-      <label htmlFor="name">Name:</label>
-      <input name="name" type="text" value={name} onChange={e => setName(e.target.value)}></input>
-      <label htmlFor="date">Date:</label>
-      <input name="date" type="date" value={date} onChange={e => setDate(e.target.value)}></input>
-      <label htmlFor="time">Time:</label>
-      <input name="time" type="time" value={time} onChange={e => setTime(e.target.value)}></input>
-      <label htmlFor="category">Category:</label>
-      <input name="category" type="text" value={category} onChange={e => setCategory(e.target.value)}></input>
-      <label htmlFor="description">Description:</label>
-      <input name="description" type="text" value={description} onChange={e => setDescription(e.target.value)}></input>
-      <label htmlFor="image">Image:</label>
-      <input name="image" type="text" value={image} onChange={e => setImage(e.target.value)}></input>
-      <label htmlFor="occupany">Occupancy:</label>
-      <input name="occupancy" type="number" min="1" value={occupancy} onChange={e => setOccupancy(e.target.value)}></input>
-      <label htmlFor="price">Price:</label>
-      <input name="price" type="number" min="0" value={price} onChange={e => setPrice(e.target.value)}></input>
-      <label htmlFor="coordinateLat">Latitude:</label>
-      <input name="coordinateLat" type="number" min="-90" max="90" step="0.1" value={coordinateLat} onChange={e => setCoordinateLat(e.target.value)}></input>
-      <label htmlFor="coordinateLng">Longitude:</label>
-      <input name="coordinateLng" type="number" min="-180" max="180" step="0.1" value={coordinateLng} onChange={e => setCoordinateLng(e.target.value)}></input>
-      { formType ? <button>Create Event</button> : <button>Update Event</button> }
+      <div>
+        <h2>Event Form</h2>
+      </div>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input name="name" type="text" value={name} onChange={e => setName(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="date">Date:</label>
+        <input name="date" type="date" value={date} onChange={e => setDate(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="time">Time:</label>
+        <input name="time" type="time" value={time} onChange={e => setTime(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="category">Category:</label>
+        <input
+          name="category"
+          type="text"
+          value={category}
+          onChange={e => setCategory(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <input
+          name="description"
+          type="text"
+          value={description}
+          onChange={e => setDescription(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="image">Image:</label>
+        <input
+          name="image"
+          type="text"
+          value={image}
+          onChange={e => setImage(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="occupany">Occupancy:</label>
+        <input
+          name="occupancy"
+          type="number"
+          min="1"
+          value={occupancy}
+          onChange={e => setOccupancy(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="price">Price:</label>
+        <input
+          name="price"
+          type="number"
+          min="0"
+          value={price}
+          onChange={e => setPrice(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="streetAddress">Street Address:</label>
+        <input
+          name="streetAddress"
+          type="text"
+          value={streetAddress}
+          onChange={e => setStreetAddress(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="state">State:</label>
+        <input
+          name="state"
+          type="text"
+          value={state}
+          onChange={e => setState(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="city">City:</label>
+        <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)}></input>
+      </div>
+      <div>
+        <label htmlFor="zipCode">Zip Code:</label>
+        <input
+          name="zipCode"
+          type="number"
+          min="00000"
+          max="99999"
+          value={zipCode}
+          onChange={e => setZipCode(e.target.value)}></input>
+      </div>
+      <div>{formType ? <button>Create Event</button> : <button>Update Event</button>}</div>
     </form>
   );
 }
