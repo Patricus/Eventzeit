@@ -2,10 +2,11 @@ import React from "react";
 import EventForm from "../Forms";
 
 function CreateEvent() {
-  return <div>
+  return
+  <main>
     CreateEvent
     <EventForm />
-  </div>;
+  </main>;
 }
 
 export default CreateEvent;
