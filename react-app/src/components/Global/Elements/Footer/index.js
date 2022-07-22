@@ -30,7 +30,7 @@ function Footer() {
           </div>
         </li>
         <li>
-          <h3>John Voskuyl</h2>
+          <h3>John Voskuyl</h3>
           <div className="footer-links">
             <a href="GITHUB LINK" rel="noreferrer" target="_blank">
               <img src={github} alt="Git Hub" />
