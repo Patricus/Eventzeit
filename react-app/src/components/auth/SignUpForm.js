@@ -4,18 +4,34 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import styled from 'styled-components';
 
-let avatar1 = require('../../images/1.png')
+import avatar1 from '../../images/1.png'
+import avatar2 from '../../images/2.png'
+import avatar3 from '../../images/3.png'
+import avatar4 from '../../images/4.png'
+import avatar5 from '../../images/5.png'
+import avatar6 from '../../images/6.png'
+import avatar7 from '../../images/7.png'
+import avatar8 from '../../images/8.png'
+import avatar9 from '../../images/9.png'
+import avatar10 from '../../images/10.png'
+import avatar11 from '../../images/11.png'
+import avatar12 from '../../images/12.png'
+import avatar13 from '../../images/13.png'
+import avatar14 from '../../images/14.png'
+import avatar15 from '../../images/15.png'
+
 
 const AvatarImg = styled.img`
-width: 10px;
-height: 10px;
+width: 50px;
+height: 50px;
+margin: 10px;
 `
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState(1)
+  const [avatar, setAvatar] = useState(avatar1)
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -55,6 +71,8 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  console.log(avatar)
+
   return (
     <form onSubmit={onSignUp}>
       <div>
@@ -88,10 +106,53 @@ const SignUpForm = () => {
           onChange={updateAvatar}
           value={avatar}
         >
-          <option value={1}>
-            <AvatarImg className='avatar' src={avatar1} />
+          <option value={avatar1}>
+            1
+          </option>
+          <option value={avatar2}>
+            2
+          </option>
+          <option value={avatar3}>
+            3
+          </option>
+          <option value={avatar4}>
+            4
+          </option>
+          <option value={avatar5}>
+            5
+          </option>
+          <option value={avatar6}>
+            6
+          </option>
+          <option value={avatar7}>
+            7
+          </option>
+          <option value={avatar8}>
+            8
+          </option>
+          <option value={avatar9}>
+            9
+          </option>
+          <option value={avatar10}>
+            10
+          </option>
+          <option value={avatar11}>
+            11
+          </option>
+          <option value={avatar12}>
+            12
+          </option>
+          <option value={avatar13}>
+            13
+          </option>
+          <option value={avatar14}>
+            14
+          </option>
+          <option value={avatar15}>
+            15
           </option>
         </select>
+        <AvatarImg src={avatar} />
       </div>
       <div>
         <label>Password</label>
