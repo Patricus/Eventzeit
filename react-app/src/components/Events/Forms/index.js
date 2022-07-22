@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { makeEvent } from "../../../store/event";
 
 function EventForm({ formType }) {
   const [name, setName] = useState("");
@@ -13,15 +15,53 @@ function EventForm({ formType }) {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [zipCode, setZipCode] = useState(0);
+  const [errors, setErrors] = useState([]);
 
-  const submit = e => {
+  const dispatch = useDispatch();
+
+  const submit = async e => {
     e.preventDefault();
+    setErrors([]);
+
+    if (!userId) {
+      setErrors(["You must be logged in to create an event."]);
+      return;
+    }
+
+    try {
+      const event = await dispatch(
+        makeEvent({
+          user_id: userId,
+          category,
+          name,
+          event_image_url: image,
+          date,
+          description,
+          price,
+          max_occupancy: occupancy,
+          street_address: streetAddress,
+          city,
+          state,
+          zip_code: zipCode,
+        })
+      );
+    } catch (e) {}
   };
+
+  const userId = useSelector(state => state.session.user.id);
 
   return (
     <form onSubmit={submit}>
       <div>
         <h2>Event Form</h2>
+      </div>
+      <div>
+        <ul>
+          {errors &&
+            errors.map(error => {
+              return <li>{error}</li>;
+            })}
+        </ul>
       </div>
       <div>
         <label htmlFor="name">Name:</label>
@@ -39,9 +79,15 @@ function EventForm({ formType }) {
         <label htmlFor="category">Category:</label>
         <input
           name="category"
-          type="text"
+          type="select"
           value={category}
-          onChange={e => setCategory(e.target.value)}></input>
+          onChange={e => setCategory(e.target.value)}>
+          <option value={"Water"}>Water</option>
+          <option value={"Fire"}>Fire</option>
+          <option value={"Earth"}>Earth</option>
+          <option value={"Air"}>Air</option>
+          <option value={"Heart"}>Heart</option>
+        </input>
       </div>
       <div>
         <label htmlFor="description">Description:</label>
