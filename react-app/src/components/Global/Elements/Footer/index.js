@@ -8,48 +8,51 @@ function Footer() {
     <footer>
       <ul>
         <li>
-            <h2>Elias</h2>
-            <div className="footer-links">
-              <a href="GITHUB LINK" rel="noreferrer" target="_blank">
-                <img src={github} alt="Git Hub" />
-              </a>
-              <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
-                <img src={linkedin} alt="Linked In" />
-              </a>
-            </div>
+          <h3>Elias Rodriguez</h3>
+          <div className="footer-links">
+            <a href="GITHUB LINK" rel="noreferrer" target="_blank">
+              <img src={github} alt="Git Hub" />
+            </a>
+            <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
+              <img src={linkedin} alt="Linked In" />
+            </a>
+          </div>
         </li>
         <li>
-            <h2>Jeffery</h2>
-            <div className="footer-links">
-              <a href="GITHUB LINK" rel="noreferrer" target="_blank">
-                <img src={github} alt="Git Hub" />
-              </a>
-              <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
-                <img src={linkedin} alt="Linked In" />
-              </a>
-            </div>
+          <h3>Jeffery Kintner</h3>
+          <div className="footer-links">
+            <a href="GITHUB LINK" rel="noreferrer" target="_blank">
+              <img src={github} alt="Git Hub" />
+            </a>
+            <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
+              <img src={linkedin} alt="Linked In" />
+            </a>
+          </div>
         </li>
         <li>
-            <h2>John</h2>
-            <div className="footer-links">
-              <a href="GITHUB LINK" rel="noreferrer" target="_blank">
-                <img src={github} alt="Git Hub" />
-              </a>
-              <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
-                <img src={linkedin} alt="Linked In" />
-              </a>
-            </div>
+          <h3>John Voskuyl</h2>
+          <div className="footer-links">
+            <a href="GITHUB LINK" rel="noreferrer" target="_blank">
+              <img src={github} alt="Git Hub" />
+            </a>
+            <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
+              <img src={linkedin} alt="Linked In" />
+            </a>
+          </div>
         </li>
         <li>
-            <h2>Patrick</h2>
-            <div className="footer-links">
-              <a href="GITHUB LINK" rel="noreferrer" target="_blank">
-                <img src={github} alt="Git Hub" />
-              </a>
-              <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
-                <img src={linkedin} alt="Linked In" />
-              </a>
-            </div>
+          <h3>Patrick McPherson</h3>
+          <div className="footer-links">
+            <a href="GITHUB LINK" rel="noreferrer" target="_blank">
+              <img src={github} alt="Git Hub" />
+            </a>
+            <a href="LINKED IN LINK" rel="noreferrer" target="_blank">
+              <img src={linkedin} alt="Linked In" />
+            </a>
+          </div>
+        </li>
+        <li>
+          <h2>ⓒ Eventbright 2022</h2>
         </li>
       </ul>
     </footer>
