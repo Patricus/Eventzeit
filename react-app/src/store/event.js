@@ -18,7 +18,7 @@ const updateEvent = event => ({
   payload: event,
 });
 
-const deleteEvent = () => ({
+const deleteEvent = eventId => ({
   type: DELETE_EVENT,
 });
 
@@ -73,13 +73,12 @@ export const makeEvent =
     }
   };
 
-
-export const aquireEvent = () => async dispatch => {
-  const response = await fetch("/api/events")
+export const aquireEvents = () => async dispatch => {
+  const response = await fetch("/api/events");
 
   if (response.ok) {
-    const data = await response.json()
-    dispatch(readEvent(data))
+    const data = await response.json();
+    dispatch(readEvent(data));
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -88,7 +87,7 @@ export const aquireEvent = () => async dispatch => {
   } else {
     return ["An error occurred. Please try again."];
   }
-}
+};
 
 export const editEvent =
   (
@@ -127,7 +126,7 @@ export const editEvent =
 
     if (response.ok) {
       const data = await response.json();
-      dispatch(createEvent(data));
+      dispatch(updateEvent(data));
       return null;
     } else if (response.status < 500) {
       const data = await response.json();
@@ -139,58 +138,29 @@ export const editEvent =
     }
   };
 
-// export const logout = () => async dispatch => {
-//   const response = await fetch("/api/auth/logout", {
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
+export const removeEvent = eventId => async dispatch => {
+  const response = await fetch(`/api/events/${eventId}`, {
+    method: "DELETE",
+  });
 
-//   if (response.ok) {
-//     dispatch(deleteUser());
-//   }
-// };
-
-// export const signUp = (username, email, password) => async dispatch => {
-//   const response = await fetch("/api/auth/signup", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       username,
-//       email,
-//       password,
-//     }),
-//   });
-
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(setUser(data));
-//     return null;
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return data.errors;
-//     }
-//   } else {
-//     return ["An error occurred. Please try again."];
-//   }
-// };
+  if (response.ok) {
+    dispatch(deleteEvent(eventId));
+  }
+};
 
 export default function reducer(state = initialState, action) {
-  let newState = {...state}
+  let newState = { ...state };
   switch (action.type) {
     case CREATE_EVENT:
-      const event = action.payload
-      newState[event.id] = event
-      return newState
+      const event = action.payload;
+      newState[event.id] = event;
+      return newState;
     case READ_EVENT:
-      newState = {}
+      newState = {};
       action.payload.forEach(event => {
-        newState[event.id] = event
-      })
-      return newState
+        newState[event.id] = event;
+      });
+      return newState;
     case DELETE_EVENT:
       return { user: null };
     default:
