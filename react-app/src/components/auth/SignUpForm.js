@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import styled from 'styled-components';
+
+let avatar1 = require('../../images/1.png')
+
+const AvatarImg = styled.img`
+width: 10px;
+height: 10px;
+`
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState(1)
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -38,6 +47,10 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateAvatar = (e) => {
+    setAvatar(e.target.value);
+  };
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -66,6 +79,19 @@ const SignUpForm = () => {
           onChange={updateEmail}
           value={email}
         ></input>
+      </div>
+      <div>
+        <label>Avatar</label>
+        <select
+          type='text'
+          name='email'
+          onChange={updateAvatar}
+          value={avatar}
+        >
+          <option value={1}>
+            <AvatarImg className='avatar' src={avatar1} />
+          </option>
+        </select>
       </div>
       <div>
         <label>Password</label>
