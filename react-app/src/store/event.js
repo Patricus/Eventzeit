@@ -130,14 +130,18 @@ export const aquireEvent = () => async dispatch => {
 // };
 
 export default function reducer(state = initialState, action) {
-  const newState = {...state}
+  let newState = {...state}
   switch (action.type) {
     case CREATE_EVENT:
       const event = action.payload
       newState[event.id] = event
       return newState
     case READ_EVENT:
-
+      newState = {}
+      action.payload.forEach(event => {
+        newState[event.id] = event
+      })
+      return newState
     case DELETE_EVENT:
       return { user: null };
     default:
