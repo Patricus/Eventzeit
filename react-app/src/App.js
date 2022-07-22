@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Footer from "./components/Global/Elements/Footer";
 import CreateEvent from "./components/Events/Pages/CreateEvent";
+import Homepage from "./components/Homepage/Homepage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,9 +44,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <main>
-            <h1>My Home Page</h1>
-          </main>
+          <Homepage />
         </ProtectedRoute>
         <ProtectedRoute path="/events/create" exact={true}>
           <CreateEvent />
