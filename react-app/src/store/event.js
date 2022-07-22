@@ -73,6 +73,23 @@ export const makeEvent =
     }
   };
 
+
+export const aquireEvent = () => async dispatch => {
+  const response = await fetch("/api/events")
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(readEvent(data))
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+}
+
 // export const logout = () => async dispatch => {
 //   const response = await fetch("/api/auth/logout", {
 //     headers: {
@@ -113,9 +130,14 @@ export const makeEvent =
 // };
 
 export default function reducer(state = initialState, action) {
+  const newState = {...state}
   switch (action.type) {
     case CREATE_EVENT:
-      return { state, event: action.payload };
+      const event = action.payload
+      newState[event.id] = event
+      return newState
+    case READ_EVENT:
+
     case DELETE_EVENT:
       return { user: null };
     default:
