@@ -1,0 +1,41 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  justify-self: flex-end;
+  border: 1px solid black;
+}
+
+footer ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+footer ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-links > a {
+  padding: 3px;
+  box-shadow: 0 0 3px 1px black;
+}
+
+.footer-links img {
+  height: 64px;
+}
