@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import styled from 'styled-components'
+import UserMenu from './UserMenu';
 
 const NavigationBar = styled.div`
   display: flex;
@@ -56,10 +56,7 @@ const NavBar = () => {
               Bonus: Search
             </div>
             <div>
-              <button>
-                Account Menu Button
-              </button>
-              <LogoutButton />
+              <UserMenu user={user} />
             </div>
         </>
       }
