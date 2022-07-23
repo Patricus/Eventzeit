@@ -1,18 +1,20 @@
+from unicodedata import name
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, DateField, TimeField, FloatField, TextAreaField
+from wtforms import StringField, IntegerField, DateTimeField, FloatField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
 # from app.models import Event
 
+
 class EventForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
-    date = DateField('date', validators=[DataRequired()])
-    time = TimeField('time', validators=[DataRequired()])
+    user_id = IntegerField('user_id', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    image = StringField('event_image_url', validators=[DataRequired()])
+    date = DateTimeField('date', validators=[DataRequired()])
     description = TextAreaField('description')
-    image = StringField('image', validators=[DataRequired()])
-    occupancy = IntegerField('occupancy', validators=[DataRequired()])
     price = FloatField('price', validators=[DataRequired()])
-    street_adress = StringField('street adress', validators=[DataRequired()])
-    state = StringField('state', validators=[DataRequired()])
+    occupancy = IntegerField('max_occupancy', validators=[DataRequired()])
+    street_address = StringField('street_address', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
-    zip_code = IntegerField('zipCode', validators=[DataRequired()])
+    state = StringField('state', validators=[DataRequired()])
+    zip_code = IntegerField('zip_code', validators=[DataRequired()])
