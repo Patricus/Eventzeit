@@ -17,6 +17,7 @@ function EventForm({ event = null }) {
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
+  const userId = useSelector(state => state.session.user.id);
 
   useEffect(() => {
     if (event) {
@@ -87,7 +88,7 @@ function EventForm({ event = null }) {
     }
   };
 
-  const userId = useSelector(state => state.session.user.id);
+
 
   return (
     <form onSubmit={submit}>

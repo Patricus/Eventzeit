@@ -92,7 +92,20 @@ export const aquireEvents = () => async dispatch => {
   }
 };
 
-export const editEvent = (event) =>
+export const editEvent =
+  (
+    user_id,
+    category,
+    name,
+    event_image_url,
+    date,
+    description,
+    price,
+    occupancy,
+    street_address,
+    state,
+    zip_code
+  ) =>
   async dispatch => {
     const response = await fetch(`/api/events/${event.id}`, {
       method: "PUT",

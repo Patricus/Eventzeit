@@ -4,7 +4,7 @@ import EventForm from "../Forms";
 function CreateEvent() {
   return (
     <main>
-      <h1>CreateEvent</h1>
+      <h1>Create Event</h1>
       <EventForm formType={true} />
     </main>
   );
