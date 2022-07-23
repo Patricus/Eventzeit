@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import EventsCard from "../Elements/EventsCard";
 
 function Events() {
-  const events = Object.values(useSelector(state => state.events));
+  const events = useSelector(state => state.events);
+  console.log("events", events);
   return (
     <main>
       <h1>Events</h1>

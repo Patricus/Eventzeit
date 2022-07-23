@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { makeEvent, editEvent } from "../../../store/event";
 
 function EventForm({ event = null }) {
@@ -17,6 +17,7 @@ function EventForm({ event = null }) {
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
+  const userId = useSelector(state => state.session.user.id);
 
   useEffect(() => {
     if (event) {
@@ -64,7 +65,7 @@ function EventForm({ event = null }) {
       } else {
         await dispatch(
           editEvent({
-            event_id: eventId,
+            event_id: event.id,
             user_id: userId,
             category,
             name,
