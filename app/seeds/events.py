@@ -8,14 +8,14 @@ def seed_events():
     reallycoolsuperbigbouncyparty = Event(
         user_id=1,
         category="Water",
-        name='really cool super big bouncy party',
+        name='Really cool super BIG BOUNCY PARTY',
         event_image_url='https://img.freepik.com/free-vector/silhouette-crowd-party-people-starburst-background_1048-13832.jpg',
         date=datetime.datetime.now(),
-        description="Non-descript",
+        description="The coolest, most awesome, super big bounty party the world has ever seen",
         price=8,
         max_occupancy=4,
         tickets_available=4,
-        street_address="123 Home Place",
+        street_address="500 Home Place",
         city="Long Beach",
         state="CA",
         zip_code=90715)
@@ -23,14 +23,14 @@ def seed_events():
     eventoftheages = Event(
         user_id=2,
         category="Fire",
-        name='event of the ages',
+        name='Event of the Ages',
         event_image_url='https://img.freepik.com/free-photo/people-having-party-by-beach_53876-26402.jpg',
         date=datetime.datetime.now(),
-        description="Non-descript",
+        description="This is the event of the ages, do not miss it",
         price=0,
         max_occupancy=10,
         tickets_available=10,
-        street_address="123 Home Place",
+        street_address="500 Main Street",
         city="Long Beach",
         state="CA",
         zip_code=90715)
@@ -38,14 +38,14 @@ def seed_events():
     bumpbappers = Event(
         user_id=3,
         category="Air",
-        name='bounce party',
+        name='House Party',
         event_image_url='https://img.freepik.com/premium-photo/people-concert_31965-3617.jpg',
         date=datetime.datetime.now(),
-        description="Non-descript",
+        description="Mega huge house party! Come on through and have some fun!",
         price=4,
         max_occupancy=5,
         tickets_available=0,
-        street_address="123 Home Place",
+        street_address="300 Home Place",
         city="Long Beach",
         state="CA",
         zip_code=90715)
@@ -53,10 +53,10 @@ def seed_events():
     discodunkers = Event(
         user_id=1,
         category="Earth",
-        name='disco dunkers',
+        name='Disco Dunkers',
         event_image_url='https://img.freepik.com/free-photo/excited-audience-watching-confetti-fireworks-having-fun-music-festival-night-copy-space_637285-559.jpg',
         date=datetime.datetime.now(),
-        description="Non-descript",
+        description="We will be dunking some maybe disco. Its going be a blast. Let the world know. We are going to bring this disco to all the dunkers world wide",
         price=12,
         max_occupancy=50,
         tickets_available=4,
@@ -112,18 +112,18 @@ def seed_events():
 
     runningforfun = Event(
         user_id=2,
-        category="Water",
+        category="Air",
         name='Running for fun',
-        event_image_url='https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/concert-photography/thumbnail.jpeg',
+        event_image_url='https://upload.wikimedia.org/wikipedia/commons/a/a3/Ludovic_and_Lauren_%288425515069%29.jpg',
         date=datetime.datetime.now(),
-        description="Ty Segall playing live at the Filmore",
-        price=35,
-        max_occupancy=550,
-        tickets_available=550,
-        street_address="1805 Geary Blvd",
-        city="San Francisco",
+        description="This is running for fun. Come run for fun because it's fun",
+        price=5,
+        max_occupancy=200,
+        tickets_available=200,
+        street_address="101 Peacock Gap Trail",
+        city="San Rafael",
         state="CA",
-        zip_code=94115)
+        zip_code=94901)
 
 
     db.session.add(reallycoolsuperbigbouncyparty)
@@ -133,6 +133,7 @@ def seed_events():
     db.session.add(tomsbbq)
     db.session.add(chrisandallison)
     db.session.add(tysegallfilmore)
+    db.session.add(runningforfun)
 
     db.session.commit()
 
