@@ -30,6 +30,7 @@ function TicketForm({event}) {
             event_id: event.id
         }
         dispatch(addOneTicket(data))
+        setPurchased(true)
     }
 
     return (

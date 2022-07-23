@@ -1,27 +1,21 @@
 from flask import Blueprint, jsonify, request
 from app.forms.ticket_form import TicketForm
 from app.models import Ticket, db
-from .auth_routes import validation_errors_to_error_messages
 
 ticket_routes = Blueprint('tickets', __name__)
 
 @ticket_routes.route('/purchase', methods=['POST'])
 def generate_ticket():
-    print('route reached')
-    form = TicketForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        print('form validated')
-        ticket = Ticket(
-            attendee = form.data['attendee'],
-            for_sale = form.data['for_sale'],
-            user_id = form.data['user_id'],
-            event_id = form.data['event_id']
-        )
-        db.session.add(ticket)
-        db.session.commit()
-        print('TICKET: ', ticket.to_dict())
-        return ticket.to_dict()
+    data = request.json
+    ticket = Ticket(
+        attendee = data['attendee'],
+        for_sale = False,
+        user_id = data['user_id'],
+        event_id = data['event_id']
+    )
+    db.session.add(ticket)
+    db.session.commit()
+    return ticket.to_dict()
 
 @ticket_routes.route('/users/<int:userId>')
 def load_tickets(userId):
@@ -30,13 +24,10 @@ def load_tickets(userId):
 
 @ticket_routes.route('/<int:id>', methods=['POST'])
 def update_ticket(id):
-    form = TicketForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        ticket = Ticket.query.filter(Ticket.id == id)
-        ticket.attendee = form.data['attendee']
-        ticket.for_sale = form.data['for_sale']
-        ticket.user_id = form.data['user_id']
-        db.session.commit()
-        return ticket.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    data = request.json
+    ticket = Ticket.query.filter(Ticket.id == id)
+    ticket.attendee = data['attendee']
+    ticket.for_sale = data['for_sale']
+    ticket.user_id = data['user_id']
+    db.session.commit()
+    return ticket.to_dict()
