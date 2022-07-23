@@ -76,7 +76,7 @@ export const makeEvent =
     }
   };
 
-export const aquireEvents = () => async dispatch => {
+export const acquireEvents = () => async dispatch => {
   const response = await fetch("/api/events");
 
   if (response.ok) {
@@ -169,10 +169,10 @@ export default function reducer(state = initialState, action) {
       });
       return newState;
     case UPDATE_EVENT:
-      return {...state, [action.event.id]: action.event };
+      return { ...state, [action.event.id]: action.event };
     case DELETE_EVENT:
-      delete newState[action.eventId]
-      return newState
+      delete newState[action.eventId];
+      return newState;
     default:
       return state;
   }
