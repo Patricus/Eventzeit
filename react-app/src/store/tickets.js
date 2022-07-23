@@ -24,7 +24,7 @@ const remove = (ticket) => ({
 });
 
 export const addOneTicket = (payload) => async dispatch => {
-    const response = await fetch(`/api/tickets`, {
+    const response = await fetch(`/api/tickets/purchase`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -32,6 +32,7 @@ export const addOneTicket = (payload) => async dispatch => {
     if(response.ok){
         const ticket = await response.json();
         dispatch(add(ticket));
+        return ticket
     };
 };
 

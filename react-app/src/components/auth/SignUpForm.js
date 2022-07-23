@@ -37,8 +37,6 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session?.user);
   const dispatch = useDispatch();
 
-  console.log(avatar)
-
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {

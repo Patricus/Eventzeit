@@ -5,7 +5,7 @@ from auth_routes import validation_errors_to_error_messages
 
 ticket_routes = Blueprint('tickets', __name__)
 
-@ticket_routes.route('/', methods=['POST'])
+@ticket_routes.route('/purchase', methods=['POST'])
 def generate_ticket():
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
