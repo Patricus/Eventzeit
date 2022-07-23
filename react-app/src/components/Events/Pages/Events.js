@@ -15,7 +15,7 @@ function Events() {
       <h1>Events</h1>
       {events &&
         events.map(event => {
-          return <EventsCard event={event} />;
+          return <EventsCard key={event.id} event={event} />;
         })}
     </main>
   );

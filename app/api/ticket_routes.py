@@ -7,9 +7,11 @@ ticket_routes = Blueprint('tickets', __name__)
 
 @ticket_routes.route('/purchase', methods=['POST'])
 def generate_ticket():
+    print('route reached')
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print('form validated')
         ticket = Ticket(
             attendee = form.data['attendee'],
             for_sale = form.data['for_sale'],
@@ -18,8 +20,8 @@ def generate_ticket():
         )
         db.session.add(ticket)
         db.session.commit()
+        print('TICKET: ', ticket.to_dict())
         return ticket.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @ticket_routes.route('/users/<int:userId>')
 def load_tickets(userId):

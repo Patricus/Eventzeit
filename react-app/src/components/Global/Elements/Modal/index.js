@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import ReactDOM from "react-dom";
 import "./modal.css";
 
 const ModalContext = React.createContext();
 
-export const ModalProvider = ({ children }) => {
+export function ModalProvider({ children }) {
   const modalRef = useRef();
   const [value, setValue] = useState();
 
@@ -20,7 +20,7 @@ export const ModalProvider = ({ children }) => {
   );
 };
 
-export const Modal = ({ onClose, children }) => {
+export function Modal({ onClose, children }) {
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 

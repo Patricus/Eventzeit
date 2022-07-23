@@ -12,7 +12,6 @@ import Footer from "./components/Global/Elements/Footer";
 import CreateEvent from "./components/Events/Pages/CreateEvent";
 import EventDetailPage from "./components/Events/Pages/EventDetails";
 import Homepage from "./components/Homepage/Homepage";
-import TicketForm from "./components/Tickets/TicketForm";
 import Events from "./components/Events/Pages/Events";
 
 function App() {
@@ -54,9 +53,6 @@ function App() {
         </Route>
         <ProtectedRoute path="/events/create" exact={true}>
           <CreateEvent />
-        </ProtectedRoute>
-        <ProtectedRoute path='/ticket-form-test' >
-          <TicketForm />
         </ProtectedRoute>
         <Route path="/events/:eventId" exact={true}>
           <EventDetailPage />

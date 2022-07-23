@@ -1,16 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { acquireEvents } from "../../../store/events";
+import { Modal } from '../../Global/Elements/Modal/index'
+import TicketForm from "../../Tickets/TicketForm";
 
 function EventDetailPage() {
   const dispatch = useDispatch();
+  const [showTicketForm, setShowTicketForm] = useState(false)
   const { eventId } = useParams();
   const event = useSelector(state => state.events[eventId]);
 
   useEffect(() => {
     dispatch(acquireEvents());
   }, [dispatch]);
+
+  const buyTickets = () => {
+    setShowTicketForm(true)
+  }
 
   return (
     <main>
@@ -22,7 +29,12 @@ function EventDetailPage() {
         Where: {event.street_address} {event.city} {event.state} {event.zip_code}
       </h3>
       <h3>Tickets Avilable: {event.tickets_available}</h3>
-      <Link to={`{/events/${event.id}/tickets}`}>Buy Tickets</Link>
+      <button onClick={buyTickets}>Buy Tickets</button>
+      {showTicketForm &&
+      <Modal onClose={()=>setShowTicketForm(false)}>
+        <TicketForm event={event} />
+      </Modal>
+      }
     </main>
   );
 }

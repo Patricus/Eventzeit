@@ -31,6 +31,7 @@ export const addOneTicket = (payload) => async dispatch => {
     });
     if(response.ok){
         const ticket = await response.json();
+        console.log(ticket)
         dispatch(add(ticket));
         return ticket
     };
