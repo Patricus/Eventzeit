@@ -37,3 +37,21 @@ class Event(db.Model):
     tickets = db.relationship('Ticket', back_populates='event', cascade='all, delete-orphan')
 
     users = db.relationship('User', secondary="user_events",back_populates='events')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'category': self.category,
+            'name': self.name,
+            'event_image_url': self.event_image_url,
+            'date': self.date,
+            'description': self.description,
+            'price': self.price,
+            'max_occupancy': self.max_occupancy,
+            'tickets_available': self.tickets_available,
+            'street_address': self.street_address,
+            'city': self.city,
+            'state': self.state,
+            'zip_code': self.zip_code,
+        }
