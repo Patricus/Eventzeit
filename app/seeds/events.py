@@ -1,11 +1,24 @@
 from app.models import db
 from app.models.event import Event
+import datetime
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_events():
     reallycoolsuperbigbouncyparty = Event(
-        name='really cool super big bouncy party', date="", time="", category="", description="", image="", occupancy=4, price=8, street_address="", state="CA", city="Long Beach", zip_code=90715)
+        user_id=1,
+        category="Water",
+        name='really cool super big bouncy party',
+        event_image_url='fake-image.jpg',
+        date=datetime.datetime.now(),
+        description="Non-descript",
+        price=8,
+        max_occupancy=4,
+        tickets_available=4,
+        street_address="123 Home Place",
+        city="Long Beach",
+        state="CA",
+        zip_code=90715)
 
 
     db.session.add(reallycoolsuperbigbouncyparty)

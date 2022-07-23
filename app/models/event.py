@@ -34,5 +34,6 @@ class Event(db.Model):
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(100), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
+    tickets = db.relationship('Ticket', back_populates='events')
 
-    user = db.relationship('User', secondary="user_events",back_populates='events')
+    users = db.relationship('User', secondary="user_events",back_populates='events')

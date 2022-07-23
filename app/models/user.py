@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     tickets = db.relationship('Ticket', back_populates='user')
 
-    event = db.relationship('Event', secondary=user_events, back_populates='users')
+    events = db.relationship('Event', secondary=user_events, back_populates='users')
 
     @property
     def password(self):
