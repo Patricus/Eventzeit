@@ -2,7 +2,6 @@
 
 function Ticket() {
 
-
     return (
         <></>
     );
