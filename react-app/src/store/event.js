@@ -1,8 +1,11 @@
-// constants
+/********************** ACTIONS **************************/
+
 const CREATE_EVENT = "event/CREATE_EVENT";
 const READ_EVENT = "event/READ_EVENT";
 const UPDATE_EVENT = "event/UPDATE_EVENT";
 const DELETE_EVENT = "event/DELETE_EVENT";
+
+/********************** ACTION CREATORS **************************/
 
 const createEvent = event => ({
   type: CREATE_EVENT,
@@ -22,7 +25,7 @@ const deleteEvent = eventId => ({
   type: DELETE_EVENT,
 });
 
-const initialState = { event: null };
+/***************************** THUNKS ***************************************/
 
 export const makeEvent =
   (
@@ -89,39 +92,14 @@ export const aquireEvents = () => async dispatch => {
   }
 };
 
-export const editEvent =
-  (
-    user_id,
-    category,
-    name,
-    event_image_url,
-    date,
-    description,
-    price,
-    occupancy,
-    street_address,
-    state,
-    zip_code
-  ) =>
+export const editEvent = (event) =>
   async dispatch => {
-    const response = await fetch("/api/events/:id", {
+    const response = await fetch(`/api/events/${event.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        user_id,
-        category,
-        name,
-        event_image_url,
-        date,
-        description,
-        price,
-        occupancy,
-        street_address,
-        state,
-        zip_code,
-      }),
+      body: JSON.stringify(event),
     });
 
     if (response.ok) {
@@ -147,6 +125,10 @@ export const removeEvent = eventId => async dispatch => {
     dispatch(deleteEvent(eventId));
   }
 };
+
+/***************************** REDUCER ***************************************/
+
+const initialState = {};
 
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
