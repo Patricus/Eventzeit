@@ -12,8 +12,9 @@ const createEvent = event => ({
   payload: event,
 });
 
-const readEvent = () => ({
+const readEvent = events => ({
   type: READ_EVENT,
+  payload: events,
 });
 
 const updateEvent = event => ({
@@ -164,7 +165,7 @@ export default function reducer(state = initialState, action) {
       return newState;
     case READ_EVENT:
       newState = {};
-      action.payload.forEach(event => {
+      action.payload.events.forEach(event => {
         newState[event.id] = event;
       });
       return newState;

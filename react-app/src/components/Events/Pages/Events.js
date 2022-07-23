@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { acquireEvents } from "../../../store/event";
+import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
 
 function Events() {
-  const events = useSelector(state => state.events);
-  console.log("events", events);
+  const events = Object.values(useSelector(state => state.events));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(acquireEvents());
-  });
+  }, [dispatch]);
   return (
     <main>
       <h1>Events</h1>

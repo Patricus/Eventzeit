@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeEvent, editEvent } from "../../../store/event";
+import { makeEvent, editEvent } from "../../../store/events";
 
 function EventForm({ event = null }) {
   const [name, setName] = useState("");
