@@ -5,7 +5,7 @@ function CreateEvent() {
   return (
     <main>
       <h1>Create Event</h1>
-      <EventForm formType={true} />
+      <EventForm />
     </main>
   );
 }

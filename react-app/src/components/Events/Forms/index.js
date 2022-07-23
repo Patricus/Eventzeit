@@ -88,8 +88,6 @@ function EventForm({ event = null }) {
     }
   };
 
-
-
   return (
     <form onSubmit={submit}>
       <div>

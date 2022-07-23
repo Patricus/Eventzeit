@@ -42,7 +42,7 @@ export const makeEvent =
     zip_code
   ) =>
   async dispatch => {
-    const response = await fetch("/api/events/", {
+    const response = await fetch("/api/events/:id", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,12 +107,24 @@ export const editEvent =
     zip_code
   ) =>
   async dispatch => {
-    const response = await fetch(`/api/events/${event.id}`, {
+    const response = await fetch("/api/events/:id", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(event),
+      body: JSON.stringify({
+        user_id,
+        category,
+        name,
+        event_image_url,
+        date,
+        description,
+        price,
+        occupancy,
+        street_address,
+        state,
+        zip_code,
+      }),
     });
 
     if (response.ok) {
