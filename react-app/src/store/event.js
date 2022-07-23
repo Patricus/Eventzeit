@@ -18,28 +18,67 @@ const updateEvent = event => ({
   payload: event,
 });
 
-const deleteEvent = () => ({
+const deleteEvent = eventId => ({
   type: DELETE_EVENT,
 });
 
 const initialState = { event: null };
 
-export const login = (email, password) => async dispatch => {
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  });
+export const makeEvent =
+  (
+    user_id,
+    category,
+    name,
+    event_image_url,
+    date,
+    description,
+    price,
+    occupancy,
+    street_address,
+    state,
+    zip_code
+  ) =>
+  async dispatch => {
+    const response = await fetch("/api/events/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id,
+        category,
+        name,
+        event_image_url,
+        date,
+        description,
+        price,
+        occupancy,
+        street_address,
+        state,
+        zip_code,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(createEvent(data));
+      return null;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  };
+
+export const aquireEvents = () => async dispatch => {
+  const response = await fetch("/api/events");
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
-    return null;
+    dispatch(readEvent(data));
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -50,49 +89,78 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
-export const logout = () => async dispatch => {
-  const response = await fetch("/api/auth/logout", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const editEvent =
+  (
+    user_id,
+    category,
+    name,
+    event_image_url,
+    date,
+    description,
+    price,
+    occupancy,
+    street_address,
+    state,
+    zip_code
+  ) =>
+  async dispatch => {
+    const response = await fetch("/api/events/:id", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id,
+        category,
+        name,
+        event_image_url,
+        date,
+        description,
+        price,
+        occupancy,
+        street_address,
+        state,
+        zip_code,
+      }),
+    });
 
-  if (response.ok) {
-    dispatch(deleteUser());
-  }
-};
-
-export const signUp = (username, email, password) => async dispatch => {
-  const response = await fetch("/api/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username,
-      email,
-      password,
-    }),
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data));
-    return null;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateEvent(data));
+      return null;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
     }
-  } else {
-    return ["An error occurred. Please try again."];
+  };
+
+export const removeEvent = eventId => async dispatch => {
+  const response = await fetch(`/api/events/${eventId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteEvent(eventId));
   }
 };
 
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case CREATE_EVENT:
-      return { user: action.payload };
+      const event = action.payload;
+      newState[event.id] = event;
+      return newState;
+    case READ_EVENT:
+      newState = {};
+      action.payload.forEach(event => {
+        newState[event.id] = event;
+      });
+      return newState;
     case DELETE_EVENT:
       return { user: null };
     default:
