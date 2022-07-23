@@ -38,7 +38,7 @@ export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async d
 };
 
 export const getAllTickets = (userId) => async dispatch => {
-    const response = await fetch(`/api/tickets/user/${userId}`);
+    const response = await fetch(`/api/tickets/${userId}`);
     if(response.ok){
         const tickets = await response.json();
         dispatch(load(tickets))
@@ -76,10 +76,8 @@ const ticketsReducer = (state = initialState, action) => {
             newState[action.ticket.id] = action.ticket;
             return newState;
         case GET_ALL_TICKETS:
-            return action.tickets.reduce((newState, ticket) => {
-                newState[ticket.id] = ticket;
-                return newState;
-            }, {})
+            newState = action.tickets.tickets;
+            return newState;
         case UPDATE_TICKET:
             newState[action.ticket.id] = action.ticket;
             return newState;
