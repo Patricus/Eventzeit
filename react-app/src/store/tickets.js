@@ -23,11 +23,11 @@ const remove = (ticket) => ({
     ticket
 });
 
-export const addOneTicket = (payload) => async dispatch => {
+export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async dispatch => {
     const response = await fetch(`/api/tickets/purchase`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+        body: JSON.stringify({attendee, for_sale, user_id, event_id})
     });
     if(response.ok){
         const ticket = await response.json();
