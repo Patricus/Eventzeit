@@ -30,5 +30,11 @@ def load_tickets(userId):
 def update_ticket(id):
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    ticket = Ticket.query.filter(Ticket.id == id)
-    data = request.json
+    if form.validate_on_submit():
+        ticket = Ticket.query.filter(Ticket.id == id)
+        ticket.attendee = form.data['attendee']
+        ticket.for_sale = form.data['for_sale']
+        ticket.user_id = form.data['user_id']
+        db.session.commit()
+        return ticket.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

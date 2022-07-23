@@ -9,7 +9,7 @@ class Ticket(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     user = db.relationship('User', back_populates='tickets')
-    events = db.relationship('Event', back_populates='tickets')
+    event = db.relationship('Event', back_populates='tickets')
 
     def to_dict(self):
         return {
