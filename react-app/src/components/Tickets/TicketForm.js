@@ -32,7 +32,7 @@ function TicketForm() {
             user_id: user.id,
             event_id: 1
         }
-        newTicket = await dispatch(addOneTicket(data))
+        const newTicket = await dispatch(addOneTicket(data))
         if (newTicket.id) {
             setPurchased(true)
         }
