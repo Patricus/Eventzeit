@@ -17,10 +17,10 @@ def generate_ticket():
     db.session.commit()
     return ticket.to_dict()
 
-@ticket_routes.route('/users/<int:userId>')
+@ticket_routes.route('/<int:userId>')
 def load_tickets(userId):
     tickets = Ticket.query.filter(Ticket.user_id == userId)
-    return tickets.to_dict()
+    return {'tickets': [ticket.to_dict() for ticket in tickets]}
 
 @ticket_routes.route('/<int:id>', methods=['POST'])
 def update_ticket(id):

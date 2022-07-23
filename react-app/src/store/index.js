@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import events from "./events";
-import ticketsReducer from "./tickets";
+import tickets from "./tickets";
 
 const rootReducer = combineReducers({
   session,
   events,
-  tickets: ticketsReducer
+  tickets
 });
 
 let enhancer;
