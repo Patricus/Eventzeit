@@ -37,13 +37,6 @@ export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async d
     };
 };
 
-// export const testRoute = () => async dispatch => {
-//     const response = await fetch(`/api/tickets/test`)
-//     if(response.ok){
-//         console.log('This Thunk received a good response.')
-//     }
-// }
-
 export const getAllTickets = (userId) => async dispatch => {
     const response = await fetch(`/api/tickets/user/${userId}`);
     if(response.ok){
