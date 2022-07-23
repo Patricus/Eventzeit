@@ -5,7 +5,7 @@ import { makeEvent, editEvent } from "../../../store/events";
 function EventForm({ event = null }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [category, setCategory] = useState(1);
+  const [category, setCategory] = useState("Water");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [occupancy, setOccupancy] = useState(1);
@@ -40,7 +40,7 @@ function EventForm({ event = null }) {
     setErrors([]);
 
     if (!userId) {
-      setErrors(["You must be logged in to create an event."]);
+      setErrors(["You must be logged in to create or edit an event."]);
       return;
     }
 
