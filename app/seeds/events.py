@@ -65,10 +65,74 @@ def seed_events():
         state="CA",
         zip_code=90715)
 
+    tomsbbq = Event(
+        user_id=2,
+        category="Fire",
+        name='Tom\'s BBQ',
+        event_image_url='https://simpleseasonal.com/wp-content/uploads/2018/08/shutterstock_279093950.jpg',
+        date=datetime.datetime.now(),
+        description="Come on down to Tom's BBQ!",
+        price=5,
+        max_occupancy=35,
+        tickets_available=35,
+        street_address="700 California Street",
+        city="San Francisco",
+        state="CA",
+        zip_code=94115)
+
+    chrisandallison = Event(
+        user_id=2,
+        category="Heart",
+        name='Chris and Allison\'s Wedding!',
+        event_image_url='https://i.insider.com/5eac8da748d92c3d275bb2de?width=700',
+        date=datetime.datetime.now(),
+        description="Chris and Allison and getting married! Come share this special moment in our lives with us!",
+        price=50,
+        max_occupancy=150,
+        tickets_available=150,
+        street_address="23570 Arnold Dr",
+        city="Sonoma",
+        state="CA",
+        zip_code=95476)
+
+    tysegallfilmore = Event(
+        user_id=2,
+        category="Wind",
+        name='Ty Segall at the Filmore',
+        event_image_url='https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/concert-photography/thumbnail.jpeg',
+        date=datetime.datetime.now(),
+        description="Ty Segall playing live at the Filmore",
+        price=35,
+        max_occupancy=550,
+        tickets_available=550,
+        street_address="1805 Geary Blvd",
+        city="San Francisco",
+        state="CA",
+        zip_code=94115)
+
+    runningforfun = Event(
+        user_id=2,
+        category="Water",
+        name='Running for fun',
+        event_image_url='https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/concert-photography/thumbnail.jpeg',
+        date=datetime.datetime.now(),
+        description="Ty Segall playing live at the Filmore",
+        price=35,
+        max_occupancy=550,
+        tickets_available=550,
+        street_address="1805 Geary Blvd",
+        city="San Francisco",
+        state="CA",
+        zip_code=94115)
+
+
     db.session.add(reallycoolsuperbigbouncyparty)
     db.session.add(eventoftheages)
     db.session.add(bumpbappers)
     db.session.add(discodunkers)
+    db.session.add(tomsbbq)
+    db.session.add(chrisandallison)
+    db.session.add(tysegallfilmore)
 
     db.session.commit()
 
