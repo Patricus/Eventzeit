@@ -6,14 +6,10 @@ class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     attendee = db.Column(db.String(30), nullable=False)
     for_sale = db.Column(db.Boolean)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', back_populates='tickets')
-    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     event = db.relationship('Event', back_populates='tickets')
-
-    @attendee.setter
-    def attendee(self, attendee):
-        self.attendee = attendee
 
     def to_dict(self):
         return {
