@@ -143,8 +143,11 @@ export default function reducer(state = initialState, action) {
         newState[event.id] = event;
       });
       return newState;
+    case UPDATE_EVENT:
+      return {...state, [action.event.id]: action.event };
     case DELETE_EVENT:
-      return { user: null };
+      delete newState[action.eventId]
+      return newState
     default:
       return state;
   }
