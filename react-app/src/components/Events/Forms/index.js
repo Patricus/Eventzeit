@@ -14,7 +14,7 @@ function EventForm({ formType }) {
   const [city, setCity] = useState("");
   const [zipCode, setZipCode] = useState(0);
 
-  const submit = e => {
+  const submit = (e) => {
     e.preventDefault();
   };
 
@@ -25,15 +25,30 @@ function EventForm({ formType }) {
       </div>
       <div>
         <label htmlFor="name">Name:</label>
-        <input name="name" type="text" value={name} onChange={e => setName(e.target.value)}></input>
+        <input
+          name="name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="date">Date:</label>
-        <input name="date" type="date" value={date} onChange={e => setDate(e.target.value)}></input>
+        <input
+          name="date"
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="time">Time:</label>
-        <input name="time" type="time" value={time} onChange={e => setTime(e.target.value)}></input>
+        <input
+          name="time"
+          type="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="category">Category:</label>
@@ -41,7 +56,8 @@ function EventForm({ formType }) {
           name="category"
           type="text"
           value={category}
-          onChange={e => setCategory(e.target.value)}></input>
+          onChange={(e) => setCategory(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="description">Description:</label>
@@ -49,7 +65,8 @@ function EventForm({ formType }) {
           name="description"
           type="text"
           value={description}
-          onChange={e => setDescription(e.target.value)}></input>
+          onChange={(e) => setDescription(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="image">Image:</label>
@@ -57,7 +74,8 @@ function EventForm({ formType }) {
           name="image"
           type="text"
           value={image}
-          onChange={e => setImage(e.target.value)}></input>
+          onChange={(e) => setImage(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="occupany">Occupancy:</label>
@@ -66,7 +84,8 @@ function EventForm({ formType }) {
           type="number"
           min="1"
           value={occupancy}
-          onChange={e => setOccupancy(e.target.value)}></input>
+          onChange={(e) => setOccupancy(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="price">Price:</label>
@@ -75,7 +94,8 @@ function EventForm({ formType }) {
           type="number"
           min="0"
           value={price}
-          onChange={e => setPrice(e.target.value)}></input>
+          onChange={(e) => setPrice(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="streetAddress">Street Address:</label>
@@ -83,7 +103,8 @@ function EventForm({ formType }) {
           name="streetAddress"
           type="text"
           value={streetAddress}
-          onChange={e => setStreetAddress(e.target.value)}></input>
+          onChange={(e) => setStreetAddress(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="state">State:</label>
@@ -91,11 +112,17 @@ function EventForm({ formType }) {
           name="state"
           type="text"
           value={state}
-          onChange={e => setState(e.target.value)}></input>
+          onChange={(e) => setState(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="city">City:</label>
-        <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)}></input>
+        <input
+          name="city"
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        ></input>
       </div>
       <div>
         <label htmlFor="zipCode">Zip Code:</label>
@@ -105,9 +132,16 @@ function EventForm({ formType }) {
           min="00000"
           max="99999"
           value={zipCode}
-          onChange={e => setZipCode(e.target.value)}></input>
+          onChange={(e) => setZipCode(e.target.value)}
+        ></input>
       </div>
-      <div>{formType ? <button>Create Event</button> : <button>Update Event</button>}</div>
+      <div>
+        {formType ? (
+          <button>Create Event</button>
+        ) : (
+          <button>Update Event</button>
+        )}
+      </div>
     </form>
   );
 }
