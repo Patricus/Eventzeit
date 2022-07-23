@@ -10,7 +10,9 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Footer from "./components/Global/Elements/Footer";
 import CreateEvent from "./components/Events/Pages/CreateEvent";
+import EventDetailPage from "./components/Events/Pages/EventDetails";
 import Homepage from "./components/Homepage/Homepage";
+import Events from "./components/Events/Pages/Events";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,12 +45,18 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <Homepage />
-        </ProtectedRoute>
+        </Route>
+        <Route path="/events" exact={true}>
+          <Events />
+        </Route>
         <ProtectedRoute path="/events/create" exact={true}>
           <CreateEvent />
         </ProtectedRoute>
+        <Route path="/events/:eventId" exact={true}>
+          <EventDetailPage />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

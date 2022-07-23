@@ -1,16 +1,20 @@
-// constants
+/********************** ACTIONS **************************/
+
 const CREATE_EVENT = "event/CREATE_EVENT";
 const READ_EVENT = "event/READ_EVENT";
 const UPDATE_EVENT = "event/UPDATE_EVENT";
 const DELETE_EVENT = "event/DELETE_EVENT";
+
+/********************** ACTION CREATORS **************************/
 
 const createEvent = event => ({
   type: CREATE_EVENT,
   payload: event,
 });
 
-const readEvent = () => ({
+const readEvent = events => ({
   type: READ_EVENT,
+  payload: events,
 });
 
 const updateEvent = event => ({
@@ -22,7 +26,7 @@ const deleteEvent = eventId => ({
   type: DELETE_EVENT,
 });
 
-const initialState = { event: null };
+/***************************** THUNKS ***************************************/
 
 export const makeEvent =
   (
@@ -39,7 +43,7 @@ export const makeEvent =
     zip_code
   ) =>
   async dispatch => {
-    const response = await fetch("/api/events/", {
+    const response = await fetch("/api/events/:id", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +77,7 @@ export const makeEvent =
     }
   };
 
-export const aquireEvents = () => async dispatch => {
+export const acquireEvents = () => async dispatch => {
   const response = await fetch("/api/events");
 
   if (response.ok) {
@@ -148,6 +152,10 @@ export const removeEvent = eventId => async dispatch => {
   }
 };
 
+/***************************** REDUCER ***************************************/
+
+const initialState = {};
+
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
@@ -157,12 +165,15 @@ export default function reducer(state = initialState, action) {
       return newState;
     case READ_EVENT:
       newState = {};
-      action.payload.forEach(event => {
+      action.payload.events.forEach(event => {
         newState[event.id] = event;
       });
       return newState;
+    case UPDATE_EVENT:
+      return { ...state, [action.event.id]: action.event };
     case DELETE_EVENT:
-      return { user: null };
+      delete newState[action.eventId];
+      return newState;
     default:
       return state;
   }
