@@ -13,8 +13,12 @@ function Ticket({ ticket }) {
 
     return (
         <div>
-            <h3>{event.name}</h3>
-            <p>Attendee: {ticket.attendee}</p>
+            {event && ticket &&
+                <>
+                    <h3>{event.name}</h3>
+                    <p>Attendee: {ticket.attendee}</p>
+                </>
+            }
         </div>
     );
 };
