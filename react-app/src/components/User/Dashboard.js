@@ -18,9 +18,9 @@ function Dashboard() {
             <h1>My Dashboard</h1>
             {tickets &&
                 <ul>
-                    {tickets.forEach(ticket=>{
-                        <Ticket key={ticket.id} ticket={ticket} />
-                    })}
+                {tickets.map(ticket=>{
+                    return <Ticket key={ticket.id} ticket={ticket} />
+                })}
                 </ul>}
         </main>
     );
