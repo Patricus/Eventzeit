@@ -8,9 +8,9 @@ function TicketForm() {
     const [name, setName] = useState('')
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
-    const eventId = useParams()
+    // const eventId = useParams()
     const user = useSelector(state => state.session.user)
-    const event = useSelector(state => state.events.eventId)
+    // const event = useSelector(state => state.events.eventId)
 
     const dispatch = useDispatch()
 
@@ -30,7 +30,7 @@ function TicketForm() {
             attendee: name,
             for_sale: false,
             user_id: user.id,
-            event_id: event.id
+            event_id: 1
         }
         newTicket = await dispatch(addOneTicket(data))
         if (newTicket.id) {
@@ -54,6 +54,9 @@ function TicketForm() {
                             value={name}
                             onChange={updateName}
                         ></input>
+                    </div>
+                    <div>
+                        <button type="submit" >Submit</button>
                     </div>
                 </form>
             }

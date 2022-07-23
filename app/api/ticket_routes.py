@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.forms.ticket_form import TicketForm
 from app.models import Ticket, db
-from auth_routes import validation_errors_to_error_messages
+from .auth_routes import validation_errors_to_error_messages
 
 ticket_routes = Blueprint('tickets', __name__)
 

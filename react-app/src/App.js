@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import Footer from "./components/Global/Elements/Footer";
 import CreateEvent from "./components/Events/Pages/CreateEvent";
 import Homepage from "./components/Homepage/Homepage";
+import TicketForm from "./components/Tickets/TicketForm";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/events/create" exact={true}>
           <CreateEvent />
+        </ProtectedRoute>
+        <ProtectedRoute path='/ticket-form-test' >
+          <TicketForm />
         </ProtectedRoute>
       </Switch>
       <Footer />
