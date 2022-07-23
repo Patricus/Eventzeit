@@ -7,9 +7,9 @@ class Ticket(db.Model):
     attendee = db.Column(db.String(30), nullable=False)
     for_sale = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship('User', back_populates='tickets')
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
-    event = db.relationship('Event', back_populates='tickets')
+    user = db.relationship('User', back_populates='tickets')
+    events = db.relationship('Event', back_populates='tickets')
 
     def to_dict(self):
         return {
