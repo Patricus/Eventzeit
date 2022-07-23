@@ -10,7 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Footer from "./components/Global/Elements/Footer";
 import CreateEvent from "./components/Events/Pages/CreateEvent";
-import EditEvent from "./components/Events/Pages/EditEvent";
+import EventDetailPage from "./components/Events/Pages/EventDetails";
 import Homepage from "./components/Homepage/Homepage";
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
           <CreateEvent />
         </ProtectedRoute>
         <ProtectedRoute path="/events/:eventId" exact={true}>
-          <EditEvent />
+          <EventDetailPage />
         </ProtectedRoute>
       </Switch>
       <Footer />

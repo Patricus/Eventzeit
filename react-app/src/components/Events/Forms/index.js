@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeEvent, editEvent } from "../../../store/event";
+import { useParams } from "react-router-dom"
 
 function EventForm({ event = null }) {
   const [name, setName] = useState("");
@@ -18,6 +19,9 @@ function EventForm({ event = null }) {
 
   const dispatch = useDispatch();
   const userId = useSelector(state => state.session.user.id);
+  const { eventId }= useParams()
+
+  console.log(eventId)
 
   useEffect(() => {
     if (event) {
@@ -65,6 +69,7 @@ function EventForm({ event = null }) {
       } else {
         await dispatch(
           editEvent({
+            event_id: eventId,
             user_id: userId,
             category,
             name,
