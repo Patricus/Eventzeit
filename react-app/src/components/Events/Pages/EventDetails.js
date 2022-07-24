@@ -43,6 +43,9 @@ function EventDetailPage() {
           <h3>
             Where: {event.street_address} {event.city} {event.state} {event.zip_code}
           </h3>
+          <h3>
+            Ticket Price: ${event.price}
+          </h3>
           <h3>Tickets Available: {event.tickets_available}</h3>
           <button onClick={buyTickets}>Buy Tickets</button>
           {showTicketForm && (
