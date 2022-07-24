@@ -14,13 +14,10 @@ def generate_ticket():
         event_id = data['event_id']
     )
 
-    print("\n","\n", ticket.event_id, "\n","\n")
-
+    # Every time a ticket is purchased, tickets availabel is
+    # decreased by one
     event = Event.query.get(ticket.event_id)
-
     event.tickets_available = event.tickets_available - 1
-
-    print("\n","\n", event.tickets_available, "\n","\n")
 
     db.session.add(ticket)
     db.session.commit()

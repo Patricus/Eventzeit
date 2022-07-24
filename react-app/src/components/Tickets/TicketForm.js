@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { addOneTicket, updateTicket } from "../../store/tickets";
+import { acquireEvents } from "../../store/events"
 
 
 function TicketForm({ event, ticket = null, setShowTicket }) {
@@ -37,6 +38,7 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
             }
             dispatch(addOneTicket(data))
             setPurchased(true)
+            dispatch(acquireEvents());
         }
         if (ticket) {
             const data = {
