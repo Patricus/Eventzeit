@@ -29,7 +29,7 @@ function EventDetailPage() {
       {event ? (
         <>
           <h1>Event: {event.name}</h1>
-          {event.user_id === user.id && (
+          {user && event.user_id === user.id && (
             <button onClick={() => setShowModal(true)}>Edit Event</button>
           )}
           {showModal && (
