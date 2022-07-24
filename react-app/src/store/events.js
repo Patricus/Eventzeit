@@ -53,12 +53,12 @@ export const makeEvent = event => async dispatch => {
 };
 
 export const acquireEvents = () => async dispatch => {
-  const response = await fetch("/api/events");
+  const response = await fetch("/api/events/");
 
   if (response.ok) {
     const data = await response.json();
     dispatch(readEvent(data));
-    return data
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

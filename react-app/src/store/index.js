@@ -7,7 +7,7 @@ import tickets from "./tickets";
 const rootReducer = combineReducers({
   session,
   events,
-  tickets
+  tickets,
 });
 
 let enhancer;

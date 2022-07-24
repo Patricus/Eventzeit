@@ -1,8 +1,6 @@
-from crypt import methods
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Event, db
-from app.forms.newEvent_form import EventForm
 
 event_routes = Blueprint('events', __name__)
 
