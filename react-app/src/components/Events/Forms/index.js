@@ -5,7 +5,7 @@ import { makeEvent, editEvent } from "../../../store/events";
 function EventForm({ event = null }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [category, setCategory] = useState("Water");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [occupancy, setOccupancy] = useState(1);
@@ -18,6 +18,64 @@ function EventForm({ event = null }) {
 
   const dispatch = useDispatch();
   const userId = useSelector(state => state.session.user.id);
+  const states = [ "AK - Alaska",
+                "AL - Alabama",
+                "AR - Arkansas",
+                "AS - American Samoa",
+                "AZ - Arizona",
+                "CA - California",
+                "CO - Colorado",
+                "CT - Connecticut",
+                "DC - District of Columbia",
+                "DE - Delaware",
+                "FL - Florida",
+                "GA - Georgia",
+                "GU - Guam",
+                "HI - Hawaii",
+                "IA - Iowa",
+                "ID - Idaho",
+                "IL - Illinois",
+                "IN - Indiana",
+                "KS - Kansas",
+                "KY - Kentucky",
+                "LA - Louisiana",
+                "MA - Massachusetts",
+                "MD - Maryland",
+                "ME - Maine",
+                "MI - Michigan",
+                "MN - Minnesota",
+                "MO - Missouri",
+                "MS - Mississippi",
+                "MT - Montana",
+                "NC - North Carolina",
+                "ND - North Dakota",
+                "NE - Nebraska",
+                "NH - New Hampshire",
+                "NJ - New Jersey",
+                "NM - New Mexico",
+                "NV - Nevada",
+                "NY - New York",
+                "OH - Ohio",
+                "OK - Oklahoma",
+                "OR - Oregon",
+                "PA - Pennsylvania",
+                "PR - Puerto Rico",
+                "RI - Rhode Island",
+                "SC - South Carolina",
+                "SD - South Dakota",
+                "TN - Tennessee",
+                "TX - Texas",
+                "UT - Utah",
+                "VA - Virginia",
+                "VI - Virgin Islands",
+                "VT - Vermont",
+                "WA - Washington",
+                "WI - Wisconsin",
+                "WV - West Virginia",
+                "WY - Wyoming"]
+
+  const categories = ["Sport", "Party", "Concert", "Dinner", "Game", "Seminar", "Conference", "Workshop",
+            "Social", "Class", "Auction", "Gala", "Festival", "Exercise", "Celebration", "Other"]
 
   useEffect(() => {
     if (event) {
@@ -118,11 +176,10 @@ function EventForm({ event = null }) {
       <div>
         <label htmlFor="category">Category:</label>
         <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
-          <option value={"Water"}>Water</option>
-          <option value={"Fire"}>Fire</option>
-          <option value={"Earth"}>Earth</option>
-          <option value={"Air"}>Air</option>
-          <option value={"Heart"}>Heart</option>
+          <option disabled={true} value="">Choose a Category</option>
+          {categories.map(category => {
+            return <option key={category} value={`${category}`}>{category}</option>
+          })}
         </select>
       </div>
       <div>
@@ -169,7 +226,12 @@ function EventForm({ event = null }) {
       </div>
       <div>
         <label htmlFor="state">State:</label>
-        <input name="state" type="text" value={state} onChange={e => setState(e.target.value)} />
+        <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
+          <option disabled={true} value="">Choose a State</option>
+          {states.map(state => {
+            return <option key={state} value={`${state}`}>{state}</option>
+          })}
+        </select>
       </div>
       <div>
         <label htmlFor="city">City:</label>
