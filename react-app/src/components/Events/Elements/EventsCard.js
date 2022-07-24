@@ -4,8 +4,8 @@ import "./eventCard.css";
 
 function EventsCard({ event }) {
   return (
-    <Link to={`/events/${event.id}`}>
-      <div className="eventCard">
+    <div className="eventCard">
+      <Link to={`/events/${event.id}`}>
         <div>
           <h2>{event.name}</h2>
         </div>
@@ -17,8 +17,8 @@ function EventsCard({ event }) {
           <span>{event.date}</span>
           <span>{event.price}</span>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
