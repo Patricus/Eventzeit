@@ -23,21 +23,22 @@ const remove = (ticket) => ({
     ticket
 });
 
-export const addOneTicket = (payload) => async dispatch => {
+export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async dispatch => {
     const response = await fetch(`/api/tickets/purchase`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+        body: JSON.stringify({attendee, for_sale, user_id, event_id})
     });
     if(response.ok){
         const ticket = await response.json();
+        console.log(ticket)
         dispatch(add(ticket));
         return ticket
     };
 };
 
 export const getAllTickets = (userId) => async dispatch => {
-    const response = await fetch(`/api/tickets/user/${userId}`);
+    const response = await fetch(`/api/tickets/${userId}`);
     if(response.ok){
         const tickets = await response.json();
         dispatch(load(tickets))
@@ -75,10 +76,8 @@ const ticketsReducer = (state = initialState, action) => {
             newState[action.ticket.id] = action.ticket;
             return newState;
         case GET_ALL_TICKETS:
-            return action.tickets.reduce((newState, ticket) => {
-                newState[ticket.id] = ticket;
-                return newState;
-            }, {})
+            newState = action.tickets.tickets;
+            return newState;
         case UPDATE_TICKET:
             newState[action.ticket.id] = action.ticket;
             return newState;
