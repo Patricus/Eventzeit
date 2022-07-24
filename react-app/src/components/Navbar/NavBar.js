@@ -60,12 +60,17 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div>
-              <NavLink to='/events'>
-                Events
+              Bonus: Search
+            </div>
+            <div>
+              <NavLink to='/events/create'>
+                Create Event
               </NavLink>
             </div>
             <div>
-              Bonus: Search
+              <NavLink to='/events'>
+                Events
+              </NavLink>
             </div>
             <div>
               <UserMenu user={user} />
