@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .event import user_events
 
 
 class User(db.Model, UserMixin):
@@ -11,6 +12,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     avatar = db.Column(db.String(30), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+    tickets = db.relationship('Ticket', back_populates='user', cascade='all, delete-orphan')
+
+    events = db.relationship('Event', secondary=user_events, back_populates='users')
 
     @property
     def password(self):
@@ -27,5 +31,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'avatar': self.avatar
         }

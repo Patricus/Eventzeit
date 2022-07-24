@@ -34,13 +34,13 @@ const SignUpForm = () => {
   const [avatar, setAvatar] = useState(avatar1)
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session?.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, avatar));
       if (data) {
         setErrors(data)
       }
@@ -70,8 +70,6 @@ const SignUpForm = () => {
   if (user) {
     return <Redirect to='/' />;
   }
-
-  console.log(avatar)
 
   return (
     <main>
@@ -109,49 +107,49 @@ const SignUpForm = () => {
             value={avatar}
           >
             <option value={avatar1}>
-              1
+              Blue Hat
             </option>
             <option value={avatar2}>
-              2
+              Orange Hat
             </option>
             <option value={avatar3}>
-              3
+              Kitty
             </option>
             <option value={avatar4}>
-              4
+              Fox
             </option>
             <option value={avatar5}>
-              5
+              Bald Man
             </option>
             <option value={avatar6}>
-              6
+              Grey Hair Lady
             </option>
             <option value={avatar7}>
-              7
+              Grey Hair Lady 2
             </option>
             <option value={avatar8}>
-              8
+              Missing Eyes
             </option>
             <option value={avatar9}>
-              9
+              Orange Beard
             </option>
             <option value={avatar10}>
-              10
+              Kid Boy
             </option>
             <option value={avatar11}>
-              11
+              Short Hair
             </option>
             <option value={avatar12}>
-              12
+              Glasses
             </option>
             <option value={avatar13}>
-              13
+              Long Red Hair
             </option>
             <option value={avatar14}>
-              14
+              Long Blonde Braid
             </option>
             <option value={avatar15}>
-              15
+              Kid Girl
             </option>
           </select>
           <AvatarImg src={avatar} />

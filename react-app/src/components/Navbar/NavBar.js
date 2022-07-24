@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import UserMenu from './UserMenu';
+import EventzeitLogo from "../../images/EventzeitMainLogo.png"
 
 const NavigationBar = styled.div`
   display: flex;
@@ -13,6 +14,12 @@ const NavigationBar = styled.div`
   align-items: center;
   justify-content: space-around;
   `
+
+const Logo = styled.img`
+width: 10em;
+height: auto;
+padding-top: 1em;
+`
 
 const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -30,7 +37,7 @@ const NavBar = () => {
         <>
           <div>
             <NavLink to='/' exact={true} activeClassName='active'>
-              Eventzeit Logo to '/''
+              <Logo src={`${EventzeitLogo}`} />
             </NavLink>
           </div>
           <div>
@@ -49,11 +56,21 @@ const NavBar = () => {
         <>
             <div>
               <NavLink to='/' exact={true} activeClassName='active'>
-                Home
+              <Logo src={`${EventzeitLogo}`} />
               </NavLink>
             </div>
             <div>
               Bonus: Search
+            </div>
+            <div>
+              <NavLink to='/events/create'>
+                Create Event
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to='/events'>
+                Events
+              </NavLink>
             </div>
             <div>
               <UserMenu user={user} />
