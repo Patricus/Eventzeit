@@ -25,7 +25,8 @@ def load_tickets(userId):
 @ticket_routes.route('/<int:id>', methods=['POST'])
 def update_ticket(id):
     data = request.json
-    ticket = Ticket.query.filter(Ticket.id == id)
+    ticket = Ticket.query.get(id)
+    ticket.id = id
     ticket.attendee = data['attendee']
     ticket.for_sale = data['for_sale']
     ticket.user_id = data['user_id']

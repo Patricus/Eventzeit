@@ -76,7 +76,9 @@ const ticketsReducer = (state = initialState, action) => {
             newState[action.ticket.id] = action.ticket;
             return newState;
         case GET_ALL_TICKETS:
-            newState = action.tickets.tickets;
+            action.tickets.tickets.forEach(ticket=>{
+                newState[ticket.id] = ticket
+            })
             return newState;
         case UPDATE_TICKET:
             newState[action.ticket.id] = action.ticket;
@@ -85,7 +87,7 @@ const ticketsReducer = (state = initialState, action) => {
             delete newState[action.ticket.id];
             return newState;
         default:
-            return state;
+            return newState;
     };
 };
 
