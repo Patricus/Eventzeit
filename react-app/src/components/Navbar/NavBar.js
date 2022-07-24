@@ -16,7 +16,7 @@ const NavigationBar = styled.div`
   `
 
 const Logo = styled.img`
-width: 15%;
+width: 10em;
 height: auto;
 padding-top: 1em;
 `
