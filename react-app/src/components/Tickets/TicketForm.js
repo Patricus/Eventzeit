@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { addOneTicket } from "../../store/tickets";
+import { addOneTicket, updateTicket } from "../../store/tickets";
 
 
-function TicketForm({event}) {
-    const [name, setName] = useState('')
+function TicketForm({ event, ticket = null }) {
+    const [name, setName] = useState(ticket.attendee || '')
+    const [forSale, setForSale] = useState(false)
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
     const user = useSelector(state => state.session.user)
@@ -14,23 +15,38 @@ function TicketForm({event}) {
     useEffect(() => {
         if (name.length < 25) setErrors([]);
         else setErrors(['Name must be 25 characters or less.']);
-    }, [name])
+    }, [name]);
 
     const updateName = (e) => {
         setName(e.target.value);
     };
 
+    const updateForSale = () => {
+        setForSale(!forSale);
+    };
+
     const onPurchase = (e) => {
         e.preventDefault();
         if (!name) setErrors(['Name field is required.'])
-        const data = {
-            attendee: name,
-            for_sale: false,
-            user_id: user.id,
-            event_id: event.id
+        if (!ticket) {
+            const data = {
+                attendee: name,
+                for_sale: forSale,
+                user_id: user.id,
+                event_id: event.id
+            }
+            dispatch(addOneTicket(data))
+            setPurchased(true)
         }
-        dispatch(addOneTicket(data))
-        setPurchased(true)
+        if (ticket) {
+            const data = {
+                attendee: name,
+                for_sale: forSale,
+                user_id: ticket.user_id,
+                event_id: ticket.event_id
+            }
+            dispatch(updateTicket(ticket.id, data))
+        }
     }
 
     return (
@@ -50,6 +66,17 @@ function TicketForm({event}) {
                             onChange={updateName}
                         ></input>
                     </div>
+                    {ticket &&
+                        <div>
+                            <label>Sell this Ticket</label>
+                            <input
+                                type="checkbox"
+                                value={forSale}
+                                checked={forSale}
+                                onChange={updateForSale}
+                            ></input>
+                        </div>
+                    }
                     <div>
                         <button type="submit" disabled={!name}>Submit</button>
                     </div>
