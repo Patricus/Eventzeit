@@ -74,6 +74,9 @@ function EventForm({ event = null }) {
                 "WV - West Virginia",
                 "WY - Wyoming"]
 
+  const categories = ["Sport", "Party", "Concert", "Dinner", "Game", "Seminar", "Conference", "Workshop",
+            "Social", "Class", "Auction", "Gala", "Festival", "Exercise"]
+
   useEffect(() => {
     if (event) {
       setName(event.name);
@@ -173,11 +176,10 @@ function EventForm({ event = null }) {
       <div>
         <label htmlFor="category">Category:</label>
         <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
-          <option value={"Water"}>Water</option>
-          <option value={"Fire"}>Fire</option>
-          <option value={"Earth"}>Earth</option>
-          <option value={"Air"}>Air</option>
-          <option value={"Heart"}>Heart</option>
+          <option disabled={true} value="">Choose a Category</option>
+          {categories.map(category => {
+            return <option key={category} value={`${category}`}>{category}</option>
+          })}
         </select>
       </div>
       <div>
