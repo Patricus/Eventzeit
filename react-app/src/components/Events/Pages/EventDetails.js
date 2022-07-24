@@ -38,7 +38,7 @@ function EventDetailPage() {
             </Modal>
           )}
           <img src={`${event.event_image_url}`} alt={event.name} />
-          <h3>When: {event.date}</h3>
+          <h3>When: {event.date.split(" G")[0]} </h3>
           <h3>What: {event.description}</h3>
           <h3>
             Where: {event.street_address} {event.city} {event.state} {event.zip_code}

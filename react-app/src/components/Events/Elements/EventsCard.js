@@ -14,7 +14,7 @@ function EventsCard({ event }) {
           <img src={event.event_image_url} alt={event.name} />
         </div>
         <div>
-          <span>{event.date}</span>
+          <span>{event.date.split(" G")[0]}</span>
           <span>{event.price}</span>
         </div>
       </Link>
