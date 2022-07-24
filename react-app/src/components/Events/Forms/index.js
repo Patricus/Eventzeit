@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { makeEvent, editEvent } from "../../../store/events";
+import { useHistory } from "react-router-dom";
+import { makeEvent, editEvent, removeEvent } from "../../../store/events";
 
 function EventForm({ event = null }) {
   (() => {
     if (!event) return;
-    let newDate = new Date(
-      new Date(event.date).toString().split("GMT")[0] + " UTC"
-    )
+    let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")
       .toISOString()
       .split(".")[0];
     newDate = newDate.slice(0, newDate.length - 3);
@@ -16,24 +15,19 @@ function EventForm({ event = null }) {
   const [name, setName] = useState((event && event.name) || "");
   const [date, setDate] = useState((event && event.date) || "");
   const [category, setCategory] = useState((event && event.category) || "");
-  const [description, setDescription] = useState(
-    (event && event.description) || ""
-  );
+  const [description, setDescription] = useState((event && event.description) || "");
   const [image, setImage] = useState((event && event.event_image_url) || "");
-  const [occupancy, setOccupancy] = useState(
-    (event && event.max_occupancy) || 1
-  );
+  const [occupancy, setOccupancy] = useState((event && event.max_occupancy) || 1);
   const [price, setPrice] = useState((event && event.price) || 0);
-  const [streetAddress, setStreetAddress] = useState(
-    (event && event.street_address) || ""
-  );
+  const [streetAddress, setStreetAddress] = useState((event && event.street_address) || "");
   const [state, setState] = useState((event && event.state) || "");
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
 
+  const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.session.user.id);
+  const userId = useSelector(state => state.session.user.id);
   const states = [
     "AK - Alaska",
     "AL - Alabama",
@@ -111,7 +105,7 @@ function EventForm({ event = null }) {
     "Other",
   ];
 
-  const submit = async (e) => {
+  const submit = async e => {
     e.preventDefault();
     setErrors([]);
 
@@ -122,7 +116,7 @@ function EventForm({ event = null }) {
 
     try {
       if (!event) {
-        await dispatch(
+        event = await dispatch(
           makeEvent({
             user_id: userId,
             category,
@@ -139,7 +133,7 @@ function EventForm({ event = null }) {
           })
         );
       } else {
-        await dispatch(
+        event = await dispatch(
           editEvent({
             id: event.id,
             user_id: userId,
@@ -163,6 +157,14 @@ function EventForm({ event = null }) {
         setErrors(data.errors);
       }
     }
+    console.log("event", event);
+    history.push(`${event.id}`);
+  };
+
+  const deleteEvent = async e => {
+    e.preventDefault();
+    await dispatch(removeEvent(event.id));
+    history.push("/events");
   };
 
   return (
@@ -174,19 +176,14 @@ function EventForm({ event = null }) {
         <div>
           <ul>
             {errors &&
-              errors.map((error) => {
+              errors.map(error => {
                 return <li>{error}</li>;
               })}
           </ul>
         </div>
         <div>
           <label htmlFor="name">Name:</label>
-          <input
-            name="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <input name="name" type="text" value={name} onChange={e => setName(e.target.value)} />
         </div>
         <div>
           <label htmlFor="date">Date:</label>
@@ -194,20 +191,16 @@ function EventForm({ event = null }) {
             name="date"
             type="datetime-local"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={e => setDate(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="category">Category:</label>
-          <select
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
             <option disabled value="">
               Choose a Category
             </option>
-            {categories.map((category) => {
+            {categories.map(category => {
               return (
                 <option key={category} value={category}>
                   {category}
@@ -222,17 +215,12 @@ function EventForm({ event = null }) {
             name="description"
             type="text"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={e => setDescription(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input
-            name="image"
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
+          <input name="image" type="text" value={image} onChange={e => setImage(e.target.value)} />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
@@ -241,7 +229,7 @@ function EventForm({ event = null }) {
             type="number"
             min="1"
             value={occupancy}
-            onChange={(e) => setOccupancy(e.target.value)}
+            onChange={e => setOccupancy(e.target.value)}
           />
         </div>
         <div>
@@ -251,7 +239,7 @@ function EventForm({ event = null }) {
             type="number"
             min="0"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={e => setPrice(e.target.value)}
           />
         </div>
         <div>
@@ -260,21 +248,16 @@ function EventForm({ event = null }) {
             name="streetAddress"
             type="text"
             value={streetAddress}
-            onChange={(e) => setStreetAddress(e.target.value)}
+            onChange={e => setStreetAddress(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="state">State:</label>
-          <select
-            name="state"
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          >
+          <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
             <option disabled value="">
               Choose a State
             </option>
-            {states.map((state) => {
+            {states.map(state => {
               return (
                 <option key={state} value={state}>
                   {state}
@@ -285,12 +268,7 @@ function EventForm({ event = null }) {
         </div>
         <div>
           <label htmlFor="city">City:</label>
-          <input
-            name="city"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
+          <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)} />
         </div>
         <div>
           <label htmlFor="zipCode">Zip Code:</label>
@@ -300,14 +278,19 @@ function EventForm({ event = null }) {
             min="00000"
             max="99999"
             value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            onChange={e => setZipCode(e.target.value)}
           />
         </div>
         <div>
           {event ? (
-            <button>Update Event</button>
+            <div>
+              <button>Update Event</button>
+              <button onClick={deleteEvent}>Delete Event</button>
+            </div>
           ) : (
-            <button>Create Event</button>
+            <div>
+              <button>Create Event</button>
+            </div>
           )}
         </div>
       </form>
