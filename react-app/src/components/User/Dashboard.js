@@ -12,7 +12,8 @@ height: 50px;
 function Dashboard() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const tickets = Object.values(useSelector(state => state.tickets))
+    const ticketsState = useSelector(state => state.tickets)
+    const tickets = Object.values(ticketsState)
 
     useEffect(() => {
         dispatch(getAllTickets(user.id))
@@ -23,12 +24,14 @@ function Dashboard() {
             <h1>My Dashboard</h1>
             <Avatar src={user.avatar} alt='user avatar' />
             <h3>Tickets</h3>
-            {tickets &&
+            {tickets ?
                 <ul>
                 {tickets.map(ticket=>{
                     return <Ticket key={ticket.id} ticket={ticket} />
                 })}
-                </ul>}
+                </ul>
+                : <p>Loading</p>
+                }
         </main>
     );
 };

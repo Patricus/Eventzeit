@@ -28,7 +28,7 @@ function Ticket({ ticket }) {
             }
             {showTicket &&
                 <Modal onClose={() => setShowTicket(false)}>
-                    <TicketForm event={event} ticket={ticket}/>
+                    <TicketForm event={event} ticket={ticket} setShowTicket={setShowTicket}/>
                 </Modal>
             }
         </div>

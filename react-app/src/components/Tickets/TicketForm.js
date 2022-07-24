@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addOneTicket, updateTicket } from "../../store/tickets";
 
 
-function TicketForm({ event, ticket = null }) {
-    const [name, setName] = useState(ticket.attendee || '')
+function TicketForm({ event, ticket = null, setShowTicket }) {
+    const [name, setName] = useState(ticket?.attendee || '')
     const [forSale, setForSale] = useState(false)
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
@@ -46,6 +46,7 @@ function TicketForm({ event, ticket = null }) {
                 event_id: ticket.event_id
             }
             dispatch(updateTicket(ticket.id, data))
+            setShowTicket(false)
         }
     }
 
