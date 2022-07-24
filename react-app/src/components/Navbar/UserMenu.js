@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import LogoutButton from '../auth/LogoutButton';
 
@@ -19,7 +20,7 @@ function UserMenu({ user }) {
     const openMenu = () => {
         setShowMenu(!showMenu)
     }
-    
+
     return (
         <>
             {!showMenu &&
@@ -29,6 +30,7 @@ function UserMenu({ user }) {
                 <div>
                     <MenuButton onClick={openMenu}>User Menu</MenuButton>
                     <DropDownMenu>
+                        <NavLink to={`/dashboard/${user.id}`} onClick={openMenu}>My DashBoard</NavLink>
                         <p>{user.username}</p>
                         <p>{user.email}</p>
                         <LogoutButton />
