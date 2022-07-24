@@ -31,7 +31,7 @@ export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async d
     });
     if(response.ok){
         const ticket = await response.json();
-        console.log(ticket)
+        // console.log(ticket)
         dispatch(add(ticket));
         return ticket
     };
