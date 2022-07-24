@@ -41,7 +41,7 @@ export const makeEvent = event => async dispatch => {
   if (response.ok) {
     const data = await response.json();
     dispatch(createEvent(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -58,6 +58,7 @@ export const acquireEvents = () => async dispatch => {
   if (response.ok) {
     const data = await response.json();
     dispatch(readEvent(data));
+    return data
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -81,7 +82,7 @@ export const editEvent = event => async dispatch => {
   if (response.ok) {
     const data = await response.json();
     dispatch(updateEvent(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

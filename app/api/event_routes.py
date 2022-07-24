@@ -3,7 +3,6 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Event, db
 from app.forms.newEvent_form import EventForm
-from .auth_routes import validation_errors_to_error_messages
 
 event_routes = Blueprint('events', __name__)
 
@@ -61,3 +60,12 @@ def update_event(id):
 
     db.session.commit()
     return event.to_dict()
+
+
+@event_routes.route('/<id>', methods=["DELETE"])
+@login_required
+def delete_event(id):
+    event = Event.query.filter(Event.id == id)
+    event.delete()
+    db.session.commit()
+    return dict(event)
