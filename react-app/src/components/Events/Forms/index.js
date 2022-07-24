@@ -75,7 +75,7 @@ function EventForm({ event = null }) {
                 "WY - Wyoming"]
 
   const categories = ["Sport", "Party", "Concert", "Dinner", "Game", "Seminar", "Conference", "Workshop",
-            "Social", "Class", "Auction", "Gala", "Festival", "Exercise", "Celebration"]
+            "Social", "Class", "Auction", "Gala", "Festival", "Exercise", "Celebration", "Other"]
 
   useEffect(() => {
     if (event) {
