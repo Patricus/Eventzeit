@@ -120,7 +120,8 @@ export default function reducer(state = initialState, action) {
       });
       return newState;
     case UPDATE_EVENT:
-      return { ...state, [action.event.id]: action.event };
+      newState[action.payload.id] = action.payload;
+      return newState;
     case DELETE_EVENT:
       delete newState[action.eventId];
       return newState;
