@@ -7,7 +7,7 @@ import datetime
 def seed_events():
     reallycoolsuperbigbouncyparty = Event(
         user_id=1,
-        category="Water",
+        category="Party",
         name='Really cool super BIG BOUNCY PARTY',
         event_image_url='https://img.freepik.com/free-vector/silhouette-crowd-party-people-starburst-background_1048-13832.jpg',
         date=datetime.datetime.now(),
@@ -22,7 +22,7 @@ def seed_events():
 
     eventoftheages = Event(
         user_id=2,
-        category="Fire",
+        category="Social",
         name='Event of the Ages',
         event_image_url='https://img.freepik.com/free-photo/people-having-party-by-beach_53876-26402.jpg',
         date=datetime.datetime.now(),
@@ -37,7 +37,7 @@ def seed_events():
 
     bumpbappers = Event(
         user_id=3,
-        category="Air",
+        category="Party",
         name='House Party',
         event_image_url='https://img.freepik.com/premium-photo/people-concert_31965-3617.jpg',
         date=datetime.datetime.now(),
@@ -52,7 +52,7 @@ def seed_events():
 
     discodunkers = Event(
         user_id=1,
-        category="Earth",
+        category="Festival",
         name='Disco Dunkers',
         event_image_url='https://img.freepik.com/free-photo/excited-audience-watching-confetti-fireworks-having-fun-music-festival-night-copy-space_637285-559.jpg',
         date=datetime.datetime.now(),
@@ -67,7 +67,7 @@ def seed_events():
 
     tomsbbq = Event(
         user_id=2,
-        category="Fire",
+        category="Dinner",
         name='Tom\'s BBQ',
         event_image_url='https://simpleseasonal.com/wp-content/uploads/2018/08/shutterstock_279093950.jpg',
         date=datetime.datetime.now(),
@@ -82,7 +82,7 @@ def seed_events():
 
     chrisandallison = Event(
         user_id=2,
-        category="Heart",
+        category="Celebration",
         name='Chris and Allison\'s Wedding!',
         event_image_url='https://i.insider.com/5eac8da748d92c3d275bb2de?width=700',
         date=datetime.datetime.now(),
@@ -97,7 +97,7 @@ def seed_events():
 
     tysegallfilmore = Event(
         user_id=2,
-        category="Wind",
+        category="Concert",
         name='Ty Segall at the Filmore',
         event_image_url='https://www.adobe.com/content/dam/cc/us/en/creativecloud/photography/discover/concert-photography/thumbnail.jpeg',
         date=datetime.datetime.now(),
@@ -112,7 +112,7 @@ def seed_events():
 
     runningforfun = Event(
         user_id=2,
-        category="Air",
+        category="Sport",
         name='Running for fun',
         event_image_url='https://upload.wikimedia.org/wikipedia/commons/a/a3/Ludovic_and_Lauren_%288425515069%29.jpg',
         date=datetime.datetime.now(),
