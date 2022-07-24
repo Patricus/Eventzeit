@@ -225,6 +225,7 @@ function EventForm({ event = null }) {
       <div>
         <label htmlFor="state">State:</label>
         <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
+          <option disabled={true} value="">Choose a State</option>
           {states.map(state => {
             return <option key={state} value={`${state}`}>{state}</option>
           })}
