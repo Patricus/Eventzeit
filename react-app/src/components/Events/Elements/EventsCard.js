@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./eventCard.css";
 
 function EventsCard({ event }) {
   return (
@@ -10,7 +11,7 @@ function EventsCard({ event }) {
         </div>
         <div>{event.category}</div>
         <div>
-          <img src={event.image} alt={event.name} />
+          <img src={event.event_image_url} alt={event.name} />
         </div>
         <div>
           <span>{event.date}</span>
