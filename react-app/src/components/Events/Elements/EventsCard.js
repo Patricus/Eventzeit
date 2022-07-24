@@ -14,8 +14,8 @@ function EventsCard({ event }) {
           <img src={event.event_image_url} alt={event.name} />
         </div>
         <div>
-          <span>{event.date.split(" G")[0]}</span>
-          <span>{event.price}</span>
+          <span>{event.date.split(" G")[0].split(":").splice(0,2).join(":")}</span>
+          <span>  Price:${event.price}</span>
         </div>
       </Link>
     </div>
