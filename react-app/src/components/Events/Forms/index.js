@@ -5,7 +5,7 @@ import { makeEvent, editEvent } from "../../../store/events";
 function EventForm({ event = null }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [category, setCategory] = useState("Water");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [occupancy, setOccupancy] = useState(1);
