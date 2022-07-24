@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Event, db
@@ -36,4 +37,27 @@ def create_event():
     db.session.add(event)
     db.session.commit()
     return event.to_dict()
-    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@event_routes.route("/<id>", methods=["PUT"])
+@login_required
+def update_event(id):
+    data = request.json
+    event = Event.query.get(id)
+
+    event.user_id = data['user_id'],
+    event.category = data['category'],
+    event.name = data['name'],
+    event.event_image_url = data['event_image_url'],
+    event.date = data['date'],
+    event.description = data['description'],
+    event.price = data['price'],
+    event.max_occupancy = data['max_occupancy'],
+    event.tickets_available = data['max_occupancy'],
+    event.street_address = data['street_address'],
+    event.city = data['city'],
+    event.state = data['state'],
+    event.zip_code = data['zip_code'],
+
+    db.session.commit()
+    return event.to_dict()
