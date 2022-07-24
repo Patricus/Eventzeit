@@ -14,10 +14,14 @@ def generate_ticket():
         event_id = data['event_id']
     )
 
-    # Every time a ticket is purchased, tickets availabel is
-    # decreased by one
+
     event = Event.query.get(ticket.event_id)
-    event.tickets_available = event.tickets_available - 1
+    if event.tickets_available == 0:
+        return {"error": "There are no more tickets"}, 405
+    else:
+        # Every time a ticket is purchased, tickets available is
+        # decreased by one
+        event.tickets_available = event.tickets_available - 1
 
     db.session.add(ticket)
     db.session.commit()
