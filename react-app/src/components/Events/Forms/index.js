@@ -8,12 +8,14 @@ function EventForm({ event = null }) {
     if (!event) return;
     let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")
       .toISOString()
-      .split(".")[0];
-    newDate = newDate.slice(0, newDate.length - 3);
+      .split(".")[0]
+      .slice(0, -3);
     event.date = newDate;
   })();
   const [name, setName] = useState((event && event.name) || "");
-  const [date, setDate] = useState((event && event.date) || new Date().toISOString().split(".")[0]);
+  const [date, setDate] = useState(
+    (event && event.date) || new Date().toISOString().split(".")[0].slice(0, -3)
+  );
   const [category, setCategory] = useState((event && event.category) || "");
   const [description, setDescription] = useState((event && event.description) || "");
   const [image, setImage] = useState((event && event.event_image_url) || "");
@@ -170,6 +172,7 @@ function EventForm({ event = null }) {
         <div>
           <ul>
             {errors &&
+              Array.isArray(errors) &&
               errors.map(error => {
                 return <li key={error}>{error}</li>;
               })}

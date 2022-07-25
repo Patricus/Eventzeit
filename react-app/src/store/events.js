@@ -113,13 +113,12 @@ export const editEvent =
     zipCode
   ) =>
   async dispatch => {
-    console.log("event", event_id);
     const response = await fetch(`/api/events/${event_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(
+      body: JSON.stringify({
         user_id,
         category,
         name,
@@ -131,8 +130,8 @@ export const editEvent =
         street_address,
         city,
         state,
-        zipCode
-      ),
+        zipCode,
+      }),
     });
 
     if (response.ok) {

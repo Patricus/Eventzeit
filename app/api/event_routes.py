@@ -46,29 +46,28 @@ def create_event():
 @event_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_event(id):
+    data = request.json
+    print("----------DATA---------", data)
     form = EventForm()
-    # event = Event.query.get(id)
-    # print("\n\n___EVENT___", event.user_id, "\n\n")
-    # if event.user_id != form.data['user_id']:
-    #     return {'errors': "You don't own this event"}, 401
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        event = Event.query.get(id)
+        if event.user_id != form.data['user_id']:
+            return {'errors': "You don't own this event"}, 401
 
-        event = Event(
-            user_id=form.data['user_id'],
-            category=form.data['category'],
-            name=form.data['name'],
-            event_image_url=form.data['event_image_url'],
-            date=form.data['date'],
-            description=form.data['description'],
-            price=form.data['price'],
-            max_occupancy=form.data['occupancy'],
-            tickets_available=form.data['occupancy'],
-            street_address=form.data['street_address'],
-            city=form.data['city'],
-            state=form.data['state'],
-            zip_code=form.data['zipCode'],
-        )
+        event.user_id = form.data['user_id'],
+        event.category = form.data['category'],
+        event.name = form.data['name'],
+        event.event_image_url = form.data['event_image_url'],
+        event.date = form.data['date'],
+        event.description = form.data['description'],
+        event.price = form.data['price'],
+        event.max_occupancy = form.data['occupancy'],
+        event.tickets_available = form.data['occupancy'],
+        event.street_address = form.data['street_address'],
+        event.city = form.data['city'],
+        event.state = form.data['state'],
+        event.zip_code = form.data['zipCode'],
 
         db.session.commit()
         return event.to_dict()
@@ -82,4 +81,4 @@ def delete_event(id):
     event = Event.query.filter(Event.id == id)
     event.delete()
     db.session.commit()
-    return dict(event)
+    return {'message': 'Event deleted'}

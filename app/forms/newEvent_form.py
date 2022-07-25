@@ -11,7 +11,8 @@ class EventForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     event_image_url = StringField(
         'event_image_url', validators=[DataRequired()])
-    date = DateTimeField('date', validators=[DataRequired()])
+    date = DateTimeField('date', validators=[
+                         DataRequired()], format='%Y-%m-%d %H:%M')
     description = TextAreaField('description')
     price = FloatField('price')
     occupancy = IntegerField('max_occupancy', validators=[DataRequired()])
