@@ -36,7 +36,7 @@ def create_event():
     return event.to_dict()
 
 
-@event_routes.route("/<id>", methods=["PUT"])
+@event_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_event(id):
     data = request.json
@@ -60,7 +60,7 @@ def update_event(id):
     return event.to_dict()
 
 
-@event_routes.route('/<id>', methods=["DELETE"])
+@event_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_event(id):
     event = Event.query.filter(Event.id == id)
