@@ -3,48 +3,54 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import Ticket from "../Tickets/Ticket";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { destroyUser } from "../../store/session";
+import { Redirect } from "react-router-dom";
 
 const Avatar = styled.img`
-width: 50px;
-height: 50px;
-`
+  width: 50px;
+  height: 50px;
+`;
 
 function Dashboard() {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const user = useSelector(state => state.session.user)
-    const ticketsState = useSelector(state => state.tickets)
-    const tickets = Object.values(ticketsState)
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((state) => state.session.user);
+  const ticketsState = useSelector((state) => state.tickets);
+  const tickets = Object.values(ticketsState);
 
-    useEffect(() => {
-        dispatch(getAllTickets(user.id))
-    }, [dispatch, user])
+  useEffect(() => {
+    if (!user) return;
+    dispatch(getAllTickets(user.id));
+  }, [dispatch, user]);
 
-    const deleteUser = async () => {
-        await dispatch(destroyUser(user.id))
-        history.push("/events")
-    }
+  const deleteUser = async () => {
+    await dispatch(destroyUser(user.id));
+    history.push("/events");
+  };
 
+  if (!user) return <Redirect to={"/"} />;
+  if (user) {
     return (
-        <main>
-            <h1>My Dashboard</h1>
-            <Avatar src={user.avatar} alt='user avatar' />
-            <h3>Tickets</h3>
-            {tickets ?
-                <ul>
-                {tickets.map(ticket=>{
-                    return <Ticket key={ticket.id} ticket={ticket} />
-                })}
-                </ul>
-                : <p>Loading</p>
-                }
-                <div>
-                    <button onClick={deleteUser}>Delete User Account</button>
-                </div>
-        </main>
+      <main>
+        <h1>My Dashboard</h1>
+        <Avatar src={user.avatar} alt="user avatar" />
+        <h3>Tickets</h3>
+        {tickets ? (
+          <ul>
+            {tickets.map((ticket) => {
+              return <Ticket key={ticket.id} ticket={ticket} />;
+            })}
+          </ul>
+        ) : (
+          <p>Loading</p>
+        )}
+        <div>
+          <button onClick={deleteUser}>Delete User Account</button>
+        </div>
+      </main>
     );
-};
+  }
+}
 
 export default Dashboard;

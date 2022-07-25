@@ -49,16 +49,20 @@ export const getAllTickets = (userId) => async dispatch => {
     }
 }
 
-export const updateTicket = (id, payload) => async dispatch => {
+export const updateTicket = (id, {attendee, for_sale, user_id, event_id}) => async dispatch => {
     const response = await fetch(`/api/tickets/${id}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+        body: JSON.stringify({attendee, for_sale, user_id, event_id})
     })
     if(response.ok){
         const ticket = await response.json();
         dispatch(update(ticket));
-    };
+    }
+    else {
+        const ticket = await response.json()
+        return ticket
+    }
 };
 
 export const deleteTicket = (ticket) => async dispatch => {
