@@ -18,4 +18,4 @@ Checkout Eventzeit and make it to an event near you at https://eventzeit.herokua
 
 Technical Details:
 
-- Event search and category filter 
+- Event search and category filter was a very exciting feature to implement as no one in our group had an experience doing this before. On the events page a user can search all events listed on the site using a search bar and filter events even further by toggling category buttons.
