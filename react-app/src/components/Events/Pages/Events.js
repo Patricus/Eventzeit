@@ -49,22 +49,22 @@ function Events() {
     ) {
       return true;
     }
-    if (event.category === "Sport" && sport) return true;
-    if (event.category === "Party" && party) return true;
-    if (event.category === "Concert" && concert) return true;
-    if (event.category === "Dinner" && dinner) return true;
-    if (event.category === "Game" && game) return true;
-    if (event.category === "Search" && search) return true;
-    if (event.category === "Seminar" && seminar) return true;
-    if (event.category === "Conference" && conference) return true;
-    if (event.category === "Workshop" && workshop) return true;
-    if (event.category === "Class" && classCategory) return true;
-    if (event.category === "Auction" && auction) return true;
-    if (event.category === "Gala" && gala) return true;
-    if (event.category === "Festival" && festival) return true;
-    if (event.category === "Exercise" && exercise) return true;
-    if (event.category === "Celebration" && celebration) return true;
-    if (event.category === "Other" && other) return true;
+    if (event.category === "Sport") return sport;
+    if (event.category === "Party") return party;
+    if (event.category === "Concert") return concert;
+    if (event.category === "Dinner") return dinner;
+    if (event.category === "Game") return game;
+    if (event.category === "Search") return search;
+    if (event.category === "Seminar") return seminar;
+    if (event.category === "Conference") return conference;
+    if (event.category === "Workshop") return workshop;
+    if (event.category === "Class") return classCategory;
+    if (event.category === "Auction") return auction;
+    if (event.category === "Gala") return gala;
+    if (event.category === "Festival") return festival;
+    if (event.category === "Exercise") return exercise;
+    if (event.category === "Celebration") return celebration;
+    if (event.category === "Other") return other;
   };
 
   return (
