@@ -108,7 +108,7 @@ export const signUp = (username, email, password, avatar) => async (dispatch) =>
 }
 
 export const destroyUser = userId => async dispatch => {
-  const response = await fetch(`/api/dashboard/${userId}`, {
+  const response = await fetch(`/api/auth/dashboard/${userId}`, {
     method: "DELETE",
   });
 

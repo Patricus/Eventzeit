@@ -80,7 +80,7 @@ def delete_user(id):
     """
     Deletes a user account
     """
-    user = User.query.get(id)
+    user = User.query.filter(User.id == id)
     user.delete()
     db.session.commit()
     return dict(user)
