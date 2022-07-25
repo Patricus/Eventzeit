@@ -6,6 +6,7 @@ import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
 import { destroyUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
+import { logout } from '../../store/session';
 
 const Avatar = styled.img`
   width: 50px;
@@ -26,6 +27,7 @@ function Dashboard() {
 
   const deleteUser = async () => {
     await dispatch(destroyUser(user.id));
+    await dispatch(logout())
     history.push("/events");
   };
 
