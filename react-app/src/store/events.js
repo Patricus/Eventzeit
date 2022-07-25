@@ -28,29 +28,56 @@ const deleteEvent = eventId => ({
 
 /***************************** THUNKS ***************************************/
 
-export const makeEvent = event => async dispatch => {
-  console.log("event", event);
-  const response = await fetch("/api/events/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(event),
-  });
+export const makeEvent =
+  (
+    user_id,
+    category,
+    name,
+    event_image_url,
+    date,
+    description,
+    price,
+    occupancy,
+    street_address,
+    city,
+    state,
+    zipCode
+  ) =>
+  async dispatch => {
+    const response = await fetch("/api/events/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id,
+        category,
+        name,
+        event_image_url,
+        date,
+        description,
+        price,
+        occupancy,
+        street_address,
+        city,
+        state,
+        zipCode,
+      }),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(createEvent(data));
-    return data;
-  } else if (response.status < 500) {
-    const data = await response.json();
-    if (data.errors) {
-      return data.errors;
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(createEvent(data));
+      return data;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
     }
-  } else {
-    return ["An error occurred. Please try again."];
-  }
-};
+  };
 
 export const acquireEvents = () => async dispatch => {
   const response = await fetch("/api/events/");

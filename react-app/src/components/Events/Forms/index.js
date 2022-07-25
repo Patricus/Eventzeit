@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeEvent, editEvent, removeEvent } from "../../../store/events";
@@ -13,12 +13,12 @@ function EventForm({ event = null }) {
     event.date = newDate;
   })();
   const [name, setName] = useState((event && event.name) || "");
-  const [date, setDate] = useState((event && event.date) || "");
+  const [date, setDate] = useState((event && event.date) || new Date().toISOString().split(".")[0]);
   const [category, setCategory] = useState((event && event.category) || "");
   const [description, setDescription] = useState((event && event.description) || "");
   const [image, setImage] = useState((event && event.event_image_url) || "");
   const [occupancy, setOccupancy] = useState((event && event.max_occupancy) || 1);
-  const [price, setPrice] = useState((event && event.price) || 0);
+  const [price, setPrice] = useState((event && event.price) || 0.0);
   const [streetAddress, setStreetAddress] = useState((event && event.street_address) || "");
   const [state, setState] = useState((event && event.state) || "");
   const [city, setCity] = useState((event && event.city) || "");
@@ -114,51 +114,45 @@ function EventForm({ event = null }) {
       return;
     }
 
-    try {
-      if (!event) {
-        event = await dispatch(
-          makeEvent({
-            user_id: userId,
-            category,
-            name,
-            event_image_url: image,
-            date,
-            description,
-            price,
-            max_occupancy: occupancy,
-            street_address: streetAddress,
-            city,
-            state,
-            zip_code: zipCode,
-          })
-        );
-      } else {
-        event = await dispatch(
-          editEvent({
-            id: event.id,
-            user_id: userId,
-            category,
-            name,
-            event_image_url: image,
-            date,
-            description,
-            price,
-            max_occupancy: occupancy,
-            street_address: streetAddress,
-            city,
-            state,
-            zip_code: zipCode,
-          })
-        );
-      }
-    } catch (e) {
-      const data = await e.json();
-      if (data && data.errors) {
-        setErrors(data.errors);
-      }
+    if (!event) {
+      event = await dispatch(
+        makeEvent(
+          userId,
+          category,
+          name,
+          image,
+          date.replace("T", " "),
+          description,
+          price,
+          occupancy,
+          streetAddress,
+          city,
+          state,
+          zipCode
+        )
+      );
+      if (event.id) history.push(`${event.id}`);
+      else setErrors(event);
+    } else {
+      event = await dispatch(
+        editEvent(
+          event.id,
+          userId,
+          category,
+          name,
+          image,
+          date.replace("T", " "),
+          description,
+          price,
+          occupancy,
+          streetAddress,
+          city,
+          state,
+          zipCode
+        )
+      );
+      setErrors(event);
     }
-    console.log("event", event);
-    history.push(`${event.id}`);
   };
 
   const deleteEvent = async e => {
@@ -177,7 +171,7 @@ function EventForm({ event = null }) {
           <ul>
             {errors &&
               errors.map(error => {
-                return <li>{error}</li>;
+                return <li key={error}>{error}</li>;
               })}
           </ul>
         </div>
@@ -238,6 +232,8 @@ function EventForm({ event = null }) {
             name="price"
             type="number"
             min="0"
+            placeholder="Free"
+            step="0.01"
             value={price}
             onChange={e => setPrice(e.target.value)}
           />
