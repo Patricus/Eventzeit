@@ -5,22 +5,22 @@ Welcome to Eventzeit! Eventzeit is a web application build for sharing events, b
 Checkout Eventzeit and make it to an event near you at https://eventzeit.herokuapp.com
 
 ### Github Wiki Links:
-##### API Routes
-- https://github.com/Patricus/Eventzeit/wiki/API-Routes
+##### Features List (Also Listed Below)
+- https://github.com/Patricus/Eventzeit/wiki/Features-List
 ##### Component File Structure
 - https://github.com/Patricus/Eventzeit/wiki/Component-File-Structure
 ##### Database Schema
 - https://github.com/Patricus/Eventzeit/wiki/Database-Schema
 ##### Database Tables
 - https://github.com/Patricus/Eventzeit/wiki/Database-Tables
-##### Features List (Also Listed Below)
-- https://github.com/Patricus/Eventzeit/wiki/Features-List
-##### Front End Routes
-- https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes
-##### Redux Store Shape
-- https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape
 ##### User Stories
 - https://github.com/Patricus/Eventzeit/wiki/User-Stories
+##### Redux Store Shape
+- https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape
+##### API Routes
+- https://github.com/Patricus/Eventzeit/wiki/API-Routes
+##### Front End Routes
+- https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes
 
 ### Splash Page
 
