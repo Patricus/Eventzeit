@@ -54,8 +54,8 @@ Checkout Eventzeit and make it to an event near you at https://eventzeit.herokua
    ```
    REACT_APP_BASE_URL=http://localhost:5000
    ```
-- In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. After that use the command "flask run". You should see the back end starting up.
-- Lastly, open an additional termainl to run you your front end. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
+- In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. Please run "flask db migrate" followed by "flask db upgrade", followed by "flask seed all". Finally we can run the command "flask run" and your backend should start righ up, connected to an already seeded database.
+- Lastly, open an additional termainl to run you your frontend. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
 
 
 ### Technical Details:
