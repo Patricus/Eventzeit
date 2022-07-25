@@ -113,18 +113,22 @@ export const destoryUser = userId => async dispatch => {
   });
 
   if (response.ok) {
-    dispatch(deleteUser(userId))
+    dispatch(deleteUser(userId));
   }
-}
+};
 
 /***************************** REDUCER ***************************************/
 
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case DELETE_USER:
+        delete newState[action.userId];
+        return newState;
     default:
       return state;
   }
