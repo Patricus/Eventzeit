@@ -18,9 +18,9 @@ const update = (ticket) => ({
     ticket
 });
 
-const remove = (ticket) => ({
+const remove = (id) => ({
     type: REMOVE_TICKET,
-    ticket
+    id
 });
 
 export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async dispatch => {
@@ -57,13 +57,16 @@ export const updateTicket = (id, payload) => async dispatch => {
     };
 };
 
-export const deleteTicket = (id) => async dispatch => {
-    const response = await fetch(`/api/tickets/delete/${id}`, {
+export const deleteTicket = (ticket) => async dispatch => {
+    const response = await fetch(`/api/tickets/delete/${ticket.id}`, {
         method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(ticket)
     });
     if(response.ok){
-        const ticket = await response.json();
-        dispatch(remove(ticket));
+        const id = await response.json();
+        console.log(id)
+        dispatch(remove(id));
     };
 };
 
@@ -84,7 +87,7 @@ const ticketsReducer = (state = initialState, action) => {
             newState[action.ticket.id] = action.ticket;
             return newState;
         case REMOVE_TICKET:
-            delete newState[action.ticket.id];
+            delete newState[action.id.id];
             return newState;
         default:
             return newState;

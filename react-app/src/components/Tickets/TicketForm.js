@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { addOneTicket, updateTicket } from "../../store/tickets";
+import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events"
 
 
@@ -28,10 +28,16 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
 
     const closeAfterPurchaseMessage = () => {
         setPurchased(true)
-        setTimeout(()=>{
+        setTimeout(() => {
             setShowTicketForm(false)
             dispatch(acquireEvents())
         }, 3750)
+    }
+
+    const returnMyTicket = (e) => {
+        e.preventDefault();
+        dispatch(deleteTicket(ticket))
+        setShowTicket(false)
     }
 
     const onPurchase = (e) => {
@@ -87,9 +93,14 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                             ></input>
                         </div>
                     }
-                    <div>
+                    {ticket ?
+                        <div>
+                            <button type="submit" disabled={!name}>Update</button>
+                            <button onClick={returnMyTicket}>Return Ticket</button>
+                        </div>
+                        :
                         <button type="submit" disabled={!name}>Submit</button>
-                    </div>
+                    }
                 </form>
             }
             {purchased &&
