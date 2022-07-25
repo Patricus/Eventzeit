@@ -36,6 +36,20 @@ Checkout Eventzeit and make it to an event near you at https://eventzeit.herokua
 
 # ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
 
+### Instructions for Running Local:
+- Pull down the project and make a local copy on your computer from this location: https://github.com/Patricus/Eventzeit
+- Set up your database locally:
+   - Create a database user with the name and password of your choice
+   - Create a database with the name of your choice and make sure that the owner of the database is the database user that you created in the pervious step
+   - Add a .env file in your root directory and make sure to add the following items below
+   ```
+   FLASK_APP=app
+   FLASK_ENV=development
+   SECRET_KEY=<<secert key>>
+   DATABASE_URL=postgresql://<<database user>>:<<password>>@localhost/<<database>>
+   ```
+
+
 ### Technical Details:
 
 - Event search and category filter was a very exciting feature to implement as no one in our group had an experience doing this before. On the events page a user can search all events listed on the site using a search bar and filter events even further by toggling category buttons. In order to do this, we first implemented useStates for each category in order to have a true of false value to pass through the filter.
