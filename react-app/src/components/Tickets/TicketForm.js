@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events"
+import styled from 'styled-components';
 
+const WhiteBG = styled.div`
+background-color: white;
+`
 
 function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) {
     const [name, setName] = useState(ticket?.attendee || '')
@@ -66,7 +70,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
     }
 
     return (
-        <div>
+        <WhiteBG>
             {!purchased &&
                 <form onSubmit={onPurchase}>
                     <div>
@@ -109,7 +113,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                     <p>Enjoy your time at {event.name}</p>
                 </div>
             }
-        </div>
+        </WhiteBG>
     );
 };
 
