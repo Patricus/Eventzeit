@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import Ticket from "../Tickets/Ticket";
 import styled from 'styled-components';
-import { destroyUser } from "../../store/session";
+import { destroyUser, logout } from "../../store/session";
 
 const Avatar = styled.img`
 width: 50px;
@@ -24,7 +24,7 @@ function Dashboard() {
 
     const deleteUser = async () => {
         await dispatch(destroyUser(user.id))
-        history.push("/")
+        history.push("/events")
     }
 
     return (
