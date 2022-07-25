@@ -40,23 +40,31 @@ def load_tickets(userId):
 
 @ticket_routes.route('/<int:id>', methods=['POST'])
 def update_ticket(id):
-    data = request.json
-    ticket = Ticket.query.get(id)
-    ticket.id = id
-    ticket.attendee = data['attendee']
-    ticket.for_sale = data['for_sale']
-    ticket.user_id = data['user_id']
-    db.session.commit()
-    return ticket.to_dict()
+    form = TicketForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        ticket = Ticket.query.get(id)
+        ticket.id = id
+        ticket.attendee = form.data['attendee']
+        ticket.for_sale = form.data['for_sale']
+        ticket.user_id = form.data['user_id']
+        db.session.commit()
+        return ticket.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @ticket_routes.route('/delete/<int:id>', methods=["DELETE"])
 @login_required
 def delete_event(id):
-    data = request.json
-    event_id = data['event_id']
-    ticket = Ticket.query.filter(Ticket.id == id)
-    event = Event.query.filter(Event.id == event_id).first()
-    ticket.delete()
-    event.tickets_available = event.tickets_available + 1
-    db.session.commit()
-    return {'id': id}
+    form = TicketForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        event_id = form.data['event_id']
+        ticket = Ticket.query.filter(Ticket.id == id)
+        event = Event.query.filter(Event.id == event_id).first()
+        ticket.delete()
+        event.tickets_available = event.tickets_available + 1
+        db.session.commit()
+        return {'id': id}
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
