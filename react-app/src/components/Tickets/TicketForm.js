@@ -104,7 +104,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                             <input
                                 type="checkbox"
                                 value={forSale}
-                                checked={forSale}
+                                checked={forSale === 'True'}
                                 onChange={updateForSale}
                             ></input>
                         </div>
