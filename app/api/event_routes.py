@@ -18,7 +18,6 @@ def get_events():
 def create_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("----DATE----", form.data)
     if form.validate_on_submit():
 
         event = Event(
@@ -47,25 +46,34 @@ def create_event():
 @event_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_event(id):
-    data = request.json
-    event = Event.query.get(id)
+    form = EventForm()
+    # event = Event.query.get(id)
+    # print("\n\n___EVENT___", event.user_id, "\n\n")
+    # if event.user_id != form.data['user_id']:
+    #     return {'errors': "You don't own this event"}, 401
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
 
-    event.user_id = data['user_id'],
-    event.category = data['category'],
-    event.name = data['name'],
-    event.event_image_url = data['event_image_url'],
-    event.date = data['date'],
-    event.description = data['description'],
-    event.price = data['price'],
-    event.max_occupancy = data['max_occupancy'],
-    event.tickets_available = data['max_occupancy'],
-    event.street_address = data['street_address'],
-    event.city = data['city'],
-    event.state = data['state'],
-    event.zip_code = data['zip_code'],
+        event = Event(
+            user_id=form.data['user_id'],
+            category=form.data['category'],
+            name=form.data['name'],
+            event_image_url=form.data['event_image_url'],
+            date=form.data['date'],
+            description=form.data['description'],
+            price=form.data['price'],
+            max_occupancy=form.data['occupancy'],
+            tickets_available=form.data['occupancy'],
+            street_address=form.data['street_address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            zip_code=form.data['zipCode'],
+        )
 
-    db.session.commit()
-    return event.to_dict()
+        db.session.commit()
+        return event.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @event_routes.route('/<int:id>', methods=["DELETE"])
