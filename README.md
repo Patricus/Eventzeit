@@ -36,18 +36,26 @@ Checkout Eventzeit and make it to an event near you at https://eventzeit.herokua
 
 # ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
 
-### Instructions for Running Local:
+### Instructions for Running Locally:
 - Pull down the project and make a local copy on your computer from this location: https://github.com/Patricus/Eventzeit
 - Set up your database locally:
    - Create a database user with the name and password of your choice
    - Create a database with the name of your choice and make sure that the owner of the database is the database user that you created in the pervious step
-   - Add a .env file in your root directory and make sure to add the following items below
+- In your root directory run pipenv install
+- Add a .env file in your root directory and make sure to add the following items listed below
    ```
    FLASK_APP=app
    FLASK_ENV=development
    SECRET_KEY=<<secert key>>
    DATABASE_URL=postgresql://<<database user>>:<<password>>@localhost/<<database>>
    ```
+- cd into the react-app directory and run npm install
+- Create a .env file in the root of the react-app dictory and add the following code:
+   ```
+   REACT_APP_BASE_URL=http://localhost:5000
+   ```
+- In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. After that use the command "flask run". You should see the back end starting up.
+- Lastly, open an additional termainl to run you your front end. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
 
 
 ### Technical Details:
