@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms.ticket_form import TicketForm
 from app.models import Ticket, db, Event
 from flask_login import login_required
@@ -6,27 +7,30 @@ from flask_login import login_required
 ticket_routes = Blueprint('tickets', __name__)
 
 @ticket_routes.route('/purchase', methods=['POST'])
-@login_required
 def generate_ticket():
-    data = request.json
-    ticket = Ticket(
-        attendee = data['attendee'],
-        for_sale = False,
-        user_id = data['user_id'],
-        event_id = data['event_id']
-    )
+    form = TicketForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        ticket = Ticket(
+            attendee = form.data['attendee'],
+            for_sale = form.data['for_sale'],
+            user_id = form.data['user_id'],
+            event_id = form.data['event_id']
+        )
 
-    event = Event.query.get(ticket.event_id)
-    if event.tickets_available == 0:
-        return {"error": "Sorry, there are no more tickets left for this event"}, 405
-    else:
+        event = Event.query.get(ticket.event_id)
+        if event.tickets_available == 0:
+            return {"error": "Sorry, there are no more tickets left for this event"}, 405
+        else:
         # Every time a ticket is purchased, tickets available is
         # decreased by one
-        event.tickets_available = event.tickets_available - 1
+            event.tickets_available = event.tickets_available - 1
 
-    db.session.add(ticket)
-    db.session.commit()
-    return ticket.to_dict()
+        db.session.add(ticket)
+        db.session.commit()
+        return ticket.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @ticket_routes.route('/<int:userId>')
 @login_required

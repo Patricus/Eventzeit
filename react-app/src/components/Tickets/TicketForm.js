@@ -8,14 +8,15 @@ const WhiteBG = styled.div`
 background-color: white;
 `
 
+
+
 function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) {
     const [name, setName] = useState(ticket?.attendee || '')
-    const [forSale, setForSale] = useState(false)
+    const [forSale, setForSale] = useState('False')
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
     const [confirmRefund, setConfirmRefund] = useState(false)
     const user = useSelector(state => state.session.user)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -28,7 +29,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
     };
 
     const updateForSale = () => {
-        setForSale(!forSale);
+        (forSale === 'False') ? setForSale('True') : setForSale('False')
     };
 
     const updateConfirmRefund = () => {
@@ -59,8 +60,10 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                 user_id: user.id,
                 event_id: event.id
             }
-            dispatch(addOneTicket(data));
-            closeAfterPurchaseMessage();
+            dispatch(addOneTicket(data)).then(response=>{
+                if (response.id)closeAfterPurchaseMessage();
+                else setErrors(response)
+            });
         }
         if (ticket) {
             const data = {
@@ -76,6 +79,10 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
 
     return (
         <WhiteBG>
+            {errors && errors.map((error, i=0)=>{
+                i++
+                return <p key={i}>{error}</p>
+            })}
             {!purchased &&
                 <form onSubmit={onPurchase}>
                     <div>
