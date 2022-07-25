@@ -16,7 +16,7 @@ Checkout Eventzeit and make it to an event near you at https://eventzeit.herokua
 
 # ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
 
-#### Technical Details:
+### Technical Details:
 
 - Event search and category filter was a very exciting feature to implement as no one in our group had an experience doing this before. On the events page a user can search all events listed on the site using a search bar and filter events even further by toggling category buttons. In order to do this, we first implemented useStates for each category in order to have a true of false value to pass through the filter.
 
@@ -102,3 +102,62 @@ function Events() {
             return <EventsCard key={event.id} event={event} />;
           })}
 ```
+
+### Features
+
+## Login and Signup /  Demo User
+### Create
+- Anyone who is not logged in can create a user by signing up
+### Read
+- Logged in users can check and see their logged in status using the "User Menu" on the right side in the navigator bar
+### Update
+- Logged in users can change their password, avatar, username or email
+### Delete
+- Logged in users can delete their own account
+
+## Events
+### Create
+- Logged in users can create an event
+### Read
+- Anyone can see all events uploaded to Eventzeit
+### Update
+- Logged in users can update events they have created
+### Delete
+- Logged in users can delete the events they have created
+
+## Tickets
+### Create
+- Logged in users can 'buy' tickets to an event
+### Read
+- Logged in users can see all of their tickets and the associated events
+### Update
+- Logged in users can update the ticket attendee name
+### Delete
+- Logged in users can remove/'sell' a ticket
+
+## Categories
+### Read
+- Anyone can read a list of categories which aid the user in filtering events
+
+## Bookmark events
+### Create
+- Logged in users can bookmark events that may want to purchase tickets for in the future
+### Read
+- Logged in users can read bookmarked events
+### Delete
+- Logged in users can remove bookmarks on events
+
+## Search
+- Filters events by search and/or categories
+- Anyone can read the result of their search
+
+
+## To-Do:
+
+### Google Maps Integration
+### Create
+Logged in users can link an address/coordinates to their events on the map
+### Read
+Anyone can see the event address/coordinates on the map
+### Delete
+Logged in users that have linked an address/coordinates to an event they have created can remove them
