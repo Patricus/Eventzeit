@@ -60,9 +60,6 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div>
-              Bonus: Search
-            </div>
-            <div>
               <NavLink to='/events/create'>
                 Create Event
               </NavLink>
