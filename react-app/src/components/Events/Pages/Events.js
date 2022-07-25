@@ -30,7 +30,6 @@ function Events() {
 
   const checkCategories = event => {
     if (
-      !search &&
       !sport &&
       !party &&
       !concert &&
@@ -50,7 +49,6 @@ function Events() {
     ) {
       return true;
     }
-    if (event.category === "Search" && search) return true;
     if (event.category === "Sport" && sport) return true;
     if (event.category === "Party" && party) return true;
     if (event.category === "Concert" && concert) return true;
