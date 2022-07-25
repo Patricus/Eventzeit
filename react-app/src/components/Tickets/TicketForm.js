@@ -13,6 +13,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
     const [forSale, setForSale] = useState(false)
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
+    const [confirmRefund, setConfirmRefund] = useState(false)
     const user = useSelector(state => state.session.user)
 
     const dispatch = useDispatch()
@@ -29,6 +30,10 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
     const updateForSale = () => {
         setForSale(!forSale);
     };
+
+    const updateConfirmRefund = () => {
+        setConfirmRefund(!confirmRefund)
+    }
 
     const closeAfterPurchaseMessage = () => {
         setPurchased(true)
@@ -86,7 +91,7 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                             onChange={updateName}
                         ></input>
                     </div>
-                    {ticket &&
+                    {ticket && !confirmRefund &&
                         <div>
                             <label>Sell this Ticket</label>
                             <input
@@ -97,13 +102,19 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                             ></input>
                         </div>
                     }
-                    {ticket ?
+                    {ticket && !confirmRefund ?
                         <div>
                             <button type="submit" disabled={!name}>Update</button>
-                            <button onClick={returnMyTicket}>Return Ticket</button>
+                            <button onClick={updateConfirmRefund}>Return Ticket</button>
                         </div>
                         :
                         <button type="submit" disabled={!name}>Submit</button>
+                    }
+                    {ticket && confirmRefund &&
+                        <div>
+                            <h2>Are you sure you want to return this ticket?</h2>
+                            <button onClick={returnMyTicket}>Confirm</button><button onClick={updateConfirmRefund}>Cancel</button>
+                        </div>
                     }
                 </form>
             }
