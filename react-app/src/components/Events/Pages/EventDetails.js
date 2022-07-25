@@ -50,7 +50,7 @@ function EventDetailPage() {
           <button onClick={buyTickets}>Buy Tickets</button>
           {showTicketForm && (
             <Modal onClose={() => setShowTicketForm(false)}>
-              <TicketForm event={event} />
+              <TicketForm event={event} setShowTicketForm={setShowTicketForm} />
             </Modal>
           )}
         </>

@@ -4,7 +4,7 @@ import { addOneTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events"
 
 
-function TicketForm({ event, ticket = null, setShowTicket }) {
+function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) {
     const [name, setName] = useState(ticket?.attendee || '')
     const [forSale, setForSale] = useState(false)
     const [errors, setErrors] = useState([])
@@ -26,6 +26,14 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
         setForSale(!forSale);
     };
 
+    const closeAfterPurchaseMessage = () => {
+        setPurchased(true)
+        setTimeout(()=>{
+            setShowTicketForm(false)
+            dispatch(acquireEvents())
+        }, 3750)
+    }
+
     const onPurchase = (e) => {
         e.preventDefault();
         if (!name) setErrors(['Name field is required.'])
@@ -36,9 +44,8 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
                 user_id: user.id,
                 event_id: event.id
             }
-            dispatch(addOneTicket(data))
-            setPurchased(true)
-            dispatch(acquireEvents());
+            dispatch(addOneTicket(data));
+            closeAfterPurchaseMessage();
         }
         if (ticket) {
             const data = {
