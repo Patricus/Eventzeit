@@ -75,6 +75,25 @@ def sign_up():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@auth_routes.route('/dashboard/<int:id>', methods=["PUT"])
+@login_required
+def update_user(id):
+    form = SignUpForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = User.query.get(id).first()
+
+        user.username=form.data['username'],
+        user.email=form.data['email'],
+        user.password=form.data['password'],
+        user.avatar=form.data['avatar']
+
+        db.session.commit()
+        return user.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 @auth_routes.route('/dashboard/<int:id>', methods=["DELETE"])
 def delete_user(id):
     """
