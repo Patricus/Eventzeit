@@ -24,6 +24,20 @@ function Events() {
   const [celebration, setCelebration] = useState(false);
   const [other, setOther] = useState(false);
   const [sortBy, setSortBy] = useState("name");
+  const [startDate, setStartDate] = useState(
+    new Date(new Date().toString().split("GMT")[0] + " UTC")
+      .toISOString()
+      .split(".")[0]
+      .slice(0, -3)
+  );
+  let createEndDate = new Date();
+  createEndDate.setDate(createEndDate.getDate() + 7);
+  const [endDate, setEndDate] = useState(
+    new Date(createEndDate.toString().split("GMT")[0] + " UTC")
+      .toISOString()
+      .split(".")[0]
+      .slice(0, -3)
+  );
 
   useEffect(() => {
     dispatch(acquireEvents());
@@ -220,7 +234,26 @@ function Events() {
             />
           </span>
           <span>
-            <label htmlFor="sortEvents">Sort Events By:</label>
+            <label htmlFor="startDate">Start Date: </label>
+            <input
+              name="startDate"
+              type="datetime-local"
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="endDate">End Date: </label>
+            <input
+              name="endDate"
+              type="datetime-local"
+              min={startDate}
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="sortEvents">Sort Events By: </label>
             <select name="sortEvents" value={sortBy} onChange={e => setSortBy(e.target.value)}>
               <option value={"name"}>Name</option>
               <option value={"date"}>Date</option>
@@ -230,6 +263,14 @@ function Events() {
       </div>
       {events &&
         events
+          .filter(event => {
+            if (
+              new Date(event.date) > new Date(startDate) &&
+              new Date(event.date) < new Date(endDate)
+            )
+              return true;
+            return false;
+          })
           .filter(event => {
             return checkCategories(event);
           })
