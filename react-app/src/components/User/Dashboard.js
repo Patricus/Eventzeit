@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import { getAllBookmarks } from "../../store/bookmarks";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
-import { destroyUser } from "../../store/session";
-import { logout } from "../../store/session";
 import { Modal } from "../Global/Elements/Modal";
 import EditUserForm from "../auth/EditUserForm";
+import DeleteUserModal from "../auth/DeleteUser";
 
 const Avatar = styled.img`
   width: 50px;
@@ -18,11 +16,11 @@ const Avatar = styled.img`
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
 
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
 
   useEffect(() => {
@@ -34,11 +32,11 @@ function Dashboard() {
     setShowUpdateUserModal(true);
   };
 
-  const deleteUser = () => {
-    dispatch(destroyUser(user.id))
-    dispatch(logout())
-    history.push("/events");
+  const deleteUserModal = async () => {
+    setShowConfirmDeleteModal(true);
   };
+
+
 
   if (!user) return <Redirect to={"/"} />;
   if (user) {
@@ -49,6 +47,11 @@ function Dashboard() {
         {showUpdateUserModal && (
             <Modal onClose={() => setShowUpdateUserModal(false)}>
               <EditUserForm />
+            </Modal>
+          )}
+          {showConfirmDeleteModal && (
+            <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+              <DeleteUserModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} />
             </Modal>
           )}
         <h3>Tickets</h3>
@@ -63,7 +66,7 @@ function Dashboard() {
         )}
         <div>
           <button onClick={updateUserModal}>Update User Account</button>
-          <button onClick={deleteUser}>Delete User Account</button>
+          <button onClick={deleteUserModal}>Delete User Account</button>
         </div>
       </main>
     );
