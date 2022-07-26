@@ -187,6 +187,7 @@ function EventForm({ event = null }) {
           <input
             name="date"
             type="datetime-local"
+            min={new Date().toISOString().split(".")[0].slice(0, -3)}
             value={date}
             onChange={e => setDate(e.target.value)}
           />
