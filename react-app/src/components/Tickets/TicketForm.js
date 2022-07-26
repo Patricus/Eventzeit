@@ -10,7 +10,7 @@ background-color: white;
 
 
 
-function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) {
+function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTicketForm }) {
     const [name, setName] = useState(ticket?.attendee || '')
     const [forSale, setForSale] = useState('False')
     const [errors, setErrors] = useState([])
@@ -53,12 +53,14 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
     const onPurchase = (e) => {
         e.preventDefault();
         if (!name) setErrors(['Name field is required.'])
+        if (!eventUrl) setErrors(['Could not find Event Url'])
         if (!ticket) {
             const data = {
                 attendee: name,
                 for_sale: forSale,
                 user_id: user.id,
-                event_id: event.id
+                event_id: event.id,
+                event_url: eventUrl
             }
             dispatch(addOneTicket(data)).then(response=>{
                 if (response.id)closeAfterPurchaseMessage();
@@ -70,7 +72,8 @@ function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) 
                 attendee: name,
                 for_sale: forSale,
                 user_id: ticket.user_id,
-                event_id: ticket.event_id
+                event_id: ticket.event_id,
+                event_url: eventUrl
             }
             dispatch(updateTicket(ticket.id, data))
             setShowTicket(false)

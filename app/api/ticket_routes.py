@@ -15,7 +15,8 @@ def generate_ticket():
             attendee = form.data['attendee'],
             for_sale = form.data['for_sale'],
             user_id = form.data['user_id'],
-            event_id = form.data['event_id']
+            event_id = form.data['event_id'],
+            event_url = form.data['event_url']
         )
 
         event = Event.query.get(ticket.event_id)
@@ -48,6 +49,7 @@ def update_ticket(id):
         ticket.attendee = form.data['attendee']
         ticket.for_sale = form.data['for_sale']
         ticket.user_id = form.data['user_id']
+        ticket.event_url = form.data['event_url']
         db.session.commit()
         return ticket.to_dict()
     else:

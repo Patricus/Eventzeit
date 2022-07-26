@@ -16,6 +16,8 @@ function EventDetailPage() {
   const event = useSelector(state => state.events[eventId]);
   const user = useSelector(state => state.session.user);
 
+  const eventUrl = window.location.href
+
   useEffect(() => {
     dispatch(acquireEvents());
   }, [dispatch]);
@@ -50,7 +52,7 @@ function EventDetailPage() {
           <button onClick={buyTickets}>Buy Tickets</button>
           {showTicketForm && (
             <Modal onClose={() => setShowTicketForm(false)}>
-              <TicketForm event={event} setShowTicketForm={setShowTicketForm} />
+              <TicketForm event={event} setShowTicketForm={setShowTicketForm} eventUrl={eventUrl} />
             </Modal>
           )}
         </>
