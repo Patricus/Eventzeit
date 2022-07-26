@@ -1,7 +1,7 @@
-from unicodedata import name
+import re
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, DateTimeField, FloatField, TextAreaField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, regexp
 # from app.models import Event
 
 
@@ -9,8 +9,6 @@ class EventForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    event_image_url = StringField(
-        'event_image_url', validators=[DataRequired()])
     date = DateTimeField('date', validators=[
                          DataRequired()], format='%Y-%m-%d %H:%M')
     description = TextAreaField('description')
