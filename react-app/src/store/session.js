@@ -1,6 +1,10 @@
-// constants
+/********************** ACTIONS **************************/
+
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const DELETE_USER = 'session/DELETE_USER';
+
+/********************** ACTION CREATORS **************************/
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +14,12 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+const deleteUser = (userId) => ({
+  type: DELETE_USER,
+})
+
+/***************************** THUNKS ***************************************/
 
 const initialState = { user: null };
 
@@ -54,7 +64,6 @@ export const login = (email, password) => async (dispatch) => {
   } else {
     return ['An error occurred. Please try again.']
   }
-
 }
 
 export const logout = () => async (dispatch) => {
@@ -98,12 +107,28 @@ export const signUp = (username, email, password, avatar) => async (dispatch) =>
   }
 }
 
+export const destroyUser = userId => async dispatch => {
+  const response = await fetch(`/api/auth/dashboard/${userId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteUser(userId));
+  }
+};
+
+/***************************** REDUCER ***************************************/
+
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case DELETE_USER:
+        delete newState[action.userId];
+        return newState;
     default:
       return state;
   }

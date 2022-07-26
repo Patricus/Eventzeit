@@ -38,16 +38,19 @@ function EventDetailPage() {
             </Modal>
           )}
           <img src={`${event.event_image_url}`} alt={event.name} />
-          <h3>When: {event.date}</h3>
+          <h3>When: {event.date.split(" G")[0].split(":").splice(0,2).join(":")} </h3>
           <h3>What: {event.description}</h3>
           <h3>
             Where: {event.street_address} {event.city} {event.state} {event.zip_code}
+          </h3>
+          <h3>
+            Ticket Price: ${event.price}
           </h3>
           <h3>Tickets Available: {event.tickets_available}</h3>
           <button onClick={buyTickets}>Buy Tickets</button>
           {showTicketForm && (
             <Modal onClose={() => setShowTicketForm(false)}>
-              <TicketForm event={event} />
+              <TicketForm event={event} setShowTicketForm={setShowTicketForm} />
             </Modal>
           )}
         </>

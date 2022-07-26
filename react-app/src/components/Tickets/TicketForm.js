@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { addOneTicket, updateTicket } from "../../store/tickets";
+import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
+import { acquireEvents } from "../../store/events"
+import styled from 'styled-components';
+
+const WhiteBG = styled.div`
+background-color: white;
+`
 
 
-function TicketForm({ event, ticket = null, setShowTicket }) {
+
+function TicketForm({ event, ticket = null, setShowTicket, setShowTicketForm }) {
     const [name, setName] = useState(ticket?.attendee || '')
-    const [forSale, setForSale] = useState(false)
+    const [forSale, setForSale] = useState('False')
     const [errors, setErrors] = useState([])
     const [purchased, setPurchased] = useState(false)
+    const [confirmRefund, setConfirmRefund] = useState(false)
     const user = useSelector(state => state.session.user)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,8 +29,26 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
     };
 
     const updateForSale = () => {
-        setForSale(!forSale);
+        (forSale === 'False') ? setForSale('True') : setForSale('False')
     };
+
+    const updateConfirmRefund = () => {
+        setConfirmRefund(!confirmRefund)
+    }
+
+    const closeAfterPurchaseMessage = () => {
+        setPurchased(true)
+        setTimeout(() => {
+            setShowTicketForm(false)
+            dispatch(acquireEvents())
+        }, 3750)
+    }
+
+    const returnMyTicket = (e) => {
+        e.preventDefault();
+        dispatch(deleteTicket(ticket))
+        setShowTicket(false)
+    }
 
     const onPurchase = (e) => {
         e.preventDefault();
@@ -35,8 +60,10 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
                 user_id: user.id,
                 event_id: event.id
             }
-            dispatch(addOneTicket(data))
-            setPurchased(true)
+            dispatch(addOneTicket(data)).then(response=>{
+                if (response.id)closeAfterPurchaseMessage();
+                else setErrors(response)
+            });
         }
         if (ticket) {
             const data = {
@@ -51,7 +78,11 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
     }
 
     return (
-        <div>
+        <WhiteBG>
+            {errors && errors.map((error, i=0)=>{
+                i++
+                return <p key={i}>{error}</p>
+            })}
             {!purchased &&
                 <form onSubmit={onPurchase}>
                     <div>
@@ -67,20 +98,31 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
                             onChange={updateName}
                         ></input>
                     </div>
-                    {ticket &&
+                    {ticket && !confirmRefund &&
                         <div>
                             <label>Sell this Ticket</label>
                             <input
                                 type="checkbox"
                                 value={forSale}
-                                checked={forSale}
+                                checked={forSale === 'True'}
                                 onChange={updateForSale}
                             ></input>
                         </div>
                     }
-                    <div>
+                    {ticket && !confirmRefund ?
+                        <div>
+                            <button type="submit" disabled={!name}>Update</button>
+                            <button onClick={updateConfirmRefund}>Return Ticket</button>
+                        </div>
+                        :
                         <button type="submit" disabled={!name}>Submit</button>
-                    </div>
+                    }
+                    {ticket && confirmRefund &&
+                        <div>
+                            <h2>Are you sure you want to return this ticket?</h2>
+                            <button onClick={returnMyTicket}>Confirm</button><button onClick={updateConfirmRefund}>Cancel</button>
+                        </div>
+                    }
                 </form>
             }
             {purchased &&
@@ -89,7 +131,7 @@ function TicketForm({ event, ticket = null, setShowTicket }) {
                     <p>Enjoy your time at {event.name}</p>
                 </div>
             }
-        </div>
+        </WhiteBG>
     );
 };
 
