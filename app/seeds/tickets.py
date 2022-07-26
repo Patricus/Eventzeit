@@ -6,7 +6,8 @@ def seed_tickets():
         attendee = 'Demo Lition',
         for_sale = False,
         user_id = 1,
-        event_id = 1
+        event_id = 1,
+        event_url = 'http://localhost:3000/events/1'
     )
 
     db.session.add(ticket_for_demo)

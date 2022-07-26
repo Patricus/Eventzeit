@@ -23,11 +23,11 @@ const remove = (id) => ({
     id
 });
 
-export const addOneTicket = ({attendee, for_sale, user_id, event_id}) => async dispatch => {
+export const addOneTicket = ({attendee, for_sale, user_id, event_id, event_url}) => async dispatch => {
     const response = await fetch(`/api/tickets/purchase`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({attendee, for_sale, user_id, event_id})
+        body: JSON.stringify({attendee, for_sale, user_id, event_id, event_url})
     });
     if(response.ok){
         const ticket = await response.json();
@@ -49,11 +49,11 @@ export const getAllTickets = (userId) => async dispatch => {
     }
 }
 
-export const updateTicket = (id, {attendee, for_sale, user_id, event_id}) => async dispatch => {
+export const updateTicket = (id, {attendee, for_sale, user_id, event_id, event_url}) => async dispatch => {
     const response = await fetch(`/api/tickets/${id}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({attendee, for_sale, user_id, event_id})
+        body: JSON.stringify({attendee, for_sale, user_id, event_id, event_url})
     })
     if(response.ok){
         const ticket = await response.json();
