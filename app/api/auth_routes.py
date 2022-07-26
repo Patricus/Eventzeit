@@ -75,16 +75,16 @@ def sign_up():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/dashboard/<int:id>', methods=["PUT"])
+@auth_routes.route('/dashboard/<username>', methods=["PUT"])
 @login_required
-def update_user(id):
+def update_user(username):
     """
     Updates a logged in user
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User.query.get(id).first()
+        user = User.query.filter(User.username == username)
 
         user.username=form.data['username'],
         user.email=form.data['email'],
