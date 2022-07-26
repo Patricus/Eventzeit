@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
-import { destroyUser, editUser } from "../../store/session";
+import { destroyUser } from "../../store/session";
 import { logout } from '../../store/session';
 import { Modal } from "../Global/Elements/Modal";
 import EditUserForm from "../auth/EditUserForm";

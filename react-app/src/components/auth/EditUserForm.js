@@ -70,8 +70,8 @@ const EditUserForm = () => {
     <main>
       <form onSubmit={updateUser}>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+          {errors.map((error, idx) => (
+            <div key={idx}>{error}</div>
           ))}
         </div>
         <div>
