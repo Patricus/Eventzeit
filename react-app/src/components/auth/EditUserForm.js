@@ -72,7 +72,9 @@ const EditUserForm = () => {
     <main>
       <form onSubmit={updateUser}>
         <div>
-          {errors.map((error, idx) => (
+          {errors &&
+              Array.isArray(errors) &&
+              errors.map((error, idx) => (
             <div key={idx}>{error}</div>
           ))}
         </div>
