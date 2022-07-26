@@ -85,7 +85,10 @@ def update_user(id):
     form = EditUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user = User.query.filter(User.id == id)
+        user = User.query.filter(User.id == id).first()
+
+        print ("\n\n------------------", user.password, "-------------------\n\n")
+        print ("\n\n------------------", form.data["password"], "-------------------\n\n")
 
         user.username=form.data['username'],
         user.email=form.data['email'],

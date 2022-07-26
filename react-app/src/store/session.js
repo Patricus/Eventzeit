@@ -121,6 +121,7 @@ export const editUser =
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: user_id,
         username,
         email,
         password,
