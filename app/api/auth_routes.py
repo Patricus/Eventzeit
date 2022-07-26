@@ -78,6 +78,9 @@ def sign_up():
 @auth_routes.route('/dashboard/<int:id>', methods=["PUT"])
 @login_required
 def update_user(id):
+    """
+    Updates a logged in user
+    """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
