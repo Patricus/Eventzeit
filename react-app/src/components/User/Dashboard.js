@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
 import { destroyUser, editUser } from "../../store/session";
-import { Redirect } from "react-router-dom";
 import { logout } from '../../store/session';
+import { Modal } from "../Global/Elements/Modal";
+import { EditUserForm } from "../auth/EditUserForm";
 
 const Avatar = styled.img`
   width: 50px;
@@ -19,6 +21,8 @@ function Dashboard() {
   const user = useSelector((state) => state.session.user);
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
+
+  const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
 
   useEffect(() => {
     if (!user) return;
