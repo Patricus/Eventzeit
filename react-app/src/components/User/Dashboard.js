@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
+import { getAllBookmarks } from "../../store/bookmarks";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
 import { destroyUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
-import { logout } from '../../store/session';
+import { logout } from "../../store/session";
 
 const Avatar = styled.img`
   width: 50px;
@@ -27,7 +28,7 @@ function Dashboard() {
 
   const deleteUser = async () => {
     await dispatch(destroyUser(user.id));
-    await dispatch(logout())
+    await dispatch(logout());
     history.push("/events");
   };
 
