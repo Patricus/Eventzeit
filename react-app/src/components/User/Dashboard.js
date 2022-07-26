@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { destroyUser, editUser } from "../../store/session";
 import { logout } from '../../store/session';
 import { Modal } from "../Global/Elements/Modal";
-import { EditUserForm } from "../auth/EditUserForm";
+import EditUserForm from "../auth/EditUserForm";
 
 const Avatar = styled.img`
   width: 50px;
@@ -29,9 +29,8 @@ function Dashboard() {
     dispatch(getAllTickets(user.id));
   }, [dispatch, user]);
 
-  const updateUser = async () => {
-    await dispatch(editUser(user.id));
-    history.push(`/dashboard/${user.id}`);
+  const updateUserModal = async () => {
+    setShowUpdateUserModal(true);
   };
 
   const deleteUser = async () => {
@@ -46,6 +45,11 @@ function Dashboard() {
       <main>
         <h1>My Dashboard</h1>
         <Avatar src={user.avatar} alt="user avatar" />
+        {showUpdateUserModal && (
+            <Modal onClose={() => setShowUpdateUserModal(false)}>
+              <EditUserForm />
+            </Modal>
+          )}
         <h3>Tickets</h3>
         {tickets ? (
           <ul>
@@ -57,7 +61,7 @@ function Dashboard() {
           <p>Loading</p>
         )}
         <div>
-          <button onClick={updateUser}>Update User Account</button>
+          <button onClick={updateUserModal}>Update User Account</button>
           <button onClick={deleteUser}>Delete User Account</button>
         </div>
       </main>
