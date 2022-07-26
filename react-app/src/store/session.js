@@ -21,7 +21,7 @@ const updateUser = (user) => ({
   payload: user,
 });
 
-const deleteUser = (userId) => ({
+const deleteUser = () => ({
   type: DELETE_USER,
 });
 
@@ -114,8 +114,8 @@ export const signUp =
 
 
 export const editUser =
-  (username, email, password, avatar) => async (dispatch) => {
-    const response = await fetch(`/api/auth/dashboard/${username}`, {
+  (user_id, username, email, password, avatar) => async (dispatch) => {
+    const response = await fetch(`/api/auth/dashboard/${user_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -141,7 +141,7 @@ export const editUser =
       return ["An error has occured. Please try again."];
     }
   };
-  
+
 
 export const destroyUser = (userId) => async (dispatch) => {
   const response = await fetch(`/api/auth/dashboard/${userId}`, {
@@ -162,6 +162,9 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload };
     case REMOVE_USER:
       return { user: null };
+    case UPDATE_USER:
+        newState[action.payload.id] = action.payload;
+        return newState;
     case DELETE_USER:
       delete newState[action.userId];
       return newState;
