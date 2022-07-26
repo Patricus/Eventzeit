@@ -87,12 +87,10 @@ def update_user(id):
     if form.validate_on_submit():
         user = User.query.filter(User.id == id).first()
 
-        print ("\n\n------------------", user.password, "-------------------\n\n")
-        print ("\n\n------------------", form.data["password"], "-------------------\n\n")
 
-        user.username=form.data['username'],
-        user.email=form.data['email'],
-        user.password=form.data['password'],
+        user.username=form.data['username']
+        user.email=form.data['email']
+        user.password=form.data['password']
         user.avatar=form.data['avatar']
 
         db.session.commit()

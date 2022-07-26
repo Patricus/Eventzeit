@@ -33,9 +33,9 @@ function Dashboard() {
     setShowUpdateUserModal(true);
   };
 
-  const deleteUser = async () => {
-    await dispatch(destroyUser(user.id));
-    await dispatch(logout())
+  const deleteUser = () => {
+    dispatch(destroyUser(user.id))
+    dispatch(logout())
     history.push("/events");
   };
 
