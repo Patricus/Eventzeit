@@ -2,7 +2,8 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
-from flask_login import ID_ATTRIBUTE, current_user, login_user, logout_user, login_required
+from app.forms import EditUserForm
+from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -81,7 +82,7 @@ def update_user(id):
     """
     Updates a logged in user
     """
-    form = SignUpForm()
+    form = EditUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User.query.filter(User.id == id)
