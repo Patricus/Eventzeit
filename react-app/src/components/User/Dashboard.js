@@ -7,7 +7,6 @@ import { getAllBookmarks } from "../../store/bookmarks";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
 import { destroyUser } from "../../store/session";
-import { Redirect } from "react-router-dom";
 import { logout } from "../../store/session";
 import { Modal } from "../Global/Elements/Modal";
 import EditUserForm from "../auth/EditUserForm";
