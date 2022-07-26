@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import UserMenu from './UserMenu';
 import EventzeitLogo from "../../images/EventzeitMainLogo.png"
+import { login } from '../../store/session';
 
 const NavigationBar = styled.div`
   display: flex;
@@ -22,14 +23,20 @@ padding-top: 1em;
 `
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.session.user)
+
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     if (!user) setLoggedIn(false);
     if (user) setLoggedIn(true)
   }, [user, loggedIn])
+
+  const demoLogIn = () => {
+    dispatch(login("demo@aa.io", "password"));
+  }
 
   return (
     <NavigationBar>
@@ -39,6 +46,9 @@ const NavBar = () => {
             <NavLink to='/' exact={true} activeClassName='active'>
               <Logo src={`${EventzeitLogo}`} />
             </NavLink>
+          </div>
+          <div>
+            <button onClick={demoLogIn}>Demo User</button>
           </div>
           <div>
             <NavLink to='/login' exact={true} activeClassName='active'>
