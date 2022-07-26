@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import { getAllBookmarks } from "../../store/bookmarks";
 import Ticket from "../Tickets/Ticket";
@@ -8,6 +9,8 @@ import styled from "styled-components";
 import { destroyUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { logout } from "../../store/session";
+import { Modal } from "../Global/Elements/Modal";
+import EditUserForm from "../auth/EditUserForm";
 
 const Avatar = styled.img`
   width: 50px;
@@ -21,14 +24,20 @@ function Dashboard() {
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
 
+  const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
+
   useEffect(() => {
     if (!user) return;
     dispatch(getAllTickets(user.id));
   }, [dispatch, user]);
 
-  const deleteUser = async () => {
-    await dispatch(destroyUser(user.id));
-    await dispatch(logout());
+  const updateUserModal = async () => {
+    setShowUpdateUserModal(true);
+  };
+
+  const deleteUser = () => {
+    dispatch(destroyUser(user.id))
+    dispatch(logout())
     history.push("/events");
   };
 
@@ -38,6 +47,11 @@ function Dashboard() {
       <main>
         <h1>My Dashboard</h1>
         <Avatar src={user.avatar} alt="user avatar" />
+        {showUpdateUserModal && (
+            <Modal onClose={() => setShowUpdateUserModal(false)}>
+              <EditUserForm />
+            </Modal>
+          )}
         <h3>Tickets</h3>
         {tickets ? (
           <ul>
@@ -49,6 +63,7 @@ function Dashboard() {
           <p>Loading</p>
         )}
         <div>
+          <button onClick={updateUserModal}>Update User Account</button>
           <button onClick={deleteUser}>Delete User Account</button>
         </div>
       </main>
