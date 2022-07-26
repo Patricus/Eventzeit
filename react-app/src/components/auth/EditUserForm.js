@@ -27,14 +27,15 @@ margin: 10px;
 `
 
 const EditUserForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState(avatar1)
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const [username, setUsername] = useState(user.username || '');
+  const [email, setEmail] = useState(user.email || '');
+  const [avatar, setAvatar] = useState(user.avatar || avatar1)
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [errors, setErrors] = useState([]);
 
   const updateUser = async (e) => {
     e.preventDefault();
