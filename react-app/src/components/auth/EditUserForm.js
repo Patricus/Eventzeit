@@ -29,6 +29,7 @@ const EditUserForm = () => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
+
   const [username, setUsername] = useState(user.username || "");
   const [email, setEmail] = useState(user.email || "");
   const [avatar, setAvatar] = useState(user.avatar || avatar1);
@@ -41,11 +42,11 @@ const EditUserForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(
         editUser(user.id, username, email, password, avatar)
-      );
-      if (data) {
-        setErrors(data);
+        );
+        if (data) {
+          setErrors(data);
+        }
       }
-    }
   };
 
   const updateUsername = (e) => {
