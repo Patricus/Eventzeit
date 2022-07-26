@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import Ticket from "../Tickets/Ticket";
 import styled from "styled-components";
-import { destroyUser } from "../../store/session";
+import { destroyUser, editUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { logout } from '../../store/session';
 
@@ -24,6 +24,11 @@ function Dashboard() {
     if (!user) return;
     dispatch(getAllTickets(user.id));
   }, [dispatch, user]);
+
+  const updateUser = async () => {
+    await dispatch(editUser(user.id));
+    history.push(`/dashboard/${user.id}`);
+  };
 
   const deleteUser = async () => {
     await dispatch(destroyUser(user.id));
@@ -48,6 +53,7 @@ function Dashboard() {
           <p>Loading</p>
         )}
         <div>
+          <button onClick={updateUser}>Update User Account</button>
           <button onClick={deleteUser}>Delete User Account</button>
         </div>
       </main>
