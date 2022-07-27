@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { acquireEvents } from "../../../store/events";
 import { Modal } from "../../Global/Elements/Modal";
 import EventForm from "../Forms";
@@ -17,6 +17,8 @@ function EventDetailPage() {
   const event = useSelector((state) => state.events[eventId]);
   const user = useSelector((state) => state.session.user);
 
+  const title = useSelector(state=>state.events[eventId]?.name)
+
   const eventUrl = window.location.href
 
   useEffect(() => {
@@ -27,6 +29,7 @@ function EventDetailPage() {
     setShowTicketForm(true);
   };
 
+  if (!user) return <Redirect to={"/"} />;
   return (
     <main>
       {event ? (
@@ -59,7 +62,7 @@ function EventDetailPage() {
               <TicketForm event={event} setShowTicketForm={setShowTicketForm} eventUrl={eventUrl} />
             </Modal>
           )}
-          <Bookmark event_id={eventId} user_id={user.id} />
+          <Bookmark event_id={eventId} user_id={user.id} title={title} />
         </>
       ) : (
         <h1>Loading Event</h1>

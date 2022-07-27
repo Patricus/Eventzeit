@@ -17,7 +17,7 @@ function BookmarksPanel() {
     return (
         <BookmarksBar>
             {bookmarksState && bookmarks.map(bookmark=>{
-                return <p key={bookmark.id}>{}</p>
+                return <p key={bookmark.id}>{bookmark.title}</p>
             })}
         </BookmarksBar>
     );
