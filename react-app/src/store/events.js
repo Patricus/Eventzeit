@@ -33,7 +33,7 @@ export const makeEvent =
     user_id,
     category,
     name,
-    event_image_url,
+    image,
     date,
     description,
     price,
@@ -44,6 +44,29 @@ export const makeEvent =
     zipCode
   ) =>
   async dispatch => {
+    console.log("image", image);
+    const imageData = new FormData();
+    imageData.append("image", image);
+
+    const imageRes = await fetch(`/api/images/`, {
+      method: "POST",
+      body: imageData,
+    });
+
+    if (imageRes.ok) {
+      image = await imageRes.json();
+    } else if (imageRes.status < 500) {
+      const data = await imageRes.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+
+    console.log("image", image);
+    console.log("image.url", image.url);
+
     const response = await fetch("/api/events/", {
       method: "POST",
       headers: {
@@ -53,7 +76,7 @@ export const makeEvent =
         user_id,
         category,
         name,
-        event_image_url,
+        image: image.url,
         date,
         description,
         price,
@@ -102,7 +125,7 @@ export const editEvent =
     user_id,
     category,
     name,
-    event_image_url,
+    image,
     date,
     description,
     price,
@@ -122,7 +145,7 @@ export const editEvent =
         user_id,
         category,
         name,
-        event_image_url,
+        image,
         date,
         description,
         price,

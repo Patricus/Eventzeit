@@ -7,9 +7,9 @@ from flask_login import login_required
 aws_routes = Blueprint('images', __name__)
 
 
-@aws_routes.route('/<int:id>', methods=["POST"])
+@aws_routes.route('/', methods=["POST"])
 @login_required
-def upload(id):
+def upload():
     if "image" not in request.files:
         return {'errors': 'Image required'}, 401
 
@@ -26,8 +26,4 @@ def upload(id):
 
     url = upload['url']
 
-    event = Event.query.get(id).first()
-    event.event_image_url = url
-
-    db.session.commit()
     return {"url": url}

@@ -9,6 +9,8 @@ class EventForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
+    image = StringField(
+        'image', validators=[DataRequired()])
     date = DateTimeField('date', validators=[
                          DataRequired()], format='%Y-%m-%d %H:%M')
     description = TextAreaField('description')

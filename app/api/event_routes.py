@@ -17,19 +17,33 @@ def get_events():
 @event_routes.route('/', methods=["POST"])
 @login_required
 def create_event():
+    data = request.json
+    print("\n\n ----")
+    print("user_id", data['user_id'])
+    print("category", data['category'])
+    print("name", data['name'])
+    print("image", data['image'])
+    print("date", data['date'])
+    print("description", data['description'])
+    print("price", data['price'])
+    print("occupancy", data['occupancy'])
+    print("street_address", data['street_address'])
+    print("city", data['city'])
+    print("state", data['state'])
+    print("zipCode", data['zipCode'])
+    print("---- \n\n")
     form = EventForm()
+    print("\n --- PASS FORM --- \n")
+    print(form)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
 
-        image = form.data["image"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-        url = upload["url"]
+    if form.validate_on_submit():
 
         event = Event(
             user_id=form.data['user_id'],
             category=form.data['category'],
             name=form.data['name'],
+            event_image_url=form.data['image'],
             date=form.data['date'],
             description=form.data['description'],
             price=form.data['price'],
@@ -61,6 +75,7 @@ def update_event(id):
         event.user_id = form.data['user_id'],
         event.category = form.data['category'],
         event.name = form.data['name'],
+        event.image = form.data['image'],
         event.date = form.data['date'],
         event.description = form.data['description'],
         event.price = form.data['price'],

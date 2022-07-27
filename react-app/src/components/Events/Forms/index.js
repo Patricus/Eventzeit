@@ -26,6 +26,7 @@ function EventForm({ event = null }) {
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -116,6 +117,8 @@ function EventForm({ event = null }) {
       return;
     }
 
+    setImageLoading(true);
+
     if (!event) {
       event = await dispatch(
         makeEvent(
@@ -133,8 +136,9 @@ function EventForm({ event = null }) {
           zipCode
         )
       );
-      if (event.id) history.push(`${event.id}`);
-      else setErrors(event);
+      if (event.id) {
+        history.push(`${event.id}`);
+      }
     } else {
       event = await dispatch(
         editEvent(
@@ -153,8 +157,30 @@ function EventForm({ event = null }) {
           zipCode
         )
       );
-      setErrors(event);
     }
+
+    setImageLoading(false);
+    setErrors(event);
+    // const imageData = new FormData();
+    // imageData.append("image", image);
+
+    // console.log("event", event);
+    // const imageRes = await fetch(`/api/images/${event.id}`, {
+    //   method: "POST",
+    //   body: imageData,
+    // });
+
+    // if (imageRes.ok) {
+    //   await imageRes.json();
+    //   history.push(`${event.id}`);
+    // } else {
+
+    // }
+  };
+
+  const updateImage = e => {
+    const imageFile = e.target.files[0];
+    setImage(imageFile);
   };
 
   const deleteEvent = async e => {
@@ -218,7 +244,12 @@ function EventForm({ event = null }) {
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input name="image" type="text" value={image} onChange={e => setImage(e.target.value)} />
+          <input
+            name="image"
+            type="file"
+            accept=".pdf,.png,.jpg,.jpeg,.gif"
+            onChange={updateImage}
+          />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
@@ -290,6 +321,7 @@ function EventForm({ event = null }) {
           ) : (
             <div>
               <button>Create Event</button>
+              {imageLoading && <p>Loading...</p>}
             </div>
           )}
         </div>
