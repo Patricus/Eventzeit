@@ -20,7 +20,7 @@ const DeleteUserModal = ({ setShowConfirmDeleteModal }) => {
 
   return (
     <main>
-      <h2>Are you should you want to delete your account?</h2>
+      <h2>Are you sure you want to delete your account?</h2>
       <button onClick={cancelDelete}>Cancel</button>
       <button onClick={deleteUser}>Delete Account</button>
     </main>
