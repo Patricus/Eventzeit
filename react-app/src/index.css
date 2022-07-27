@@ -1,1 +1,8 @@
 /* TODO Add site wide styles */
+@font-face {
+  font-family: Eina;
+  src: url(/Users/eli/Desktop/Eventbrite-Clone/react-app/src/eina/Eina01-Regular.ttf);
+}
+body {
+  font-family: 'Eina';
+}

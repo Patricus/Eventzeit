@@ -15,6 +15,7 @@ const NavigationBar = styled.div`
   height: 60px;
   align-items: center;
   justify-content: space-around;
+  text-decoration: none;
 `;
 
 const Logo = styled.img`
@@ -61,32 +62,24 @@ const NavBar = () => {
               <button onClick={demoLogIn}>Demo User</button>
             </div>
             <div>
-              <NavLink to="/login" exact={true} activeClassName="active">
+              <NavLink
+                to="/login"
+                exact={true}
+                activeClassName="active"
+                style={{ textDecoration: "none" }}
+              >
                 Login
               </NavLink>
             </div>
             <div>
-              <NavLink to="/sign-up" exact={true} activeClassName="active">
+              <NavLink
+                to="/sign-up"
+                exact={true}
+                activeClassName="active"
+                style={{ textDecoration: "none" }}
+              >
                 Sign Up
               </NavLink>
-            </div>
-          </>
-        )}
-        {loggedIn && user && (
-          <>
-            {/* <div>
-                <NavLink to='/' exact={true} activeClassName='active'>
-                <Logo src={`${EventzeitLogo}`} />
-                </NavLink>
-              </div> */}
-            <div>
-              <NavLink to="/events/create">Create Event</NavLink>
-            </div>
-            <div>
-              <NavLink to="/events">Events</NavLink>
-            </div>
-            <div>
-              <UserMenu user={user} />
             </div>
           </>
         )}
