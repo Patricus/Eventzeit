@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
-import { getAllBookmarks } from "../../store/bookmarks";
-import styled from "styled-components";
 import { Modal } from "../Global/Elements/Modal";
 import EditUserForm from "../auth/EditUserForm";
 import DeleteUserModal from "../auth/DeleteUser";
