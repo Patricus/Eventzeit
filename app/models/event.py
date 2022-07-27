@@ -6,7 +6,7 @@ user_events = db.Table(
     db.Column(
         'user_id',
         db.Integer,
-        db.ForeignKey('users.id', ondelete="CASCADE"),
+        db.ForeignKey('users.id'),
         primary_key = True
     ),
     db.Column(
@@ -21,7 +21,7 @@ class Event(db.Model):
     __tablename__ = 'events'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id',  ondelete="CASCADE"), nullable=False)
     category = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     event_image_url = db.Column(db.String(255), nullable=False)
