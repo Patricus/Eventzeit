@@ -5,7 +5,7 @@ import EventsCard from "../Elements/EventsCard";
 import "../../../index.css";
 
 function Events() {
-  const events = Object.values(useSelector((state) => state.events));
+  const events = Object.values(useSelector(state => state.events));
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [sport, setSport] = useState(false);
@@ -31,20 +31,13 @@ function Events() {
       .split(".")[0]
       .slice(0, -3)
   );
-  let createEndDate = new Date();
-  createEndDate.setDate(createEndDate.getDate() + 7);
-  const [endDate, setEndDate] = useState(
-    new Date(createEndDate.toString().split("GMT")[0] + " UTC")
-      .toISOString()
-      .split(".")[0]
-      .slice(0, -3)
-  );
+  const [endDate, setEndDate] = useState(startDate);
 
   useEffect(() => {
     dispatch(acquireEvents());
   }, [dispatch]);
 
-  const checkCategories = (event) => {
+  const checkCategories = event => {
     if (
       !sport &&
       !party &&
@@ -87,13 +80,11 @@ function Events() {
     <main
       style={{
         textDecoration: "none",
-      }}
-    >
+      }}>
       <h1
         style={{
           marginTop: "80px",
-        }}
-      >
+        }}>
         Events
       </h1>
       <div>
@@ -136,12 +127,7 @@ function Events() {
           </span>
           <span>
             <label htmlFor={"game"}>Game</label>
-            <input
-              type="checkbox"
-              name={"game"}
-              checked={game}
-              onChange={() => setGame(!game)}
-            />
+            <input type="checkbox" name={"game"} checked={game} onChange={() => setGame(!game)} />
           </span>
           <span>
             <label htmlFor={"seminar"}>Seminar</label>
@@ -199,12 +185,7 @@ function Events() {
           </span>
           <span>
             <label htmlFor={"gala"}>Gala</label>
-            <input
-              type="checkbox"
-              name={"gala"}
-              checked={gala}
-              onChange={() => setGala(!gala)}
-            />
+            <input type="checkbox" name={"gala"} checked={gala} onChange={() => setGala(!gala)} />
           </span>
           <span>
             <label htmlFor={"festival"}>Festival</label>
@@ -250,7 +231,7 @@ function Events() {
               name="search"
               type="text"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={e => setSearch(e.target.value)}
               placeholder="Search Events"
             />
           </span>
@@ -259,8 +240,9 @@ function Events() {
             <input
               name="startDate"
               type="datetime-local"
+              max={endDate}
               value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={e => setStartDate(e.target.value)}
             />
           </span>
           <span>
@@ -270,16 +252,12 @@ function Events() {
               type="datetime-local"
               min={startDate}
               value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              onChange={e => setEndDate(e.target.value)}
             />
           </span>
           <span>
             <label htmlFor="sortEvents">Sort Events By: </label>
-            <select
-              name="sortEvents"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-            >
+            <select name="sortEvents" value={sortBy} onChange={e => setSortBy(e.target.value)}>
               <option value={"name"}>Name</option>
               <option value={"date"}>Date</option>
             </select>
@@ -288,7 +266,8 @@ function Events() {
       </div>
       {events &&
         events
-          .filter((event) => {
+          .filter(event => {
+            if (startDate === endDate) return true;
             if (
               new Date(event.date) > new Date(startDate) &&
               new Date(event.date) < new Date(endDate)
@@ -296,10 +275,10 @@ function Events() {
               return true;
             return false;
           })
-          .filter((event) => {
+          .filter(event => {
             return checkCategories(event);
           })
-          .filter((event) => {
+          .filter(event => {
             return event.name.match(new RegExp(search, "i"));
           })
           .sort((a, b) => {
@@ -313,7 +292,7 @@ function Events() {
             }
             return a - b;
           })
-          .map((event) => {
+          .map(event => {
             return <EventsCard key={event.id} event={event} />;
           })}
     </main>
