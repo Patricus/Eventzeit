@@ -141,6 +141,7 @@ function EventForm({ event = null }) {
       );
       if (event.id) {
         history.push(`${event.id}`);
+        return;
       }
     } else {
       event = await dispatch(
@@ -164,21 +165,6 @@ function EventForm({ event = null }) {
 
     setImageLoading(false);
     setErrors(event);
-    // const imageData = new FormData();
-    // imageData.append("image", image);
-
-    // console.log("event", event);
-    // const imageRes = await fetch(`/api/images/${event.id}`, {
-    //   method: "POST",
-    //   body: imageData,
-    // });
-
-    // if (imageRes.ok) {
-    //   await imageRes.json();
-    //   history.push(`${event.id}`);
-    // } else {
-
-    // }
   };
 
   const updateImage = e => {
@@ -245,12 +231,7 @@ function EventForm({ event = null }) {
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input
-            name="image"
-            type="file"
-            accept=".pdf,.png,.jpg,.jpeg,.gif"
-            onChange={updateImage}
-          />
+          <input name="image" type="file" accept="image/*" onChange={updateImage} />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
