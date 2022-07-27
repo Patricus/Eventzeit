@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { destroyUser } from "../../store/session";
 import { logout } from "../../store/session";
 
-const DeleteUserModal = ({ setShowConfirmDeleteModal }) => {
+const DeleteEventModal = ({ setShowConfirmDeleteModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -12,20 +12,20 @@ const DeleteUserModal = ({ setShowConfirmDeleteModal }) => {
     setShowConfirmDeleteModal(false)
   }
 
-  const deleteUser = () => {
-    dispatch(destroyUser(user.id))
-    dispatch(logout())
+  const deleteEvent = async (e) => {
+    e.preventDefault();
+    await dispatch(removeEvent(event.id));
     history.push("/events");
   };
 
   return (
     <main>
-      <h2>Are you sure you want to delete your account?</h2>
+      <h2>Are you sure you want to delete your event?</h2>
       <button onClick={cancelDelete}>Cancel</button>
-      <button onClick={deleteUser}>Delete Account</button>
+      <button onClick={deleteEvent}>Delete Event</button>
     </main>
   )
 }
 
 
-export default DeleteUserModal;
+export default DeleteEventModal;

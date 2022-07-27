@@ -157,7 +157,7 @@ function EventForm({ event = null }) {
     }
   };
 
-  const deleteEvent = async e => {
+  const deleteEvent = async (e) => {
     e.preventDefault();
     await dispatch(removeEvent(event.id));
     history.push("/events");
