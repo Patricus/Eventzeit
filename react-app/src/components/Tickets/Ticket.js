@@ -9,20 +9,23 @@ import TicketForm from "./TicketForm";
 import ticketBG from '../../images/stock-ticket.jpg'
 
 const OuterDiv = styled.div`
-position: absolute;
-width: 220px;
+width: 300px;
 `
 
 const TicketRectangle = styled.div`
+position: relative;
+bottom: -40px;
+left: -32px;
 display: flex;
 flex-direction: row;
 height: 100px;
-width: 260px;
+width: 300px;
 align-items: center;
 `
 
 const TicketBGImage = styled.img`
 position: absolute;
+
 height: 150px;
 width: 320px;
 z-index: -1;
