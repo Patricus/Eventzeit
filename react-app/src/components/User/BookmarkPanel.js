@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const BookmarksBar = styled.div`
@@ -10,11 +11,14 @@ margin: 20px 0;
 `
 
 function BookmarksPanel() {
-    
+    const bookmarksState = useSelector(state=>state.bookmarks)
+    const bookmarks = Object.values(bookmarksState)
 
     return (
         <BookmarksBar>
-
+            {bookmarksState && bookmarks.map(bookmark=>{
+                return <p key={bookmark.id}>{}</p>
+            })}
         </BookmarksBar>
     );
 };

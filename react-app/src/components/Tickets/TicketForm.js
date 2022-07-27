@@ -89,11 +89,6 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
             {!purchased &&
                 <form onSubmit={onPurchase}>
                     <div>
-                        {errors && errors.map((error, i) => (
-                            <div key={i}>{error}</div>
-                        ))}
-                    </div>
-                    <div>
                         <label>Name of Attendee</label>
                         <input
                             type="text"
