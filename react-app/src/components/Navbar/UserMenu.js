@@ -22,14 +22,14 @@ function UserMenu({ user }) {
   };
 
   return (
-    <div activeClassName="navlink" style={{ textDecoration: "none" }}>
+    <div className="navlink" style={{ textDecoration: "none" }}>
       {!showMenu && (
         <MenuButton onClick={openMenu}>
           <div className="profile-container" style={{ width: "130px" }}>
-            <p className="profile-icon"></p>
-            <p className="navlink" style={{ paddingTop: "4px" }}>
+            <div className="profile-icon"></div>
+            <div className="navlink" style={{ paddingTop: "4px" }}>
               Hi, {user.username} !
-            </p>
+            </div>
           </div>
         </MenuButton>
       )}
@@ -37,7 +37,7 @@ function UserMenu({ user }) {
         <div>
           <MenuButton onClick={openMenu}>
             <div className="profile-container" style={{ width: "130px" }}>
-              <p className="profile-icon"></p>
+              <div className="profile-icon"></div>
               <p className="navlink" style={{ paddingTop: "4px" }}>
                 Hi, {user.username} !
               </p>
