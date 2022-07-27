@@ -7,7 +7,7 @@ class Ticket(db.Model):
     attendee = db.Column(db.String(30), nullable=False)
     for_sale = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id', ondelete="CASCADE"))
     event_url = db.Column(db.String(40), nullable=False)
     user = db.relationship('User', back_populates='tickets')
     event = db.relationship('Event', back_populates='tickets')
