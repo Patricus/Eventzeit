@@ -8,10 +8,17 @@ import styled from "styled-components";
 import { Modal } from "../Global/Elements/Modal";
 import EditUserForm from "../auth/EditUserForm";
 import DeleteUserModal from "../auth/DeleteUser";
+import { destroyUser } from "../../store/session";
+import { Redirect } from "react-router-dom";
+import { logout } from "../../store/session";
+import BookmarksPanel from "./BookmarkPanel";
+import UserPanel from "./UserPanel";
+import TicketPanel from "./TicketPanel";
 
 const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  box-sizing: inherit;
+  width: 40px;
+  height: 40px;
 `;
 
 function Dashboard() {
@@ -64,6 +71,9 @@ function Dashboard() {
         ) : (
           <p>Loading</p>
         )}
+        <BookmarksPanel />
+        <UserPanel user={user} tickets={tickets} />
+        <TicketPanel tickets={tickets}/>
         <div>
           <button onClick={updateUserModal}>Update User Account</button>
           <button onClick={deleteUserModal}>Delete User Account</button>
