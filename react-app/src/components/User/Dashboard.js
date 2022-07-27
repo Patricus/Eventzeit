@@ -36,8 +36,6 @@ function Dashboard() {
     setShowConfirmDeleteModal(true);
   };
 
-
-
   if (!user) return <Redirect to={"/"} />;
   if (user) {
     return (

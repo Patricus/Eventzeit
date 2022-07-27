@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { destroyUser } from "../../store/session";
-import { logout } from "../../store/session";
+import { removeEvent } from "../../../store/events";
 
-const DeleteEventModal = ({ setShowConfirmDeleteModal }) => {
+const DeleteEventModal = ({ event, setShowConfirmDeleteModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.session.user);
 
   const cancelDelete = () => {
     setShowConfirmDeleteModal(false)
