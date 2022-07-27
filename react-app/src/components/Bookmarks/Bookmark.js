@@ -40,14 +40,11 @@ function Bookmark({ event_id, user_id = null }) {
   }, [dispatch, user_id]);
 
   useEffect(() => {
-    console.log("event id", event_id);
     Object.values(userBookmarks).forEach((bookmark) => {
-      console.log("boomark event id", bookmark.event_id);
       if (parseInt(bookmark.event_id) === parseInt(event_id)) {
         setComponentBookmark(bookmark);
       }
     });
-    console.log("inside moment", componentBookmark);
   }, [userBookmarks, event_id, componentBookmark]);
 
   const clickButton = () => {
