@@ -21,7 +21,8 @@ const NavigationBar = styled.div`
 const Logo = styled.img`
   width: 13em;
   height: auto;
-  padding-top: 0em;
+  // padding-top: 15%;
+  align-self: center;
 `;
 
 const NavBar = () => {
@@ -41,17 +42,32 @@ const NavBar = () => {
 
   return (
     <div
-      // className="navBarWrapper"
-      style={{ backgroundColor: "green" }}
+      className="navBarWrapper"
+      style={{
+        // backgroundColor: "green",
+        paddingLeft: "20px",
+        height: "80px",
+        // margin: "0px"
+      }}
     >
       <div
         className="navBarDiv1"
         style={{
           // backgroundColor: "red",
-          width: "205px",
+          height: "100%",
+          // alignItems: "center",
         }}
       >
-        <NavLink to="/" exact={true} activeClassName="active">
+        <NavLink
+          to="/"
+          exact={true}
+          activeClassName="navlink navBarDiv1"
+          style={{
+            // backgroundColor: "blue",
+            width: "205px",
+            height: "100%",
+          }}
+        >
           <Logo src={`${EventzeitLogo}`} />
         </NavLink>
       </div>
@@ -59,13 +75,15 @@ const NavBar = () => {
         {!loggedIn && (
           <>
             <div>
-              <button onClick={demoLogIn}>Demo User</button>
+              <button onClick={demoLogIn} className="navlink">
+                Demo User
+              </button>
             </div>
             <div>
               <NavLink
                 to="/login"
                 exact={true}
-                activeClassName="active"
+                activeClassName="navlink"
                 style={{ textDecoration: "none" }}
               >
                 Login
@@ -75,7 +93,7 @@ const NavBar = () => {
               <NavLink
                 to="/sign-up"
                 exact={true}
-                activeClassName="active"
+                activeClassName="navlink"
                 style={{ textDecoration: "none" }}
               >
                 Sign Up

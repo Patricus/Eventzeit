@@ -1,6 +1,24 @@
-.navBarWrapper{
+/* .navBarWrapper{
   position: relative;
 }
 .navBarDiv1, .navBarDiv2{
   position: absolute;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+.navlink {
+  font-style: bold;
+}
+
+.navBarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10%;
 }
