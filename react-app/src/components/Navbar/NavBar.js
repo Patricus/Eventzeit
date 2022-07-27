@@ -76,6 +76,18 @@ const NavBar = () => {
           {!loggedIn && (
             <>
               <div>
+                <NavLink
+                  to="/events"
+                  exact={true}
+                  activeClassName="active"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <p className="navlink">Events</p>
+                </NavLink>
+              </div>
+              <div>
                 <button
                   onClick={demoLogIn}
                   className="navlink"
