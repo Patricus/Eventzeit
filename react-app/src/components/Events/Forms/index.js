@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeEvent, editEvent, removeEvent } from "../../../store/events";
+import { Modal } from "../../Global/Elements/Modal";
+import { makeEvent, editEvent } from "../../../store/events";
+import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 
 function EventForm({ event = null }) {
   (() => {
@@ -27,6 +29,7 @@ function EventForm({ event = null }) {
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -183,10 +186,8 @@ function EventForm({ event = null }) {
     setImage(imageFile);
   };
 
-  const deleteEvent = async e => {
-    e.preventDefault();
-    await dispatch(removeEvent(event.id));
-    history.push("/events");
+  const deleteEventModal = async () => {
+    setShowConfirmDeleteModal(true);
   };
 
   return (
@@ -312,11 +313,16 @@ function EventForm({ event = null }) {
             onChange={e => setZipCode(e.target.value)}
           />
         </div>
+        {showConfirmDeleteModal && (
+          <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+            <DeleteEventModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} event={event} />
+          </Modal>
+        )}
         <div>
           {event ? (
             <div>
               <button>Update Event</button>
-              <button onClick={deleteEvent}>Delete Event</button>
+              <button onClick={deleteEventModal}>Delete Event</button>
             </div>
           ) : (
             <div>

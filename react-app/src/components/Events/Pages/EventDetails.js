@@ -51,13 +51,15 @@ function EventDetailPage() {
           </h3>
           <h3>Ticket Price: ${event.price}</h3>
           <h3>Tickets Available: {event.tickets_available}</h3>
+          {user &&
           <button onClick={buyTickets}>Buy Tickets</button>
+          }
           {showTicketForm && (
             <Modal onClose={() => setShowTicketForm(false)}>
               <TicketForm event={event} setShowTicketForm={setShowTicketForm} eventUrl={eventUrl} />
             </Modal>
           )}
-          <Bookmark event_id={eventId} user_id={user.id} />
+          {user && <Bookmark event_id={eventId} user_id={user.id} />}
         </>
       ) : (
         <h1>Loading Event</h1>

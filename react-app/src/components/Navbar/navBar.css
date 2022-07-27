@@ -1,0 +1,6 @@
+.navBarWrapper{
+  position: relative;
+}
+.navBarDiv1, .navBarDiv2{
+  position: absolute;
+}
