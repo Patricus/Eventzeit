@@ -6,7 +6,7 @@ user_events = db.Table(
     db.Column(
         'user_id',
         db.Integer,
-        db.ForeignKey('users.id'),
+        db.ForeignKey('users.id', ondelete="CASCADE"),
         primary_key = True
     ),
     db.Column(
