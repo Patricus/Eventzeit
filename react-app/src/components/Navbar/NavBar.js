@@ -19,9 +19,9 @@ const NavigationBar = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 13em;
+  width: 9em;
   height: auto;
-  // padding-top: 15%;
+  padding-top: 5%;
   align-self: center;
 `;
 
@@ -41,67 +41,123 @@ const NavBar = () => {
   };
 
   return (
-    <div
-      className="navBarWrapper"
-      style={{
-        // backgroundColor: "green",
-        paddingLeft: "20px",
-        height: "80px",
-        // margin: "0px"
-      }}
-    >
+    <div>
       <div
-        className="navBarDiv1"
+        className="navBarWrapper"
         style={{
-          // backgroundColor: "red",
-          height: "100%",
-          // alignItems: "center",
+          // backgroundColor: "green",
+          paddingLeft: "20px",
+          height: "70px",
+          // margin: "0px"
         }}
       >
-        <NavLink
-          to="/"
-          exact={true}
-          activeClassName="navlink navBarDiv1"
+        <div
+          className="navBarDiv1"
           style={{
-            // backgroundColor: "blue",
-            width: "205px",
+            // backgroundColor: "red",
             height: "100%",
+            // alignItems: "center",
           }}
         >
-          <Logo src={`${EventzeitLogo}`} />
-        </NavLink>
+          <NavLink
+            to="/"
+            exact={true}
+            activeClassName="navlink navBarDiv1"
+            style={{
+              // backgroundColor: "blue",
+              width: "205px",
+              height: "100%",
+            }}
+          >
+            <Logo src={`${EventzeitLogo}`} />
+          </NavLink>
+        </div>
+        <NavigationBar className="navBarDiv2">
+          {!loggedIn && (
+            <>
+              <div>
+                <button
+                  onClick={demoLogIn}
+                  className="navlink"
+                  style={{
+                    // fontSize: "16px",
+                    border: "0px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  Demo User
+                </button>
+              </div>
+              <div>
+                <NavLink
+                  to="/login"
+                  exact={true}
+                  activeClassName="active"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <p className="navlink">Login</p>
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to="/sign-up"
+                  exact={true}
+                  activeClassName="active"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <p className="navlink">Sign Up</p>
+                </NavLink>
+              </div>
+            </>
+          )}
+          {loggedIn && user && (
+            <>
+              {/* <div>
+                  <NavLink to='/' exact={true} activeClassName='active'>
+                  <Logo src={`${EventzeitLogo}`} />
+                  </NavLink>
+                </div> */}
+              <div>
+                <NavLink
+                  to="/events/create"
+                  activeClassName="active"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <p className="navlink">Create</p>
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to="/events"
+                  activeClassName="active"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  <p className="navlink">Events</p>
+                </NavLink>
+              </div>
+              <div
+                style={{
+                  color: "#191923",
+                  fontFamily: "Eina-semibold",
+                }}
+              >
+                <UserMenu user={user} />
+              </div>
+            </>
+          )}
+        </NavigationBar>
       </div>
-      <NavigationBar className="navBarDiv2">
-        {!loggedIn && (
-          <>
-            <div>
-              <button onClick={demoLogIn} className="navlink">
-                Demo User
-              </button>
-            </div>
-            <div>
-              <NavLink
-                to="/login"
-                exact={true}
-                activeClassName="navlink"
-                style={{ textDecoration: "none" }}
-              >
-                Login
-              </NavLink>
-            </div>
-            <div>
-              <NavLink
-                to="/sign-up"
-                exact={true}
-                activeClassName="navlink"
-                style={{ textDecoration: "none" }}
-              >
-                Sign Up
-              </NavLink>
-            </div>
-          </>
-        )}
-      </NavigationBar>
+      <div
+        style={{ backgroundColor: "#191923", height: "1.5px", opacity: "30%" }}
+      />
     </div>
   );
 };

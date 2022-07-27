@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
+import "../../../index.css";
 
 function Events() {
   const events = Object.values(useSelector((state) => state.events));
