@@ -11,7 +11,7 @@ import {
 //   cursor: pointer;
 // `;
 
-function Bookmark({ event_id, user_id = null }) {
+function Bookmark({ event_id, user_id = null, title }) {
   const dispatch = useDispatch();
   // if (user) {
   //   user_id = user.id;
@@ -49,7 +49,7 @@ function Bookmark({ event_id, user_id = null }) {
 
   const clickButton = () => {
     setShowBookmark(!showBookmark);
-    if (!showBookmark) dispatch(addOneBookmark({ event_id, user_id }));
+    if (!showBookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
     else {
       dispatch(deleteBookmark(componentBookmark));
     }
