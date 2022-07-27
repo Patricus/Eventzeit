@@ -8,6 +8,8 @@ class Bookmark(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     title = db.Column(db.String(50), nullable=False)
 
+    user = db.relationship('User', back_populates='bookmarks')
+
     def to_dict(self):
         return {
             'id': self.id,
