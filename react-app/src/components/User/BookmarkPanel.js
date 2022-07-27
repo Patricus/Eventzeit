@@ -4,15 +4,17 @@ const BookmarksBar = styled.div`
 display: flex;
 flex-direction: row;
 width: 100%;
-height: 30px;
+height: 40px;
+background-color: red;
+margin: 20px 0;
 `
 
 function BookmarksPanel() {
 
     return (
-        <div>
+        <BookmarksBar>
 
-        </div>
+        </BookmarksBar>
     );
 };
 

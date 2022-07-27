@@ -8,10 +8,14 @@ import styled from "styled-components";
 import { destroyUser } from "../../store/session";
 import { Redirect } from "react-router-dom";
 import { logout } from "../../store/session";
+import BookmarksPanel from "./BookmarkPanel";
+import UserPanel from "./UserPanel";
+import TicketPanel from "./TicketPanel";
 
 const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  box-sizing: inherit;
+  width: 40px;
+  height: 40px;
 `;
 
 function Dashboard() {
@@ -36,18 +40,9 @@ function Dashboard() {
   if (user) {
     return (
       <main>
-        <h1>My Dashboard</h1>
-        <Avatar src={user.avatar} alt="user avatar" />
-        <h3>Tickets</h3>
-        {tickets ? (
-          <ul>
-            {tickets.map((ticket) => {
-              return <Ticket key={ticket.id} ticket={ticket} />;
-            })}
-          </ul>
-        ) : (
-          <p>Loading</p>
-        )}
+        <BookmarksPanel />
+        <UserPanel user={user} tickets={tickets} />
+        <TicketPanel tickets={tickets}/>
         <div>
           <button onClick={deleteUser}>Delete User Account</button>
         </div>
