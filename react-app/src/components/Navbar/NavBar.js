@@ -1,91 +1,98 @@
-
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import UserMenu from './UserMenu';
-import EventzeitLogo from "../../images/EventzeitMainLogo.png"
-import { login } from '../../store/session';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import UserMenu from "./UserMenu";
+import EventzeitLogo from "../../images/EventzeitMainLogo.png";
+import { login } from "../../store/session";
+import "./navBar.css";
 
 const NavigationBar = styled.div`
+  margin-left: 20vw;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80vw;
   height: 60px;
   align-items: center;
   justify-content: space-around;
-  `
+`;
 
 const Logo = styled.img`
-width: 10em;
-height: auto;
-padding-top: 1em;
-`
+  width: 13em;
+  height: auto;
+  padding-top: 0em;
+`;
 
 const NavBar = () => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.session.user)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
 
-  const [loggedIn, setLoggedIn] = useState(false)
-
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     if (!user) setLoggedIn(false);
-    if (user) setLoggedIn(true)
-  }, [user, loggedIn])
+    if (user) setLoggedIn(true);
+  }, [user, loggedIn]);
 
   const demoLogIn = () => {
     dispatch(login("demo@aa.io", "password"));
-  }
+  };
 
   return (
-    <NavigationBar>
-      {!loggedIn &&
-        <>
-          <div>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              <Logo src={`${EventzeitLogo}`} />
-            </NavLink>
-          </div>
-          <div>
-            <button onClick={demoLogIn}>Demo User</button>
-          </div>
-          <div>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </div>
-        </>
-      }
-      {loggedIn && user &&
-        <>
+    <div
+      // className="navBarWrapper"
+      style={{ backgroundColor: "green" }}
+    >
+      <div
+        className="navBarDiv1"
+        style={{
+          // backgroundColor: "red",
+          width: "205px",
+        }}
+      >
+        <NavLink to="/" exact={true} activeClassName="active">
+          <Logo src={`${EventzeitLogo}`} />
+        </NavLink>
+      </div>
+      <NavigationBar className="navBarDiv2">
+        {!loggedIn && (
+          <>
             <div>
-              <NavLink to='/' exact={true} activeClassName='active'>
-              <Logo src={`${EventzeitLogo}`} />
+              <button onClick={demoLogIn}>Demo User</button>
+            </div>
+            <div>
+              <NavLink to="/login" exact={true} activeClassName="active">
+                Login
               </NavLink>
             </div>
             <div>
-              <NavLink to='/events/create'>
-                Create Event
+              <NavLink to="/sign-up" exact={true} activeClassName="active">
+                Sign Up
               </NavLink>
             </div>
+          </>
+        )}
+        {loggedIn && user && (
+          <>
+            {/* <div>
+                <NavLink to='/' exact={true} activeClassName='active'>
+                <Logo src={`${EventzeitLogo}`} />
+                </NavLink>
+              </div> */}
             <div>
-              <NavLink to='/events'>
-                Events
-              </NavLink>
+              <NavLink to="/events/create">Create Event</NavLink>
+            </div>
+            <div>
+              <NavLink to="/events">Events</NavLink>
             </div>
             <div>
               <UserMenu user={user} />
             </div>
-        </>
-      }
-    </NavigationBar>
+          </>
+        )}
+      </NavigationBar>
+    </div>
   );
-}
+};
 
 export default NavBar;

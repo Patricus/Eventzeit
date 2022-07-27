@@ -52,7 +52,7 @@ function Bookmark({ event_id, user_id = null }) {
 
   const clickButton = () => {
     setShowBookmark(!showBookmark);
-    if (showBookmark) dispatch(addOneBookmark({ event_id, user_id }));
+    if (!showBookmark) dispatch(addOneBookmark({ event_id, user_id }));
     else {
       dispatch(deleteBookmark(componentBookmark));
     }
