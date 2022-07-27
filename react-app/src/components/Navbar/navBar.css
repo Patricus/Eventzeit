@@ -37,7 +37,7 @@ p {
 
 .profile-icon {
   /* background-color: #FF521B; */
-  background-image: url('/Users/eli/Desktop/Eventbrite-Clone/react-app/src/images/user 2.png');
+  background-image: url('../../images/user\ 2.png');
   background-size: cover;
   background-position: center;
   background-repeat: none;
@@ -48,7 +48,7 @@ p {
 }
 
 .profile-container:hover .profile-icon{
-  background-image: url('/Users/eli/Desktop/Eventbrite-Clone/react-app/src/images/user 1.png');
+  background-image: url('../../images/user\ 1.png');
   background-size: cover;
   background-position: center;
   background-repeat: none;

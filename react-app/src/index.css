@@ -1,15 +1,15 @@
 /* TODO Add site wide styles */
 @font-face {
   font-family: Eina;
-  src: url(/Users/eli/Desktop/Eventbrite-Clone/react-app/src/eina/Eina01-Regular.ttf);
+  src: url(../src/eina/Eina01-Regular.ttf);
 }
 @font-face {
   font-family: Eina-bold;
-  src: url(/Users/eli/Desktop/Eventbrite-Clone/react-app/src/eina/Eina01-Bold.ttf);
+  src: url(../src/eina/Eina01-Bold.ttf);
 }
 @font-face {
   font-family: Eina-semibold;
-  src: url(/Users/eli/Desktop/Eventbrite-Clone/react-app/src/eina/Eina01-SemiBold.ttf);
+  src: url(../src/eina/Eina01-SemiBold.ttf);
 }
 
 body {
