@@ -10,7 +10,7 @@ const DropDownMenu = styled.div`
   position: absolute;
 `;
 
-const MenuButton = styled.p`
+const MenuButton = styled.div`
   cursor: pointer;
 `;
 
