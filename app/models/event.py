@@ -21,7 +21,7 @@ class Event(db.Model):
     __tablename__ = 'events'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id',  ondelete="CASCADE"), nullable=False)
     category = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     event_image_url = db.Column(db.String(255), nullable=False)
@@ -34,7 +34,7 @@ class Event(db.Model):
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(100), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
-    tickets = db.relationship('Ticket', back_populates='event', cascade='all, delete-orphan')
+    tickets = db.relationship('Ticket', back_populates='event', cascade='all, delete-orphan', passive_deletes=True)
 
     users = db.relationship('User', secondary="user_events",back_populates='events')
 

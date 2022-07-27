@@ -12,7 +12,8 @@ def generate_bookmark():
     # pulling the events from the body by keying into the data
     bookmark = Bookmark(
         user_id = data['user_id'],
-        event_id = data['event_id']
+        event_id = data['event_id'],
+        title = data['title']
     )
 
 

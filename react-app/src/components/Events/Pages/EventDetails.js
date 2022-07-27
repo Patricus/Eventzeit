@@ -17,6 +17,8 @@ function EventDetailPage() {
   const event = useSelector((state) => state.events[eventId]);
   const user = useSelector((state) => state.session.user);
 
+  const title = useSelector(state=>state.events[eventId]?.name)
+
   const eventUrl = window.location.href
 
   useEffect(() => {
@@ -59,7 +61,7 @@ function EventDetailPage() {
               <TicketForm event={event} setShowTicketForm={setShowTicketForm} eventUrl={eventUrl} />
             </Modal>
           )}
-          {user && <Bookmark event_id={eventId} user_id={user.id} />}
+          {user && <Bookmark event_id={eventId} user_id={user.id} title={title} />}
         </>
       ) : (
         <h1>Loading Event</h1>

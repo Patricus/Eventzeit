@@ -34,7 +34,6 @@ def generate_ticket():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @ticket_routes.route('/<int:userId>')
-@login_required
 def load_tickets(userId):
     tickets = Ticket.query.filter(Ticket.user_id == userId)
     return {'tickets': [ticket.to_dict() for ticket in tickets]}
@@ -56,7 +55,6 @@ def update_ticket(id):
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @ticket_routes.route('/delete/<int:id>', methods=["DELETE"])
-@login_required
 def delete_event(id):
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']

@@ -44,7 +44,6 @@ export const makeEvent =
     zipCode
   ) =>
   async dispatch => {
-    console.log("image", image);
     const imageData = new FormData();
     imageData.append("image", image);
 
@@ -63,9 +62,6 @@ export const makeEvent =
     } else {
       return ["An error occurred. Please try again."];
     }
-
-    console.log("image", image);
-    console.log("image.url", image.url);
 
     const response = await fetch("/api/events/", {
       method: "POST",
@@ -136,6 +132,28 @@ export const editEvent =
     zipCode
   ) =>
   async dispatch => {
+    if (typeof image === "object") {
+      const imageData = new FormData();
+      imageData.append("image", image);
+
+      const imageRes = await fetch(`/api/images/`, {
+        method: "POST",
+        body: imageData,
+      });
+
+      if (imageRes.ok) {
+        image = await imageRes.json();
+        image = image.url;
+      } else if (imageRes.status < 500) {
+        const data = await imageRes.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    }
+
     const response = await fetch(`/api/events/${event_id}`, {
       method: "PUT",
       headers: {
