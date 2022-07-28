@@ -78,7 +78,6 @@ const NavBar = () => {
             exact={true}
             activeClassName="navlink navBarDiv1"
             style={{
-              // backgroundColor: "blue",
               width: "205px",
               height: "100%",
             }}>
@@ -104,7 +103,6 @@ const NavBar = () => {
                   onClick={demoLogIn}
                   className="navlink"
                   style={{
-                    // fontSize: "16px",
                     border: "0px",
                     backgroundColor: "white",
                   }}>
@@ -125,11 +123,6 @@ const NavBar = () => {
           )}
           {loggedIn && user && (
             <>
-              {/* <div>
-                  <NavLink to='/' exact={true} activeClassName='active'>
-                  <Logo src={`${EventzeitLogo}`} />
-                  </NavLink>
-                </div> */}
               <div>
                 <NavLink
                   to="/events/create"
