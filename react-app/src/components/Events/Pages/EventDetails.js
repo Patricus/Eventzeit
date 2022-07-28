@@ -25,7 +25,7 @@ function EventDetailPage() {
 
   useEffect(() => {
     dispatch(acquireEvents());
-  }, [dispatch]);
+  }, [dispatch, event.date]);
 
   const buyTickets = () => {
     setShowTicketForm(true);
