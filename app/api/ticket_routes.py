@@ -13,7 +13,6 @@ def generate_ticket():
     if form.validate_on_submit():
         ticket = Ticket(
             attendee = form.data['attendee'],
-            for_sale = form.data['for_sale'],
             user_id = form.data['user_id'],
             event_id = form.data['event_id'],
             event_url = form.data['event_url']
@@ -46,7 +45,6 @@ def update_ticket(id):
         ticket = Ticket.query.get(id)
         ticket.id = id
         ticket.attendee = form.data['attendee']
-        ticket.for_sale = form.data['for_sale']
         ticket.user_id = form.data['user_id']
         ticket.event_url = form.data['event_url']
         db.session.commit()

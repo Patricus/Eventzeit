@@ -7,6 +7,8 @@ import EventForm from "../Forms";
 import TicketForm from "../../Tickets/TicketForm";
 import Bookmark from "../../Bookmarks/Bookmark";
 import "./eventDetails.css";
+import MapView from "../../GoogleMaps/Map";
+
 
 function EventDetailPage() {
   const dispatch = useDispatch();
@@ -156,6 +158,7 @@ function EventDetailPage() {
       ) : (
         <h1>Loading Event</h1>
       )}
+      <MapView event={event} />
     </main>
   );
 }
