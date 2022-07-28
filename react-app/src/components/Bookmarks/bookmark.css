@@ -1,0 +1,10 @@
+.star {
+  font-size: "20px";
+  padding: 6px 10px;
+  color: #fecb00;
+}
+
+.star-button:hover {
+  font-size: "16px";
+  padding: 6px 10px;
+}

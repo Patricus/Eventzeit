@@ -1,0 +1,90 @@
+.description-text {
+  width: "40vw";
+  margin: 30px ;
+  /* background-color: blue; */
+}
+
+.event-time {
+  font-family: "Eina-semibold";
+  margin-left: 30px;
+}
+
+.event-img {
+  width: 700px;
+  height: auto;
+  /* position: absolute; */
+}
+
+.event-title {
+  font-size: 50px;
+  font-family: "Eina-bold";
+  /* font-weight: bolder; */
+  /* font-style: bold; */
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+/* .blurred-image {
+  background-position: center;
+  width: 2000px;
+  filter: blur(14px);
+  z-index: 0;
+}
+
+.clear-image {
+  z-index: 1;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+} */
+
+.button-container {
+  display: inline-block;
+  position: relative;
+  margin: 20px;
+  margin-left: 30px;
+}
+
+.button-container button {
+  font-size: 11px;
+  font-weight: bold;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: #FF521B;
+  border: none;
+  border-radius: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+}
+
+/* .button-container .bookmark-button {
+  font-size: 11px;
+  font-weight: bold;
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  background-color: #FF521B;
+  border: none;
+  border-radius: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+} */
+
+.button-container button:hover {
+  font-size: 11px;
+  font-weight: bold;
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  background-color: #78290F;
+  border: none;
+  border-radius: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+}

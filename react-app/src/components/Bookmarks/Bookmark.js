@@ -57,10 +57,25 @@ function Bookmark({ event_id, user_id = null, title }) {
 
   return (
     <div>
-      {user_id && (
+      {user_id && !showBookmark && (
         <>
-          <button onClick={clickButton}>bookmark</button>
+          <button
+            className="star-button"
+            onClick={clickButton}
+            style={{ fontSize: "24px", padding: "6px 10px" }}
+          >
+            {String.fromCharCode(9734)}
+          </button>
         </>
+      )}
+      {user_id && showBookmark && (
+        <button
+          className="star-button"
+          onClick={clickButton}
+          style={{ fontSize: "24px", padding: "6px 10px" }}
+        >
+          <div className="star">{String.fromCharCode(9733)}</div>
+        </button>
         // {userBookmarks.map((bookmark) => {
         //   return (
         //     <NavLink to={`/events/${bookmark.event_id}`}>
