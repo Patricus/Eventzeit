@@ -50,15 +50,15 @@ function UserMenu({ user }) {
       {showMenu && (
         <div>
           <MenuButton onClick={openMenu}>
-            <div className="profile-container" style={{ width: "130px" }}>
-              <div className="profile-icon"></div>
+            {/* <div className="profile-container" style={{ width: "130px" }}>
+              <div className="profile-icon"></div> */}
               <p className="navlink" style={{ paddingTop: "4px" }}>
                 Hi, {user.username} !
               </p>
-            </div>
+            {/* </div> */}
           </MenuButton>
-          <DropDownMenu>
-            <div className="user-profile-container navlink">
+          <DropDownMenu >
+            <div id="dropdown" className="user-profile-container navlink">
               <NavLink
                 to={`/dashboard/${user.id}`}
                 onClick={openMenu}
