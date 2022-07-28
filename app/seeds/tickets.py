@@ -4,7 +4,6 @@ from app.models.ticket import Ticket
 def seed_tickets():
     ticket_for_demo = Ticket(
         attendee = 'Demo Lition',
-        for_sale = False,
         user_id = 1,
         event_id = 1,
         event_url = 'https://localhost:3000/events/1'
