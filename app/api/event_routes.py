@@ -2,7 +2,8 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Event, db
-from app.forms.newEvent_form import EventForm
+from app.forms.newEvent_form import EventForm, EditEventForm
+from app.AWS import (upload_file_to_s3, get_unique_filename)
 
 event_routes = Blueprint('events', __name__)
 
@@ -18,13 +19,14 @@ def get_events():
 def create_event():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
 
         event = Event(
             user_id=form.data['user_id'],
             category=form.data['category'],
             name=form.data['name'],
-            event_image_url=form.data['event_image_url'],
+            event_image_url=form.data['image'],
             date=form.data['date'],
             description=form.data['description'],
             price=form.data['price'],
@@ -46,9 +48,7 @@ def create_event():
 @event_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_event(id):
-    data = request.json
-    print("----------DATA---------", data)
-    form = EventForm()
+    form = EditEventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         event = Event.query.get(id)
@@ -58,7 +58,7 @@ def update_event(id):
         event.user_id = form.data['user_id'],
         event.category = form.data['category'],
         event.name = form.data['name'],
-        event.event_image_url = form.data['event_image_url'],
+        event.event_image_url = form.data['image'],
         event.date = form.data['date'],
         event.description = form.data['description'],
         event.price = form.data['price'],

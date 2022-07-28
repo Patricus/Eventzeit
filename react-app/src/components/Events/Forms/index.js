@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeEvent, editEvent, removeEvent } from "../../../store/events";
+import { Modal } from "../../Global/Elements/Modal";
+import { makeEvent, editEvent } from "../../../store/events";
+import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 
 function EventForm({ event = null }) {
   (() => {
@@ -26,6 +28,8 @@ function EventForm({ event = null }) {
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -116,6 +120,8 @@ function EventForm({ event = null }) {
       return;
     }
 
+    setImageLoading(true);
+
     if (!event) {
       event = await dispatch(
         makeEvent(
@@ -133,8 +139,10 @@ function EventForm({ event = null }) {
           zipCode
         )
       );
-      if (event.id) history.push(`${event.id}`);
-      else setErrors(event);
+      if (event.id) {
+        history.push(`${event.id}`);
+        return;
+      }
     } else {
       event = await dispatch(
         editEvent(
@@ -153,14 +161,19 @@ function EventForm({ event = null }) {
           zipCode
         )
       );
-      setErrors(event);
     }
+
+    setImageLoading(false);
+    setErrors(event);
   };
 
-  const deleteEvent = async e => {
-    e.preventDefault();
-    await dispatch(removeEvent(event.id));
-    history.push("/events");
+  const updateImage = e => {
+    const imageFile = e.target.files[0];
+    setImage(imageFile);
+  };
+
+  const deleteEventModal = async () => {
+    setShowConfirmDeleteModal(true);
   };
 
   return (
@@ -187,6 +200,7 @@ function EventForm({ event = null }) {
           <input
             name="date"
             type="datetime-local"
+            min={new Date().toISOString().split(".")[0].slice(0, -3)}
             value={date}
             onChange={e => setDate(e.target.value)}
           />
@@ -217,7 +231,7 @@ function EventForm({ event = null }) {
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input name="image" type="text" value={image} onChange={e => setImage(e.target.value)} />
+          <input name="image" type="file" accept="image/*" onChange={updateImage} />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
@@ -280,15 +294,21 @@ function EventForm({ event = null }) {
             onChange={e => setZipCode(e.target.value)}
           />
         </div>
+        {showConfirmDeleteModal && (
+          <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+            <DeleteEventModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} event={event} />
+          </Modal>
+        )}
         <div>
           {event ? (
             <div>
               <button>Update Event</button>
-              <button onClick={deleteEvent}>Delete Event</button>
+              <button onClick={deleteEventModal}>Delete Event</button>
             </div>
           ) : (
             <div>
               <button>Create Event</button>
+              {imageLoading && <p>Loading...</p>}
             </div>
           )}
         </div>

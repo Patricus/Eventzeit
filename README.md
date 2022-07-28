@@ -6,6 +6,8 @@ The project is a clone of Eventbrite and was built using PostgreSQL, Flask, SQLA
 
 Checkout Eventzeit and make it to an event near you at https://eventzeit.herokuapp.com
 
+Please Note: We based this project off of this starter https://github.com/Patricus/Eventzeit/tree/starter
+
 ### Github Wiki Links:
 ##### Features List (Also Listed Below)
 - https://github.com/Patricus/Eventzeit/wiki/Features-List

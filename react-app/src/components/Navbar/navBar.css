@@ -1,0 +1,77 @@
+/* .navBarWrapper{
+  position: relative;
+}
+.navBarDiv1, .navBarDiv2{
+  position: absolute;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+.navlink {
+  font-family: "Eina-semibold";
+  font-size: 13px;
+  /* font-style: bold; */
+  color: #191923;
+  text-decoration: "none";
+}
+
+.navlink:hover {
+  color: #FF521B;
+}
+
+p {
+  color: #191923;
+}
+
+.navBarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10%;
+}
+
+.profile-icon {
+  /* background-color: #FF521B; */
+  /* background-image: url('../../images/user\ 2.png'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
+  height: 24px;
+  width: 24px;
+  margin-right: 0 auto;
+  float: left;
+}
+
+.profile-container:hover .user-profile-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #FFD670;
+  float: left;
+  margin-right: 6px;
+}
+
+.profile-container:hover .navlink{
+  color: #FF521B;
+}
+
+.user-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #191923;
+  float: left;
+  margin-right: 6px;
+
+}

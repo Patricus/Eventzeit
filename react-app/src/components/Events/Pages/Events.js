@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
+import "../../../index.css";
 
 function Events() {
   const events = Object.values(useSelector(state => state.events));
@@ -23,6 +24,14 @@ function Events() {
   const [exercise, setExercise] = useState(false);
   const [celebration, setCelebration] = useState(false);
   const [other, setOther] = useState(false);
+  const [sortBy, setSortBy] = useState("name");
+  const [startDate, setStartDate] = useState(
+    new Date(new Date().toString().split("GMT")[0] + " UTC")
+      .toISOString()
+      .split(".")[0]
+      .slice(0, -3)
+  );
+  const [endDate, setEndDate] = useState(startDate);
 
   useEffect(() => {
     dispatch(acquireEvents());
@@ -68,8 +77,16 @@ function Events() {
   };
 
   return (
-    <main>
-      <h1>Events</h1>
+    <main
+      style={{
+        textDecoration: "none",
+      }}>
+      <h1
+        style={{
+          marginTop: "80px",
+        }}>
+        Events
+      </h1>
       <div>
         <div>
           <span>
@@ -208,21 +225,72 @@ function Events() {
           </span>
         </div>
         <div>
-          <input
-            type="text"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search Events"
-          />
+          <span>
+            <label htmlFor="search">Search Events: </label>
+            <input
+              name="search"
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search Events"
+            />
+          </span>
+          <span>
+            <label htmlFor="startDate">Start Date: </label>
+            <input
+              name="startDate"
+              type="datetime-local"
+              max={endDate}
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="endDate">End Date: </label>
+            <input
+              name="endDate"
+              type="datetime-local"
+              min={startDate}
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="sortEvents">Sort Events By: </label>
+            <select name="sortEvents" value={sortBy} onChange={e => setSortBy(e.target.value)}>
+              <option value={"name"}>Name</option>
+              <option value={"date"}>Date</option>
+            </select>
+          </span>
         </div>
       </div>
       {events &&
         events
           .filter(event => {
+            if (startDate === endDate) return true;
+            if (
+              new Date(event.date) > new Date(startDate) &&
+              new Date(event.date) < new Date(endDate)
+            )
+              return true;
+            return false;
+          })
+          .filter(event => {
             return checkCategories(event);
           })
           .filter(event => {
             return event.name.match(new RegExp(search, "i"));
+          })
+          .sort((a, b) => {
+            if (sortBy === "name") {
+              if (a.name < b.name) return -1;
+              if (a.name > b.name) return 1;
+              return 0;
+            }
+            if (sortBy === "date") {
+              return new Date(a.date) - new Date(b.date);
+            }
+            return a - b;
           })
           .map(event => {
             return <EventsCard key={event.id} event={event} />;

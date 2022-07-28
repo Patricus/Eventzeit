@@ -33,7 +33,7 @@ export const makeEvent =
     user_id,
     category,
     name,
-    event_image_url,
+    image,
     date,
     description,
     price,
@@ -44,6 +44,25 @@ export const makeEvent =
     zipCode
   ) =>
   async dispatch => {
+    const imageData = new FormData();
+    imageData.append("image", image);
+
+    const imageRes = await fetch(`/api/images/`, {
+      method: "POST",
+      body: imageData,
+    });
+
+    if (imageRes.ok) {
+      image = await imageRes.json();
+    } else if (imageRes.status < 500) {
+      const data = await imageRes.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+
     const response = await fetch("/api/events/", {
       method: "POST",
       headers: {
@@ -53,7 +72,7 @@ export const makeEvent =
         user_id,
         category,
         name,
-        event_image_url,
+        image: image.url,
         date,
         description,
         price,
@@ -102,7 +121,7 @@ export const editEvent =
     user_id,
     category,
     name,
-    event_image_url,
+    image,
     date,
     description,
     price,
@@ -113,6 +132,28 @@ export const editEvent =
     zipCode
   ) =>
   async dispatch => {
+    if (typeof image === "object") {
+      const imageData = new FormData();
+      imageData.append("image", image);
+
+      const imageRes = await fetch(`/api/images/`, {
+        method: "POST",
+        body: imageData,
+      });
+
+      if (imageRes.ok) {
+        image = await imageRes.json();
+        image = image.url;
+      } else if (imageRes.status < 500) {
+        const data = await imageRes.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    }
+
     const response = await fetch(`/api/events/${event_id}`, {
       method: "PUT",
       headers: {
@@ -122,7 +163,7 @@ export const editEvent =
         user_id,
         category,
         name,
-        event_image_url,
+        image,
         date,
         description,
         price,
