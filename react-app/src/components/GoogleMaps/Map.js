@@ -1,8 +1,6 @@
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
-
-
-// const tomtomApiKey = process.env.REACT_APP_TOMTOM_API_KEY
+import { useSelector } from "react-redux";
 
 const containerStyle = {
     width: '100%',
@@ -10,26 +8,16 @@ const containerStyle = {
 };
 
 export default function MapView({ event = null }) {
-    const [googleApi, setGoogleApi] = useState('')
-    const [tomtomApi, setTomtomApi] = useState('')
     const [map, setMap] = useState(null);
     const [address, setAddress] = useState('')
     const [center, setCenter] = useState({ lat: 39.8097343, lng: -98.5556199 })
     const [zoom, setZoom] = useState(15)
 
+    const keys = useSelector(state=>state.mapkeys)
 
     const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: googleApi
+        googleMapsApiKey: keys.google_key
     });
-
-    const getApiKeys = async () => {
-        const keysResponse = await fetch('api/maps/')
-        if (keysResponse.ok) {
-            const keys = await keysResponse.json()
-            setGoogleApi(keys.google_key)
-            setTomtomApi(keys.tomtom_key)
-        }
-    }
 
     const addressFormatter = (eventVar) => {
         return eventVar.street_address.split(' ').join('%20').concat('%20', event.city, '%20', event.state)
@@ -41,7 +29,7 @@ export default function MapView({ event = null }) {
     }, [event])
 
     const geoFetch = async () => {
-        const tomtomResponse = await fetch(`https://api.tomtom.com/search/2/geocode/${address}.json?storeResult=false&limit=1&language=en-US&view=Unified&key=${tomtomApi}`)
+        const tomtomResponse = await fetch(`https://api.tomtom.com/search/2/geocode/${address}.json?storeResult=false&limit=1&language=en-US&view=Unified&key=${keys.tomtom_key}`)
         if (tomtomResponse.ok) {
             const data = await tomtomResponse.json()
             const lat = data.results[0].position.lat
@@ -53,7 +41,6 @@ export default function MapView({ event = null }) {
 
     useEffect(() => {
         if (address.length < 3) return;
-        getApiKeys()
         geoFetch()
     }, [address])
 
