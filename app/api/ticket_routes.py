@@ -7,7 +7,7 @@ from flask_login import login_required
 ticket_routes = Blueprint('tickets', __name__)
 
 
-@ticket_routes.route('/purchase', methods=['POST'])
+@ticket_routes.route('/purchase/', methods=['POST'])
 def generate_ticket():
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
