@@ -15,7 +15,7 @@ function Dashboard() {
   const user = useSelector((state) => state.session.user);
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
-  const bookmarksState = useSelector(state=>state.bookmarks)
+  const bookmarksState = useSelector(state => state.bookmarks)
   const bookmarks = Object.values(bookmarksState)
 
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
