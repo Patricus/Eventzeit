@@ -13,9 +13,6 @@ import {
 
 function Bookmark({ event_id, user_id = null, title }) {
   const dispatch = useDispatch();
-  // if (user) {
-  //   user_id = user.id;
-  // }
 
   //if a button clicks and there is no bookmark in the bookmarks table where the user and the event matches,
   //we create a bookmark with those associations and display the button differently.
@@ -25,54 +22,50 @@ function Bookmark({ event_id, user_id = null, title }) {
   //if they do, we run the delete,
   //otherwise, we create the new bookmark
 
-  const userBookmarks = useSelector((state) => state.bookmarks);
-  // Object.values(userBookmarks).forEach((bookmark) => {
-  //   if (bookmark.event_id === event_id) {
-  //     componentBookmark = bookmark;
-  //   }
-  // });
-  const [componentBookmark, setComponentBookmark] = useState(false);
-  const [showBookmark, setShowBookmark] = useState(componentBookmark);
+  const bookmarks = useSelector((state) => state.bookmarks); //Grab bookmarks state
+  const [bookmark, setBookmark] = useState(null); //Used to store the current event bookmark state
+
+  useEffect(() => {
+    //set bookmark to the first bookmark in state that matches the event_id
+    setBookmark(
+      Object.values(bookmarks).filter((bookmark) => {
+        return bookmark.event_id === parseInt(event_id);
+      })[0]
+    );
+  }, [bookmarks, event_id]);
 
   useEffect(() => {
     dispatch(acquireEvents());
     dispatch(getAllBookmarks(user_id));
   }, [dispatch, user_id]);
 
-  useEffect(() => {
-    Object.values(userBookmarks).forEach((bookmark) => {
-      if (parseInt(bookmark.event_id) === parseInt(event_id)) {
-        setComponentBookmark(bookmark);
-      }
-    });
-  }, [userBookmarks, event_id, componentBookmark]);
-
   const clickButton = () => {
-    setShowBookmark(!showBookmark);
-    if (!showBookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
+    //if bookmark is falsey create a bookmark
+    if (!bookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
+    //else remove the bookmark
     else {
-      dispatch(deleteBookmark(componentBookmark));
+      dispatch(deleteBookmark(bookmark));
     }
   };
 
   return (
     <div>
-      {user_id && !showBookmark && (
+      {user_id && !bookmark && (
         <>
           <button
             className="star-button"
             onClick={clickButton}
-            style={{ fontSize: "24px", padding: "6px 10px" }}
+            style={{ fontSize: "30px", padding: "6px 10px" }}
           >
             {String.fromCharCode(9734)}
           </button>
         </>
       )}
-      {user_id && showBookmark && (
+      {user_id && bookmark && (
         <button
           className="star-button"
           onClick={clickButton}
-          style={{ fontSize: "24px", padding: "6px 10px" }}
+          style={{ fontSize: "30px", padding: "6px 10px" }}
         >
           <div className="star">{String.fromCharCode(9733)}</div>
         </button>

@@ -48,7 +48,7 @@
 }
 
 .button-container button {
-  font-size: 11px;
+  font-size: 20px;
   font-weight: bold;
   position: absolute;
   top: 1em;
@@ -76,11 +76,11 @@
 } */
 
 .button-container button:hover {
-  font-size: 11px;
+  font-size: 20px;
   font-weight: bold;
   position: absolute;
-  top: 2em;
-  right: 2em;
+  top: 1em;
+  right: 1em;
   background-color: #78290F;
   border: none;
   border-radius: 1.5em;

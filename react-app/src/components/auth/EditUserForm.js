@@ -25,7 +25,7 @@ const AvatarImg = styled.img`
   margin: 10px;
 `;
 
-const EditUserForm = () => {
+const EditUserForm = ({ setShowUpdateUserModal }) => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -47,6 +47,7 @@ const EditUserForm = () => {
           setErrors(data);
         }
       }
+      if (errors.length == 0) setShowUpdateUserModal(false)
   };
 
   const updateUsername = (e) => {

@@ -5,10 +5,12 @@ import { Modal } from "../../Global/Elements/Modal";
 import { makeEvent, editEvent } from "../../../store/events";
 import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 
-function EventForm({ event = null }) {
+function EventForm({ event = null, setShowModal }) {
   (() => {
     if (!event) return;
-    let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")
+    let newDate = new Date(
+      new Date(event.date).toString().split("GMT")[0] + " UTC"
+    )
       .toISOString()
       .split(".")[0]
       .slice(0, -3);
@@ -19,11 +21,17 @@ function EventForm({ event = null }) {
     (event && event.date) || new Date().toISOString().split(".")[0].slice(0, -3)
   );
   const [category, setCategory] = useState((event && event.category) || "");
-  const [description, setDescription] = useState((event && event.description) || "");
+  const [description, setDescription] = useState(
+    (event && event.description) || ""
+  );
   const [image, setImage] = useState((event && event.event_image_url) || "");
-  const [occupancy, setOccupancy] = useState((event && event.max_occupancy) || 1);
+  const [occupancy, setOccupancy] = useState(
+    (event && event.max_occupancy) || 1
+  );
   const [price, setPrice] = useState((event && event.price) || 0.0);
-  const [streetAddress, setStreetAddress] = useState((event && event.street_address) || "");
+  const [streetAddress, setStreetAddress] = useState(
+    (event && event.street_address) || ""
+  );
   const [state, setState] = useState((event && event.state) || "");
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
@@ -33,63 +41,62 @@ function EventForm({ event = null }) {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const userId = useSelector(state => state.session.user.id);
+  const userId = useSelector((state) => state.session.user.id);
   const states = [
-    "AK - Alaska",
-    "AL - Alabama",
-    "AR - Arkansas",
-    "AS - American Samoa",
-    "AZ - Arizona",
-    "CA - California",
-    "CO - Colorado",
-    "CT - Connecticut",
-    "DC - District of Columbia",
-    "DE - Delaware",
-    "FL - Florida",
-    "GA - Georgia",
-    "GU - Guam",
-    "HI - Hawaii",
-    "IA - Iowa",
-    "ID - Idaho",
-    "IL - Illinois",
-    "IN - Indiana",
-    "KS - Kansas",
-    "KY - Kentucky",
-    "LA - Louisiana",
-    "MA - Massachusetts",
-    "MD - Maryland",
-    "ME - Maine",
-    "MI - Michigan",
-    "MN - Minnesota",
-    "MO - Missouri",
-    "MS - Mississippi",
-    "MT - Montana",
-    "NC - North Carolina",
-    "ND - North Dakota",
-    "NE - Nebraska",
-    "NH - New Hampshire",
-    "NJ - New Jersey",
-    "NM - New Mexico",
-    "NV - Nevada",
-    "NY - New York",
-    "OH - Ohio",
-    "OK - Oklahoma",
-    "OR - Oregon",
-    "PA - Pennsylvania",
-    "PR - Puerto Rico",
-    "RI - Rhode Island",
-    "SC - South Carolina",
-    "SD - South Dakota",
-    "TN - Tennessee",
-    "TX - Texas",
-    "UT - Utah",
-    "VA - Virginia",
-    "VI - Virgin Islands",
-    "VT - Vermont",
-    "WA - Washington",
-    "WI - Wisconsin",
-    "WV - West Virginia",
-    "WY - Wyoming",
+    "AK",
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "MD",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "ND",
+    "NE",
+    "NH",
+    "NJ",
+    "NM",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "PR",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "VI",
+    "VT",
+    "WA",
+    "WI",
+    "WV",
+    "WY",
   ];
 
   const categories = [
@@ -111,7 +118,7 @@ function EventForm({ event = null }) {
     "Other",
   ];
 
-  const submit = async e => {
+  const submit = async (e) => {
     e.preventDefault();
     setErrors([]);
 
@@ -165,9 +172,12 @@ function EventForm({ event = null }) {
 
     setImageLoading(false);
     setErrors(event);
+    if (setShowModal) {
+      if (errors.length == 0) setShowModal(false);
+    }
   };
 
-  const updateImage = e => {
+  const updateImage = (e) => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
   };
@@ -186,14 +196,19 @@ function EventForm({ event = null }) {
           <ul>
             {errors &&
               Array.isArray(errors) &&
-              errors.map(error => {
+              errors.map((error) => {
                 return <li key={error}>{error}</li>;
               })}
           </ul>
         </div>
         <div>
           <label htmlFor="name">Name:</label>
-          <input name="name" type="text" value={name} onChange={e => setName(e.target.value)} />
+          <input
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="date">Date:</label>
@@ -202,16 +217,20 @@ function EventForm({ event = null }) {
             type="datetime-local"
             min={new Date().toISOString().split(".")[0].slice(0, -3)}
             value={date}
-            onChange={e => setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="category">Category:</label>
-          <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
+          <select
+            name="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option disabled value="">
               Choose a Category
             </option>
-            {categories.map(category => {
+            {categories.map((category) => {
               return (
                 <option key={category} value={category}>
                   {category}
@@ -226,12 +245,17 @@ function EventForm({ event = null }) {
             name="description"
             type="text"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input name="image" type="file" accept="image/*" onChange={updateImage} />
+          <input
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
@@ -240,7 +264,7 @@ function EventForm({ event = null }) {
             type="number"
             min="1"
             value={occupancy}
-            onChange={e => setOccupancy(e.target.value)}
+            onChange={(e) => setOccupancy(e.target.value)}
           />
         </div>
         <div>
@@ -252,7 +276,7 @@ function EventForm({ event = null }) {
             placeholder="Free"
             step="0.01"
             value={price}
-            onChange={e => setPrice(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div>
@@ -261,16 +285,21 @@ function EventForm({ event = null }) {
             name="streetAddress"
             type="text"
             value={streetAddress}
-            onChange={e => setStreetAddress(e.target.value)}
+            onChange={(e) => setStreetAddress(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="state">State:</label>
-          <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
+          <select
+            name="state"
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+          >
             <option disabled value="">
               Choose a State
             </option>
-            {states.map(state => {
+            {states.map((state) => {
               return (
                 <option key={state} value={state}>
                   {state}
@@ -281,7 +310,12 @@ function EventForm({ event = null }) {
         </div>
         <div>
           <label htmlFor="city">City:</label>
-          <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)} />
+          <input
+            name="city"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="zipCode">Zip Code:</label>
@@ -291,12 +325,15 @@ function EventForm({ event = null }) {
             min="00000"
             max="99999"
             value={zipCode}
-            onChange={e => setZipCode(e.target.value)}
+            onChange={(e) => setZipCode(e.target.value)}
           />
         </div>
         {showConfirmDeleteModal && (
           <Modal onClose={() => setShowConfirmDeleteModal(false)}>
-            <DeleteEventModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} event={event} />
+            <DeleteEventModal
+              setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+              event={event}
+            />
           </Modal>
         )}
         <div>
