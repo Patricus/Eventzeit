@@ -23,23 +23,21 @@ const remove = id => ({
   id,
 });
 
-export const addOneTicket =
-  (attendee, user_id, event_id, event_url) =>
-  async dispatch => {
-    const response = await fetch(`/api/tickets/purchase`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ attendee, user_id, event_id, event_url }),
-    });
-    if (response.ok) {
-      const ticket = await response.json();
-      dispatch(add(ticket));
-      return ticket;
-    } else {
-      const ticket = await response.json();
-      return ticket;
-    }
-  };
+export const addOneTicket = (attendee, user_id, event_id, event_url) => async dispatch => {
+  const response = await fetch(`/api/tickets/purchase/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ attendee, user_id, event_id, event_url }),
+  });
+  if (response.ok) {
+    const ticket = await response.json();
+    dispatch(add(ticket));
+    return ticket;
+  } else {
+    const ticket = await response.json();
+    return ticket;
+  }
+};
 
 export const getAllTickets = userId => async dispatch => {
   const response = await fetch(`/api/tickets/${userId}`);
