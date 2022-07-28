@@ -4,12 +4,14 @@ import session from "./session";
 import events from "./events";
 import tickets from "./tickets";
 import bookmarks from "./bookmarks";
+import mapkeys from "./mapkeys";
 
 const rootReducer = combineReducers({
   session,
   events,
   tickets,
   bookmarks,
+  mapkeys
 });
 
 let enhancer;
