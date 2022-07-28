@@ -18,7 +18,6 @@ overflow-x: scroll;
 `
 
 function TicketPanel({ tickets }) {
-    // const [showTickets, setShowTickets] = useState(false)
 
     return (
         <TicketsDiv>

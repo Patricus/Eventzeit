@@ -10,7 +10,6 @@ const WhiteBG = styled.div`
 
 function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTicketForm }) {
   const [name, setName] = useState(ticket?.attendee || "");
-  const [forSale, setForSale] = useState("False");
   const [errors, setErrors] = useState([]);
   const [purchased, setPurchased] = useState(false);
   const [confirmRefund, setConfirmRefund] = useState(false);
@@ -24,10 +23,6 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
 
   const updateName = e => {
     setName(e.target.value);
-  };
-
-  const updateForSale = () => {
-    forSale === "False" ? setForSale("True") : setForSale("False");
   };
 
   const updateConfirmRefund = () => {
@@ -55,7 +50,6 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
     if (!ticket) {
       const data = {
         attendee: name,
-        for_sale: forSale,
         user_id: user.id,
         event_id: event.id,
         event_url: eventUrl,
@@ -91,16 +85,6 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
             <label>Name of Attendee</label>
             <input type="text" value={name} onChange={updateName}></input>
           </div>
-          {ticket && !confirmRefund && (
-            <div>
-              <label>Sell this Ticket</label>
-              <input
-                type="checkbox"
-                value={forSale}
-                checked={forSale === "True"}
-                onChange={updateForSale}></input>
-            </div>
-          )}
           {ticket && !confirmRefund ? (
             <div>
               <button type="submit" disabled={!name}>
