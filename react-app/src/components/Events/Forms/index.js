@@ -5,7 +5,7 @@ import { Modal } from "../../Global/Elements/Modal";
 import { makeEvent, editEvent } from "../../../store/events";
 import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 
-function EventForm({ event = null }) {
+function EventForm({ event = null, setShowModal }) {
   (() => {
     if (!event) return;
     let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")

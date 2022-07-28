@@ -36,9 +36,10 @@ function EventDetailPage() {
 
   return (
     <main>
+      {event &&
       <div>
         <h1 className="event-title">{event.name}</h1>
-      </div>
+      </div>}
       <div
         style={{
           float: "left",
@@ -79,7 +80,7 @@ function EventDetailPage() {
               </div>
               {showModal && (
                 <Modal onClose={() => setShowModal(false)} className="button-container-a">
-                  <EventForm event={event} />
+                  <EventForm event={event} setShowModal={setShowModal} />
                 </Modal>
               )}
               <img src={`${event.event_image_url}`} alt={event.name} className="event-img" />
