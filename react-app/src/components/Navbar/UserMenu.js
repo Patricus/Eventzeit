@@ -19,15 +19,30 @@ function UserMenu({ user }) {
 
   const openMenu = () => {
     setShowMenu(!showMenu);
+    // console.log(user.avatar);
   };
 
   return (
     <div className="navlink" style={{ textDecoration: "none" }}>
       {!showMenu && (
         <MenuButton onClick={openMenu}>
-          <div className="profile-container" style={{ width: "130px" }}>
-            <div className="profile-icon"></div>
-            <div className="navlink" style={{ paddingTop: "4px" }}>
+          <div className="profile-container" style={{ width: "150px" }}>
+            <div className="user-profile-container">
+              <div
+                className="profile-icon"
+                style={{
+                  backgroundImage: "url(" + `${user.avatar}` + ")",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "none",
+                  height: "24px",
+                  width: "24px",
+                  marginRight: "0px",
+                  float: "left",
+                }}
+              ></div>
+            </div>
+            <div className="navlink" style={{ paddingTop: "7px" }}>
               Hi, {user.username} !
             </div>
           </div>
