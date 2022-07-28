@@ -28,7 +28,7 @@ function Bookmark({ event_id, user_id = null, title }) {
         return bookmark.event_id === parseInt(event_id);
       })[0]
     );
-  }, [bookmarks]);
+  }, [bookmarks, event_id]);
 
   useEffect(() => {
     dispatch(acquireEvents());
