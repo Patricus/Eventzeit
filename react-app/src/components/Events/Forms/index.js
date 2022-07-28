@@ -165,6 +165,9 @@ function EventForm({ event = null }) {
 
     setImageLoading(false);
     setErrors(event);
+    if (setShowModal) {
+      if (errors.length === 0) setShowModal(false);
+    }
   };
 
   const updateImage = e => {
@@ -183,7 +186,7 @@ function EventForm({ event = null }) {
           <h2>Event Form</h2>
         </div>
         <div>
-          <ul>
+          <ul className="errors">
             {errors &&
               Array.isArray(errors) &&
               errors.map(error => {
