@@ -18,19 +18,10 @@ function EventDetailPage() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showHiddenText, setShowHiddenText] = useState(false);
 
-  const event = useSelector((state) => state.events[eventId]);
-  // const eventDescription = useSelector(
-  //   (state) => state.events[eventId].description
-  // );
-  // const eventDescriptionFirstHalf = useSelector((state) =>
-  //   state.events[eventId].description.slice(0, 500)
-  // );
-  // const eventDescriptionSecondHalf = useSelector((state) =>
-  //   state.events[eventId].description.slice(500)
-  // );
-  const user = useSelector((state) => state.session.user);
+  const event = useSelector(state => state.events[eventId]);
+  const user = useSelector(state => state.session.user);
 
-  const title = useSelector((state) => state.events[eventId]?.name);
+  const title = useSelector(state => state.events[eventId]?.name);
 
   const eventUrl = window.location.href;
 

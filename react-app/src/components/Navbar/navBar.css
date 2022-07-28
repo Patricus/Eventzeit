@@ -73,3 +73,9 @@ p {
   float: left;
   margin-right: 6px;
 }
+
+#dropdown {
+  background-color: transparent;
+  flex-direction: column;
+  margin-top: 56px;
+}

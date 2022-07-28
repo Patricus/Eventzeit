@@ -14,7 +14,7 @@ import EventDetailPage from "./components/Events/Pages/EventDetails";
 import Homepage from "./components/Homepage/Homepage";
 import Events from "./components/Events/Pages/Events";
 import Dashboard from "./components/User/Dashboard";
-import MapView from "./components/GoogleMaps/Map";
+import { getApiKeys } from "./store/mapkeys";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getApiKeys())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -61,9 +62,6 @@ function App() {
         </Route>
         <Route path='/dashboard/:userId'>
           <Dashboard />
-        </Route>
-        <Route path='/map'>
-          <MapView />
         </Route>
       </Switch>
       <Footer />
