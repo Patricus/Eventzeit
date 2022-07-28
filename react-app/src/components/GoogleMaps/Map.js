@@ -42,12 +42,6 @@ export default function MapView({ event = null }) {
         geoFetch()
     }, [address])
 
-    const onLoad = useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        setMap(map)
-    }, [])
-
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
@@ -57,7 +51,6 @@ export default function MapView({ event = null }) {
             mapContainerStyle={containerStyle}
             center={center}
             zoom={zoom}
-            onLoad={onLoad}
             onUnmount={onUnmount}
         >
             { /* Child components, such as markers, info windows, etc. */}
