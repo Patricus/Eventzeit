@@ -9,7 +9,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
 
 .navlink {
@@ -21,7 +20,7 @@
 }
 
 .navlink:hover {
-  color: #FF521B;
+  color: #ff521b;
 }
 
 p {
@@ -47,20 +46,20 @@ p {
   float: left;
 }
 
-.profile-container:hover .user-profile-container{
+.profile-container:hover .user-profile-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 30px;
   height: 30px;
   border-radius: 15px;
-  background-color: #FFD670;
+  background-color: #ffd670;
   float: left;
   margin-right: 6px;
 }
 
-.profile-container:hover .navlink{
-  color: #FF521B;
+.profile-container:hover .navlink {
+  color: #ff521b;
 }
 
 .user-profile-container {
@@ -73,5 +72,4 @@ p {
   background-color: #191923;
   float: left;
   margin-right: 6px;
-
 }
