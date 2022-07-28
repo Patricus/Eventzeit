@@ -62,7 +62,6 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
     if (ticket) {
       const data = {
         attendee: name,
-        for_sale: forSale,
         user_id: ticket.user_id,
         event_id: ticket.event_id,
         event_url: ticket.event_url,

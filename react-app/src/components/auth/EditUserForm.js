@@ -47,7 +47,7 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
           setErrors(data);
         }
       }
-      if (errors.length == 0) setShowUpdateUserModal(false)
+      if (errors.length === 0) setShowUpdateUserModal(false)
   };
 
   const updateUsername = (e) => {
