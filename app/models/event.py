@@ -34,8 +34,9 @@ class Event(db.Model):
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(100), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
-    tickets = db.relationship('Ticket', back_populates='event', cascade='all, delete-orphan', passive_deletes=True)
 
+    tickets = db.relationship('Ticket', back_populates='event', cascade='all, delete-orphan', passive_deletes=True)
+    bookmarks = db.relationship('Bookmark', back_populates='event', cascade='all, delete-orphan', passive_deletes=True)
     users = db.relationship('User', secondary="user_events",back_populates='events')
 
     def to_dict(self):

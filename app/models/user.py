@@ -12,8 +12,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     avatar = db.Column(db.String(30), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
-    tickets = db.relationship('Ticket', back_populates='user')
 
+    tickets = db.relationship('Ticket', back_populates='user')
+    bookmarks = db.relationship('Bookmark', back_populates='user')
     events = db.relationship('Event', secondary=user_events, back_populates='users', cascade='all, delete', passive_deletes=True)
 
     @property

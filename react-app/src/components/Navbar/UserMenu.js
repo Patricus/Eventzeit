@@ -31,7 +31,7 @@ function UserMenu({ user }) {
               <div
                 className="profile-icon"
                 style={{
-                  backgroundImage: "url(" + `${user.avatar}` + ")",
+                  backgroundImage: `url(${user.avatar})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "none",
@@ -39,8 +39,7 @@ function UserMenu({ user }) {
                   width: "24px",
                   marginRight: "0px",
                   float: "left",
-                }}
-              ></div>
+                }}></div>
             </div>
             <div className="navlink" style={{ paddingTop: "7px" }}>
               Hi, {user.username} !
@@ -63,8 +62,7 @@ function UserMenu({ user }) {
               <NavLink
                 to={`/dashboard/${user.id}`}
                 onClick={openMenu}
-                style={{ textDecoration: "none" }}
-              >
+                style={{ textDecoration: "none" }}>
                 <p className="navlink">My Dashboard</p>
               </NavLink>
               <p style={{ fontFamily: "Eina" }}>{user.username}</p>

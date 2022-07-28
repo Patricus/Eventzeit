@@ -39,7 +39,7 @@ function EventDetailPage() {
           )}
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <EventForm event={event} />
+              <EventForm event={event} setShowModal={setShowModal} />
             </Modal>
           )}
           <img src={`${event.event_image_url}`} alt={event.name} />

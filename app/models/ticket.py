@@ -9,6 +9,7 @@ class Ticket(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id', ondelete="CASCADE"))
     event_url = db.Column(db.String(40), nullable=False)
+    
     user = db.relationship('User', back_populates='tickets')
     event = db.relationship('Event', back_populates='tickets')
 
