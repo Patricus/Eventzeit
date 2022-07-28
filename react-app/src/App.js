@@ -62,9 +62,6 @@ function App() {
         <Route path='/dashboard/:userId'>
           <Dashboard />
         </Route>
-        <Route path='/map'>
-          <MapView />
-        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>
