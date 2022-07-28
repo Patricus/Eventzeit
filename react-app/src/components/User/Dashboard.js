@@ -45,7 +45,7 @@ function Dashboard() {
       <main>
         {showUpdateUserModal && (
             <Modal onClose={() => setShowUpdateUserModal(false)}>
-              <EditUserForm />
+              <EditUserForm setShowUpdateUserModal={setShowUpdateUserModal}/>
             </Modal>
           )}
           {showConfirmDeleteModal && (
