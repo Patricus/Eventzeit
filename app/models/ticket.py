@@ -16,7 +16,6 @@ class Ticket(db.Model):
         return {
             'id': self.id,
             'attendee': self.attendee,
-            'for_sale': self.for_sale,
             'event_id': self.event_id,
             'user_id': self.user_id,
             'event_url': self.event_url
