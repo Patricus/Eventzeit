@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../store/events";
-import {
-  addOneBookmark,
-  deleteBookmark,
-  getAllBookmarks,
-} from "../../store/bookmarks";
+import { addOneBookmark, deleteBookmark, getAllBookmarks } from "../../store/bookmarks";
 
 // const BookmarkEventName = styled.link`
 //   cursor: pointer;
@@ -13,9 +9,6 @@ import {
 
 function Bookmark({ event_id, user_id = null, title }) {
   const dispatch = useDispatch();
-  // if (user) {
-  //   user_id = user.id;
-  // }
 
   //if a button clicks and there is no bookmark in the bookmarks table where the user and the event matches,
   //we create a bookmark with those associations and display the button differently.
@@ -25,33 +18,29 @@ function Bookmark({ event_id, user_id = null, title }) {
   //if they do, we run the delete,
   //otherwise, we create the new bookmark
 
-  const userBookmarks = useSelector((state) => state.bookmarks);
-  // Object.values(userBookmarks).forEach((bookmark) => {
-  //   if (bookmark.event_id === event_id) {
-  //     componentBookmark = bookmark;
-  //   }
-  // });
-  const [componentBookmark, setComponentBookmark] = useState(false);
-  const [showBookmark, setShowBookmark] = useState(componentBookmark);
+  const bookmarks = useSelector(state => state.bookmarks); //Grab bookmarks state
+  const [bookmark, setBookmark] = useState(null); //Used to store the current event bookmark state
+
+  useEffect(() => {
+    //set bookmark to the first bookmark in state that matches the event_id
+    setBookmark(
+      Object.values(bookmarks).filter(bookmark => {
+        return bookmark.event_id === parseInt(event_id);
+      })[0]
+    );
+  }, [bookmarks]);
 
   useEffect(() => {
     dispatch(acquireEvents());
     dispatch(getAllBookmarks(user_id));
   }, [dispatch, user_id]);
 
-  useEffect(() => {
-    Object.values(userBookmarks).forEach((bookmark) => {
-      if (parseInt(bookmark.event_id) === parseInt(event_id)) {
-        setComponentBookmark(bookmark);
-      }
-    });
-  }, [userBookmarks, event_id, componentBookmark]);
-
   const clickButton = () => {
-    setShowBookmark(!showBookmark);
-    if (!showBookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
+    //if bookmark is falsey create a bookmark
+    if (!bookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
+    //else remove the bookmark
     else {
-      dispatch(deleteBookmark(componentBookmark));
+      dispatch(deleteBookmark(bookmark));
     }
   };
 
@@ -60,14 +49,9 @@ function Bookmark({ event_id, user_id = null, title }) {
       {user_id && (
         <>
           <button onClick={clickButton}>bookmark</button>
+          {/* if there is a bookmark display 'Bookmarked' text */}
+          {bookmark && <span>Bookmarked</span>}
         </>
-        // {userBookmarks.map((bookmark) => {
-        //   return (
-        //     <NavLink to={`/events/${bookmark.event_id}`}>
-        //       {bookmark.name}
-        //     </NavLink>
-        //   );
-        // })}
       )}
     </div>
   );
