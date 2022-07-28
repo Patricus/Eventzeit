@@ -14,6 +14,7 @@ import EventDetailPage from "./components/Events/Pages/EventDetails";
 import Homepage from "./components/Homepage/Homepage";
 import Events from "./components/Events/Pages/Events";
 import Dashboard from "./components/User/Dashboard";
+import { getApiKeys } from "./store/mapkeys";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getApiKeys())
       setLoaded(true);
     })();
   }, [dispatch]);
