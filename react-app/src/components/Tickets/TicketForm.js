@@ -54,7 +54,7 @@ function TicketForm({ event, eventUrl, ticket = null, setShowTicket, setShowTick
         event_id: event.id,
         event_url: eventUrl,
       };
-      dispatch(addOneTicket(data)).then(response => {
+      dispatch(addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)).then(response => {
         if (response.id) closeAfterPurchaseMessage();
         else setErrors(response);
       });
