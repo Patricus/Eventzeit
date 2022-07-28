@@ -14,7 +14,7 @@ function BookmarksPanel({ bookmarks }) {
 
     return (
         <>
-        { bookmarks.length > 0 &&
+        {bookmarks.length > 0 &&
             <BookmarksBar>
                 <h3>Bookmarked Events:</h3>
                 {bookmarks.map(bookmark => {
