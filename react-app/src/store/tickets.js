@@ -24,7 +24,7 @@ const remove = id => ({
 });
 
 export const addOneTicket = (attendee, user_id, event_id, event_url) => async dispatch => {
-  const response = await fetch(`/api/tickets/purchase/`, {
+  const response = await fetch(`/api/tickets/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ attendee, user_id, event_id, event_url }),
