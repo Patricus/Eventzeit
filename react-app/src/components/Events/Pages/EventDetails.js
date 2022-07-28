@@ -6,6 +6,8 @@ import { Modal } from "../../Global/Elements/Modal";
 import EventForm from "../Forms";
 import TicketForm from "../../Tickets/TicketForm";
 import Bookmark from "../../Bookmarks/Bookmark";
+import MapView from "../../GoogleMaps/Map";
+
 
 function EventDetailPage() {
   const dispatch = useDispatch();
@@ -66,6 +68,7 @@ function EventDetailPage() {
       ) : (
         <h1>Loading Event</h1>
       )}
+      <MapView event={event} />
     </main>
   );
 }
