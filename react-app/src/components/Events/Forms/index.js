@@ -110,7 +110,7 @@ function EventForm({ event = null, setShowModal }) {
     "Other",
   ];
 
-  
+
   const submit = async e => {
     e.preventDefault();
     setErrors([]);
@@ -165,7 +165,7 @@ function EventForm({ event = null, setShowModal }) {
 
     setImageLoading(false);
     setErrors(event);
-    if (errors.length == 0) setShowModal(false);
+    if (errors.length === 0) setShowModal(false);
   };
 
   const updateImage = e => {
