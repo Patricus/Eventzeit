@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { getAllTickets } from "../../store/tickets";
 import { Modal } from "../Global/Elements/Modal";
+import { getAllBookmarks } from "../../store/bookmarks";
 import EditUserForm from "../auth/EditUserForm";
 import DeleteUserModal from "../auth/DeleteUser";
 import BookmarksPanel from "./BookmarkPanel";
@@ -14,6 +15,8 @@ function Dashboard() {
   const user = useSelector((state) => state.session.user);
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
+  const bookmarksState = useSelector(state => state.bookmarks)
+  const bookmarks = Object.values(bookmarksState)
 
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
@@ -21,6 +24,11 @@ function Dashboard() {
   useEffect(() => {
     if (!user) return;
     dispatch(getAllTickets(user.id));
+  }, [dispatch, user]);
+
+  useEffect(() => {
+    if (!user) return;
+    dispatch(getAllBookmarks(user.id));
   }, [dispatch, user]);
 
   const updateUserModal = async () => {
@@ -45,7 +53,7 @@ function Dashboard() {
               <DeleteUserModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} />
             </Modal>
           )}
-        <BookmarksPanel />
+        {bookmarksState && <BookmarksPanel bookmarks={bookmarks}/>}
         <UserPanel user={user} tickets={tickets} />
         <TicketPanel tickets={tickets}/>
         <div>

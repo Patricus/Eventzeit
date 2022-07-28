@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const BookmarksBar = styled.div`
@@ -10,14 +10,13 @@ background-color: red;
 margin: 20px 0;
 `
 
-function BookmarksPanel() {
-    const bookmarksState = useSelector(state=>state.bookmarks)
-    const bookmarks = Object.values(bookmarksState)
+function BookmarksPanel({ bookmarks }) {
 
     return (
         <BookmarksBar>
-            {bookmarksState && bookmarks.map(bookmark=>{
-                return <p key={bookmark.id}>{bookmark.title}</p>
+            <h3>Bookmarked Events:</h3>
+            {bookmarks.map(bookmark => {
+                return <Link to={`/events/${bookmark.event_id}`} key={bookmark.id}>{bookmark.title}</Link>
             })}
         </BookmarksBar>
     );
