@@ -6,76 +6,71 @@
 } */
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .navlink {
-  font-family: "Eina-semibold";
-  font-size: 13px;
-  /* font-style: bold; */
-  color: #191923;
-  text-decoration: "none";
+    font-family: "Eina-semibold";
+    font-size: 13px;
+    /* font-style: bold; */
+    color: #191923;
+    text-decoration: "none";
 }
 
 .navlink:hover {
-  color: #ff521b;
+    color: #ff521b;
 }
 
 p {
-  color: #191923;
+    color: #191923;
 }
 
 .navBarWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10%;
+    border-bottom: 2px solid rgba(25, 25, 35, 0.3);
 }
 
 .profile-icon {
-  /* background-color: #FF521B; */
-  /* background-image: url('../../images/user\ 2.png'); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: none;
-  height: 24px;
-  width: 24px;
-  margin-right: 0 auto;
-  float: left;
+    /* background-color: #FF521B; */
+    /* background-image: url('../../images/user\ 2.png'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+    height: 24px;
+    width: 24px;
+    margin-right: 0 auto;
+    float: left;
 }
 
 .profile-container:hover .user-profile-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  background-color: #ffd670;
-  float: left;
-  margin-right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #ffd670;
+    float: left;
+    margin-right: 6px;
 }
 
 .profile-container:hover .navlink {
-  color: #ff521b;
+    color: #ff521b;
 }
 
 .user-profile-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  background-color: #191923;
-  float: left;
-  margin-right: 6px;
-}
-
-#dropdown {
-  background-color: transparent;
-  flex-direction: column;
-  margin-top: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #191923;
+    float: left;
+    margin-right: 6px;
 }
