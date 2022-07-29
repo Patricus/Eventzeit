@@ -31,7 +31,6 @@ function UserMenu({ user }) {
     };
 
     const closeMenu = e => {
-        console.log("e.target", e.target);
         if (e.target.classList.contains("dropdown") || e.target.classList.contains("profile-icon"))
             return;
         setShowMenu(false);

@@ -11,7 +11,7 @@ function MyEventsPanel() {
         <div>
             <h2>Your Events</h2>
             {userEvents.map((event) => {
-                return <EventsCard event={event} />
+                return <EventsCard key={event.id} event={event} />
             })}
         </div>
     );
