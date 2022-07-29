@@ -1,12 +1,12 @@
 .dashboard-container {
   display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: 25% 25% 25%;
+  grid-template-columns: 75vw 25vw;
+  grid-template-rows: 25vh 25vh 25vh 25vh;
   grid-template-areas:
-  "user-panel" "bookmarks-sidebar"
-  "tickets-panel" "bookmarks-sidebar"
-  "my-event-panel" "bookmarks-sidebar"
-  "dashboard-buttons" "bookmarks-sidebar"
+  "user-panel bookmarks-sidebar"
+  "tickets-panel bookmarks-sidebar"
+  "my-event-panel bookmarks-sidebar"
+  "dashboard-buttons bookmarks-sidebar";
 }
 
 .user-panel {
