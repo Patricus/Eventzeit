@@ -33,6 +33,9 @@ function EventDetailPage() {
                 else history.push("/event-not-found/");
             }
         })();
+    }, [dispatch, event, eventId, history]);
+
+    useEffect(() => {
         dispatch(acquireEvents());
     }, [dispatch]);
 
