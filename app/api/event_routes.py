@@ -1,9 +1,8 @@
-from flask import Blueprint, request
+from flask import Blueprint, redirect, request
 from flask_login import login_required
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Event, db
 from app.forms.newEvent_form import EventForm, EditEventForm
-from app.AWS import (upload_file_to_s3, get_unique_filename)
 
 event_routes = Blueprint('events', __name__)
 
@@ -12,6 +11,15 @@ event_routes = Blueprint('events', __name__)
 def get_events():
     events = Event.query.all()
     return {'events': [event.to_dict() for event in events]}
+
+
+@event_routes.route('/<int:id>/')
+def get_event(id):
+    event = Event.query.get(id)
+    if not event.to_dict:
+        return {"errors": "Event Not Found!"}, 404
+    else:
+        return {"event": event.to_dict()}
 
 
 @event_routes.route('/', methods=["POST"])
