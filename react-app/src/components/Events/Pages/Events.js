@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
 import "../../../index.css";
+import sportsImg from "../../../images/sports.png";
+// import "./events.css";
 
 function Events() {
-  const events = Object.values(useSelector(state => state.events));
+  const events = Object.values(useSelector((state) => state.events));
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [sport, setSport] = useState(false);
@@ -37,7 +39,7 @@ function Events() {
     dispatch(acquireEvents());
   }, [dispatch]);
 
-  const checkCategories = event => {
+  const checkCategories = (event) => {
     if (
       !sport &&
       !party &&
@@ -63,7 +65,7 @@ function Events() {
     if (event.category === "Concert") return concert;
     if (event.category === "Dinner") return dinner;
     if (event.category === "Game") return game;
-    if (event.category === "Search") return search;
+    if (event.category === "Social") return social;
     if (event.category === "Seminar") return seminar;
     if (event.category === "Conference") return conference;
     if (event.category === "Workshop") return workshop;
@@ -80,158 +82,31 @@ function Events() {
     <main
       style={{
         textDecoration: "none",
-      }}>
+      }}
+    >
       <h1
         style={{
           marginTop: "80px",
-        }}>
+          fontFamily: "Eina-bold",
+          color: "#191923",
+          fontSize: "90px",
+        }}
+      >
         Events
       </h1>
       <div>
-        <div>
-          <span>
-            <label htmlFor={"sport"}>Sport</label>
-            <input
-              type="checkbox"
-              name={"sport"}
-              checked={sport}
-              onChange={() => setSport(!sport)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"party"}>Party</label>
-            <input
-              type="checkbox"
-              name={"party"}
-              checked={party}
-              onChange={() => setParty(!party)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"concert"}>Concert</label>
-            <input
-              type="checkbox"
-              name={"concert"}
-              checked={concert}
-              onChange={() => setConcert(!concert)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"dinner"}>Dinner</label>
-            <input
-              type="checkbox"
-              name={"dinner"}
-              checked={dinner}
-              onChange={() => setDinner(!dinner)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"game"}>Game</label>
-            <input type="checkbox" name={"game"} checked={game} onChange={() => setGame(!game)} />
-          </span>
-          <span>
-            <label htmlFor={"seminar"}>Seminar</label>
-            <input
-              type="checkbox"
-              name={"seminar"}
-              checked={seminar}
-              onChange={() => setSeminar(!seminar)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"conference"}>Conference</label>
-            <input
-              type="checkbox"
-              name={"conference"}
-              checked={conference}
-              onChange={() => setConference(!conference)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"workshop"}>Workshop</label>
-            <input
-              type="checkbox"
-              name={"workshop"}
-              checked={workshop}
-              onChange={() => setWorkshop(!workshop)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"social"}>Social</label>
-            <input
-              type="checkbox"
-              name={"social"}
-              checked={social}
-              onChange={() => setSocial(!social)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"classCategory"}>Class</label>
-            <input
-              type="checkbox"
-              name={"classCategory"}
-              checked={classCategory}
-              onChange={() => setClassCategory(!classCategory)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"auction"}>Auction</label>
-            <input
-              type="checkbox"
-              name={"auction"}
-              checked={auction}
-              onChange={() => setAuction(!auction)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"gala"}>Gala</label>
-            <input type="checkbox" name={"gala"} checked={gala} onChange={() => setGala(!gala)} />
-          </span>
-          <span>
-            <label htmlFor={"festival"}>Festival</label>
-            <input
-              type="checkbox"
-              name={"festival"}
-              checked={festival}
-              onChange={() => setFestival(!festival)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"exercise"}>Exercise</label>
-            <input
-              type="checkbox"
-              name={"exercise"}
-              checked={exercise}
-              onChange={() => setExercise(!exercise)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"celebration"}>Celebration</label>
-            <input
-              type="checkbox"
-              name={"celebration"}
-              checked={celebration}
-              onChange={() => setCelebration(!celebration)}
-            />
-          </span>
-          <span>
-            <label htmlFor={"other"}>Other</label>
-            <input
-              type="checkbox"
-              name={"other"}
-              checked={other}
-              onChange={() => setOther(!other)}
-            />
-          </span>
-        </div>
-        <div>
+        <div
+          style={{
+            marginTop: "10vh",
+          }}
+        >
           <span>
             <label htmlFor="search">Search Events: </label>
             <input
               name="search"
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Events"
             />
           </span>
@@ -242,7 +117,7 @@ function Events() {
               type="datetime-local"
               max={endDate}
               value={startDate}
-              onChange={e => setStartDate(e.target.value)}
+              onChange={(e) => setStartDate(e.target.value)}
             />
           </span>
           <span>
@@ -252,51 +127,356 @@ function Events() {
               type="datetime-local"
               min={startDate}
               value={endDate}
-              onChange={e => setEndDate(e.target.value)}
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </span>
           <span>
             <label htmlFor="sortEvents">Sort Events By: </label>
-            <select name="sortEvents" value={sortBy} onChange={e => setSortBy(e.target.value)}>
+            <select
+              name="sortEvents"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
               <option value={"name"}>Name</option>
               <option value={"date"}>Date</option>
             </select>
           </span>
         </div>
+        <div>
+          {sport ? (
+            <span>
+              <button
+                onClick={() => setSport(!sport)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                <img
+                  src={sportsImg}
+                  style={{
+                    width: "19px",
+                  }}
+                />
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setSport(!sport)}>Sport</button>
+            </span>
+          )}
+          {party ? (
+            <span>
+              <button
+                onClick={() => setParty(!party)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Party
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setParty(!party)}>Party</button>
+            </span>
+          )}
+          {concert ? (
+            <span>
+              <button
+                onClick={() => setConcert(!concert)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Concert
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setConcert(!concert)}>Concert</button>
+            </span>
+          )}
+          {dinner ? (
+            <span>
+              <button
+                onClick={() => setDinner(!dinner)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Dinner
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setDinner(!dinner)}>dinner</button>
+            </span>
+          )}
+          {game ? (
+            <span>
+              <button
+                onClick={() => setGame(!game)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Game
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setGame(!game)}>Game</button>
+            </span>
+          )}
+          {seminar ? (
+            <span>
+              <button
+                onClick={() => setSeminar(!seminar)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Seminar
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setSeminar(!seminar)}>Seminar</button>
+            </span>
+          )}
+          {conference ? (
+            <span>
+              <button
+                onClick={() => setConference(!conference)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Conference
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setConference(!conference)}>
+                Conference
+              </button>
+            </span>
+          )}
+          {workshop ? (
+            <span>
+              <button
+                onClick={() => setWorkshop(!workshop)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Workshop
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setWorkshop(!workshop)}>Workshop</button>
+            </span>
+          )}
+          {social ? (
+            <span>
+              <button
+                onClick={() => setSocial(!social)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Social
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setSocial(!social)}>Social</button>
+            </span>
+          )}
+          {classCategory ? (
+            <span>
+              <button
+                onClick={() => setClassCategory(!classCategory)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Class
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setClassCategory(!classCategory)}>
+                Class
+              </button>
+            </span>
+          )}
+          {auction ? (
+            <span>
+              <button
+                onClick={() => setAuction(!auction)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Auction
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setAuction(!auction)}>Auction</button>
+            </span>
+          )}
+          {gala ? (
+            <span>
+              <button
+                onClick={() => setGala(!gala)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Gala
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setGala(!gala)}>Gala</button>
+            </span>
+          )}
+          {festival ? (
+            <span>
+              <button
+                onClick={() => setFestival(!festival)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Festival
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setFestival(!festival)}>Festival</button>
+            </span>
+          )}
+          {exercise ? (
+            <span>
+              <button
+                onClick={() => setExercise(!exercise)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Exercise
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setExercise(!exercise)}>Exercise</button>
+            </span>
+          )}
+          {celebration ? (
+            <span>
+              <button
+                onClick={() => setCelebration(!celebration)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Celebration
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setCelebration(!celebration)}>
+                Celebration
+              </button>
+            </span>
+          )}
+          {other ? (
+            <span>
+              <button
+                onClick={() => setOther(!other)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "red",
+                }}
+              >
+                Other
+              </button>
+            </span>
+          ) : (
+            <span>
+              <button onClick={() => setOther(!other)}>Other</button>
+            </span>
+          )}
+        </div>
       </div>
-      <div className="eventsHolder">
-      {events &&
-        events
-          .filter(event => {
-            if (startDate === endDate) return true;
-            if (
-              new Date(event.date) > new Date(startDate) &&
-              new Date(event.date) < new Date(endDate)
-            )
-              return true;
-            return false;
-          })
-          .filter(event => {
-            return checkCategories(event);
-          })
-          .filter(event => {
-            return event.name.match(new RegExp(search, "i"));
-          })
-          .sort((a, b) => {
-            if (sortBy === "name") {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
-              return 0;
-            }
-            if (sortBy === "date") {
-              return new Date(a.date) - new Date(b.date);
-            }
-            return a - b;
-          })
-          .map(event => {
-            return <EventsCard key={event.id} event={event} />;
-          })}
-          </div>
+      <div
+        style={{
+          //justifyContent: "space-between",
+          display: "flex",
+          flexWrap: "wrap",
+          marginTop: "10vh",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          // width: "900px",
+        }}
+      >
+        {events &&
+          events
+            .filter((event) => {
+              if (startDate === endDate) return true;
+              if (
+                new Date(event.date) > new Date(startDate) &&
+                new Date(event.date) < new Date(endDate)
+              )
+                return true;
+              return false;
+            })
+            .filter((event) => {
+              return checkCategories(event);
+            })
+            .filter((event) => {
+              return event.name.match(new RegExp(search, "i"));
+            })
+            .sort((a, b) => {
+              if (sortBy === "name") {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+              }
+              if (sortBy === "date") {
+                return new Date(a.date) - new Date(b.date);
+              }
+              return a - b;
+            })
+            .map((event) => {
+              return (
+                <div className="event" id="event">
+                  <EventsCard key={event.id} event={event} />;
+                </div>
+              );
+            })}
+      </div>
     </main>
   );
 }
