@@ -4,43 +4,55 @@ import "./eventCard.css";
 
 function EventsCard({ event }) {
   return (
-    <div className="eventCard">
-      <Link
-        to={`/events/${event.id}`}
+    <div className="main">
+      <div
+        className="eventCard"
         style={{
-          textDecoration: "none",
-          color: "#191923"
+          "--imageUrl": "url(" + `${event.event_image_url}` + ")",
         }}
       >
-        <div className="info">
-          <div className="title">
-            <h2
-              style={{
-                color: "#191923",
-              }}
-            >
-              {event.name}
-            </h2>
-          </div>
-          <div className="description">
-            <div
-              style={{
-                color: "#7E7F9A",
-              }}
-            >
-              {event.category}
+        <Link
+          to={`/events/${event.id}`}
+          style={{
+            textDecoration: "none",
+            color: "#191923",
+          }}
+        >
+          <div
+            className="info"
+            style={{
+              "--imageUrl": "url(" + `${event.event_image_url}` + ")",
+            }}
+          >
+            <div className="title">
+              <h2
+                style={{
+                  color: "#191923",
+                }}
+              >
+                {event.name}
+              </h2>
             </div>
-            <div>
-              <span>
-                {event.date.split(" G")[0].split(":").splice(0, 2).join(":")}
-              </span>
+            <div className="description">
+              <div
+                style={{
+                  color: "#7E7F9A",
+                }}
+              >
+                {event.category}
+              </div>
+              <div>
+                <span>
+                  {event.date.split(" G")[0].split(":").splice(0, 2).join(":")}
+                </span>
+              </div>
             </div>
+            {/* <div>
+              <img src={event.event_image_url} alt={event.name} />
+            </div> */}
           </div>
-          {/* <div>
-            <img src={event.event_image_url} alt={event.name} />
-          </div> */}
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 }

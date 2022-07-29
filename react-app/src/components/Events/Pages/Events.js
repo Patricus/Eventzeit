@@ -420,37 +420,52 @@ function Events() {
           </span>
         </div>
       </div>
-      {events &&
-        events
-          .filter((event) => {
-            if (startDate === endDate) return true;
-            if (
-              new Date(event.date) > new Date(startDate) &&
-              new Date(event.date) < new Date(endDate)
-            )
-              return true;
-            return false;
-          })
-          .filter((event) => {
-            return checkCategories(event);
-          })
-          .filter((event) => {
-            return event.name.match(new RegExp(search, "i"));
-          })
-          .sort((a, b) => {
-            if (sortBy === "name") {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
-              return 0;
-            }
-            if (sortBy === "date") {
-              return new Date(a.date) - new Date(b.date);
-            }
-            return a - b;
-          })
-          .map((event) => {
-            return <EventsCard key={event.id} event={event} />;
-          })}
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        {events &&
+          events
+            .filter((event) => {
+              if (startDate === endDate) return true;
+              if (
+                new Date(event.date) > new Date(startDate) &&
+                new Date(event.date) < new Date(endDate)
+              )
+                return true;
+              return false;
+            })
+            .filter((event) => {
+              return checkCategories(event);
+            })
+            .filter((event) => {
+              return event.name.match(new RegExp(search, "i"));
+            })
+            .sort((a, b) => {
+              if (sortBy === "name") {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+              }
+              if (sortBy === "date") {
+                return new Date(a.date) - new Date(b.date);
+              }
+              return a - b;
+            })
+            .map((event) => {
+              return (
+                <div
+                  style={{
+                    marginBottom: "10px",
+                    height: "8vh",
+                  }}
+                >
+                  <EventsCard key={event.id} event={event} />
+                </div>
+              );
+            })}
+      </div>
     </main>
   );
 }
