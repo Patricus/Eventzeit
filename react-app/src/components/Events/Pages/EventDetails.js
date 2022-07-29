@@ -58,7 +58,8 @@ function EventDetailPage() {
                     <div
                         style={{
                             width: "100%",
-                            backgroundColor: "red",
+                            // backgroundColor: "red",
+                            wordWrap: "break-word"
                         }}>
                         {/* <div
               className="event-title-container"
@@ -117,7 +118,7 @@ function EventDetailPage() {
                             <div
                                 className="description-text"
                                 style={{
-                                    width: "50vw",
+                                    // width: "50vw",
                                 }}>
                                 <h3>
                                     {event.description.slice(0, 500)}

@@ -55,7 +55,7 @@ function Bookmark({ event_id, user_id = null, title }) {
           <button
             className="star-button"
             onClick={clickButton}
-            style={{ fontSize: "30px", padding: "6px 10px" }}
+            style={{ fontSize: "30px", padding: "4px 10px" }}
           >
             {String.fromCharCode(9734)}
           </button>
