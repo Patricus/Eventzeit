@@ -2,15 +2,15 @@
 @import "neat"; */
 
 .eventCard {
-  box-shadow: 0 0 3px 1px black;
-  height: 500px;
-  width: 500px;
+    box-shadow: 0 0 3px 1px black;
+    height: 500px;
+    width: 500px;
 }
 
 .eventCard img {
-  width: 494px;
-  height: 400px;
-  margin: 3px;
+    width: 494px;
+    height: 400px;
+    margin: 3px;
 }
 
 /*

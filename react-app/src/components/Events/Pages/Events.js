@@ -264,6 +264,7 @@ function Events() {
           </span>
         </div>
       </div>
+      <div className="eventsHolder">
       {events &&
         events
           .filter(event => {
@@ -295,6 +296,7 @@ function Events() {
           .map(event => {
             return <EventsCard key={event.id} event={event} />;
           })}
+          </div>
     </main>
   );
 }
