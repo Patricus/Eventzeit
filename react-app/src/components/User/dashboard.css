@@ -1,0 +1,26 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 25% 25% 25%;
+  grid-template-areas:
+  "user-panel" "bookmarks-sidebar"
+  "tickets-panel" "bookmarks-sidebar"
+  "my-event-panel" "bookmarks-sidebar"
+  "buttons" "bookmarks-sidebar"
+}
+
+.user-panel {
+  grid-area: user-panel;
+}
+
+.tickets-panel {
+  grid-area: tickets-panel;
+}
+
+.my-event-panel {
+  grid-area: my-event-panel;
+}
+
+.bookmarks-sidebar {
+  grid-area: bookmarks-sidebar;
+}
