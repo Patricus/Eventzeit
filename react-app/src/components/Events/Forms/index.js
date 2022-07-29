@@ -135,7 +135,7 @@ function EventForm({ event = null, setShowModal }) {
           occupancy,
           streetAddress,
           city,
-          state,
+          state.slice(0,2),
           zipCode
         )
       );
@@ -157,10 +157,10 @@ function EventForm({ event = null, setShowModal }) {
           occupancy,
           streetAddress,
           city,
-          state,
+          state.slice(0,2),
           zipCode
         )
-      );
+        );
     }
 
     setImageLoading(false);
