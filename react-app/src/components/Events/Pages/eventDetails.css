@@ -1,11 +1,11 @@
 .description-text {
-  width: 40vw;
-  margin: 30px ;
+  width: 30vw;
+  margin: 20px;
 }
 
 .event-time {
   font-family: "Eina-semibold";
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .event-img {
@@ -27,6 +27,17 @@
   height: auto;
   width: 300px;
   background-color: red;
+}
+
+.event-location,
+.event-ticket-price,
+.event-tickets-available {
+  margin-left: 20px;
+  margin-bottom: 18px;
+}
+
+.tickets-button {
+  display: flex;
 }
 
 .button-container {

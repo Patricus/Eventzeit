@@ -15,17 +15,19 @@ function EventDetailPage() {
   const { eventId } = useParams();
 
   const [showModal, setShowModal] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [showHiddenText, setShowHiddenText] = useState(false);
 
-  const event = useSelector(state => state.events[eventId]);
-  const user = useSelector(state => state.session.user);
+  const event = useSelector((state) => state.events[eventId]);
+  const user = useSelector((state) => state.session.user);
 
-  const title = useSelector(state => state.events[eventId]?.name);
+  const title = useSelector((state) => state.events[eventId]?.name);
 
   const eventUrl = window.location.href;
 
   useEffect(() => {
     dispatch(acquireEvents());
+    // console.log("BOZO", event.description);
   }, [dispatch]);
 
   const buyTickets = () => {
@@ -34,26 +36,33 @@ function EventDetailPage() {
 
   return (
     <main>
-      {event &&
-      <div>
-        <h1 className="event-title">{event.name}</h1>
-      </div>}
+      {event && (
+        <div>
+          <h1 className="event-title">{event.name}</h1>
+        </div>
+      )}
       <div
         style={{
           float: "left",
           width: "50%",
-        }}>
+          minWidth: "444px",
+          marginLeft: "30px",
+        }}
+      >
         {event ? (
           <div
             style={{
               width: "100%",
-            }}>
+              backgroundColor: "red",
+            }}
+          >
             {/* {console.log("BOZO", eventDescription.length)} */}
-            <div
+            {/* <div
               className="event-title-container"
               style={{
                 width: "40vw",
-              }}></div>
+              }}
+            ></div> */}
             <div className="button-container">
               {user && event.user_id === user.id && (
                 // <div class="dropdown">
@@ -69,22 +78,41 @@ function EventDetailPage() {
                 <button
                   onClick={() => setShowModal(true)}
                   className="event-button"
-                  style={{ fontSize: "20px", padding: "6px 10px" }}>
+                  style={{ fontSize: "20px", padding: "6px 10px" }}
+                >
                   ✎
                 </button>
               )}
               <div className="bookmark-button">
-                {user && <Bookmark event_id={eventId} user_id={user.id} title={title} />}
+                {user && (
+                  <Bookmark
+                    event_id={eventId}
+                    user_id={user.id}
+                    title={title}
+                  />
+                )}
               </div>
               {showModal && (
-                <Modal onClose={() => setShowModal(false)} className="button-container-a">
+                <Modal
+                  onClose={() => setShowModal(false)}
+                  className="button-container-a"
+                >
                   <EventForm event={event} setShowModal={setShowModal} />
                 </Modal>
               )}
-              <img src={`${event.event_image_url}`} alt={event.name} className="event-img" />
+              <img
+                src={`${event.event_image_url}`}
+                alt={event.name}
+                className="event-img"
+              />
             </div>
             <h3 className="event-time">
-              {new Date(event.date).toString().split(" G")[0].split(":").splice(0, 2).join(":")}{" "}
+              {new Date(event.date)
+                .toString()
+                .split(" G")[0]
+                .split(":")
+                .splice(0, 2)
+                .join(":")}{" "}
             </h3>
             {/* START */}
             {/* IF DESCRIPTION IS MORE THAN 500 CHARS */}
@@ -92,12 +120,15 @@ function EventDetailPage() {
               <div
                 className="description-text"
                 style={{
-                  width: "900px",
-                }}>
+                  width: "50vw",
+                }}
+              >
                 <h3>
                   {event.description.slice(0, 500)}
                   {showHiddenText && (
-                    <span className="more-text">{event.description.slice(500)}</span>
+                    <span className="more-text">
+                      {event.description.slice(500)}
+                    </span>
                   )}
                   {!showHiddenText && <span className="dots">...</span>}
                   {!showHiddenText && (
@@ -111,7 +142,8 @@ function EventDetailPage() {
                           marginLeft: "14px",
                           border: "none",
                           fontSize: "18px",
-                        }}>
+                        }}
+                      >
                         More
                       </button>
                     </span>
@@ -127,7 +159,8 @@ function EventDetailPage() {
                           marginLeft: "14px",
                           border: "none",
                           fontSize: "18px",
-                        }}>
+                        }}
+                      >
                         Less
                       </button>
                     </span>
@@ -141,12 +174,45 @@ function EventDetailPage() {
             )}
             {/* END */}
             {/* <h3>What: {event.description}</h3> */}
-            <h3>
-              Where: {event.street_address} {event.city} {event.state} {event.zip_code}
-            </h3>
-            <h3>Ticket Price: ${event.price}</h3>
-            <h3>Tickets Available: {event.tickets_available}</h3>
-            {user && <button onClick={buyTickets}>Buy Tickets</button>}
+            <div className="event-location">
+              <h3>
+                <span
+                  style={{
+                    fontFamily: "Eina-semibold",
+                  }}
+                >
+                  Where:
+                </span>{" "}
+                {event.street_address} {event.city} {event.state}{" "}
+                {event.zip_code}
+              </h3>
+            </div>
+            <div className="event-ticket-price">
+              <h3>Ticket Price: ${event.price}</h3>
+            </div>
+            <div className="event-tickets-available">
+              <h3>Tickets Available: {event.tickets_available}</h3>
+            </div>
+            <div className="tickets-button">
+              <div
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "1em",
+                  marginBottom: "1em",
+                }}
+              >
+                {user && (
+                  <button
+                    onClick={buyTickets}
+                    style={{
+                      fontSize: "160%",
+                    }}
+                  >
+                    Buy Tickets
+                  </button>
+                )}
+              </div>
+            </div>
             {showTicketForm && (
               <Modal onClose={() => setShowTicketForm(false)}>
                 <TicketForm
@@ -166,12 +232,18 @@ function EventDetailPage() {
       </div>
       <div
         style={{
-          float: "right",
+          float: "left",
           width: "40%",
           marginTop: "20px",
-          marginRight: "30px",
-        }}>
-        <div>
+          marginLeft: "40px",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "20px",
+            marginRight: "20px",
+          }}
+        >
           <MapView event={event} />
         </div>
       </div>
