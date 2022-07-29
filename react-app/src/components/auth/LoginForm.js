@@ -38,6 +38,9 @@ const LoginForm = setShowLogin => {
         ))}
       </div>
       <div>
+        <h2>Log In</h2>
+      </div>
+      <div>
         <label htmlFor="email">Email</label>
         <input name="email" type="text" placeholder="Email" value={email} onChange={updateEmail} />
       </div>
