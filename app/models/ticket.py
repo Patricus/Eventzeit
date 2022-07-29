@@ -1,13 +1,16 @@
 from .db import db
 
+
 class Ticket(db.Model):
     __tablename__ = 'tickets'
 
     id = db.Column(db.Integer, primary_key=True)
     attendee = db.Column(db.String(30), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id', ondelete="CASCADE"))
-    event_url = db.Column(db.String(40), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id', ondelete="CASCADE"))
+    event_id = db.Column(db.Integer, db.ForeignKey(
+        'events.id', ondelete="CASCADE"))
+    event_url = db.Column(db.String(255), nullable=False)
 
     user = db.relationship('User', back_populates='tickets')
     event = db.relationship('Event', back_populates='tickets')

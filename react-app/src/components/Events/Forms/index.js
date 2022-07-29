@@ -35,60 +35,61 @@ function EventForm({ event = null, setShowModal }) {
   const dispatch = useDispatch();
   const userId = useSelector(state => state.session.user.id);
   const states = [
-    "AK",
-    "AL",
-    "AR",
-    "AZ",
-    "CA",
-    "CO",
-    "CT",
-    "DC",
-    "DE",
-    "FL",
-    "GA",
-    "GU",
-    "HI",
-    "IA",
-    "ID",
-    "IL",
-    "IN",
-    "KS",
-    "KY",
-    "LA",
-    "MA",
-    "MD",
-    "ME",
-    "MI",
-    "MN",
-    "MO",
-    "MS",
-    "MT",
-    "NC",
-    "ND",
-    "NE",
-    "NH",
-    "NJ",
-    "NM",
-    "NV",
-    "NY",
-    "OH",
-    "OK",
-    "OR",
-    "PA",
-    "PR",
-    "RI",
-    "SC",
-    "SD",
-    "TN",
-    "TX",
-    "UT",
-    "VA",
-    "VI",
-    "VT",
-    "WA",
-    "WI",
-    "WV",
-    "WY",
+    "AK - Alaska",
+    "AL - Alabama",
+    "AR - Arkansas",
+    "AS - American Samoa",
+    "AZ - Arizona",
+    "CA - California",
+    "CO - Colorado",
+    "CT - Connecticut",
+    "DC - District of Columbia",
+    "DE - Delaware",
+    "FL - Florida",
+    "GA - Georgia",
+    "GU - Guam",
+    "HI - Hawaii",
+    "IA - Iowa",
+    "ID - Idaho",
+    "IL - Illinois",
+    "IN - Indiana",
+    "KS - Kansas",
+    "KY - Kentucky",
+    "LA - Louisiana",
+    "MA - Massachusetts",
+    "MD - Maryland",
+    "ME - Maine",
+    "MI - Michigan",
+    "MN - Minnesota",
+    "MO - Missouri",
+    "MS - Mississippi",
+    "MT - Montana",
+    "NC - North Carolina",
+    "ND - North Dakota",
+    "NE - Nebraska",
+    "NH - New Hampshire",
+    "NJ - New Jersey",
+    "NM - New Mexico",
+    "NV - Nevada",
+    "NY - New York",
+    "OH - Ohio",
+    "OK - Oklahoma",
+    "OR - Oregon",
+    "PA - Pennsylvania",
+    "PR - Puerto Rico",
+    "RI - Rhode Island",
+    "SC - South Carolina",
+    "SD - South Dakota",
+    "TN - Tennessee",
+    "TX - Texas",
+    "UT - Utah",
+    "VA - Virginia",
+    "VI - Virgin Islands",
+    "VT - Vermont",
+    "WA - Washington",
+    "WI - Wisconsin",
+    "WV - West Virginia",
+    "WY - Wyoming",
   ];
 
   const categories = [
@@ -109,7 +110,6 @@ function EventForm({ event = null, setShowModal }) {
     "Celebration",
     "Other",
   ];
-
 
   const submit = async e => {
     e.preventDefault();
@@ -165,7 +165,9 @@ function EventForm({ event = null, setShowModal }) {
 
     setImageLoading(false);
     setErrors(event);
-    if (errors.length === 0) setShowModal(false);
+    if (setShowModal) {
+      if (errors.length === 0) setShowModal(false);
+    }
   };
 
   const updateImage = e => {
@@ -184,7 +186,7 @@ function EventForm({ event = null, setShowModal }) {
           <h2>Event Form</h2>
         </div>
         <div>
-          <ul>
+          <ul className="errors">
             {errors &&
               Array.isArray(errors) &&
               errors.map(error => {

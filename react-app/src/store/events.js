@@ -57,7 +57,7 @@ export const makeEvent =
     } else if (imageRes.status < 500) {
       const data = await imageRes.json();
       if (data.errors) {
-        return data.errors;
+        return [data.errors];
       }
     } else {
       return ["An error occurred. Please try again."];

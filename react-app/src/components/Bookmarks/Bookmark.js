@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../store/events";
-import { addOneBookmark, deleteBookmark, getAllBookmarks } from "../../store/bookmarks";
+import {
+  addOneBookmark,
+  deleteBookmark,
+  getAllBookmarks,
+} from "../../store/bookmarks";
 
 // const BookmarkEventName = styled.link`
 //   cursor: pointer;
@@ -18,13 +22,13 @@ function Bookmark({ event_id, user_id = null, title }) {
   //if they do, we run the delete,
   //otherwise, we create the new bookmark
 
-  const bookmarks = useSelector(state => state.bookmarks); //Grab bookmarks state
+  const bookmarks = useSelector((state) => state.bookmarks); //Grab bookmarks state
   const [bookmark, setBookmark] = useState(null); //Used to store the current event bookmark state
 
   useEffect(() => {
     //set bookmark to the first bookmark in state that matches the event_id
     setBookmark(
-      Object.values(bookmarks).filter(bookmark => {
+      Object.values(bookmarks).filter((bookmark) => {
         return bookmark.event_id === parseInt(event_id);
       })[0]
     );
@@ -46,12 +50,32 @@ function Bookmark({ event_id, user_id = null, title }) {
 
   return (
     <div>
-      {user_id && (
+      {user_id && !bookmark && (
         <>
-          <button onClick={clickButton}>bookmark</button>
-          {/* if there is a bookmark display 'Bookmarked' text */}
-          {bookmark && <span>Bookmarked</span>}
+          <button
+            className="star-button"
+            onClick={clickButton}
+            style={{ fontSize: "30px", padding: "6px 10px" }}
+          >
+            {String.fromCharCode(9734)}
+          </button>
         </>
+      )}
+      {user_id && bookmark && (
+        <button
+          className="star-button"
+          onClick={clickButton}
+          style={{ fontSize: "30px", padding: "6px 10px" }}
+        >
+          <div className="star">{String.fromCharCode(9733)}</div>
+        </button>
+        // {userBookmarks.map((bookmark) => {
+        //   return (
+        //     <NavLink to={`/events/${bookmark.event_id}`}>
+        //       {bookmark.name}
+        //     </NavLink>
+        //   );
+        // })}
       )}
     </div>
   );
