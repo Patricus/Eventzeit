@@ -57,6 +57,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
       };
       dispatch(addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)).then(
         response => {
+          console.log(response)
           if (response.id) closeAfterPurchaseMessage();
           else setErrors(Object.values(response));
         }
@@ -77,10 +78,13 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
   return (
     <WhiteBG>
       {errors &&
-        errors.map((error, i = 0) => {
-          i++;
-          return <p key={i}>{error}</p>;
-        })}
+        <ul>
+          {errors.map((error, i = 0) => {
+            i++;
+            return <li key={i}>{error}</li>;
+          })}
+        </ul>
+      }
       {!purchased && (
         <form onSubmit={onPurchase}>
           <div>
@@ -95,7 +99,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
               <button onClick={updateConfirmRefund}>Return Ticket</button>
             </div>
           ) : (
-            <button type="submit" disabled={!name}>
+            <button type="submit" disabled={!name || errors.length > 0}>
               Submit
             </button>
           )}
