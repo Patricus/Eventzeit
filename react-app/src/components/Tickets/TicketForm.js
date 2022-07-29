@@ -14,6 +14,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
   const [purchased, setPurchased] = useState(false);
   const [confirmRefund, setConfirmRefund] = useState(false);
   const user = useSelector(state => state.session.user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,7 +58,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
       dispatch(addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)).then(
         response => {
           if (response.id) closeAfterPurchaseMessage();
-          else setErrors(response);
+          else setErrors(Object.values(response));
         }
       );
     }
