@@ -4,6 +4,7 @@ import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
 import "../../../index.css";
 import sportsImg from "../../../images/sports.png";
+// import "./events.css";
 
 function Events() {
   const events = Object.values(useSelector((state) => state.events));
@@ -470,17 +471,7 @@ function Events() {
             })
             .map((event) => {
               return (
-                <div
-                  className="event"
-                  style={
-                    {
-                      // height: "auto",
-                      // width: "auto",
-                      // margin: "18vh"
-                      // marginBottom: "18%"
-                    }
-                  }
-                >
+                <div className="event" id="event">
                   <EventsCard key={event.id} event={event} />;
                 </div>
               );

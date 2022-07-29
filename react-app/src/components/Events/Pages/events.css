@@ -1,7 +1,13 @@
-@media(max-width:800px {
+@media(max-height:800px) {
   .event{
-    min-height: 100%;
-    min-width: 100%;
+    max-height: 200px;
+    min-height: 180px;
+  }
+}
+@media(max-width:800px) {
+  .event{
+    max-width: 200px;
+    min-width: 180px;
   }
   /* .title {
     font-size: 9px;
@@ -19,11 +25,19 @@
   .info {
     width: 60px;
     height: 60px
-  } */
+  }*/
 }
 
 @media(max-height:600px) {
-  .title {
+  .event {
+    max-width: 100px;
+    min-width: 80px;
+    /* max-height: 40%;
+    max-width: 40%;
+    min-height: 30%;
+    min-width: 30%; */
+  }
+  /* .title {
     font-size: 8px;
   }
 
@@ -39,11 +53,33 @@
   .info {
     width: 60px;
     height: 60px
+  }*/
+}
+
+@media(max-width:600px) {
+  .event {
+    max-width: 100px;
+    min-width: 80px;
+  }
+}
+
+@media(max-width:508) {
+  .event {
+    max-width: 80px;
+    min-width: 60px;
   }
 }
 
 @media(max-height:508px) {
-  .title {
+  .event {
+    width: 80px;
+    height: 60px;
+    /* max-height: 25%;
+    max-width: 25%;
+    min-height: 20%;
+    min-width: 20%; */
+  }
+  /* .title {
     font-size: 8px;
   }
 
@@ -59,11 +95,21 @@
   .info {
     width: 60px;
     height: 60px
+  } */
+}
+@media(max-width:430px) {
+  .event {
+    max-width: 70px;
+    min-width: 60px;
   }
 }
 
 @media(max-height:430px) {
-  .title {
+  .event {
+    max-height: 70px;
+    min-height: 60px;
+  }
+  /* .title {
     visibility: hidden;
   }
 
@@ -79,5 +125,5 @@
   .info {
     width: 60px;
     height: 60px
-  }
+  } */
 }

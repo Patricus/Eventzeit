@@ -7,10 +7,14 @@ function EventsCard({ event }) {
   const [showHiddenText, setShowHiddenText] = useState(false);
 
   return (
-    <div className="main"
-    style={{
-      // height: "300px"
-    }}>
+    <div
+      className="main"
+      style={
+        {
+          // height: "300px"
+        }
+      }
+    >
       <div
         className="eventCard"
         style={{
@@ -19,6 +23,7 @@ function EventsCard({ event }) {
         }}
       >
         <Link
+          className="main-link"
           to={`/events/${event.id}`}
           style={{
             textDecoration: "none",
