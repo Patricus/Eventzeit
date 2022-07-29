@@ -20,21 +20,27 @@ const DropDownMenu = styled.div`
 
 const MenuButton = styled.div`
     cursor: pointer;
+    width: 150px;
 `;
 
 function UserMenu({ user }) {
     const [showMenu, setShowMenu] = useState(false);
 
-    const openMenu = e => {
+    const openMenu = () => {
         if (!showMenu) return setShowMenu(true);
-        if (e.target.classList.contains("dropdown")) return;
+    };
+
+    const closeMenu = e => {
+        console.log("e.target", e.target);
+        if (e.target.classList.contains("dropdown") || e.target.classList.contains("profile-icon"))
+            return;
         setShowMenu(false);
     };
 
     useEffect(() => {
-        document.addEventListener("mousedown", openMenu);
-        return () => document.removeEventListener("mousedown", openMenu);
-    }, []);
+        document.addEventListener("mousedown", closeMenu);
+        return () => document.removeEventListener("mousedown", closeMenu);
+    }, [showMenu]);
 
     return (
         <div className="navlink" style={{ textDecoration: "none" }}>
@@ -54,9 +60,7 @@ function UserMenu({ user }) {
                                 float: "left",
                             }}></div>
                     </div>
-                    <div
-                        className="navlink dropdown"
-                        style={{ paddingTop: "7px", whiteSpace: "nowrap" }}>
+                    <div className="navlink dropdown" style={{ paddingTop: "7px" }}>
                         Hi, {user.username} !
                     </div>
                 </div>
