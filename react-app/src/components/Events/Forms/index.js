@@ -25,7 +25,6 @@ function EventForm({ event = null, setShowModal }) {
   const [occupancy, setOccupancy] = useState((event && event.max_occupancy) || 1);
   const [price, setPrice] = useState((event && event.price) || 0.0);
   const [streetAddress, setStreetAddress] = useState((event && event.street_address) || "");
-  const [state, setState] = useState((event && event.state) || "");
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
@@ -93,6 +92,13 @@ function EventForm({ event = null, setShowModal }) {
     "WY - Wyoming",
   ];
 
+  let preSelectedState;
+  if (event?.state) {
+    preSelectedState = event.state;
+  }
+
+  const [state, setState] = useState((preSelectedState && states.filter(x => x.includes(preSelectedState)))[0] || "");
+
   const categories = [
     "Sport",
     "Party",
@@ -121,55 +127,60 @@ function EventForm({ event = null, setShowModal }) {
       return;
     }
 
-    setImageLoading(true);
-
-    if (!event) {
-      event = await dispatch(
-        makeEvent(
-          userId,
-          category,
-          name,
-          image,
-          date.replace("T", " "),
-          description,
-          price,
-          occupancy,
-          streetAddress,
-          city,
-          state.slice(0,2),
-          zipCode
-        )
-      );
-      if (event.id) {
-        history.push(`${event.id}`);
-        return;
-      }
-    } else {
-      event = await dispatch(
-        editEvent(
-          event.id,
-          userId,
-          category,
-          name,
-          image,
-          date.replace("T", " "),
-          description,
-          price,
-          occupancy,
-          streetAddress,
-          city,
-          state.slice(0,2),
-          zipCode
-        )
-        );
-    }
-
     setImageLoading(false);
     setErrors(event);
     if (setShowModal) {
       if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
-    }
-  };
+      setImageLoading(true);
+
+      if (!event) {
+        event = await dispatch(
+          makeEvent(
+            userId,
+            category,
+            name,
+            image,
+            date.replace("T", " "),
+            description,
+            price,
+            occupancy,
+            streetAddress,
+            city,
+            state.slice(0, 2),
+            zipCode
+          )
+        );
+        if (event.id) {
+          history.push(`${event.id}`);
+          return;
+        }
+      } else {
+        event = await dispatch(
+          editEvent(
+            event.id,
+            userId,
+            category,
+            name,
+            image,
+            date.replace("T", " "),
+            description,
+            price,
+            occupancy,
+            streetAddress,
+            city,
+            state.slice(0, 2),
+            zipCode
+          )
+        );
+      }
+
+      setImageLoading(false);
+      setErrors(event);
+      if (setShowModal) {
+        if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
+      }
+    };
+  }
 
   const updateImage = e => {
     const imageFile = e.target.files[0];
@@ -233,10 +244,10 @@ function EventForm({ event = null, setShowModal }) {
         <div>
           <label>Image: </label>
           <label htmlFor='image-upload-button' className="image-upload-label">Upload
-          <input id="image-upload-button" name="image" type="file" accept="image/*" onChange={updateImage} />
+            <input id="image-upload-button" name="image" type="file" accept="image/*" onChange={updateImage} />
           </label>
           {image &&
-          <span htmlFor='image-upload-button' className="filename" name='image'>{image.name}</span>
+            <span htmlFor='image-upload-button' className="filename" name='image'>{image.name}</span>
           }
         </div>
         <div>
@@ -272,10 +283,7 @@ function EventForm({ event = null, setShowModal }) {
         </div>
         <div>
           <label htmlFor="state">State:</label>
-          <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
-            <option disabled value="">
-              Choose a State
-            </option>
+          <select multiple={false} name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
             {states.map(state => {
               return (
                 <option key={state} value={state}>
