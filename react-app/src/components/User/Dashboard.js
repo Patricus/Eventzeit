@@ -9,14 +9,17 @@ import DeleteUserModal from "../auth/DeleteUser";
 import BookmarksPanel from "./BookmarkPanel";
 import UserPanel from "./UserPanel";
 import TicketPanel from "./TicketPanel";
+import MyEventsPanel from "./MyEventsPanel"
 
 function Dashboard() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const ticketsState = useSelector((state) => state.tickets);
   const tickets = Object.values(ticketsState);
-  const bookmarksState = useSelector(state => state.bookmarks)
-  const bookmarks = Object.values(bookmarksState)
+  const bookmarksState = useSelector(state => state.bookmarks);
+  const bookmarks = Object.values(bookmarksState);
+  const userEventsState = useSelector((state) => state.events);
+  const userEvents = Object.values(userEventsState)
 
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
@@ -56,6 +59,7 @@ function Dashboard() {
         {bookmarksState && <BookmarksPanel bookmarks={bookmarks}/>}
         <UserPanel user={user} tickets={tickets} />
         <TicketPanel tickets={tickets}/>
+        <MyEventsPanel userEvents={userEvents} />
         <div>
           <button onClick={updateUserModal}>Update User Account</button>
           <button onClick={deleteUserModal}>Delete User Account</button>

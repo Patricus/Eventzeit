@@ -1,12 +1,13 @@
-import styled from 'styled-components';
 
 
 
-function MyEventsPanel() {
+function MyEventsPanel({ userEvents }) {
 
     return (
         <div>
-
+            {userEvents.map((event) => {
+                return <p>{event.name}</p>
+            })}
         </div>
     );
 };
