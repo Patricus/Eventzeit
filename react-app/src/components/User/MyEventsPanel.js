@@ -10,7 +10,7 @@ function MyEventsPanel() {
     return (
         <main>
             <div className="my-event-panel">
-                <h2>Your Events</h2>
+                <h2 style={{ padding: "6px" }}>Your Events</h2>
                 {userEvents.map((event) => {
                     return <EventsCard key={event.id} event={event} />
                 })}
