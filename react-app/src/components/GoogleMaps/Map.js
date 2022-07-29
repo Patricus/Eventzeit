@@ -32,7 +32,6 @@ export default function MapView({ event = null }) {
         const tomtomResponse = await fetch(`https://api.tomtom.com/search/2/geocode/${address}.json?storeResult=false&limit=1&language=en-US&view=Unified&key=${keys.tomtom_key}`)
         if (tomtomResponse.ok) {
             const data = await tomtomResponse.json()
-            console.log(data)
             if (data.results.length > 0) {
                 const lat = data.results[0].position.lat
                 const lng = data.results[0].position.lon
@@ -50,7 +49,7 @@ export default function MapView({ event = null }) {
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
-    console.log(center)
+    
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
