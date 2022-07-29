@@ -33,7 +33,7 @@ const NavBar = () => {
   const [showSignup, setShowSignup] = useState(false);
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -65,14 +65,16 @@ const NavBar = () => {
           paddingLeft: "20px",
           height: "70px",
           // margin: "0px"
-        }}>
+        }}
+      >
         <div
           className="navBarDiv1"
           style={{
             // backgroundColor: "red",
             height: "100%",
             // alignItems: "center",
-          }}>
+          }}
+        >
           <NavLink
             to="/"
             exact={true}
@@ -80,7 +82,8 @@ const NavBar = () => {
             style={{
               width: "205px",
               height: "100%",
-            }}>
+            }}
+          >
             <Logo src={`${EventzeitLogo}`} />
           </NavLink>
         </div>
@@ -94,7 +97,8 @@ const NavBar = () => {
                   activeClassName="active"
                   style={{
                     textDecoration: "none",
-                  }}>
+                  }}
+                >
                   <p className="navlink">Events</p>
                 </NavLink>
               </div>
@@ -105,17 +109,32 @@ const NavBar = () => {
                   style={{
                     border: "0px",
                     backgroundColor: "white",
-                  }}>
+                  }}
+                >
                   Demo User
                 </button>
               </div>
               <div>
-                <button className="navlink" onClick={() => setShowLogin(true)}>
+                <button
+                  className="navlink"
+                  onClick={() => setShowLogin(true)}
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                  }}
+                >
                   Login
                 </button>
               </div>
               <div>
-                <button className="navlink" onClick={() => setShowSignup(true)}>
+                <button
+                  className="navlink"
+                  onClick={() => setShowSignup(true)}
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                  }}
+                >
                   Sign Up
                 </button>
               </div>
@@ -129,7 +148,8 @@ const NavBar = () => {
                   activeClassName="active"
                   style={{
                     textDecoration: "none",
-                  }}>
+                  }}
+                >
                   <p className="navlink">Create</p>
                 </NavLink>
               </div>
@@ -139,7 +159,8 @@ const NavBar = () => {
                   activeClassName="active"
                   style={{
                     textDecoration: "none",
-                  }}>
+                  }}
+                >
                   <p className="navlink">Events</p>
                 </NavLink>
               </div>
@@ -147,14 +168,17 @@ const NavBar = () => {
                 style={{
                   color: "#191923",
                   fontFamily: "Eina-semibold",
-                }}>
+                }}
+              >
                 <UserMenu user={user} />
               </div>
             </>
           )}
         </NavigationBar>
       </div>
-      <div style={{ backgroundColor: "#191923", height: "1.5px", opacity: "30%" }} />
+      <div
+        style={{ backgroundColor: "#191923", height: "1.5px", opacity: "30%" }}
+      />
     </div>
   );
 };
