@@ -18,8 +18,7 @@ function Dashboard() {
   const tickets = Object.values(ticketsState);
   const bookmarksState = useSelector(state => state.bookmarks);
   const bookmarks = Object.values(bookmarksState);
-  const userEventsState = useSelector((state) => state.events);
-  const userEvents = Object.values(userEventsState)
+  
 
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
@@ -59,7 +58,7 @@ function Dashboard() {
         {bookmarksState && <BookmarksPanel bookmarks={bookmarks}/>}
         <UserPanel user={user} tickets={tickets} />
         <TicketPanel tickets={tickets}/>
-        <MyEventsPanel userEvents={userEvents} />
+        <MyEventsPanel />
         <div>
           <button onClick={updateUserModal}>Update User Account</button>
           <button onClick={deleteUserModal}>Delete User Account</button>
