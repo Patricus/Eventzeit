@@ -31,7 +31,6 @@ function UserMenu({ user }) {
     };
 
     const closeMenu = e => {
-        console.log("e.target", e.target);
         if (e.target.classList.contains("dropdown") || e.target.classList.contains("profile-icon"))
             return;
         setShowMenu(false);
@@ -69,10 +68,11 @@ function UserMenu({ user }) {
                 <div style={{ position: "relative" }}>
                     <DropDownMenu className="dropdown">
                         <NavLink
-                            to={`/dashboard/${user.id}`}
+                            className="dropdown"
+                            to={`/dashboard`}
                             onClick={openMenu}
                             style={{ textDecoration: "none" }}>
-                            <p className="navlink">My Dashboard</p>
+                            <p className="navlink dropdown">My Dashboard</p>
                         </NavLink>
                         <p className="dropdown" style={{ fontFamily: "Eina" }}>
                             {user.username}
@@ -80,7 +80,7 @@ function UserMenu({ user }) {
                         <p className="dropdown" style={{ fontFamily: "Eina" }}>
                             {user.email}
                         </p>
-                        <LogoutButton />
+                        <LogoutButton className="dropdown" />
                     </DropDownMenu>
                 </div>
             )}

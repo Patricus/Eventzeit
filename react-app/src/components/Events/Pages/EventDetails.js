@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { acquireEvents } from "../../../store/events";
 import { Modal } from "../../Global/Elements/Modal";
 import EventForm from "../Forms";
@@ -11,6 +11,7 @@ import MapView from "../../GoogleMaps/Map";
 
 function EventDetailPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showTicketForm, setShowTicketForm] = useState(false);
   const { eventId } = useParams();
 
@@ -27,6 +28,10 @@ function EventDetailPage() {
   useEffect(() => {
     dispatch(acquireEvents());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!event) history.push('/404')
+  },[event])
 
   const buyTickets = () => {
     setShowTicketForm(true);
