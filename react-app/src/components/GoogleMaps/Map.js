@@ -33,7 +33,7 @@ export default function MapView({ event = null }) {
         if (tomtomResponse.ok) {
             const data = await tomtomResponse.json()
             console.log(data)
-            if (data.results > 0) {
+            if (data.results.length > 0) {
                 const lat = data.results[0].position.lat
                 const lng = data.results[0].position.lon
                 setCenter({ lat: lat, lng: lng })
@@ -43,14 +43,14 @@ export default function MapView({ event = null }) {
     }
 
     useEffect(() => {
-        if (address.length < 3) return;
+        if (address.length < 1) return;
         geoFetch()
     }, [address])
 
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
-
+    console.log(center)
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
