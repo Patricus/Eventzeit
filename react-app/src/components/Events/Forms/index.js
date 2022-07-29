@@ -165,8 +165,9 @@ function EventForm({ event = null, setShowModal }) {
 
     setImageLoading(false);
     setErrors(event);
+    console.log(errors)
     if (setShowModal) {
-      if (errors.length === 0) setShowModal(false);
+      if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
     }
   };
 
