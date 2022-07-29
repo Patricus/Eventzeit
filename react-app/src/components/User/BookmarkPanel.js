@@ -5,8 +5,6 @@ const BookmarksBar = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
-height: 40px;
-background-color: red;
 margin: 20px 0;
 `
 

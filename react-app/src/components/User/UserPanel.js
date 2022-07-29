@@ -38,15 +38,17 @@ function UserPanel({ user, tickets }) {
     }, [tickets])
 
     return (
-        <div className="user-panel">
-            <UserInfoBox>
-                <Avatar src={user.avatar} alt="user avatar" />
-                <UserInfo>
-                    <Username>Hi, {user.username}!</Username>
-                    <TicketsMessage>You have {tickets.length} {word}</TicketsMessage>
-                </UserInfo>
-            </UserInfoBox>
-        </div>
+        <main>
+            <div className="user-panel">
+                <UserInfoBox>
+                    <Avatar src={user.avatar} alt="user avatar" />
+                    <UserInfo>
+                        <Username>Hi, {user.username}!</Username>
+                        <TicketsMessage>You have {tickets.length} {word}</TicketsMessage>
+                    </UserInfo>
+                </UserInfoBox>
+            </div>
+        </main>
     );
 };
 

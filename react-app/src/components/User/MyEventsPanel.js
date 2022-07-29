@@ -8,12 +8,14 @@ function MyEventsPanel() {
     const userEvents = Object.values(userEventsState).filter(event => event.user_id === user.id)
 
     return (
-        <div className="my-event-panel">
-            <h2>Your Events</h2>
-            {userEvents.map((event) => {
-                return <EventsCard key={event.id} event={event} />
-            })}
-        </div>
+        <main>
+            <div className="my-event-panel">
+                <h2>Your Events</h2>
+                {userEvents.map((event) => {
+                    return <EventsCard key={event.id} event={event} />
+                })}
+            </div>
+        </main>
     );
 };
 
