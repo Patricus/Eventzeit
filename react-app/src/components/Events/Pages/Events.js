@@ -86,11 +86,61 @@ function Events() {
       <h1
         style={{
           marginTop: "80px",
+          fontFamily: "Eina-bold",
+          color: "#191923",
+          fontSize: "90px",
         }}
       >
         Events
       </h1>
       <div>
+        <div
+          style={{
+            marginTop: "10vh",
+          }}
+        >
+          <span>
+            <label htmlFor="search">Search Events: </label>
+            <input
+              name="search"
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search Events"
+            />
+          </span>
+          <span>
+            <label htmlFor="startDate">Start Date: </label>
+            <input
+              name="startDate"
+              type="datetime-local"
+              max={endDate}
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="endDate">End Date: </label>
+            <input
+              name="endDate"
+              type="datetime-local"
+              min={startDate}
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </span>
+          <span>
+            <label htmlFor="sortEvents">Sort Events By: </label>
+            <select
+              name="sortEvents"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value={"name"}>Name</option>
+              <option value={"date"}>Date</option>
+            </select>
+          </span>
+        </div>
         <div>
           {sport ? (
             <span>
@@ -376,53 +426,18 @@ function Events() {
             </span>
           )}
         </div>
-        <div>
-          <span>
-            <label htmlFor="search">Search Events: </label>
-            <input
-              name="search"
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search Events"
-            />
-          </span>
-          <span>
-            <label htmlFor="startDate">Start Date: </label>
-            <input
-              name="startDate"
-              type="datetime-local"
-              max={endDate}
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </span>
-          <span>
-            <label htmlFor="endDate">End Date: </label>
-            <input
-              name="endDate"
-              type="datetime-local"
-              min={startDate}
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </span>
-          <span>
-            <label htmlFor="sortEvents">Sort Events By: </label>
-            <select
-              name="sortEvents"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-            >
-              <option value={"name"}>Name</option>
-              <option value={"date"}>Date</option>
-            </select>
-          </span>
-        </div>
       </div>
       <div
         style={{
+          //justifyContent: "space-between",
           display: "flex",
+          flexWrap: "wrap",
+          marginTop: "10vh",
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          // width: "900px",
         }}
       >
         {events &&
@@ -456,12 +471,17 @@ function Events() {
             .map((event) => {
               return (
                 <div
-                  style={{
-                    marginBottom: "10px",
-                    height: "8vh",
-                  }}
+                  className="event"
+                  style={
+                    {
+                      // height: "auto",
+                      // width: "auto",
+                      // margin: "18vh"
+                      // marginBottom: "18%"
+                    }
+                  }
                 >
-                  <EventsCard key={event.id} event={event} />
+                  <EventsCard key={event.id} event={event} />;
                 </div>
               );
             })}
