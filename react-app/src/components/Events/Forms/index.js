@@ -97,7 +97,7 @@ function EventForm({ event = null, setShowModal }) {
     preSelectedState = event.state;
   }
 
-  const [state, setState] = useState((preSelectedState && states.filter(x => x.includes(preSelectedState)))[0] || "");
+  const [state, setState] = useState((preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || "");
 
   const categories = [
     "Sport",
