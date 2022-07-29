@@ -5,7 +5,7 @@ import "./footer.css";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer-panel">
       <ul>
         <li>
           <h3>Elias Rodriguez</h3>
