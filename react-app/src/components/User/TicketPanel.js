@@ -13,7 +13,7 @@ height: 100.8333245%;
 margin: 10px 0;
 display: flex;
 flex-direction: row;
-justify-content: space-between;
+flex-wrap: wrap;
 overflow-x: scroll;
 `
 
