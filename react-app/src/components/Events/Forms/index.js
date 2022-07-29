@@ -170,12 +170,13 @@ function EventForm({ event = null, setShowModal }) {
     }
   };
 
+
   const updateImage = e => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
   };
 
-  const deleteEventModal = async () => {
+  const deleteEventModal = () => {
     setShowConfirmDeleteModal(true);
   };
 
@@ -305,8 +306,8 @@ function EventForm({ event = null, setShowModal }) {
         <div>
           {event ? (
             <div>
-              <button>Update Event</button>
-              <button onClick={deleteEventModal}>Delete Event</button>
+              <button type="submit">Update Event</button>
+              <button type="button" onClick={deleteEventModal}>Delete Event</button>
             </div>
           ) : (
             <div>
