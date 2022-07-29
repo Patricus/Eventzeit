@@ -174,6 +174,7 @@ function EventForm({ event = null, setShowModal }) {
   const updateImage = e => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
+    console.log(imageFile)
   };
 
   const deleteEventModal = () => {
@@ -183,9 +184,6 @@ function EventForm({ event = null, setShowModal }) {
   return (
     <div>
       <form onSubmit={submit}>
-        <div>
-          <h2>Event Form</h2>
-        </div>
         <div>
           <ul className="errors">
             {errors &&
@@ -234,8 +232,13 @@ function EventForm({ event = null, setShowModal }) {
           />
         </div>
         <div>
-          <label htmlFor="image">Image:</label>
+          <label>Image: </label>
+          <label htmlFor='image-upload-button' className="image-upload-label">Upload
           <input id="image-upload-button" name="image" type="file" accept="image/*" onChange={updateImage} />
+          </label>
+          {image &&
+          <span htmlFor='image-upload-button' className="filename" name='image'>{image.name}</span>
+          }
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>
