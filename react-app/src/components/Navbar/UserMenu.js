@@ -39,9 +39,7 @@ function UserMenu({ user }) {
     return (
         <div className="navlink" style={{ textDecoration: "none" }}>
             <MenuButton onClick={openMenu}>
-                <div
-                    className="profile-container"
-                    style={{ width: "fit-content", maxWidth: "150px" }}>
+                <div className="profile-container" style={{ width: "150px" }}>
                     <div className="user-profile-container">
                         <div
                             className="profile-icon"
