@@ -1,0 +1,12 @@
+#notFound > h1 {
+    font-size: 70px;
+    font-family: monospace;
+}
+
+#notFound {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
