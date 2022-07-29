@@ -15,3 +15,21 @@
 body {
   font-family: 'Eina';
 }
+
+button {
+  font-size: 1.01em;
+  border-radius: 20px;
+  font-family: 'Eina';
+  padding: 3px 10px;
+  margin: 3px;
+  color: #ff521b;
+  border-width: 0;
+  background-color: rgb(214, 213, 213);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff521b;
+  color: white;
+  cursor: pointer;
+}
