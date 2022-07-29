@@ -25,7 +25,6 @@ function EventForm({ event = null, setShowModal }) {
   const [occupancy, setOccupancy] = useState((event && event.max_occupancy) || 1);
   const [price, setPrice] = useState((event && event.price) || 0.0);
   const [streetAddress, setStreetAddress] = useState((event && event.street_address) || "");
-  const [state, setState] = useState((event && event.state) || "");
   const [city, setCity] = useState((event && event.city) || "");
   const [zipCode, setZipCode] = useState((event && event.zip_code) || 0);
   const [errors, setErrors] = useState([]);
@@ -93,236 +92,240 @@ function EventForm({ event = null, setShowModal }) {
     "WY - Wyoming",
   ];
 
-  const categories = [
-    "Sport",
-    "Party",
-    "Concert",
-    "Dinner",
-    "Game",
-    "Seminar",
-    "Conference",
-    "Workshop",
-    "Social",
-    "Class",
-    "Auction",
-    "Gala",
-    "Festival",
-    "Exercise",
-    "Celebration",
-    "Other",
-  ];
+let preSelectedState;
+if (event?.state){
+  preSelectedState = event.state;
+}
 
-  const submit = async e => {
-    e.preventDefault();
-    setErrors([]);
+const [state, setState] = useState((preSelectedState && states.filter(x => x.includes(preSelectedState)))[0] || "");
 
-    if (!userId) {
-      setErrors(["You must be logged in to create or edit an event."]);
+const categories = [
+  "Sport",
+  "Party",
+  "Concert",
+  "Dinner",
+  "Game",
+  "Seminar",
+  "Conference",
+  "Workshop",
+  "Social",
+  "Class",
+  "Auction",
+  "Gala",
+  "Festival",
+  "Exercise",
+  "Celebration",
+  "Other",
+];
+
+const submit = async e => {
+  e.preventDefault();
+  setErrors([]);
+
+  if (!userId) {
+    setErrors(["You must be logged in to create or edit an event."]);
+    return;
+  }
+
+  setImageLoading(true);
+
+  if (!event) {
+    event = await dispatch(
+      makeEvent(
+        userId,
+        category,
+        name,
+        image,
+        date.replace("T", " "),
+        description,
+        price,
+        occupancy,
+        streetAddress,
+        city,
+        state.slice(0, 2),
+        zipCode
+      )
+    );
+    if (event.id) {
+      history.push(`${event.id}`);
       return;
     }
+  } else {
+    event = await dispatch(
+      editEvent(
+        event.id,
+        userId,
+        category,
+        name,
+        image,
+        date.replace("T", " "),
+        description,
+        price,
+        occupancy,
+        streetAddress,
+        city,
+        state.slice(0, 2),
+        zipCode
+      )
+    );
+  }
 
-    setImageLoading(true);
+  setImageLoading(false);
+  setErrors(event);
+  console.log(errors)
+  if (setShowModal) {
+    if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
+  }
+};
 
-    if (!event) {
-      event = await dispatch(
-        makeEvent(
-          userId,
-          category,
-          name,
-          image,
-          date.replace("T", " "),
-          description,
-          price,
-          occupancy,
-          streetAddress,
-          city,
-          state.slice(0,2),
-          zipCode
-        )
-      );
-      if (event.id) {
-        history.push(`${event.id}`);
-        return;
-      }
-    } else {
-      event = await dispatch(
-        editEvent(
-          event.id,
-          userId,
-          category,
-          name,
-          image,
-          date.replace("T", " "),
-          description,
-          price,
-          occupancy,
-          streetAddress,
-          city,
-          state.slice(0,2),
-          zipCode
-        )
-        );
-    }
+const updateImage = e => {
+  const imageFile = e.target.files[0];
+  setImage(imageFile);
+  console.log(imageFile)
+};
 
-    setImageLoading(false);
-    setErrors(event);
-    console.log(errors)
-    if (setShowModal) {
-      if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
-    }
-  };
+const deleteEventModal = () => {
+  setShowConfirmDeleteModal(true);
+};
 
-  const updateImage = e => {
-    const imageFile = e.target.files[0];
-    setImage(imageFile);
-    console.log(imageFile)
-  };
-
-  const deleteEventModal = () => {
-    setShowConfirmDeleteModal(true);
-  };
-
-  return (
-    <div>
-      <form onSubmit={submit}>
-        <div>
-          <ul className="errors">
-            {errors &&
-              Array.isArray(errors) &&
-              errors.map(error => {
-                return <li key={error}>{error}</li>;
-              })}
-          </ul>
-        </div>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input name="name" type="text" value={name} onChange={e => setName(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="date">Date:</label>
-          <input
-            name="date"
-            type="datetime-local"
-            min={new Date().toISOString().split(".")[0].slice(0, -3)}
-            value={date}
-            onChange={e => setDate(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
-            <option disabled value="">
-              Choose a Category
-            </option>
-            {categories.map(category => {
-              return (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              );
+return (
+  <div>
+    <form onSubmit={submit}>
+      <div>
+        <ul className="errors">
+          {errors &&
+            Array.isArray(errors) &&
+            errors.map(error => {
+              return <li key={error}>{error}</li>;
             })}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <input
-            name="description"
-            type="text"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Image: </label>
-          <label htmlFor='image-upload-button' className="image-upload-label">Upload
+        </ul>
+      </div>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input name="name" type="text" value={name} onChange={e => setName(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="date">Date:</label>
+        <input
+          name="date"
+          type="datetime-local"
+          min={new Date().toISOString().split(".")[0].slice(0, -3)}
+          value={date}
+          onChange={e => setDate(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="category">Category:</label>
+        <select name="category" value={category} onChange={e => setCategory(e.target.value)}>
+          <option disabled value="">
+            Choose a Category
+          </option>
+          {categories.map(category => {
+            return (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <input
+          name="description"
+          type="text"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Image: </label>
+        <label htmlFor='image-upload-button' className="image-upload-label">Upload
           <input id="image-upload-button" name="image" type="file" accept="image/*" onChange={updateImage} />
-          </label>
-          {image &&
+        </label>
+        {image &&
           <span htmlFor='image-upload-button' className="filename" name='image'>{image.name}</span>
-          }
-        </div>
-        <div>
-          <label htmlFor="occupancy">Occupancy:</label>
-          <input
-            name="occupancy"
-            type="number"
-            min="1"
-            value={occupancy}
-            onChange={e => setOccupancy(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price:</label>
-          <input
-            name="price"
-            type="number"
-            min="0"
-            placeholder="Free"
-            step="0.01"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="streetAddress">Street Address:</label>
-          <input
-            name="streetAddress"
-            type="text"
-            value={streetAddress}
-            onChange={e => setStreetAddress(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="state">State:</label>
-          <select name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
-            <option disabled value="">
-              Choose a State
-            </option>
-            {states.map(state => {
-              return (
-                <option key={state} value={state}>
-                  {state}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="city">City:</label>
-          <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="zipCode">Zip Code:</label>
-          <input
-            name="zipCode"
-            type="number"
-            min="00000"
-            max="99999"
-            value={zipCode}
-            onChange={e => setZipCode(e.target.value)}
-          />
-        </div>
-        {showConfirmDeleteModal && (
-          <Modal onClose={() => setShowConfirmDeleteModal(false)}>
-            <DeleteEventModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} event={event} />
-          </Modal>
+        }
+      </div>
+      <div>
+        <label htmlFor="occupancy">Occupancy:</label>
+        <input
+          name="occupancy"
+          type="number"
+          min="1"
+          value={occupancy}
+          onChange={e => setOccupancy(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="price">Price:</label>
+        <input
+          name="price"
+          type="number"
+          min="0"
+          placeholder="Free"
+          step="0.01"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="streetAddress">Street Address:</label>
+        <input
+          name="streetAddress"
+          type="text"
+          value={streetAddress}
+          onChange={e => setStreetAddress(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="state">State:</label>
+        <select multiple={false} name="state" type="text" value={state} onChange={e => setState(e.target.value)}>
+          {states.map(state => {
+            return (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="city">City:</label>
+        <input name="city" type="text" value={city} onChange={e => setCity(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="zipCode">Zip Code:</label>
+        <input
+          name="zipCode"
+          type="number"
+          min="00000"
+          max="99999"
+          value={zipCode}
+          onChange={e => setZipCode(e.target.value)}
+        />
+      </div>
+      {showConfirmDeleteModal && (
+        <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+          <DeleteEventModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} event={event} />
+        </Modal>
+      )}
+      <div>
+        {event ? (
+          <div>
+            <button type="submit">Update Event</button>
+            <button type="button" onClick={deleteEventModal}>Delete Event</button>
+          </div>
+        ) : (
+          <div>
+            <button>Create Event</button>
+            {imageLoading && <p>Loading...</p>}
+          </div>
         )}
-        <div>
-          {event ? (
-            <div>
-              <button type="submit">Update Event</button>
-              <button type="button" onClick={deleteEventModal}>Delete Event</button>
-            </div>
-          ) : (
-            <div>
-              <button>Create Event</button>
-              {imageLoading && <p>Loading...</p>}
-            </div>
-          )}
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+    </form>
+  </div>
+);
 }
 
 export default EventForm;

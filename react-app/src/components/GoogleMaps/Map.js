@@ -11,7 +11,8 @@ export default function MapView({ event = null }) {
     const [map, setMap] = useState(null);
     const [address, setAddress] = useState('')
     const [center, setCenter] = useState({ lat: 39.8097343, lng: -98.5556199 })
-    const [zoom, setZoom] = useState(15)
+    const [zoom, setZoom] = useState(4)
+    const [invalidAddress, setInvalidAddress] = useState(false)
 
     const keys = useSelector(state => state.mapkeys)
 
@@ -29,13 +30,15 @@ export default function MapView({ event = null }) {
     }, [event])
 
     const geoFetch = async () => {
-        const tomtomResponse = await fetch(`https://api.tomtom.com/search/2/geocode/${address}.json?storeResult=false&limit=1&language=en-US&view=Unified&key=${keys.tomtom_key}`)
+        const tomtomResponse = await fetch(`https://api.tomtom.com/search/2/geocode/${address}.json?storeResult=false&limit=1&language=en-US&view=Unified&key=${keys.tomtom_key}&countrySet=USA`)
         if (tomtomResponse.ok) {
             const data = await tomtomResponse.json()
             if (data.results.length > 0) {
                 const lat = data.results[0].position.lat
                 const lng = data.results[0].position.lon
                 setCenter({ lat: lat, lng: lng })
+            } else {
+                setInvalidAddress(true)
             }
         }
         setZoom(15)
@@ -51,15 +54,20 @@ export default function MapView({ event = null }) {
     }, [])
     
     return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={zoom}
-            onUnmount={onUnmount}
-        >
-            { /* Child components, such as markers, info windows, etc. */}
-            <Marker position={center} zoom={zoom} />
-            <></>
-        </GoogleMap>
+        <>
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={zoom}
+                onUnmount={onUnmount}
+            >
+                { /* Child components, such as markers, info windows, etc. */}
+                <Marker position={center} zoom={zoom} />
+                <></>
+            </GoogleMap>
+            {invalidAddress &&
+                <p>Address Not Found</p>
+            }
+        </>
     ) : <p>Loading</p>
 }
