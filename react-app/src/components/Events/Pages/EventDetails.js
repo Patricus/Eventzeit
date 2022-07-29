@@ -15,7 +15,6 @@ function EventDetailPage() {
   const { eventId } = useParams();
 
   const [showModal, setShowModal] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [showHiddenText, setShowHiddenText] = useState(false);
 
   const event = useSelector((state) => state.events[eventId]);
@@ -27,7 +26,6 @@ function EventDetailPage() {
 
   useEffect(() => {
     dispatch(acquireEvents());
-    // console.log("BOZO", event.description);
   }, [dispatch]);
 
   const buyTickets = () => {
@@ -56,7 +54,6 @@ function EventDetailPage() {
               backgroundColor: "red",
             }}
           >
-            {/* {console.log("BOZO", eventDescription.length)} */}
             {/* <div
               className="event-title-container"
               style={{

@@ -60,7 +60,6 @@ export const updateTicket =
       dispatch(update(ticket));
     } else {
       const ticket = await response.json();
-      console.log("ticket", ticket);
       return ticket;
     }
   };
@@ -73,7 +72,6 @@ export const deleteTicket = ticket => async dispatch => {
   });
   if (response.ok) {
     const id = await response.json();
-    console.log(id);
     dispatch(remove(id));
   }
 };

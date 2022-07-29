@@ -166,7 +166,6 @@ function EventForm({ event = null, setShowModal }) {
 
     setImageLoading(false);
     setErrors(event);
-    console.log(errors)
     if (setShowModal) {
       if (Array.isArray(errors) && errors.length === 0) setShowModal(false);
     }
@@ -175,7 +174,6 @@ function EventForm({ event = null, setShowModal }) {
   const updateImage = e => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
-    console.log(imageFile)
   };
 
   const deleteEventModal = () => {

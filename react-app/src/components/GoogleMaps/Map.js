@@ -8,7 +8,7 @@ const containerStyle = {
 };
 
 export default function MapView({ event = null }) {
-    const [map, setMap] = useState(null);
+    const [, setMap] = useState(null);
     const [address, setAddress] = useState('')
     const [center, setCenter] = useState({ lat: 39.8097343, lng: -98.5556199 })
     const [zoom, setZoom] = useState(15)
@@ -49,7 +49,7 @@ export default function MapView({ event = null }) {
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
-    
+
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
