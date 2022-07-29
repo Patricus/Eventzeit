@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Modal } from "../../Global/Elements/Modal";
 import { makeEvent, editEvent } from "../../../store/events";
 import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
-import "./eventForm.css"
+import "./eventForm.css";
 
 function EventForm({ event = null, setShowModal }) {
   (() => {
@@ -171,7 +171,6 @@ function EventForm({ event = null, setShowModal }) {
     }
   };
 
-
   const updateImage = e => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
@@ -236,7 +235,7 @@ function EventForm({ event = null, setShowModal }) {
         </div>
         <div>
           <label htmlFor="image">Image:</label>
-          <input name="image" type="file" accept="image/*" onChange={updateImage} />
+          <input id="image-upload-button" name="image" type="file" accept="image/*" onChange={updateImage} />
         </div>
         <div>
           <label htmlFor="occupancy">Occupancy:</label>

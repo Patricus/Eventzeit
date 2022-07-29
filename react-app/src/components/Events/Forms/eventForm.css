@@ -1,4 +1,4 @@
-#root > main > div > form > div:nth-child(7) > input[type=file] {
+/* #image-upload-button {
   font-size: 1.01em;
   border-radius: 20px;
   font-family: 'Eina';
@@ -10,8 +10,8 @@
   cursor: pointer;
 }
 
-#root > main > div > form > div:nth-child(7) > input[type=file]:hover {
+#image-upload-button:hover {
   background-color: #ff521b;
   color: white;
   cursor: pointer;
-}
+} */
