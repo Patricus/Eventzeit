@@ -20,17 +20,19 @@ overflow-x: scroll;
 function TicketPanel({ tickets }) {
 
     return (
-        <TicketsDiv>
-            {tickets ? (
-                <TicketUL>
-                    {tickets.map((ticket) => {
-                        return <Ticket key={ticket.id} ticket={ticket} />;
-                    })}
-                </TicketUL>
-            ) : (
-                <p>Loading</p>
-            )}
-        </TicketsDiv>
+        <div className="tickets-panel">
+            <TicketsDiv>
+                {tickets ? (
+                    <TicketUL>
+                        {tickets.map((ticket) => {
+                            return <Ticket key={ticket.id} ticket={ticket} />;
+                        })}
+                    </TicketUL>
+                ) : (
+                    <p>Loading</p>
+                )}
+            </TicketsDiv>
+        </div>
     );
 };
 

@@ -6,7 +6,7 @@
   "user-panel" "bookmarks-sidebar"
   "tickets-panel" "bookmarks-sidebar"
   "my-event-panel" "bookmarks-sidebar"
-  "buttons" "bookmarks-sidebar"
+  "dashboard-buttons" "bookmarks-sidebar"
 }
 
 .user-panel {
@@ -19,6 +19,10 @@
 
 .my-event-panel {
   grid-area: my-event-panel;
+}
+
+.dashboard-buttons {
+  grid-area: dashboard-buttons;
 }
 
 .bookmarks-sidebar {

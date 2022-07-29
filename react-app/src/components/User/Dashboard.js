@@ -61,7 +61,7 @@ function Dashboard() {
           <UserPanel user={user} tickets={tickets} />
           <TicketPanel tickets={tickets}/>
           <MyEventsPanel />
-          <div>
+          <div className="dashboard-buttons">
             <button onClick={updateUserModal}>Update User Account</button>
             <button onClick={deleteUserModal}>Delete User Account</button>
           </div>
