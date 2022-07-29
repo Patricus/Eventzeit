@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Modal } from "../../Global/Elements/Modal";
 import { makeEvent, editEvent } from "../../../store/events";
 import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
+import "./eventForm.css"
 
 function EventForm({ event = null, setShowModal }) {
   (() => {
