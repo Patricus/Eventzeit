@@ -100,6 +100,17 @@
   margin-left: 40px;
 }
 
+.in-line-link {
+  font-family: "Eina-semibold";
+  color: #191923;
+  text-decoration: "none";
+  padding: 0;
+}
+
+.in-line-link:hover {
+  color: #ff521b;
+}
+
 @media(max-width: 857px) {
   .map {
     width: 90vw;
