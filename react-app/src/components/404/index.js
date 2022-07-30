@@ -7,7 +7,7 @@ function Page404() {
         <main>
             <div id="notFound">
                 <h1>404 Page Not Found!</h1>
-                <img src={partyFoul} />
+                <img src={partyFoul} alt="party foul" />
             </div>
         </main>
     );
