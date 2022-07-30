@@ -99,7 +99,13 @@ function Events() {
                         marginLeft: "5vw",
                         marginRight: "5vw",
                     }}>
-                    <span>
+                    <span
+                        style={{
+                            border: "2px solid whitesmoke",
+                            borderRadius: "5px",
+                            padding: "8px 5px",
+                            margin: "0 2px",
+                        }}>
                         <label htmlFor="search">Search Events: </label>
                         <input
                             name="search"
@@ -109,27 +115,41 @@ function Events() {
                             placeholder="Search Events"
                         />
                     </span>
-                    <span>
-                        <label htmlFor="startDate">Start Date: </label>
-                        <input
-                            name="startDate"
-                            type="datetime-local"
-                            max={endDate}
-                            value={startDate}
-                            onChange={e => setStartDate(e.target.value)}
-                        />
+                    <span
+                        style={{
+                            border: "2px solid whitesmoke",
+                            borderRadius: "5px",
+                            padding: "8px 5px",
+                            margin: "0 2px",
+                        }}>
+                        <span>
+                            <label htmlFor="startDate">Start Date: </label>
+                            <input
+                                name="startDate"
+                                type="datetime-local"
+                                max={endDate}
+                                value={startDate}
+                                onChange={e => setStartDate(e.target.value)}
+                            />
+                        </span>
+                        <span>
+                            <label htmlFor="endDate">End Date: </label>
+                            <input
+                                name="endDate"
+                                type="datetime-local"
+                                min={startDate}
+                                value={endDate}
+                                onChange={e => setEndDate(e.target.value)}
+                            />
+                        </span>
                     </span>
-                    <span>
-                        <label htmlFor="endDate">End Date: </label>
-                        <input
-                            name="endDate"
-                            type="datetime-local"
-                            min={startDate}
-                            value={endDate}
-                            onChange={e => setEndDate(e.target.value)}
-                        />
-                    </span>
-                    <span>
+                    <span
+                        style={{
+                            border: "2px solid whitesmoke",
+                            borderRadius: "5px",
+                            padding: "8px 5px",
+                            margin: "0 2px",
+                        }}>
                         <label htmlFor="sortEvents">Sort Events By: </label>
                         <select
                             name="sortEvents"
@@ -145,7 +165,12 @@ function Events() {
                         marginLeft: "5vw",
                         marginRight: "5vw",
                         marginTop: "18px",
+                        border: "2px solid whitesmoke",
+                        borderRadius: "5px",
                     }}>
+                    <div>
+                        <p style={{ marginLeft: "7px" }}>Category Filter:</p>
+                    </div>
                     {sport ? (
                         <span>
                             <button
