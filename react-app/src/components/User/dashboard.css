@@ -6,7 +6,7 @@
         "user-panel bookmarks-sidebar"
         "dashboard-buttons bookmarks-sidebar"
         "tickets-panel bookmarks-sidebar"
-        "my-event-panel bookmarks-sidebar";
+        "my-event-panel my-event-panel";
 }
 
 .user-panel {
@@ -30,8 +30,35 @@
     grid-area: dashboard-buttons;
 }
 
+.bookmarks {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 450px;
+    /* box-shadow: 0 0 10px inset darkgray; */
+}
+
 .bookmarks-sidebar {
     grid-area: bookmarks-sidebar;
+    padding-right: 25px;
+    overflow-x: hidden;
+}
+
+.bookmarks-sidebar h3 {
+    padding: 12px 10px;
+    font-size: 28px;
+}
+
+.bookmarkLinks {
+    font-weight: 600;
+    text-decoration: solid;
+    padding-top: 3px;
+    padding-left: 15px;
+    color: grey;
+}
+
+.bookmarkLinks:hover {
+    color: #ff521b;
 }
 
 .footer-panel {
