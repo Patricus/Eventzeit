@@ -5,10 +5,16 @@ from wtforms.validators import DataRequired, Email, ValidationError, regexp
 # from app.models import Event
 
 
+def name_length(form, field):
+    name = field.data
+    if len(name) > 100:
+        raise ValidationError('Name must be less than 100 characters.')
+
+
 class EventForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(), name_length])
     image = StringField(
         'image', validators=[DataRequired()])
     date = DateTimeField('date', validators=[
@@ -25,7 +31,7 @@ class EventForm(FlaskForm):
 class EditEventForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     category = StringField('category', validators=[DataRequired()])
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(), name_length])
     image = StringField(
         'image')
     date = DateTimeField('date', validators=[
