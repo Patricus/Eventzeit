@@ -12,7 +12,7 @@
 
 .body {
   font-family:"Eina";
-  background-color:var(--bg-pink) ;
+  /* background-color:var(--bg-pink) ; */
 }
 
 .cards {
