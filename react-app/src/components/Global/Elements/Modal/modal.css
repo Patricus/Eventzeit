@@ -27,4 +27,6 @@
     padding: 25px 25px;
     border-radius: 15px;
     z-index: 100;
+    overflow-y: auto;
+    max-height: 100vh;
 }
