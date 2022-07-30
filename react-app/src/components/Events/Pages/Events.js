@@ -105,7 +105,7 @@ function Events() {
                             borderRadius: "5px",
                             padding: "8px 5px",
                             margin: "0 2px",
-                            lineHeight: "2.5em"
+                            lineHeight: "2.5em",
                         }}>
                         <label htmlFor="search">Search Events: </label>
                         <input
@@ -122,7 +122,7 @@ function Events() {
                             borderRadius: "5px",
                             padding: "8px 5px",
                             margin: "0 2px",
-                            lineHeight: "2.5em"
+                            lineHeight: "2.5em",
                         }}>
                         <span>
                             <label htmlFor="startDate">Start Date: </label>
@@ -151,7 +151,7 @@ function Events() {
                             borderRadius: "5px",
                             padding: "8px 5px",
                             margin: "0 2px",
-                            lineHeight: "2.5em"
+                            lineHeight: "2.5em",
                         }}>
                         <label htmlFor="sortEvents">Sort Events By: </label>
                         <select
@@ -170,6 +170,7 @@ function Events() {
                         marginTop: "3px",
                         border: "2px solid whitesmoke",
                         borderRadius: "5px",
+                        width: "fit-content",
                     }}>
                     <div>
                         <p style={{ marginLeft: "7px" }}>Category Filter:</p>

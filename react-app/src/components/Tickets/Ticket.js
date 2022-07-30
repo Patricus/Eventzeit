@@ -7,6 +7,7 @@ import { Modal } from "../Global/Elements/Modal";
 import TicketForm from "./TicketForm";
 
 import ticketBG from "../../images/stock-ticket.jpg";
+import { Link } from "react-router-dom";
 
 const TicketRectangle = styled.div`
     position: relative;
@@ -71,9 +72,11 @@ function Ticket({ ticket }) {
                             </TicketEventName>
                             <AttendeeName>{ticket.attendee}</AttendeeName>
                         </TicketInfo>
-                        <QRdiv>
-                            <QRCodeSVG value={ticket.event_url} size="64" />
-                        </QRdiv>
+                        <Link to={`events/${ticket.event_id}`}>
+                            <QRdiv>
+                                <QRCodeSVG value={ticket.event_url} size="64" />
+                            </QRdiv>
+                        </Link>
                     </TicketRectangle>
                 </div>
             )}

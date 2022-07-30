@@ -12,29 +12,29 @@ function BookmarksPanel({ bookmarks }) {
 
     return (
         <>
-            {events && (
-                <div className="bookmarks-sidebar">
-                    {bookmarks.length > 0 && (
-                        <BookmarksBar>
-                            <h3>Bookmarked Events</h3>
-                            <div className="bookmarks">
-                                {bookmarks.map(bookmark => {
-                                    return (
-                                        events[bookmark.event_id] && (
-                                            <Link
-                                                to={`/events/${bookmark.event_id}`}
-                                                key={bookmark.id}
-                                                className="bookmarkLinks">
-                                                {events[bookmark.event_id].name}
-                                            </Link>
-                                        )
-                                    );
-                                })}
-                            </div>
-                        </BookmarksBar>
+            <div className="bookmarks-sidebar">
+                <BookmarksBar>
+                    <h3>Bookmarked Events</h3>
+                    {bookmarks.length > 0 ? (
+                        <div className="bookmarks">
+                            {bookmarks.map(bookmark => {
+                                return (
+                                    events[bookmark.event_id] && (
+                                        <Link
+                                            to={`/events/${bookmark.event_id}`}
+                                            key={bookmark.id}
+                                            className="bookmarkLinks">
+                                            {events[bookmark.event_id].name}
+                                        </Link>
+                                    )
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <h4 style={{ color: "gray", marginLeft: "15px" }}>No events bookmarked</h4>
                     )}
-                </div>
-            )}
+                </BookmarksBar>
+            </div>
         </>
     );
 }

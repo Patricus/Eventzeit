@@ -203,9 +203,10 @@ function EventForm({ event = null, setShowModal }) {
                             })}
                     </ul>
                 </div>
+                {event && (
                 <div>
                     <h2>Update Your Event</h2>
-                </div>
+                </div>)}
                 <div className="event-form-div">
                     <label htmlFor="name">Name:</label>
                     <input

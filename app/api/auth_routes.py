@@ -82,18 +82,22 @@ def update_user(id):
     """
     Updates a logged in user
     """
-    form = EditUserForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User.query.filter(User.id == id).first()
+    user = User.query.get(id)
+    if user.id == 1:
+        return {'error': ['You cannot edit the demo user.']}, 403
+    else:
+        form = EditUserForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            user = User.query.filter(User.id == id).first()
 
-        user.username = form.data['username']
-        user.email = form.data['email']
-        user.password = form.data['password']
-        user.avatar = form.data['avatar']
+            user.username = form.data['username']
+            user.email = form.data['email']
+            user.password = form.data['password']
+            user.avatar = form.data['avatar']
 
-        db.session.commit()
-        return user.to_dict()
+            db.session.commit()
+            return user.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
