@@ -6,7 +6,7 @@ import EventsCard from "../Elements/EventsCard";
 import sportsImg from "../../../images/sports.png";
 import "../Elements/eventCard.css";
 import "../../User/dashboard.css";
-// import "./events.css";
+import "./events.css";
 
 function Events() {
   const events = Object.values(useSelector((state) => state.events));
