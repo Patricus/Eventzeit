@@ -272,7 +272,7 @@ function Events() {
                                     border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                dinner
+                                Dinner
                             </button>
                         </span>
                     )}
