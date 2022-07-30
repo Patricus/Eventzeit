@@ -1,3 +1,13 @@
 .error-container {
-  
+  background-color: rgba(255, 0, 0, 0.35);
+  padding: 12px 21px;
+  margin: 10px 10px;
+  border-radius: 15px;
+}
+
+.modal-title {
+  display: flex;
+  font-size: 23px;
+  justify-content: center;
+  margin: 10px 2px;
 }

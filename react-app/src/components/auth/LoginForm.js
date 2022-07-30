@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import "./authForm.css"
 
 const LoginForm = setShowLogin => {
   const [errors, setErrors] = useState([]);
@@ -34,14 +35,16 @@ const LoginForm = setShowLogin => {
 
   return (
     <form onSubmit={onLogin}>
-      <div className="error-container">
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
+      <div className="modal-title">
         <h2>Log In</h2>
       </div>
+      {errors.length > 0 && (<div className="error-container">
+        <ul>
+        {errors.map((error, ind) => (
+          <li key={ind}>{error}</li>
+        ))}
+        </ul>
+      </div>)}
       <div>
         <label htmlFor="email">Email</label>
         <input name="email" type="text" placeholder="Email" value={email} onChange={updateEmail} />
