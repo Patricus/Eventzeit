@@ -59,7 +59,7 @@ function EventDetailPage() {
                         style={{
                             width: "100%",
                             // backgroundColor: "red",
-                            wordWrap: "break-word"
+                            wordWrap: "break-word",
                         }}>
                         {/* <div
               className="event-title-container"
@@ -117,9 +117,11 @@ function EventDetailPage() {
                         {event.description.length > 500 && (
                             <div
                                 className="description-text"
-                                style={{
-                                    // width: "50vw",
-                                }}>
+                                style={
+                                    {
+                                        // width: "50vw",
+                                    }
+                                }>
                                 <h3>
                                     {event.description.slice(0, 500)}
                                     {showHiddenText && (
