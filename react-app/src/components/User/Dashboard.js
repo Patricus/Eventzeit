@@ -57,9 +57,15 @@ function Dashboard() {
                 )}
                 {bookmarksState && <BookmarksPanel bookmarks={bookmarks} />}
                 <UserPanel user={user} tickets={tickets} />
-                <TicketPanel tickets={tickets} />
+                <div style={{
+                  marginLeft: "25px"
+                }}>
+                  <TicketPanel tickets={tickets} />
+                </div>
                 <MyEventsPanel />
-                <div className="dashboard-buttons">
+                <div className="dashboard-buttons" style={{
+                  marginLeft: "25px"
+                }}>
                     <button onClick={updateUserModal}>Update User Account</button>
                     <button onClick={deleteUserModal}>Delete User Account</button>
                 </div>

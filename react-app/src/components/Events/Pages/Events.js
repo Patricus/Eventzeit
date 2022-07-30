@@ -83,10 +83,11 @@ function Events() {
     <main>
       <h1
         style={{
-          marginTop: "80px",
+          marginTop: "30px",
+          marginLeft: "5vw",
           fontFamily: "Eina-bold",
           color: "#191923",
-          fontSize: "90px",
+          fontSize: "110px",
         }}
       >
         Events
@@ -94,7 +95,8 @@ function Events() {
       <div>
         <div
           style={{
-            marginTop: "10vh",
+            marginTop: "2vh",
+            marginLeft: "5vw"
           }}
         >
           <span>
@@ -139,7 +141,10 @@ function Events() {
             </select>
           </span>
         </div>
-        <div>
+        <div style={{
+          marginLeft: "5vw",
+          marginTop: "18px"
+        }}>
           {sport ? (
             <span>
               <button
@@ -426,7 +431,10 @@ function Events() {
         </div>
       </div>
       <div className="body">
-        <ul className="eventsHolder">
+        <div className="eventsHolder" style={{
+          justifyContent: "center",
+          margin: "10px"
+        }}>
           {events &&
             events
               .filter((event) => {
@@ -457,17 +465,18 @@ function Events() {
               })
               .map((event) => {
                 return (
-                  <li
+                  <div
                     style={{
-                      height: "400px",
-                      width: "400px",
+                      height: "333px",
+                      width: "333px",
+                      margin: "11px"
                     }}
                   >
                     <EventsCard key={event.id} event={event} />
-                  </li>
+                  </div>
                 );
               })}
-        </ul>
+        </div>
       </div>
     </main>
   );

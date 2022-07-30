@@ -10,15 +10,22 @@ function MyEventsPanel() {
 
   return (
     <div className="my-event-panel">
-      <h2 style={{ padding: "6px" }}>Your Events</h2>
-      <div className="eventsHolder">
+      <h2 style={{ padding: "6px", marginLeft: "25px", fontFamily: "Eina-semibold", fontSize: "40px" }}>{user.username}'s' Events</h2>
+      <div
+        className="eventsHolder"
+        style={{
+            marginLeft: "20px"
+        //   justifyContent: "center",
+        }}
+      >
         {userEvents.length ? (
           userEvents.map((event) => {
             return (
               <div
                 style={{
-                  height: "400px",
-                  width: "400px",
+                  height: "333px",
+                  width: "333px",
+                  margin: "11px",
                 }}
               >
                 <EventsCard key={event.id} event={event} />
