@@ -27,12 +27,13 @@ function MyEventsPanel() {
                     userEvents.map(event => {
                         return (
                             <div
+                                key={event.id}
                                 style={{
                                     height: "333px",
                                     width: "333px",
                                     margin: "11px",
                                 }}>
-                                <EventsCard key={event.id} event={event} />
+                                <EventsCard event={event} />
                             </div>
                         );
                     })
