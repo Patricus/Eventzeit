@@ -178,6 +178,9 @@ function EventDetailPage() {
                         <div className="event-tickets-available">
                             <h3>Tickets Available: {event.tickets_available}</h3>
                         </div>
+                       {!user && (<div className="no-log-in-purchase-tickets">
+                            <h3>Log In or Sign Up to Purchase a Ticket</h3>
+                        </div>)}
                         <div className="tickets-button">
                             <div
                                 style={{
