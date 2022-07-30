@@ -45,7 +45,7 @@ function Homepage() {
             .slice(0, 6)
             .map((event) => {
               return (
-                <div style={{
+                <div key={event.id} style={{
                   height: "433px",
                   width: "433px",
                   margin: "11px"

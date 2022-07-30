@@ -601,7 +601,7 @@ function Events() {
               })
               .map((event) => {
                 return (
-                  <div
+                  <div key={event.id}
                     style={{
                       height: "433px",
                       width: "433px",
