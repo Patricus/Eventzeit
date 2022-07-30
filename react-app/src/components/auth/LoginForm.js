@@ -32,7 +32,7 @@ const LoginForm = setShowLogin => {
 
   return (
     <form onSubmit={onLogin}>
-      <div>
+      <div className="error-container">
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
