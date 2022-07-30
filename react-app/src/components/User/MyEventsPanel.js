@@ -10,9 +10,13 @@ function MyEventsPanel() {
         <div className="my-event-panel">
             <h2 style={{ padding: "6px" }}>Your Events</h2>
             <div className="eventsHolder">
-                {userEvents.map(event => {
-                    return <EventsCard key={event.id} event={event} />;
-                })}
+                {userEvents.length ? (
+                    userEvents.map(event => {
+                        return <EventsCard key={event.id} event={event} />;
+                    })
+                ) : (
+                    <h2>You Don't have any events, yet!</h2>
+                )}
             </div>
         </div>
     );

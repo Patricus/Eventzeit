@@ -87,11 +87,10 @@ def update_user(id):
     if form.validate_on_submit():
         user = User.query.filter(User.id == id).first()
 
-
-        user.username=form.data['username']
-        user.email=form.data['email']
-        user.password=form.data['password']
-        user.avatar=form.data['avatar']
+        user.username = form.data['username']
+        user.email = form.data['email']
+        user.password = form.data['password']
+        user.avatar = form.data['avatar']
 
         db.session.commit()
         return user.to_dict()
@@ -104,9 +103,9 @@ def delete_user(id):
     """
     Deletes a user account
     """
-    user = User.query.filter(User.id == id)
-    if user.username == 'Demo':
-        return {'error': ['You cannot delete the demo user.']}
+    user = User.query.get(id)
+    if user.id == 1:
+        return {'error': ['You cannot delete the demo user.']}, 403
     else:
         user.delete()
         db.session.commit()

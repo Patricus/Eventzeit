@@ -446,7 +446,7 @@ function Events() {
                         })
                         .map(event => {
                             return (
-                                <div className="event" id="event">
+                                <div className="event" id="event" key={event.id}>
                                     <EventsCard key={event.id} event={event} />
                                 </div>
                             );
