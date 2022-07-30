@@ -26,7 +26,7 @@ function MyEventsPanel() {
                 {userEvents.length ? (
                     userEvents.map(event => {
                         return (
-                            <div
+                            <div key={event.id}
                                 style={{
                                     height: "333px",
                                     width: "333px",
