@@ -12,7 +12,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <button className="dropdown" onClick={onLogout}>
+        <button className="dropdown" onClick={onLogout} style={{ width: "90px" }}>
             Logout
         </button>
     );

@@ -11,7 +11,7 @@ const DropDownMenu = styled.div`
     box-shadow: 0 0 4px 2px black;
     border-radius: 4px;
     background-color: white;
-    width: 100px;
+    min-width: 100px;
     top: 8px;
     left: 3px;
     padding: 5px;
@@ -25,6 +25,12 @@ const MenuButton = styled.div`
 
 function UserMenu({ user }) {
     const [showMenu, setShowMenu] = useState(false);
+
+    const myDash = async () => {
+        setTimeout(() => {
+            setShowMenu(false);
+        }, 1);
+    };
 
     const openMenu = () => {
         if (!showMenu) return setShowMenu(true);
@@ -70,7 +76,7 @@ function UserMenu({ user }) {
                         <NavLink
                             className="dropdown"
                             to={`/dashboard`}
-                            onClick={openMenu}
+                            onClick={myDash}
                             style={{ textDecoration: "none" }}>
                             <p className="navlink dropdown">My Dashboard</p>
                         </NavLink>
