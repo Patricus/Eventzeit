@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import Ticket from "../Tickets/Ticket";
 
-const TicketsDiv = styled.div`
-    width: 100%;
-    overflow: hidden;
-    height: 180px;
-    margin: 10px 0 10px 10px;
-`;
-
 const TicketUL = styled.ul`
     display: flex;
 `;

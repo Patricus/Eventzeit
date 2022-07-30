@@ -1,10 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./eventCard.css";
 
 function EventsCard({ event }) {
-  const [showHiddenText, setShowHiddenText] = useState(false);
 
   return (
     <Link className="card" to={`/events/${event.id}`}>
