@@ -78,6 +78,9 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
+        <h2>Sign Up</h2>
+      </div>
+      <div>
         <label>User Name</label>
         <input type="text" name="username" onChange={updateUsername} value={username}></input>
       </div>
