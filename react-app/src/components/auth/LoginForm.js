@@ -45,20 +45,22 @@ const LoginForm = setShowLogin => {
         ))}
         </ul>
       </div>)}
-      <div>
-        <label htmlFor="email">Email</label>
-        <input name="email" type="text" placeholder="Email" value={email} onChange={updateEmail} />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
+      <div className="modal-items-container">
+        <div className="modal-items">
+          <label htmlFor="email">Email:</label>
+          <input name="email" type="text" placeholder="Email" value={email} onChange={updateEmail} />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
+          <button type="submit">Login</button>
+        </div>
       </div>
     </form>
   );

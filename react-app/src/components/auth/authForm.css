@@ -11,3 +11,13 @@
   justify-content: center;
   margin: 10px 2px;
 }
+
+.modal-items-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-items {
+  display: flex;
+  flex-direction: column;
+}
