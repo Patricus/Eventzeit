@@ -9,60 +9,69 @@ import DeleteUserModal from "../auth/DeleteUser";
 import BookmarksPanel from "./BookmarkPanel";
 import UserPanel from "./UserPanel";
 import TicketPanel from "./TicketPanel";
+import MyEventsPanel from "./MyEventsPanel";
+import "./dashboard.css";
 
 function Dashboard() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
-  const ticketsState = useSelector((state) => state.tickets);
-  const tickets = Object.values(ticketsState);
-  const bookmarksState = useSelector(state => state.bookmarks)
-  const bookmarks = Object.values(bookmarksState)
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    const ticketsState = useSelector(state => state.tickets);
+    const tickets = Object.values(ticketsState);
+    const bookmarksState = useSelector(state => state.bookmarks);
+    const bookmarks = Object.values(bookmarksState);
 
-  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
-  const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
+    const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
+    const [showUpdateUserModal, setShowUpdateUserModal] = useState(false);
 
-  useEffect(() => {
-    if (!user) return;
-    dispatch(getAllTickets(user.id));
-  }, [dispatch, user]);
+    useEffect(() => {
+        if (!user) return;
+        dispatch(getAllTickets(user.id));
+    }, [dispatch, user]);
 
-  useEffect(() => {
-    if (!user) return;
-    dispatch(getAllBookmarks(user.id));
-  }, [dispatch, user]);
+    useEffect(() => {
+        if (!user) return;
+        dispatch(getAllBookmarks(user.id));
+    }, [dispatch, user]);
 
-  const updateUserModal = async () => {
-    setShowUpdateUserModal(true);
-  };
+    const updateUserModal = async () => {
+        setShowUpdateUserModal(true);
+    };
 
-  const deleteUserModal = async () => {
-    setShowConfirmDeleteModal(true);
-  };
+    const deleteUserModal = async () => {
+        setShowConfirmDeleteModal(true);
+    };
 
-  if (!user) return <Redirect to={"/"} />;
-  if (user) {
-    return (
-      <main>
-        {showUpdateUserModal && (
-            <Modal onClose={() => setShowUpdateUserModal(false)}>
-              <EditUserForm setShowUpdateUserModal={setShowUpdateUserModal}/>
-            </Modal>
-          )}
-          {showConfirmDeleteModal && (
-            <Modal onClose={() => setShowConfirmDeleteModal(false)}>
-              <DeleteUserModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} />
-            </Modal>
-          )}
-        {bookmarksState && <BookmarksPanel bookmarks={bookmarks}/>}
-        <UserPanel user={user} tickets={tickets} />
-        <TicketPanel tickets={tickets}/>
-        <div>
-          <button onClick={updateUserModal}>Update User Account</button>
-          <button onClick={deleteUserModal}>Delete User Account</button>
-        </div>
-      </main>
-    );
-  }
+    if (!user) return <Redirect to={"/"} />;
+    if (user) {
+        return (
+            <main id="dashboard">
+                {showUpdateUserModal && (
+                    <Modal onClose={() => setShowUpdateUserModal(false)}>
+                        <EditUserForm setShowUpdateUserModal={setShowUpdateUserModal} />
+                    </Modal>
+                )}
+                {showConfirmDeleteModal && (
+                    <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+                        <DeleteUserModal setShowConfirmDeleteModal={setShowConfirmDeleteModal} />
+                    </Modal>
+                )}
+                {bookmarksState && <BookmarksPanel bookmarks={bookmarks} />}
+                <UserPanel user={user} tickets={tickets} />
+                <div style={{
+                  marginLeft: "25px"
+                }}>
+                  <TicketPanel tickets={tickets} />
+                </div>
+                <MyEventsPanel />
+                <div className="dashboard-buttons" style={{
+                  marginLeft: "25px"
+                }}>
+                    <button onClick={updateUserModal}>Update User Account</button>
+                    <button onClick={deleteUserModal}>Delete User Account</button>
+                </div>
+            </main>
+        );
+    }
 }
 
 export default Dashboard;

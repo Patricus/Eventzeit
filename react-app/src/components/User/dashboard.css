@@ -1,0 +1,73 @@
+#dashboard {
+    display: grid;
+    grid-template-columns: 75vw 25vw;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+        "user-panel bookmarks-sidebar"
+        "dashboard-buttons bookmarks-sidebar"
+        "tickets-panel bookmarks-sidebar"
+        "my-event-panel my-event-panel";
+}
+
+.user-panel {
+    grid-area: user-panel;
+}
+
+.tickets-panel {
+    grid-area: tickets-panel;
+    width: 70vw;
+    height: 255px;
+    margin: 10px 2px;
+    overflow-x: scroll;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+}
+
+.my-event-panel {
+    grid-area: my-event-panel;
+    height: fit-content;
+}
+
+.dashboard-buttons {
+    grid-area: dashboard-buttons;
+}
+
+.bookmarks {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 450px;
+    /* box-shadow: 0 0 10px inset darkgray; */
+}
+
+.bookmarks-sidebar {
+    grid-area: bookmarks-sidebar;
+    margin-right: 30px;
+    overflow-x: hidden;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.bookmarks-sidebar h3 {
+    padding: 0 0 10px 12px;
+    font-size: 28px;
+}
+
+.bookmarkLinks {
+    font-weight: 600;
+    text-decoration: solid;
+    padding-top: 3px;
+    padding-left: 15px;
+    color: grey;
+}
+
+.bookmarkLinks:hover {
+    color: #ff521b;
+}
+
+.eventsHolder {
+    width: 80vw;
+    padding-left: 10vw;
+    margin-bottom: 2px;
+}

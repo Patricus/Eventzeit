@@ -21,7 +21,7 @@ def generate_ticket():
 
         event = Event.query.get(ticket.event_id)
         if event.tickets_available == 0:
-            return {"error": "Sorry, there are no more tickets left for this event"}, 405
+            return {"error": "Sorry, there are no more tickets left for this event"}, 400
         else:
             # Every time a ticket is purchased, tickets available is
             # decreased by one

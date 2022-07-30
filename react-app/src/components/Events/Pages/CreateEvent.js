@@ -4,8 +4,10 @@ import EventForm from "../Forms";
 function CreateEvent() {
   return (
     <main>
-      <h1>Create Event</h1>
-      <EventForm />
+      <div className="create-event-page-container">
+        <h1>Create Event</h1>
+        <EventForm />
+      </div>
     </main>
   );
 }

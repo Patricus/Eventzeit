@@ -1,11 +1,12 @@
 .description-text {
-  width: 40vw;
-  margin: 30px ;
+  /* word-wrap: break-word; */
+  padding-right: 44px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .event-time {
   font-family: "Eina-semibold";
-  margin-left: 30px;
 }
 
 .event-img {
@@ -18,7 +19,7 @@
   width: 70vw;
   font-size: 50px;
   font-family: "Eina-bold";
-  margin-left: 30px;
+  margin-left: 65px;
   margin-top: 30px;
 }
 
@@ -27,6 +28,21 @@
   height: auto;
   width: 300px;
   background-color: red;
+}
+
+.event-location,
+.description-text,
+.event-time,
+.event-ticket-price,
+.event-tickets-available,
+.no-log-in-purchase-tickets
+ {
+  margin-left: 30px;
+  margin-bottom: 18px;
+}
+
+.tickets-button {
+  display: flex;
 }
 
 .button-container {
@@ -75,6 +91,31 @@
   color: white;
   text-transform: uppercase;
   padding: 1em 1.5em;
+}
+
+.map {
+  float: left;
+  width: 40%;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.in-line-link {
+  font-family: "Eina-semibold";
+  color: #191923;
+  text-decoration: "none";
+  padding: 0;
+}
+
+.in-line-link:hover {
+  color: #ff521b;
+}
+
+@media(max-width: 857px) {
+  .map {
+    width: 90vw;
+    margin-right: 40px;
+  }
 }
 
 /*

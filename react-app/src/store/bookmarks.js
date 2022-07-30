@@ -27,7 +27,6 @@ export const addOneBookmark =
     });
     if (response.ok) {
       const bookmark = await response.json();
-      // console.log(bookmark)
       dispatch(add(bookmark));
       return bookmark;
     }
@@ -42,7 +41,6 @@ export const getAllBookmarks = (userId) => async (dispatch) => {
 };
 
 export const deleteBookmark = (componentBookmark) => async (dispatch) => {
-  console.log(componentBookmark);
   const response = await fetch(
     `/api/bookmarks/delete/${componentBookmark.id}`,
     {
@@ -53,7 +51,6 @@ export const deleteBookmark = (componentBookmark) => async (dispatch) => {
   );
   if (response.ok) {
     const id = await response.json();
-    console.log(id);
     dispatch(remove(id));
   }
 };
