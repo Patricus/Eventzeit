@@ -97,6 +97,7 @@ function Events() {
                     style={{
                         marginTop: "2vh",
                         marginLeft: "5vw",
+                        marginRight: "5vw",
                     }}>
                     <span>
                         <label htmlFor="search">Search Events: </label>
@@ -142,6 +143,7 @@ function Events() {
                 <div
                     style={{
                         marginLeft: "5vw",
+                        marginRight: "5vw",
                         marginTop: "18px",
                     }}>
                     {sport ? (
