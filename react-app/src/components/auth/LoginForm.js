@@ -15,6 +15,8 @@ const LoginForm = setShowLogin => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      setShowLogin(false);
     }
   };
 
