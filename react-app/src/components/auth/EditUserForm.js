@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { editUser } from "../../store/session";
 import styled from "styled-components";
+import "./authForm.css";
 
 import avatar1 from "../../images/1.png";
 import avatar2 from "../../images/2.png";
@@ -29,7 +30,6 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
-
   const [username, setUsername] = useState(user.username || "");
   const [email, setEmail] = useState(user.email || "");
   const [avatar, setAvatar] = useState(user.avatar || avatar1);
@@ -42,12 +42,12 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
     if (password === repeatPassword) {
       const data = await dispatch(
         editUser(user.id, username, email, password, avatar)
-        );
-        if (data) {
-          setErrors(data);
-        }
+      );
+      if (data) {
+        setErrors(data);
       }
-      if (errors.length === 0) setShowUpdateUserModal(false)
+    }
+    if (errors.length === 0) setShowUpdateUserModal(false);
   };
 
   const updateUsername = (e) => {
@@ -75,10 +75,8 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
       <form onSubmit={updateUser}>
         <div>
           {errors &&
-              Array.isArray(errors) &&
-              errors.map((error, idx) => (
-            <div key={idx}>{error}</div>
-          ))}
+            Array.isArray(errors) &&
+            errors.map((error, idx) => <div key={idx}>{error}</div>)}
         </div>
         <div>
           <label>User Name</label>
