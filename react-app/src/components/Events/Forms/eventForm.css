@@ -24,3 +24,52 @@ input[type="file"] {
   width: 50px;
   height: 8px;
 }
+
+.create-event-page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.create-event-page-container h1 {
+  padding-top: 20px;
+}
+
+.form-box {
+  margin-top: 30px;
+}
+
+.form-box form {
+  width: 395px;
+  height: auto;
+}
+
+.event-input {
+  width: 100%;
+}
+
+.event-form-div {
+  margin: 8px 0px;
+}
+
+.event-form-div label,
+.image-label {
+  font-weight: bolder;
+}
+
+.event-description-textarea {
+  resize: none;
+  width: 100%;
+  height: 65px;
+}
+
+.errors {
+  padding-left: 85px;
+  list-style: none;
+  font-size: smaller;
+}
+
+.errors li {
+  margin: 2px 0;
+}

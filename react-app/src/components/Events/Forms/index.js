@@ -192,7 +192,7 @@ function EventForm({ event = null, setShowModal }) {
     };
 
     return (
-        <div>
+        <div className="form-box">
             <form onSubmit={submit}>
                 <div>
                     <ul className="errors">
@@ -203,18 +203,20 @@ function EventForm({ event = null, setShowModal }) {
                             })}
                     </ul>
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="name">Name:</label>
                     <input
+                        className="event-input"
                         name="name"
                         type="text"
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="date">Date:</label>
                     <input
+                        className="event-input"
                         name="date"
                         type="datetime-local"
                         min={new Date().toISOString().split(".")[0].slice(0, -3)}
@@ -222,9 +224,10 @@ function EventForm({ event = null, setShowModal }) {
                         onChange={e => setDate(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="category">Category:</label>
                     <select
+                        className="event-input"
                         name="category"
                         value={category}
                         onChange={e => setCategory(e.target.value)}>
@@ -240,9 +243,10 @@ function EventForm({ event = null, setShowModal }) {
                         })}
                     </select>
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="description">Description:</label>
-                    <input
+                    <textarea
+                        className="event-description-textarea"
                         name="description"
                         type="text"
                         value={description}
@@ -250,7 +254,7 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div>
-                    <label>Image: </label>
+                    <label className="image-label">Image: </label>
                     <label htmlFor="image-upload-button" className="image-upload-label">
                         Upload
                         <input
@@ -267,9 +271,10 @@ function EventForm({ event = null, setShowModal }) {
                         </span>
                     )}
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="occupancy">Occupancy:</label>
                     <input
+                        className="event-input"
                         name="occupancy"
                         type="number"
                         min="1"
@@ -277,9 +282,10 @@ function EventForm({ event = null, setShowModal }) {
                         onChange={e => setOccupancy(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="price">Price:</label>
                     <input
+                        className="event-input"
                         name="price"
                         type="number"
                         min="0"
@@ -289,18 +295,20 @@ function EventForm({ event = null, setShowModal }) {
                         onChange={e => setPrice(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="streetAddress">Street Address:</label>
                     <input
+                        className="event-input"
                         name="streetAddress"
                         type="text"
                         value={streetAddress}
                         onChange={e => setStreetAddress(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="state">State:</label>
                     <select
+                        className="event-input"
                         multiple={false}
                         name="state"
                         type="text"
@@ -315,18 +323,20 @@ function EventForm({ event = null, setShowModal }) {
                         })}
                     </select>
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="city">City:</label>
                     <input
+                        className="event-input"
                         name="city"
                         type="text"
                         value={city}
                         onChange={e => setCity(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="event-form-div">
                     <label htmlFor="zipCode">Zip Code:</label>
                     <input
+                        className="event-input"
                         name="zipCode"
                         type="number"
                         min="00000"
