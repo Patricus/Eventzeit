@@ -32,3 +32,11 @@
   margin: 8px 5px 0 5px;
   align-self: center;
 }
+
+#sign-up {
+  width: 120px;
+}
+
+#avatar-img {
+  align-self: center;
+}
