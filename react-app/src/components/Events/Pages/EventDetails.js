@@ -57,7 +57,7 @@ function EventDetailPage() {
                 {event ? (
                     <div
                         style={{
-                            width: "100%",
+                            width: "99%",
                             // backgroundColor: "red",
                             wordWrap: "break-word",
                         }}>
@@ -69,16 +69,6 @@ function EventDetailPage() {
             ></div> */}
                         <div className="button-container">
                             {user && event.user_id === user.id && (
-                                // <div class="dropdown">
-                                //   <button onClick={() => setShowDropdown(true)} class="dropbtn">
-                                //     Dropdown
-                                //   </button>
-                                //   <div id="myDropdown" class="dropdown-content">
-                                //     <a href="#">Link 1</a>
-                                //     <a href="#">Link 2</a>
-                                //     <a href="#">Link 3</a>
-                                //   </div>
-                                // </div>
                                 <button
                                     onClick={() => setShowModal(true)}
                                     className="event-button"
@@ -223,18 +213,12 @@ function EventDetailPage() {
                     <h1>Loading Event</h1>
                 )}
             </div>
-            <div
-                style={{
-                    float: "left",
-                    width: "40%",
-                    marginTop: "20px",
-                    marginLeft: "40px",
-                }}>
+            <div className="map">
                 <div
-                    style={{
-                        marginBottom: "20px",
-                        marginRight: "20px",
-                    }}>
+                  style={{
+                      marginBottom: "20px",
+                      marginRight: "20px",
+                  }}>
                     <MapView event={event} />
                 </div>
             </div>

@@ -22,7 +22,7 @@ const NavigationBar = styled.div`
 `;
 
 const Logo = styled.img`
-    width: 9em;
+    width: 12em;
     height: auto;
     padding-top: 5%;
     align-self: center;
@@ -63,7 +63,7 @@ const NavBar = () => {
                 style={{
                     // backgroundColor: "green",
                     paddingLeft: "20px",
-                    height: "70px",
+                    height: "90px",
                     // margin: "0px"
                 }}>
                 <div

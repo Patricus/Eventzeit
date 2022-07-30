@@ -467,8 +467,8 @@ function Events() {
                 return (
                   <div
                     style={{
-                      height: "333px",
-                      width: "333px",
+                      height: "433px",
+                      width: "433px",
                       margin: "11px"
                     }}
                   >

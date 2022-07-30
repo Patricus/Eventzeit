@@ -30,7 +30,9 @@ function Homepage() {
         </p>
       </div>
       <h2>Up and coming events:</h2>
-      <div className="eventsHolder">
+      <div className="eventsHolder" style={{
+        justifyContent: "center"
+      }}>
         {events &&
           events
             .filter((event) => {
@@ -43,8 +45,9 @@ function Homepage() {
             .map((event) => {
               return (
                 <div style={{
-                  height: "400px",
-                  width: "400px"
+                  height: "433px",
+                  width: "433px",
+                  margin: "11px"
                 }}>
                   <EventsCard key={event.id} event={event} />
                 </div>
