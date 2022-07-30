@@ -1,12 +1,12 @@
 
 .image-upload-label {
-  border-radius: 12px;
+  border-radius: 15px;
   display: inline-block;
   padding: 1px 12px;
   cursor: pointer;
-  background-color: rgb(214, 213, 213);
+  background-color: rgb(229, 229, 229);
   color: #ff521b;
-  padding: 3px 10px;
+  padding: 3px 12px;
 }
 
 .image-upload-label:hover {

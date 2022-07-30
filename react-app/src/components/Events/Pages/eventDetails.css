@@ -34,7 +34,9 @@
 .description-text,
 .event-time,
 .event-ticket-price,
-.event-tickets-available {
+.event-tickets-available,
+.no-log-in-purchase-tickets
+ {
   margin-left: 30px;
   margin-bottom: 18px;
 }
@@ -96,6 +98,17 @@
   width: 40%;
   margin-top: 20px;
   margin-left: 40px;
+}
+
+.in-line-link {
+  font-family: "Eina-semibold";
+  color: #191923;
+  text-decoration: "none";
+  padding: 0;
+}
+
+.in-line-link:hover {
+  color: #ff521b;
 }
 
 @media(max-width: 857px) {

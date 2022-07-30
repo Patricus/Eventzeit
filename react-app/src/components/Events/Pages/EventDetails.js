@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import LoginForm from "../../auth/LoginForm";
+import SignUpForm from "../../auth/SignUpForm";
 import { acquireEvents } from "../../../store/events";
 import { Modal } from "../../Global/Elements/Modal";
 import EventForm from "../Forms";
@@ -13,10 +15,13 @@ function EventDetailPage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [showTicketForm, setShowTicketForm] = useState(false);
-    const { eventId } = useParams();
+    const [showLogin, setShowLogin] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
 
     const [showModal, setShowModal] = useState(false);
     const [showHiddenText, setShowHiddenText] = useState(false);
+
+    const { eventId } = useParams();
 
     const event = useSelector(state => state.events[eventId]);
     const user = useSelector(state => state.session.user);
@@ -42,6 +47,18 @@ function EventDetailPage() {
 
     return (
         <main>
+             <div>
+            {showLogin && (
+                <Modal onClose={() => setShowLogin(false)}>
+                    <LoginForm setShowLogin={setShowLogin} />
+                </Modal>
+            )}
+            {showSignup && (
+                <Modal onClose={() => setShowSignup(false)}>
+                    <SignUpForm setShowSignup={setShowSignup} />
+                </Modal>
+            )}
+            </div>
             {event && (
                 <div>
                     <h1 className="event-title">{event.name}</h1>
@@ -178,6 +195,25 @@ function EventDetailPage() {
                         <div className="event-tickets-available">
                             <h3>Tickets Available: {event.tickets_available}</h3>
                         </div>
+                       {!user && (<div className="no-log-in-purchase-tickets">
+                            <h3><span><button
+                                    className="in-line-link"
+                                    onClick={() => setShowLogin(true)}
+                                    style={{
+                                        border: "none",
+                                        background: "transparent",
+                                    }}>
+                                    Login
+                                </button></span> or <span><button
+                                    className="in-line-link"
+                                    onClick={() => setShowSignup(true)}
+                                    style={{
+                                        border: "none",
+                                        background: "transparent",
+                                    }}>
+                                    Sign Up
+                                </button></span> to Purchase a Ticket</h3>
+                        </div>)}
                         <div className="tickets-button">
                             <div
                                 style={{
