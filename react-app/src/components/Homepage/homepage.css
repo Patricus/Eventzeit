@@ -1,0 +1,27 @@
+#splash-welcome {
+  margin-top: 30px;
+  margin-left: 5vw;
+  font-family: Eina-bold;
+  color: #191923;
+  font-size: 100px;
+}
+
+.little-splash-title {
+  margin-top: 12px;
+  margin-left: 5vw;
+  font-family: Eina-bold;
+  color: #191923;
+  font-size: 23px;
+}
+
+.little-splash-blurb {
+  margin-top: -2px;
+  margin-left: 5vw;
+  font-family: Eina;
+  color: #191923;
+  font-size: 19px;
+}
+
+#up-coming-events {
+  font-size: 31px;
+}
