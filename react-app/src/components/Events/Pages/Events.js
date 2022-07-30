@@ -6,6 +6,7 @@ import EventsCard from "../Elements/EventsCard";
 import sportsImg from "../../../images/sports.png";
 import "../Elements/eventCard.css";
 import "../../User/dashboard.css";
+// import "./events.css";
 
 function Events() {
   const events = Object.values(useSelector((state) => state.events));
@@ -96,7 +97,7 @@ function Events() {
         <div
           style={{
             marginTop: "2vh",
-            marginLeft: "5vw"
+            marginLeft: "5vw",
           }}
         >
           <span>
@@ -141,30 +142,48 @@ function Events() {
             </select>
           </span>
         </div>
-        <div style={{
-          marginLeft: "5vw",
-          marginTop: "18px"
-        }}>
+        <div
+          style={{
+            marginLeft: "5vw",
+            marginTop: "18px",
+          }}
+        >
           {sport ? (
             <span>
               <button
                 onClick={() => setSport(!sport)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
-                <img
-                  src={sportsImg}
-                  style={{
-                    width: "19px",
-                  }}
-                />
+                <figure>
+                  <figcaption>
+                    <h4>
+                      <span>Sport</span>
+                    </h4>
+                  </figcaption>
+                </figure>
               </button>
             </span>
           ) : (
             <span>
-              <button onClick={() => setSport(!sport)}>Sport</button>
+              <button
+                className="category-button"
+                onClick={() => setSport(!sport)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                <figure>
+                  <figcaption>
+                    <h4>
+                      <span>Sport</span>
+                    </h4>
+                  </figcaption>
+                </figure>
+              </button>
             </span>
           )}
           {party ? (
@@ -173,7 +192,7 @@ function Events() {
                 onClick={() => setParty(!party)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Party
@@ -181,7 +200,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setParty(!party)}>Party</button>
+              <button
+                onClick={() => setParty(!party)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Party
+              </button>
             </span>
           )}
           {concert ? (
@@ -190,7 +217,7 @@ function Events() {
                 onClick={() => setConcert(!concert)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Concert
@@ -198,7 +225,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setConcert(!concert)}>Concert</button>
+              <button
+                onClick={() => setConcert(!concert)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Concert
+              </button>
             </span>
           )}
           {dinner ? (
@@ -207,7 +242,7 @@ function Events() {
                 onClick={() => setDinner(!dinner)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Dinner
@@ -215,7 +250,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setDinner(!dinner)}>dinner</button>
+              <button
+                onClick={() => setDinner(!dinner)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                dinner
+              </button>
             </span>
           )}
           {game ? (
@@ -224,7 +267,7 @@ function Events() {
                 onClick={() => setGame(!game)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Game
@@ -232,7 +275,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setGame(!game)}>Game</button>
+              <button
+                onClick={() => setGame(!game)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Game
+              </button>
             </span>
           )}
           {seminar ? (
@@ -241,7 +292,7 @@ function Events() {
                 onClick={() => setSeminar(!seminar)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Seminar
@@ -249,7 +300,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setSeminar(!seminar)}>Seminar</button>
+              <button
+                onClick={() => setSeminar(!seminar)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Seminar
+              </button>
             </span>
           )}
           {conference ? (
@@ -258,7 +317,7 @@ function Events() {
                 onClick={() => setConference(!conference)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Conference
@@ -266,7 +325,13 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setConference(!conference)}>
+              <button
+                onClick={() => setConference(!conference)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
                 Conference
               </button>
             </span>
@@ -277,7 +342,7 @@ function Events() {
                 onClick={() => setWorkshop(!workshop)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Workshop
@@ -285,7 +350,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setWorkshop(!workshop)}>Workshop</button>
+              <button
+                onClick={() => setWorkshop(!workshop)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Workshop
+              </button>
             </span>
           )}
           {social ? (
@@ -294,7 +367,7 @@ function Events() {
                 onClick={() => setSocial(!social)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Social
@@ -302,7 +375,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setSocial(!social)}>Social</button>
+              <button
+                onClick={() => setSocial(!social)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Social
+              </button>
             </span>
           )}
           {classCategory ? (
@@ -311,7 +392,7 @@ function Events() {
                 onClick={() => setClassCategory(!classCategory)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Class
@@ -319,7 +400,13 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setClassCategory(!classCategory)}>
+              <button
+                onClick={() => setClassCategory(!classCategory)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
                 Class
               </button>
             </span>
@@ -330,7 +417,7 @@ function Events() {
                 onClick={() => setAuction(!auction)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Auction
@@ -338,7 +425,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setAuction(!auction)}>Auction</button>
+              <button
+                onClick={() => setAuction(!auction)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Auction
+              </button>
             </span>
           )}
           {gala ? (
@@ -347,7 +442,7 @@ function Events() {
                 onClick={() => setGala(!gala)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Gala
@@ -355,7 +450,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setGala(!gala)}>Gala</button>
+              <button
+                onClick={() => setGala(!gala)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Gala
+              </button>
             </span>
           )}
           {festival ? (
@@ -364,7 +467,7 @@ function Events() {
                 onClick={() => setFestival(!festival)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Festival
@@ -372,7 +475,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setFestival(!festival)}>Festival</button>
+              <button
+                onClick={() => setFestival(!festival)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Festival
+              </button>
             </span>
           )}
           {exercise ? (
@@ -381,7 +492,7 @@ function Events() {
                 onClick={() => setExercise(!exercise)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Exercise
@@ -389,7 +500,15 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setExercise(!exercise)}>Exercise</button>
+              <button
+                onClick={() => setExercise(!exercise)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Exercise
+              </button>
             </span>
           )}
           {celebration ? (
@@ -398,7 +517,7 @@ function Events() {
                 onClick={() => setCelebration(!celebration)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Celebration
@@ -406,7 +525,13 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setCelebration(!celebration)}>
+              <button
+                onClick={() => setCelebration(!celebration)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
                 Celebration
               </button>
             </span>
@@ -417,7 +542,7 @@ function Events() {
                 onClick={() => setOther(!other)}
                 style={{
                   border: "3px solid",
-                  borderColor: "red",
+                  borderColor: "#FF521B",
                 }}
               >
                 Other
@@ -425,16 +550,27 @@ function Events() {
             </span>
           ) : (
             <span>
-              <button onClick={() => setOther(!other)}>Other</button>
+              <button
+                onClick={() => setOther(!other)}
+                style={{
+                  border: "3px solid",
+                  borderColor: "transparent",
+                }}
+              >
+                Other
+              </button>
             </span>
           )}
         </div>
       </div>
       <div className="body">
-        <div className="eventsHolder" style={{
-          justifyContent: "center",
-          margin: "10px"
-        }}>
+        <div
+          className="eventsHolder"
+          style={{
+            justifyContent: "center",
+            margin: "10px",
+          }}
+        >
           {events &&
             events
               .filter((event) => {
@@ -469,7 +605,7 @@ function Events() {
                     style={{
                       height: "433px",
                       width: "433px",
-                      margin: "11px"
+                      margin: "11px",
                     }}
                   >
                     <EventsCard key={event.id} event={event} />
