@@ -85,7 +85,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
           })}
         </ul>
       }
-      {!purchased && (
+      {!purchased && !confirmRefund && (
         <form onSubmit={onPurchase}>
           <div>
             <label>Name of Attendee</label>
@@ -103,14 +103,14 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
               Submit
             </button>
           )}
-          {ticket && confirmRefund && (
-            <div>
-              <h2>Are you sure you want to return this ticket?</h2>
-              <button onClick={returnMyTicket}>Confirm</button>
-              <button onClick={updateConfirmRefund}>Cancel</button>
-            </div>
-          )}
         </form>
+      )}
+      {ticket && confirmRefund && (
+        <div>
+          <h2>Are you sure you want to return this ticket?</h2>
+          <button onClick={returnMyTicket}>Confirm</button>
+          <button onClick={updateConfirmRefund}>Cancel</button>
+        </div>
       )}
       {purchased && (
         <div>
