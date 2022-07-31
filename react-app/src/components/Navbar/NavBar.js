@@ -22,9 +22,9 @@ const NavigationBar = styled.div`
 `;
 
 const Logo = styled.img`
-    width: 12rem;
+    width: 15rem;
     height: auto;
-    padding-top: 5%;
+    padding-top: 0%;
     align-self: center;
 `;
 
