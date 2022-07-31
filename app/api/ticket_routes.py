@@ -21,7 +21,7 @@ def generate_ticket():
 
         event = Event.query.get(ticket.event_id)
         if event.tickets_available == 0:
-            return {"error": "Sorry, there are no more tickets left for this event"}, 400
+            return {"errors": ["Sorry, there are no more tickets left for this event"]}, 400
         else:
             # Every time a ticket is purchased, tickets available is
             # decreased by one
@@ -40,7 +40,7 @@ def load_tickets(userId):
     return {'tickets': [ticket.to_dict() for ticket in tickets]}
 
 
-@ticket_routes.route('/<int:id>', methods=['POST'])
+@ticket_routes.route('/<int:id>', methods=['PUT'])
 def update_ticket(id):
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -51,6 +51,7 @@ def update_ticket(id):
         ticket.user_id = form.data['user_id']
         ticket.event_url = form.data['event_url']
         db.session.commit()
+        print(f"\n\n\n\n\n\n\n {ticket.to_dict()}")
         return ticket.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
