@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./eventCard.css";
 
 function EventsCard({ event }) {
-
   return (
     <Link className="card" to={`/events/${event.id}`}>
       <img src={event.event_image_url} className="card-image" alt="" />
@@ -28,7 +27,8 @@ function EventsCard({ event }) {
               .split(":")
               .splice(0, 2)
               .join(":")
-              .slice(7, 11).toUpperCase()}
+              .slice(7, 11)
+              .toUpperCase()}
           </div>
           <div className="date-number">
             {event.date
@@ -44,10 +44,10 @@ function EventsCard({ event }) {
         <div className="card-header">
           <div className="card-header-text">
             {/* NAME START */}
-            {event.name.length > 24 && (
-              <h2 className="card-title">{event.name.slice(0, 24)} . . .</h2>
+            {event.name.length > 18 && (
+              <h2 className="card-title">{event.name.slice(0, 18)} . . .</h2>
             )}
-            {event.name.length <= 24 && (
+            {event.name.length <= 18 && (
               <h2 className="card-title">{event.name}</h2>
             )}
             {/* NAME END */}
