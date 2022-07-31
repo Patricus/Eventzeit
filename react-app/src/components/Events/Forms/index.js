@@ -198,7 +198,6 @@ function EventForm({ event = null, setShowModal }) {
                     <div>
                         <ul className="errors">
                             {errors &&
-                                Array.isArray(errors) &&
                                 errors.map(error => {
                                     return <li key={error}>{error}</li>;
                                 })}
@@ -219,7 +218,6 @@ function EventForm({ event = null, setShowModal }) {
                         <div>
                             <ul className="errors">
                                 {errors &&
-                                    Array.isArray(errors) &&
                                     errors.map(error => {
                                         return <li key={error}>{error}</li>;
                                     })}

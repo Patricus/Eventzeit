@@ -65,11 +65,11 @@ input[type="file"] {
 
 .errors {
     background-color: rgba(255, 0, 0, 0.35);
-    padding: 12px 21px;
     margin: 10px 10px;
     border-radius: 15px;
 }
 
 .errors li {
-    margin: 2px 0;
+    padding: 3px;
+    margin-left: 30px;
 }
