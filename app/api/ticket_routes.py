@@ -40,7 +40,7 @@ def load_tickets(userId):
     return {'tickets': [ticket.to_dict() for ticket in tickets]}
 
 
-@ticket_routes.route('/<int:id>', methods=['POST'])
+@ticket_routes.route('/<int:id>', methods=['PUT'])
 def update_ticket(id):
     form = TicketForm()
     form['csrf_token'].data = request.cookies['csrf_token']
