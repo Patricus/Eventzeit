@@ -89,7 +89,8 @@ function EventForm({ event = null, setShowModal }) {
     }
 
     const [state, setState] = useState(
-        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || "CA - California"
+        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) ||
+            "CA - California"
     );
 
     const categories = [
@@ -155,7 +156,7 @@ function EventForm({ event = null, setShowModal }) {
         //     date = date.join(" ");
         //     return date;
         // };
-        setDate(new Date(date).toUTCString());
+        setDate(date);
 
         if (!event) {
             event = await dispatch(
