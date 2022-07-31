@@ -38,7 +38,6 @@ const TicketEventName = styled.p`
     height: 80px;
     width: 120px;
     font-size: 14px;
-    cursor: pointer;
 `;
 
 const AttendeeName = styled.p`
@@ -65,18 +64,21 @@ function Ticket({ ticket }) {
             {event && ticket && (
                 <div>
                     <TicketRectangle>
+                        <button
+                            onClick={() => setShowTicket(true)}
+                            style={{ position: "absolute", top: "-25px", left: "95px" }}>
+                            Update Ticket
+                        </button>
                         <TicketBGImage src={ticketBG} alt="stock-ticket-image" />
                         <TicketInfo>
-                            <TicketEventName onClick={() => setShowTicket(true)}>
-                                {event.name}
-                            </TicketEventName>
+                            <TicketEventName>{event.name}</TicketEventName>
                             <AttendeeName>{ticket.attendee}</AttendeeName>
                         </TicketInfo>
-                        <Link to={`events/${ticket.event_id}`}>
-                            <QRdiv>
-                                <QRCodeSVG value={ticket.event_url} size="64" />
-                            </QRdiv>
-                        </Link>
+                        <QRdiv>
+                            <Link to={`events/${ticket.event_id}`}>
+                                <QRCodeSVG value={ticket.event_url} size="64" className="QRCode" />
+                            </Link>
+                        </QRdiv>
                     </TicketRectangle>
                 </div>
             )}
