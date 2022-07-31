@@ -11,7 +11,7 @@ const DropDownMenu = styled.div`
     box-shadow: 0 0 4px 2px black;
     border-radius: 4px;
     background-color: white;
-    min-width: 100px;
+    min-width: 150px;
     top: 8px;
     left: 3px;
     padding: 5px;
