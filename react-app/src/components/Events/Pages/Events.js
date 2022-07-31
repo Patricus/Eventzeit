@@ -183,13 +183,9 @@ function Events() {
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                <figure>
-                                    <figcaption>
-                                        <h4>
-                                            <span>Sport</span>
-                                        </h4>
-                                    </figcaption>
-                                </figure>
+                                <h4>
+                                    <span>Sport</span>
+                                </h4>
                             </button>
                         </span>
                     ) : (
@@ -201,13 +197,7 @@ function Events() {
                                     border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                <figure>
-                                    <figcaption>
-                                        <h4>
-                                            <span>Sport</span>
-                                        </h4>
-                                    </figcaption>
-                                </figure>
+                                Sport
                             </button>
                         </span>
                     )}
