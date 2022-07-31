@@ -89,7 +89,12 @@ function EventDetailPage() {
                                 <button
                                     onClick={() => setShowModal(true)}
                                     className="event-button"
-                                    style={{ fontSize: "20px", padding: "6px 10px" }}>
+                                    style={{
+                                        fontSize: "20px",
+                                        padding: "6px 10px",
+                                        border: "2px solid white",
+                                        borderRadius: "50%",
+                                    }}>
                                     ✎
                                 </button>
                             )}

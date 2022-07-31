@@ -89,7 +89,8 @@ function EventForm({ event = null, setShowModal }) {
     }
 
     const [state, setState] = useState(
-        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || "CA - California"
+        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) ||
+            "CA - California"
     );
 
     const categories = [
@@ -155,7 +156,7 @@ function EventForm({ event = null, setShowModal }) {
         //     date = date.join(" ");
         //     return date;
         // };
-        setDate(new Date(date).toUTCString());
+        setDate(date);
 
         if (!event) {
             event = await dispatch(
@@ -352,6 +353,16 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
+                    <label htmlFor="city">City</label>
+                    <input
+                        className="event-input"
+                        name="city"
+                        type="text"
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                    />
+                </div>
+                <div className="event-form-div">
                     <label htmlFor="state">State</label>
                     <select
                         className="event-input"
@@ -368,16 +379,6 @@ function EventForm({ event = null, setShowModal }) {
                             );
                         })}
                     </select>
-                </div>
-                <div className="event-form-div">
-                    <label htmlFor="city">City</label>
-                    <input
-                        className="event-input"
-                        name="city"
-                        type="text"
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                    />
                 </div>
                 <div className="event-form-div">
                     <label htmlFor="zipCode">Zip Code</label>

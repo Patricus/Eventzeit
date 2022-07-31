@@ -24,10 +24,6 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
         setName(e.target.value);
     };
 
-    // useEffect(() => {
-    //     console.log("showRefundTicket", showRefundTicket);
-    // }, [showRefundTicket]);
-
     const closeAfterPurchaseMessage = () => {
         setPurchased(true);
         dispatch(acquireEvents());
@@ -70,11 +66,9 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
             };
 
             const response = await dispatch(updateTicket(ticket.id, data));
-            console.log("response", response);
             if (response.id) {
                 setShowTicket(false);
             } else {
-                console.log("response", response);
                 setErrors(response.errors);
             }
         }
