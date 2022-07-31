@@ -73,8 +73,13 @@
 }
 
 .card-arc {
+  display: flex;
+  align-items: center;
+  color: #191923;
+  font-family: "Eina-bold";
+  font-weight: 900;
   width: 5em;
-  height: 5em;
+  height: 5.8em;
   position: absolute;
   bottom: 100%;
   right: 0;
@@ -113,6 +118,26 @@
   overflow: hidden;
 }
 
+.date-text {
+  letter-spacing: -2px;
+  margin-top: 10px;
+  float: left;
+  width: 50%;
+  font-size: 28px;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+}
+
+.date-number {
+  margin-top: 10px;
+  letter-spacing: 4px;
+  /* margin-top: 20px; */
+  float: left;
+  width: 50%;
+  font-size: 38px;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+}
 /* .main {
   display: flex;
   justify-content: center;
