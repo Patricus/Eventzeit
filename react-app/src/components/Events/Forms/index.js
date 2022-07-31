@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../Global/Elements/Modal";
@@ -7,18 +7,8 @@ import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 import "./eventForm.css";
 
 function EventForm({ event = null, setShowModal }) {
-    (() => {
-        if (!event) return;
-        let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")
-            .toISOString()
-            .split(".")[0]
-            .slice(0, -3);
-        event.date = newDate;
-    })();
     const [name, setName] = useState((event && event.name) || "");
-    const [date, setDate] = useState(
-        (event && event.date) || new Date().toISOString().split(".")[0].slice(0, -3)
-    );
+    const [date, setDate] = useState((event && event.date.slice(0, 17).replace(" ", "T")) || "");
     const [category, setCategory] = useState((event && event.category) || "");
     const [description, setDescription] = useState((event && event.description) || "");
     const [image, setImage] = useState((event && event.event_image_url) || "");
@@ -34,6 +24,7 @@ function EventForm({ event = null, setShowModal }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id);
+
     const states = [
         "AK - Alaska",
         "AL - Alabama",
@@ -131,6 +122,40 @@ function EventForm({ event = null, setShowModal }) {
         }
 
         setImageLoading(true);
+
+        // const dateConverter = date => {
+        //     let local = new Date(date).toLocaleString().split(", ");
+        //     let newDate = local[0];
+        //     newDate = newDate.split("/");
+        //     newDate.unshift(newDate.pop());
+        //     if (newDate[1] < 10) {
+        //         newDate[1] = "0" + newDate[1];
+        //     }
+        //     if (newDate[2] < 10) {
+        //         newDate[2] = "0" + newDate[2];
+        //     }
+        //     newDate = newDate.join("-");
+        //     let newTime = local[1];
+        //     if (newTime.endsWith("AM")) {
+        //         newTime = "0" + newTime.slice(0, -6);
+        //     } else {
+        //         newTime = newTime.slice(0, -6).split(":");
+        //         newTime[0] = String(+newTime[0] + 12);
+        //         newTime = newTime.join(":");
+        //     }
+        //     local[0] = newDate;
+        //     local[1] = newTime;
+        //     local = local.join("T");
+        //     return local;
+        // };
+
+        // const convertDateToGMT = date => {
+        //     date = new Date(date).toString().split(" ");
+        //     date[5] = "GMT-0000";
+        //     date = date.join(" ");
+        //     return date;
+        // };
+        setDate(new Date(date).toUTCString());
 
         if (!event) {
             event = await dispatch(
@@ -241,7 +266,6 @@ function EventForm({ event = null, setShowModal }) {
                         className="event-input"
                         name="date"
                         type="datetime-local"
-                        min={new Date().toISOString().split(".")[0].slice(0, -3)}
                         value={date}
                         onChange={e => setDate(e.target.value)}
                     />

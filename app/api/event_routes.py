@@ -3,6 +3,7 @@ from flask_login import login_required
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.models import Event, db
 from app.forms.newEvent_form import EventForm, EditEventForm
+from datetime import timezone
 
 event_routes = Blueprint('events', __name__)
 
