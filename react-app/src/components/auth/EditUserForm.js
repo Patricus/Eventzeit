@@ -41,10 +41,10 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
         e.preventDefault();
         if (password === repeatPassword) {
             const data = await dispatch(editUser(user.id, username, email, password, avatar));
-            if (data) {
-                setErrors(data);
-            } else {
+            if (data.id) {
                 setShowUpdateUserModal(false);
+            } else {
+                setErrors(data);
             }
         }
     };
