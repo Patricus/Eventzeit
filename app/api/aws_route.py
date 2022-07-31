@@ -11,7 +11,7 @@ aws_routes = Blueprint('images', __name__)
 @login_required
 def upload():
     if "image" not in request.files:
-        return {'errors': 'Image required'}, 401
+        return {"url": ""}
 
     image = request.files['image']
 
