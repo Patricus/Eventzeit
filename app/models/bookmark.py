@@ -16,7 +16,6 @@ class Bookmark(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'title': self.title,
             'event_id': self.event_id,
             'user_id': self.user_id
         }

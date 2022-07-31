@@ -13,7 +13,6 @@ def generate_bookmark():
     bookmark = Bookmark(
         user_id = data['user_id'],
         event_id = data['event_id'],
-        title = data['title']
     )
 
 
