@@ -353,6 +353,16 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
+                    <label htmlFor="city">City</label>
+                    <input
+                        className="event-input"
+                        name="city"
+                        type="text"
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                    />
+                </div>
+                <div className="event-form-div">
                     <label htmlFor="state">State</label>
                     <select
                         className="event-input"
@@ -369,16 +379,6 @@ function EventForm({ event = null, setShowModal }) {
                             );
                         })}
                     </select>
-                </div>
-                <div className="event-form-div">
-                    <label htmlFor="city">City</label>
-                    <input
-                        className="event-input"
-                        name="city"
-                        type="text"
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                    />
                 </div>
                 <div className="event-form-div">
                     <label htmlFor="zipCode">Zip Code</label>
