@@ -3,18 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events";
 import styled from "styled-components";
-import "../auth/authForm.css"
+import "../auth/authForm.css";
 
 const WhiteBG = styled.div`
   background-color: white;
 `;
 
-function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setShowTicketForm }) {
+function TicketForm({
+  event,
+  eventUrl = null,
+  ticket = null,
+  setShowTicket,
+  setShowTicketForm,
+}) {
   const [name, setName] = useState(ticket?.attendee || "");
   const [errors, setErrors] = useState([]);
   const [purchased, setPurchased] = useState(false);
   const [confirmRefund, setConfirmRefund] = useState(false);
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
 
@@ -23,7 +29,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
     else setErrors(["Name must be 25 characters or less."]);
   }, [name]);
 
-  const updateName = e => {
+  const updateName = (e) => {
     setName(e.target.value);
   };
 
@@ -39,13 +45,13 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
     }, 3750);
   };
 
-  const returnMyTicket = e => {
+  const returnMyTicket = (e) => {
     e.preventDefault();
     dispatch(deleteTicket(ticket));
     setShowTicket(false);
   };
 
-  const onPurchase = e => {
+  const onPurchase = (e) => {
     e.preventDefault();
     if (!name) setErrors(["Name field is required."]);
     if (!eventUrl && !ticket) setErrors(["Could not find Event Url"]);
@@ -56,13 +62,13 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
         event_id: event.id,
         event_url: eventUrl,
       };
-      dispatch(addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)).then(
-        response => {
-          console.log(response)
-          if (response.id) closeAfterPurchaseMessage();
-          else setErrors(Object.values(response));
-        }
-      );
+      dispatch(
+        addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)
+      ).then((response) => {
+        console.log(response);
+        if (response.id) closeAfterPurchaseMessage();
+        else setErrors(Object.values(response));
+      });
     }
     if (ticket) {
       const data = {
@@ -78,22 +84,25 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
 
   return (
     <WhiteBG>
-      {errors &&
+      {errors && (
         <ul>
           {errors.map((error, i = 0) => {
             i++;
             return <li key={i}>{error}</li>;
           })}
         </ul>
-      }
+      )}
       {!purchased && !confirmRefund && (
         <form onSubmit={onPurchase}>
-          <div>
+          <div className="modal-title">
+            <h2>Update Ticket</h2>
+          </div>
+          <div className="modal-items">
             <label>Name of Attendee</label>
             <input type="text" value={name} onChange={updateName}></input>
           </div>
           {ticket && !confirmRefund ? (
-            <div>
+            <div className="modal-buttons">
               <button type="submit" disabled={!name}>
                 Update
               </button>
