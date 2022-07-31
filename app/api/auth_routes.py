@@ -84,7 +84,7 @@ def update_user(id):
     """
     user = User.query.get(id)
     if user.id == 1:
-        return {'errors': ['You cannot edit the demo user.']}, 403
+        return {'errors': ['You cannot edit the demo user, try creating your own user!']}, 403
     else:
         form = EditUserForm()
         form['csrf_token'].data = request.cookies['csrf_token']
