@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events";
 import styled from "styled-components";
+import "../auth/authForm.css"
 
 const WhiteBG = styled.div`
   background-color: white;
@@ -106,10 +107,14 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
         </form>
       )}
       {ticket && confirmRefund && (
-        <div>
-          <h2>Are you sure you want to return this ticket?</h2>
-          <button onClick={returnMyTicket}>Confirm</button>
-          <button onClick={updateConfirmRefund}>Cancel</button>
+        <div className="modal-items-container">
+          <div className="modal-title">
+            <h2>Are you sure you want to return this ticket?</h2>
+          </div>
+          <div className="modal-buttons">
+            <button onClick={updateConfirmRefund}>Cancel</button>
+            <button onClick={returnMyTicket}>Confirm</button>
+          </div>
         </div>
       )}
       {purchased && (
