@@ -3,10 +3,12 @@
     font-family: Eina;
     src: url(../src/eina/Eina01-Regular.ttf);
 }
+
 @font-face {
     font-family: Eina-bold;
     src: url(../src/eina/Eina01-Bold.ttf);
 }
+
 @font-face {
     font-family: Eina-semibold;
     src: url(../src/eina/Eina01-SemiBold.ttf);
@@ -54,4 +56,20 @@ select {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+:root {
+    --background: white;
+    --text-primary: black;
+    --accent: #ff521b;
+}
+
+[data-them='dark'] {
+    --background: black;
+    --text-primary: white;
+    --accent: #ff521b;
+}
+
+.white-content {
+    background: white;
 }

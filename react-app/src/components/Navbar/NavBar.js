@@ -9,6 +9,7 @@ import "./navBar.css";
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
 import { Modal } from "../Global/Elements/Modal";
+import Switch from "react-switch";
 
 const NavigationBar = styled.div`
     margin-left: 20vw;
@@ -31,6 +32,11 @@ const Logo = styled.img`
 const NavBar = () => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
+    const [darkMode, setDarkMode] = useState(false)
+
+    const toggleTheme = e => {
+        setDarkMode(!darkMode)
+    }
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
@@ -161,6 +167,15 @@ const NavBar = () => {
                                     fontFamily: "Eina-semibold",
                                 }}>
                                 <UserMenu user={user} />
+                            </div>
+                            <div className="dark-mode-div">
+                                <p className="dark-mode-p">Dark Mode</p>
+                                <Switch
+                                    className="dropdown"
+                                    onChange={toggleTheme}
+                                    checked={darkMode}
+                                    height={16}
+                                    width={30} />
                             </div>
                         </>
                     )}

@@ -25,6 +25,7 @@ const MenuButton = styled.div`
 
 function UserMenu({ user }) {
     const [showMenu, setShowMenu] = useState(false);
+    const [darkMode, setDarkMode] = useState(false)
 
     const myDash = async () => {
         setTimeout(() => {

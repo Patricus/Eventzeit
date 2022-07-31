@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import configureStore from "./store";
 import { ModalProvider } from "./components/Global/Elements/Modal";
+import ThemeContextWrapper from "./context/ThemeWrapper";
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ModalProvider>
       <Provider store={store}>
-        <App />
+        <ThemeContextWrapper>
+          <App />
+        </ThemeContextWrapper>
       </Provider>
     </ModalProvider>
   </React.StrictMode>,
