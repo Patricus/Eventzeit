@@ -22,7 +22,7 @@ const NavigationBar = styled.div`
 `;
 
 const Logo = styled.img`
-    width: 12em;
+    width: 12rem;
     height: auto;
     padding-top: 5%;
     align-self: center;
@@ -50,7 +50,7 @@ const NavBar = () => {
         <div>
             {showLogin && (
                 <Modal onClose={() => setShowLogin(false)}>
-                    <LoginForm setShowLogin={setLoggedIn} />
+                    <LoginForm setShowLogin={setShowLogin} />
                 </Modal>
             )}
             {showSignup && (

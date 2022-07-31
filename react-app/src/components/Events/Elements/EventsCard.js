@@ -7,11 +7,41 @@ function EventsCard({ event }) {
   return (
     <Link className="card" to={`/events/${event.id}`}>
       <img src={event.event_image_url} className="card-image" alt="" />
+      <div
+        className="card-arc"
+        style={{
+          top: "0px",
+          right: "33px",
+          backgroundColor: "#A675A1",
+          // backgroundColor: "#7E7F9A",
+          zIndex: "2",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+          }}
+        >
+          <div className="date-text">
+            {event.date
+              .split(" G")[0]
+              .split(":")
+              .splice(0, 2)
+              .join(":")
+              .slice(7, 11).toUpperCase()}
+          </div>
+          <div className="date-number">
+            {event.date
+              .split(" G")[0]
+              .split(":")
+              .splice(0, 2)
+              .join(":")
+              .slice(5, 8)}
+          </div>
+        </div>
+      </div>
       <div className="card-overlay">
         <div className="card-header">
-          <svg className="card-arc" xmlns="http://www.w3.org/2000/svg">
-            <path />
-          </svg>
           <div className="card-header-text">
             {/* NAME START */}
             {event.name.length > 24 && (
@@ -23,9 +53,7 @@ function EventsCard({ event }) {
             {/* NAME END */}
             {/*  */}
             {/* EVENT DATE START */}
-            <span className="card-status">
-              {event.date.split(" G")[0].split(":").splice(0, 2).join(":")}
-            </span>
+            <span className="card-status">{event.category}</span>
             {/* EVENT DATE END */}
           </div>
         </div>

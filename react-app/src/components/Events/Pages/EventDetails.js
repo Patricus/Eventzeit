@@ -47,17 +47,17 @@ function EventDetailPage() {
 
     return (
         <main>
-             <div>
-            {showLogin && (
-                <Modal onClose={() => setShowLogin(false)}>
-                    <LoginForm setShowLogin={setShowLogin} />
-                </Modal>
-            )}
-            {showSignup && (
-                <Modal onClose={() => setShowSignup(false)}>
-                    <SignUpForm setShowSignup={setShowSignup} />
-                </Modal>
-            )}
+            <div>
+                {showLogin && (
+                    <Modal onClose={() => setShowLogin(false)}>
+                        <LoginForm setShowLogin={setShowLogin} />
+                    </Modal>
+                )}
+                {showSignup && (
+                    <Modal onClose={() => setShowSignup(false)}>
+                        <SignUpForm setShowSignup={setShowSignup} />
+                    </Modal>
+                )}
             </div>
             {event && (
                 <div>
@@ -178,6 +178,17 @@ function EventDetailPage() {
                         )}
                         {/* END */}
                         {/* <h3>What: {event.description}</h3> */}
+                        <div className="event-category">
+                            <h3>
+                                <span
+                                    style={{
+                                        fontFamily: "Eina-semibold",
+                                    }}>
+                                    Category:
+                                </span>{" "}
+                                {event.category}
+                            </h3>
+                        </div>
                         <div className="event-location">
                             <h3>
                                 <span
@@ -195,25 +206,36 @@ function EventDetailPage() {
                         <div className="event-tickets-available">
                             <h3>Tickets Available: {event.tickets_available}</h3>
                         </div>
-                       {!user && (<div className="no-log-in-purchase-tickets">
-                            <h3><span><button
-                                    className="in-line-link"
-                                    onClick={() => setShowLogin(true)}
-                                    style={{
-                                        border: "none",
-                                        background: "transparent",
-                                    }}>
-                                    Login
-                                </button></span> or <span><button
-                                    className="in-line-link"
-                                    onClick={() => setShowSignup(true)}
-                                    style={{
-                                        border: "none",
-                                        background: "transparent",
-                                    }}>
-                                    Sign Up
-                                </button></span> to Purchase a Ticket</h3>
-                        </div>)}
+                        {!user && (
+                            <div className="no-log-in-purchase-tickets">
+                                <h3>
+                                    <span>
+                                        <button
+                                            className="in-line-link"
+                                            onClick={() => setShowLogin(true)}
+                                            style={{
+                                                border: "none",
+                                                background: "transparent",
+                                            }}>
+                                            Login
+                                        </button>
+                                    </span>{" "}
+                                    or{" "}
+                                    <span>
+                                        <button
+                                            className="in-line-link"
+                                            onClick={() => setShowSignup(true)}
+                                            style={{
+                                                border: "none",
+                                                background: "transparent",
+                                            }}>
+                                            Sign Up
+                                        </button>
+                                    </span>{" "}
+                                    to Purchase a Ticket
+                                </h3>
+                            </div>
+                        )}
                         <div className="tickets-button">
                             <div
                                 style={{
@@ -251,10 +273,10 @@ function EventDetailPage() {
             </div>
             <div className="map">
                 <div
-                  style={{
-                      marginBottom: "20px",
-                      marginRight: "20px",
-                  }}>
+                    style={{
+                        marginBottom: "20px",
+                        marginRight: "20px",
+                    }}>
                     <MapView event={event} />
                 </div>
             </div>
