@@ -39,10 +39,10 @@ function TicketForm({
 
   const closeAfterPurchaseMessage = () => {
     setPurchased(true);
+    dispatch(acquireEvents());
     setTimeout(() => {
       setShowTicketForm(false);
-      dispatch(acquireEvents());
-    }, 3750);
+    }, 3000);
   };
 
   const returnMyTicket = (e) => {
