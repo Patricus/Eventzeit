@@ -4,11 +4,6 @@ import "./eventCard.css";
 
 function EventsCard({ event }) {
     const [localDate] = useState(new Date(event.date).toString());
-
-    useEffect(() => {
-        console.log("localDate", localDate);
-    }, [localDate]);
-
     return (
         <Link className="card" to={`/events/${event.id}`}>
             <img src={event.event_image_url} className="card-image" alt="" />
@@ -23,7 +18,9 @@ function EventsCard({ event }) {
                 }}>
                 <div
                     style={{
-                        height: "100%",
+                        height: "auto",
+                        backgroundColor: "#A675A1",
+                        paddingTop: "10px",
                     }}>
                     <div className="date-text">{localDate.split(" ")[1].toUpperCase()}</div>
                     <div className="date-number">{localDate.split(" ")[2]}</div>
@@ -33,10 +30,10 @@ function EventsCard({ event }) {
                 <div className="card-header">
                     <div className="card-header-text">
                         {/* NAME START */}
-                        {event.name.length > 24 && (
-                            <h2 className="card-title">{event.name.slice(0, 24)} . . .</h2>
+                        {event.name.length > 18 && (
+                            <h2 className="card-title">{event.name.slice(0, 18)} . . .</h2>
                         )}
-                        {event.name.length <= 24 && <h2 className="card-title">{event.name}</h2>}
+                        {event.name.length <= 18 && <h2 className="card-title">{event.name}</h2>}
                         {/* NAME END */}
                         {/*  */}
                         {/* EVENT DATE START */}
@@ -45,7 +42,11 @@ function EventsCard({ event }) {
                     </div>
                 </div>
                 {event.description.length > 74 && (
-                    <p className="card-description">
+                    <p
+                        className="card-description"
+                        style={{
+                            fontSize: "20px",
+                        }}>
                         {event.description.slice(0, 74)}
                         <span className="dots">...</span>
                     </p>

@@ -69,6 +69,6 @@
 
 .eventsHolder {
     width: 80vw;
-    padding-left: 10vw;
+    /* padding-left: 10vw; */
     margin-bottom: 2px;
 }
