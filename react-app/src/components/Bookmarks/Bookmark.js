@@ -51,7 +51,12 @@ function Bookmark({ event_id, user_id = null }) {
                     <button
                         className="star-button"
                         onClick={clickButton}
-                        style={{ fontSize: "30px", padding: "2px 10px" }}>
+                        style={{
+                            fontSize: "30px",
+                            padding: "2px 10px",
+                            border: "2px solid white",
+                            borderRadius: "50%",
+                        }}>
                         {String.fromCharCode(9734)}
                     </button>
                 </>
@@ -60,7 +65,12 @@ function Bookmark({ event_id, user_id = null }) {
                 <button
                     className="star-button"
                     onClick={clickButton}
-                    style={{ fontSize: "30px", padding: "2px 10px" }}>
+                    style={{
+                        fontSize: "30px",
+                        padding: "2px 10px",
+                        border: "2px solid white",
+                        borderRadius: "50%",
+                    }}>
                     <div className="star">{String.fromCharCode(9733)}</div>
                 </button>
             )}
