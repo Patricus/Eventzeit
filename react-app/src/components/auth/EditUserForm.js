@@ -46,7 +46,7 @@ const EditUserForm = ({ setShowUpdateUserModal }) => {
             } else {
                 setErrors(data);
             }
-        }
+        } else setErrors(["Passwords do not match."]);
     };
 
     const updateUsername = e => {
