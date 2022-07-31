@@ -11,7 +11,7 @@ import {
 //   cursor: pointer;
 // `;
 
-function Bookmark({ event_id, user_id = null, title }) {
+function Bookmark({ event_id, user_id = null }) {
   const dispatch = useDispatch();
 
   //if a button clicks and there is no bookmark in the bookmarks table where the user and the event matches,
@@ -41,7 +41,7 @@ function Bookmark({ event_id, user_id = null, title }) {
 
   const clickButton = () => {
     //if bookmark is falsey create a bookmark
-    if (!bookmark) dispatch(addOneBookmark({ event_id, user_id, title }));
+    if (!bookmark) dispatch(addOneBookmark({ event_id, user_id }));
     //else remove the bookmark
     else {
       dispatch(deleteBookmark(bookmark));
@@ -69,13 +69,6 @@ function Bookmark({ event_id, user_id = null, title }) {
         >
           <div className="star">{String.fromCharCode(9733)}</div>
         </button>
-        // {userBookmarks.map((bookmark) => {
-        //   return (
-        //     <NavLink to={`/events/${bookmark.event_id}`}>
-        //       {bookmark.name}
-        //     </NavLink>
-        //   );
-        // })}
       )}
     </div>
   );
