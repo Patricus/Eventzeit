@@ -5,6 +5,7 @@ import EventsCard from "../Events/Elements/EventsCard";
 import "../Events/Elements/eventCard.css";
 import "../User/dashboard.css";
 import "./homepage.css";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   const events = Object.values(useSelector((state) => state.events));
@@ -17,17 +18,28 @@ function Homepage() {
 
   return (
     <main>
-      <div className="landing-image" style={{
-        display: "flex",
-      }}>
-        <button
+      <div
+        className="landing-image"
+        style={{
+          display: "flex",
+        }}
+      >
+        <div
           style={{
-            height: "20px",
-            bottom: "10px",
+            marginLeft: "13em",
+            marginTop: "21em",
+            height: "80px",
           }}
         >
-          Find Events
-        </button>
+          <Link
+            to={"/events/"}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <div className="find-events-btn">Find Events</div>
+          </Link>
+        </div>
       </div>
       <h1 id="splash-welcome">Welcome to Eventzeit!</h1>
       {/* <div>
