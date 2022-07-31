@@ -6,12 +6,19 @@
   font-size: 92px;
 }
 
+.landing-image {
+  height: 500px;
+  background-image: url("../../images/landing-img.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .little-splash-title {
   margin-top: 12px;
   margin-left: 5vw;
   font-family: Eina-bold;
   color: #191923;
-  font-size: 23px;
+  font-size: 38px;
 }
 
 .little-splash-blurb {
@@ -22,6 +29,6 @@
   font-size: 19px;
 }
 
-#up-coming-events {
+/* #up-coming-events {
   font-size: 31px;
-}
+} */
