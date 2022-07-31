@@ -27,7 +27,11 @@ const DeleteUserModal = ({ setShowConfirmDeleteModal }) => {
   return (
     <main>
       <div className="modal-items-container">
-        {demoError && <p>Can't delete Demo User</p>}
+        {demoError && (
+           <div className="error-container">
+           <li>Deleting the Demo User is a forbidden action</li>
+        </div>
+        )}
         <h2 id="delete-user-msg">
           Are you sure you want to delete your account?
         </h2>
