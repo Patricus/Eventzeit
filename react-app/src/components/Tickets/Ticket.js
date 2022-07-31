@@ -34,16 +34,24 @@ const TicketInfo = styled.div`
 `;
 
 const TicketEventName = styled.p`
+    position: relative;
+    top: -20px;
     margin: 0 0 0 12px;
-    height: 80px;
-    width: 120px;
+    height: 60px;
+    width: 105px;
     font-size: 14px;
 `;
 
 const AttendeeName = styled.p`
+    position: absolute;
+    bottom: 0px;
     margin: 0 0 0 12px;
     font-size: 14px;
+    overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
+    width: 105px;
+    max-height: 40px;
 `;
 
 const QRdiv = styled.div`
