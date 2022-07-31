@@ -194,19 +194,39 @@ function EventForm({ event = null, setShowModal }) {
     return (
         <div className="form-box">
             <form onSubmit={submit}>
-                <div>
-                    <ul className="errors">
-                        {errors &&
-                            Array.isArray(errors) &&
-                            errors.map(error => {
-                                return <li key={error}>{error}</li>;
-                            })}
-                    </ul>
-                </div>
+                {!event && (
+                    <div>
+                        <ul className="errors">
+                            {errors &&
+                                Array.isArray(errors) &&
+                                errors.map(error => {
+                                    return <li key={error}>{error}</li>;
+                                })}
+                        </ul>
+                    </div>
+                )}
                 {event && (
-                <div>
-                    <h2>Update Your Event</h2>
-                </div>)}
+                    <div>
+                        <div
+                            style={{
+                                display: "flex",
+                                fontSize: "23px",
+                                justifyContent: "center",
+                                margin: "10px 2px",
+                            }}>
+                            <h2>Update Your Event</h2>
+                        </div>
+                        <div>
+                            <ul className="errors">
+                                {errors &&
+                                    Array.isArray(errors) &&
+                                    errors.map(error => {
+                                        return <li key={error}>{error}</li>;
+                                    })}
+                            </ul>
+                        </div>
+                    </div>
+                )}
                 <div className="event-form-div">
                     <label htmlFor="name">Name:</label>
                     <input

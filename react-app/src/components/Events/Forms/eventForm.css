@@ -1,75 +1,75 @@
-
 .image-upload-label {
-  border-radius: 15px;
-  display: inline-block;
-  padding: 1px 12px;
-  cursor: pointer;
-  background-color: rgb(229, 229, 229);
-  color: #ff521b;
-  padding: 3px 12px;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 1px 12px;
+    cursor: pointer;
+    background-color: rgb(229, 229, 229);
+    color: #ff521b;
+    padding: 3px 12px;
 }
 
 .image-upload-label:hover {
-  background-color: #ff521b;
-  color: white;
-  cursor: pointer;
+    background-color: #ff521b;
+    color: white;
+    cursor: pointer;
 }
 
 input[type="file"] {
-  display: none;
+    display: none;
 }
 
 .filename {
-  margin-left: 10px;
-  width: 50px;
-  height: 8px;
+    margin-left: 10px;
+    width: 50px;
+    height: 8px;
 }
 
 .create-event-page-container {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
 }
 
 .create-event-page-container h1 {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .form-box {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .form-box form {
-  width: 395px;
-  height: auto;
+    width: 395px;
+    height: auto;
 }
 
 .event-input {
-  width: 100%;
+    width: 100%;
 }
 
 .event-form-div {
-  margin: 8px 0px;
+    margin: 8px 0px;
 }
 
 .event-form-div label,
 .image-label {
-  font-weight: bolder;
+    font-weight: bolder;
 }
 
 .event-description-textarea {
-  resize: none;
-  width: 100%;
-  height: 65px;
+    resize: none;
+    width: 100%;
+    height: 65px;
 }
 
 .errors {
-  padding-left: 85px;
-  list-style: none;
-  font-size: smaller;
+    background-color: rgba(255, 0, 0, 0.35);
+    padding: 12px 21px;
+    margin: 10px 10px;
+    border-radius: 15px;
 }
 
 .errors li {
-  margin: 2px 0;
+    margin: 2px 0;
 }
