@@ -224,14 +224,17 @@ function Events() {
             </select>
           </span>
         </div>
-        <div style={{
-          fontSize: "18px"
-        }}>
+        <div
+          style={{
+            fontSize: "18px",
+          }}
+        >
           <h1
             style={{
               marginTop: "20px",
               fontFamily: "Eina-bold",
               marginLeft: "5vw",
+              color: "#A675A1",
             }}
           >
             Search By Category
@@ -1078,9 +1081,11 @@ function Events() {
           )}
         </div>
       </div>
-      <div style={{
-        fontSize: "33px"
-      }}>
+      <div
+        style={{
+          fontSize: "33px",
+        }}
+      >
         <h1
           style={{
             marginTop: "40px",
