@@ -387,7 +387,10 @@ function EventForm({ event = null, setShowModal }) {
                             ) : (
                                 <button type="submit">Update Event</button>
                             )}
-                            <button type="button" onClick={deleteEventModal}>
+                            <button
+                                type="button"
+                                onClick={deleteEventModal}
+                                disabled={imageLoading}>
                                 Delete Event
                             </button>
                         </div>
