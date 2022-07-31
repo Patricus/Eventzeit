@@ -379,7 +379,11 @@ function EventForm({ event = null, setShowModal }) {
                     {event ? (
                         <div>
                             {imageLoading ? (
-                                <button disabled>Loading . . . </button>
+                                <button
+                                    disabled
+                                    style={{ backgroundColor: "#ff521b", color: "white" }}>
+                                    Loading . . .
+                                </button>
                             ) : (
                                 <button type="submit">Update Event</button>
                             )}
@@ -390,7 +394,14 @@ function EventForm({ event = null, setShowModal }) {
                     ) : (
                         <div>
                             {imageLoading ? (
-                                <button disabled>Loading . . . </button>
+                                <button
+                                    disabled
+                                    style={{
+                                        backgroundColor: "#ff521b",
+                                        color: "white",
+                                    }}>
+                                    Loading . . .
+                                </button>
                             ) : (
                                 <button>Create Event</button>
                             )}
