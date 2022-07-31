@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../Global/Elements/Modal";
@@ -7,18 +7,8 @@ import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 import "./eventForm.css";
 
 function EventForm({ event = null, setShowModal }) {
-    (() => {
-        if (!event) return;
-        let newDate = new Date(new Date(event.date).toString().split("GMT")[0] + " UTC")
-            .toISOString()
-            .split(".")[0]
-            .slice(0, -3);
-        event.date = newDate;
-    })();
     const [name, setName] = useState((event && event.name) || "");
-    const [date, setDate] = useState(
-        (event && event.date) || new Date().toISOString().split(".")[0].slice(0, -3)
-    );
+    const [date, setDate] = useState((event && event.date.slice(0, 17).replace(" ", "T")) || "");
     const [category, setCategory] = useState((event && event.category) || "");
     const [description, setDescription] = useState((event && event.description) || "");
     const [image, setImage] = useState((event && event.event_image_url) || "");
@@ -34,6 +24,7 @@ function EventForm({ event = null, setShowModal }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id);
+
     const states = [
         "AK - Alaska",
         "AL - Alabama",
@@ -98,7 +89,7 @@ function EventForm({ event = null, setShowModal }) {
     }
 
     const [state, setState] = useState(
-        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || ""
+        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || "CA - California"
     );
 
     const categories = [
@@ -131,6 +122,40 @@ function EventForm({ event = null, setShowModal }) {
         }
 
         setImageLoading(true);
+
+        // const dateConverter = date => {
+        //     let local = new Date(date).toLocaleString().split(", ");
+        //     let newDate = local[0];
+        //     newDate = newDate.split("/");
+        //     newDate.unshift(newDate.pop());
+        //     if (newDate[1] < 10) {
+        //         newDate[1] = "0" + newDate[1];
+        //     }
+        //     if (newDate[2] < 10) {
+        //         newDate[2] = "0" + newDate[2];
+        //     }
+        //     newDate = newDate.join("-");
+        //     let newTime = local[1];
+        //     if (newTime.endsWith("AM")) {
+        //         newTime = "0" + newTime.slice(0, -6);
+        //     } else {
+        //         newTime = newTime.slice(0, -6).split(":");
+        //         newTime[0] = String(+newTime[0] + 12);
+        //         newTime = newTime.join(":");
+        //     }
+        //     local[0] = newDate;
+        //     local[1] = newTime;
+        //     local = local.join("T");
+        //     return local;
+        // };
+
+        // const convertDateToGMT = date => {
+        //     date = new Date(date).toString().split(" ");
+        //     date[5] = "GMT-0000";
+        //     date = date.join(" ");
+        //     return date;
+        // };
+        setDate(new Date(date).toUTCString());
 
         if (!event) {
             event = await dispatch(
@@ -226,7 +251,7 @@ function EventForm({ event = null, setShowModal }) {
                     </div>
                 )}
                 <div className="event-form-div">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Name</label>
                     <input
                         className="event-input"
                         name="name"
@@ -236,18 +261,17 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="date">Date:</label>
+                    <label htmlFor="date">Date</label>
                     <input
                         className="event-input"
                         name="date"
                         type="datetime-local"
-                        min={new Date().toISOString().split(".")[0].slice(0, -3)}
                         value={date}
                         onChange={e => setDate(e.target.value)}
                     />
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="category">Category:</label>
+                    <label htmlFor="category">Category</label>
                     <select
                         className="event-input"
                         name="category"
@@ -266,7 +290,7 @@ function EventForm({ event = null, setShowModal }) {
                     </select>
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description">Description</label>
                     <textarea
                         className="event-description-textarea"
                         name="description"
@@ -276,7 +300,7 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div>
-                    <label className="image-label">Image: </label>
+                    <label className="image-label">Image </label>
                     <label htmlFor="image-upload-button" className="image-upload-label">
                         Upload
                         <input
@@ -294,7 +318,7 @@ function EventForm({ event = null, setShowModal }) {
                     )}
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="occupancy">Occupancy:</label>
+                    <label htmlFor="occupancy">Occupancy</label>
                     <input
                         className="event-input"
                         name="occupancy"
@@ -318,7 +342,7 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="streetAddress">Street Address:</label>
+                    <label htmlFor="streetAddress">Street Address</label>
                     <input
                         className="event-input"
                         name="streetAddress"
@@ -328,7 +352,7 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="state">State:</label>
+                    <label htmlFor="state">State</label>
                     <select
                         className="event-input"
                         multiple={false}
@@ -346,7 +370,7 @@ function EventForm({ event = null, setShowModal }) {
                     </select>
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="city">City:</label>
+                    <label htmlFor="city">City</label>
                     <input
                         className="event-input"
                         name="city"
@@ -356,7 +380,7 @@ function EventForm({ event = null, setShowModal }) {
                     />
                 </div>
                 <div className="event-form-div">
-                    <label htmlFor="zipCode">Zip Code:</label>
+                    <label htmlFor="zipCode">Zip Code</label>
                     <input
                         className="event-input"
                         name="zipCode"
@@ -378,15 +402,36 @@ function EventForm({ event = null, setShowModal }) {
                 <div>
                     {event ? (
                         <div>
-                            <button type="submit">Update Event</button>
-                            <button type="button" onClick={deleteEventModal}>
+                            {imageLoading ? (
+                                <button
+                                    disabled
+                                    style={{ backgroundColor: "#ff521b", color: "white" }}>
+                                    Loading . . .
+                                </button>
+                            ) : (
+                                <button type="submit">Update Event</button>
+                            )}
+                            <button
+                                type="button"
+                                onClick={deleteEventModal}
+                                disabled={imageLoading}>
                                 Delete Event
                             </button>
                         </div>
                     ) : (
                         <div>
-                            <button>Create Event</button>
-                            {imageLoading && <p>Loading...</p>}
+                            {imageLoading ? (
+                                <button
+                                    disabled
+                                    style={{
+                                        backgroundColor: "#ff521b",
+                                        color: "white",
+                                    }}>
+                                    Loading . . .
+                                </button>
+                            ) : (
+                                <button>Create Event</button>
+                            )}
                         </div>
                     )}
                 </div>

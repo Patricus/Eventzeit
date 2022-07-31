@@ -14,7 +14,6 @@ const LoginForm = ({ setShowLogin }) => {
     const onLogin = async e => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
-        console.log("data", data);
         if (data) {
             setErrors(data);
         } else {
@@ -50,7 +49,7 @@ const LoginForm = ({ setShowLogin }) => {
             )}
             <div className="modal-items-container">
                 <div className="modal-items">
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         name="email"
                         type="text"
@@ -60,7 +59,7 @@ const LoginForm = ({ setShowLogin }) => {
                     />
                 </div>
                 <div className="modal-items">
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         name="password"
                         type="password"

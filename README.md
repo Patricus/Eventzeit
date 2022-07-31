@@ -8,55 +8,46 @@ The project is a clone of Eventbrite and was built using PostgreSQL, Flask, SQLA
 
 Checkout Eventzeit and make it to an event near you at https://eventzeit.herokuapp.com
 
+Add Blocker Warning: If you have an add blocker installed locally, it is possible that you may recieved errors because of the google maps API. We do not have any adds on our site and we ask you to please, temporarly, turn off your add blocker if you are having issues using our site. Thank you for your understanding.
+
 Please Note: We based this project off of this starter https://github.com/Patricus/Eventzeit/tree/starter
 
 ### Github Wiki Links:
 
-##### Features List (Also Listed Below)
+#### [Features List (Also Listed Below)](https://github.com/Patricus/Eventzeit/wiki/Features-List)
 
-- https://github.com/Patricus/Eventzeit/wiki/Features-List
+#### [Component File Structure](https://github.com/Patricus/Eventzeit/wiki/Component-File-Structure)
 
-##### Component File Structure
+#### [Database Schema](https://github.com/Patricus/Eventzeit/wiki/Database-Schema)
 
-- https://github.com/Patricus/Eventzeit/wiki/Component-File-Structure
+#### [Database Tables](https://github.com/Patricus/Eventzeit/wiki/Database-Tables)
 
-##### Database Schema
+#### [User Stories](https://github.com/Patricus/Eventzeit/wiki/User-Stories)
 
-- https://github.com/Patricus/Eventzeit/wiki/Database-Schema
+#### [Redux Store Shape](https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape)
 
-##### Database Tables
+#### [API Routes](https://github.com/Patricus/Eventzeit/wiki/API-Routes)
 
-- https://github.com/Patricus/Eventzeit/wiki/Database-Tables
+#### [Front End Routes](https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes)
 
-##### User Stories
+## Splash Page
 
-- https://github.com/Patricus/Eventzeit/wiki/User-Stories
+![](react-app/src/images/readme-images/splash-page.png)
 
-##### Redux Store Shape
+## Events Page
 
-- https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape
+![](react-app/src/images/readme-images/events-top.png)
+![](react-app/src/images/readme-images/events-bottom.png)
 
-##### API Routes
+## Event Details Page
 
-- https://github.com/Patricus/Eventzeit/wiki/API-Routes
+![](react-app/src/images/readme-images/event-detail-page-top.png)
+![](react-app/src/images/readme-images/event-detail-page-bottom.png)
 
-##### Front End Routes
+## User Dashboard
+![](react-app/src/images/readme-images/dashboard.png)
 
-- https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes
-
-### Splash Page
-
-# ADD SCREEN SHOT OF FINISHED SPLASH PAGE
-
-### Events Page
-
-# ADD SCREEN SHOT OF FINISHED EVENTS PAGE
-
-### Event Details Page
-
-# ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
-
-### Instructions for Running Locally:
+## Instructions for Running Locally:
 
 - Pull down the project and make a local copy on your computer from this location: https://github.com/Patricus/Eventzeit
 - Set up your database locally:
@@ -78,7 +69,7 @@ Please Note: We based this project off of this starter https://github.com/Patric
 - In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. Please run "flask db migrate" followed by "flask db upgrade", followed by "flask seed all". Finally we can run the command "flask run" and your backend should start right up, connected to an already seeded database.
 - Lastly, open an additional terminal to run you your frontend. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
 
-### Technical Details:
+## Technical Details:
 
 - Event search and category filter was a very exciting feature to implement as no one in our group had an experience doing this before. On the events page a user can search all events listed on the site using a search bar and filter events even further by toggling category buttons. In order to do this, we first implemented useStates for each category in order to have a true of false value to pass through the filter.
 
@@ -165,7 +156,7 @@ function Events() {
           })}
 ```
 
-### Features
+## Features
 
 ## Login and Signup / Demo User
 

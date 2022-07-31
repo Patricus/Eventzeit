@@ -112,12 +112,10 @@ function EventDetailPage() {
                             />
                         </div>
                         <h3 className="event-time">
-                            {new Date(event.date)
-                                .toString()
-                                .split(" G")[0]
-                                .split(":")
-                                .splice(0, 2)
-                                .join(":")}{" "}
+                            {new Date(event.date).toLocaleString([], {
+                                dateStyle: "long",
+                                timeStyle: "short",
+                            })}
                         </h3>
                         {/* START */}
                         {/* IF DESCRIPTION IS MORE THAN 500 CHARS */}
