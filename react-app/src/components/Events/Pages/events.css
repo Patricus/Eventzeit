@@ -51,14 +51,14 @@ figure:hover {
 
 figure:hover:after {
   content: "";
-  background-image: var(--sportsIcon);
-  background-color: #414141be;
+  background-image: var(--icon);
+  background-color: var(--backgroundColor);
   background-size: 60%;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
   /* font-size: 30px; */
-  z-index: 2;
+  z-index: 1;
 }
 
 figure:hover > figcaption {
@@ -109,4 +109,9 @@ figcaption > h4 > span {
 
 .outer-figure::before {
   opacity: 50%;
+}
+
+.input-label {
+  height: 40px;
+  font-size: "40px";
 }

@@ -130,9 +130,11 @@ function Events() {
       >
         Events
       </h1>
-      <div style={{
-        justifyContent: "center"
-      }}>
+      <div
+        style={{
+          justifyContent: "center",
+        }}
+      >
         <div
           style={{
             marginTop: "2vh",
@@ -141,17 +143,39 @@ function Events() {
           }}
         >
           <span>
-            <label htmlFor="search">Search Events: </label>
+            <label
+              htmlFor="search"
+              className="input-label"
+              style={{
+                fontFamily: "Eina-semibold",
+                fontSize: "24px",
+              }}
+            >
+              Search Events:{" "}
+            </label>
             <input
               name="search"
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Events"
+              style={{
+                fontSize: "20px",
+                width: "300px",
+              }}
             />
           </span>
           <span>
-            <label htmlFor="startDate">Start Date: </label>
+            <label
+              htmlFor="startDate"
+              className="input-label"
+              style={{
+                fontFamily: "Eina-semibold",
+                fontSize: "24px",
+              }}
+            >
+              Start Date:{" "}
+            </label>
             <input
               name="startDate"
               type="datetime-local"
@@ -161,7 +185,16 @@ function Events() {
             />
           </span>
           <span>
-            <label htmlFor="endDate">End Date: </label>
+            <label
+              htmlFor="endDate"
+              className="input-label"
+              style={{
+                fontFamily: "Eina-semibold",
+                fontSize: "24px",
+              }}
+            >
+              End Date:{" "}
+            </label>
             <input
               name="endDate"
               type="datetime-local"
@@ -171,7 +204,16 @@ function Events() {
             />
           </span>
           <span>
-            <label htmlFor="sortEvents">Sort Events By: </label>
+            <label
+              htmlFor="sortEvents"
+              className="input-label"
+              style={{
+                fontFamily: "Eina-semibold",
+                fontSize: "24px",
+              }}
+            >
+              Sort Events By:{" "}
+            </label>
             <select
               name="sortEvents"
               value={sortBy}
@@ -182,15 +224,19 @@ function Events() {
             </select>
           </span>
         </div>
-        <h1
-          style={{
-            marginTop: "20px",
-            fontFamily: "Eina-bold",
-            marginLeft: "5vw",
-          }}
-        >
-          Search By Category
-        </h1>
+        <div style={{
+          fontSize: "18px"
+        }}>
+          <h1
+            style={{
+              marginTop: "20px",
+              fontFamily: "Eina-bold",
+              marginLeft: "5vw",
+            }}
+          >
+            Search By Category
+          </h1>
+        </div>
         <div
           style={{
             marginLeft: "5vw",
@@ -204,7 +250,7 @@ function Events() {
                 className="button"
                 onClick={() => setSport(!sport)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                   backgroundImage: { sportsImg },
                 }}
@@ -213,9 +259,11 @@ function Events() {
                   className="outer-figure"
                   style={{
                     backgroundColor: "#FF521B",
+                    "--icon": "url(" + sportsIcon + ")",
+                    "--backgroundColor": "transparent",
                   }}
                 >
-                  <figcaption>
+                  <figcaption style={{}}>
                     <h4>
                       <span>Sport</span>
                     </h4>
@@ -236,7 +284,8 @@ function Events() {
                 <figure
                   style={{
                     "--backgroundImage": "url(" + sportsImg + ")",
-                    "--sportsIcon": "url(" + sportsIcon + ")",
+                    "--icon": "url(" + sportsIcon + ")",
+                    "--backgroundColor": "#414141be",
                   }}
                 >
                   <figcaption>
@@ -254,14 +303,21 @@ function Events() {
                 className="button"
                 onClick={() => setParty(!party)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + partyIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
-                      <span>Sport</span>
+                      <span>Party</span>
                     </h4>
                   </figcaption>
                 </figure>
@@ -279,8 +335,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + partyImg + ")",
-                    "--sportsIcon": "url(" + partyIcon + ")",
+                    "--icon": "url(" + partyIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -298,11 +355,18 @@ function Events() {
                 className="button"
                 onClick={() => setConcert(!concert)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + concertIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Concert</span>
@@ -323,8 +387,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + concertImg + ")",
-                    "--sportsIcon": "url(" + concertIcon + ")",
+                    "--icon": "url(" + concertIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -342,11 +407,18 @@ function Events() {
                 className="button"
                 onClick={() => setDinner(!dinner)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + dinnerIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Dinner</span>
@@ -367,8 +439,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + dinnerImg + ")",
-                    "--sportsIcon": "url(" + dinnerIcon + ")",
+                    "--icon": "url(" + dinnerIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -386,11 +459,18 @@ function Events() {
                 className="button"
                 onClick={() => setGame(!game)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + gameIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Game</span>
@@ -411,8 +491,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + gameImg + ")",
-                    "--sportsIcon": "url(" + gameIcon + ")",
+                    "--icon": "url(" + gameIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -430,11 +511,17 @@ function Events() {
                 className="button"
                 onClick={() => setSeminar(!seminar)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
                 <figure>
+                  className="outer-figure" style=
+                  {{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + seminarIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
                   <figcaption>
                     <h4>
                       <span>Seminar</span>
@@ -455,8 +542,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + seminarImg + ")",
-                    "--sportsIcon": "url(" + seminarIcon + ")",
+                    "--icon": "url(" + seminarIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -474,11 +562,18 @@ function Events() {
                 className="button"
                 onClick={() => setConference(!conference)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + conferenceIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Conference</span>
@@ -499,8 +594,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + conferenceImg + ")",
-                    "--sportsIcon": "url(" + conferenceIcon + ")",
+                    "--icon": "url(" + conferenceIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -518,11 +614,18 @@ function Events() {
                 className="button"
                 onClick={() => setWorkshop(!workshop)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + workshopIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Workshop</span>
@@ -543,8 +646,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + workshopImg + ")",
-                    "--sportsIcon": "url(" + workshopIcon + ")",
+                    "--icon": "url(" + workshopIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -562,11 +666,18 @@ function Events() {
                 className="button"
                 onClick={() => setSocial(!social)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + socialIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Social</span>
@@ -587,8 +698,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + socialImg + ")",
-                    "--sportsIcon": "url(" + socialIcon + ")",
+                    "--icon": "url(" + socialIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -606,11 +718,18 @@ function Events() {
                 className="button"
                 onClick={() => setClassCategory(!classCategory)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + classIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Class</span>
@@ -631,8 +750,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + classImg + ")",
-                    "--sportsIcon": "url(" + classIcon + ")",
+                    "--icon": "url(" + classIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -650,11 +770,18 @@ function Events() {
                 className="button"
                 onClick={() => setAuction(!auction)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + auctionIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Auction</span>
@@ -675,8 +802,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + auctionImg + ")",
-                    "--sportsIcon": "url(" + auctionIcon + ")",
+                    "--icon": "url(" + auctionIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -694,11 +822,18 @@ function Events() {
                 className="button"
                 onClick={() => setGala(!gala)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + galaIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Gala</span>
@@ -719,8 +854,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + galaImg + ")",
-                    "--sportsIcon": "url(" + galaIcon + ")",
+                    "--icon": "url(" + galaIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -738,11 +874,18 @@ function Events() {
                 className="button"
                 onClick={() => setFestival(!festival)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + festivalIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Festival</span>
@@ -763,8 +906,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + festivalImg + ")",
-                    "--sportsIcon": "url(" + festivalIcon + ")",
+                    "--icon": "url(" + festivalIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -782,11 +926,18 @@ function Events() {
                 className="button"
                 onClick={() => setExercise(!exercise)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + exerciseIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Exercise</span>
@@ -807,8 +958,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + exerciseImg + ")",
-                    "--sportsIcon": "url(" + exerciseIcon + ")",
+                    "--icon": "url(" + exerciseIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -826,11 +978,18 @@ function Events() {
                 className="button"
                 onClick={() => setCelebration(!celebration)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + celebrationIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Celebration</span>
@@ -851,8 +1010,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + celebrationImg + ")",
-                    "--sportsIcon": "url(" + celebrationIcon + ")",
+                    "--icon": "url(" + celebrationIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -870,11 +1030,18 @@ function Events() {
                 className="button"
                 onClick={() => setOther(!other)}
                 style={{
-                  border: "3px solid",
+                  // border: "3px solid",
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
+                <figure
+                  className="outer-figure"
+                  style={{
+                    backgroundColor: "#FF521B",
+                    "--icon": "url(" + otherIcon + ")",
+                    "--backgroundColor": "transparent",
+                  }}
+                >
                   <figcaption>
                     <h4>
                       <span>Other</span>
@@ -895,8 +1062,9 @@ function Events() {
               >
                 <figure
                   style={{
+                    "--backgroundColor": "#414141be",
                     "--backgroundImage": "url(" + otherImg + ")",
-                    "--sportsIcon": "url(" + otherIcon + ")",
+                    "--icon": "url(" + otherIcon + ")",
                   }}
                 >
                   <figcaption>
@@ -910,15 +1078,19 @@ function Events() {
           )}
         </div>
       </div>
-      <h1
-        style={{
-          marginTop: "40px",
-          fontFamily: "Eina-bold",
-          marginLeft: "5vw",
-        }}
-      >
-        Browse
-      </h1>
+      <div style={{
+        fontSize: "33px"
+      }}>
+        <h1
+          style={{
+            marginTop: "40px",
+            fontFamily: "Eina-bold",
+            marginLeft: "5vw",
+          }}
+        >
+          Browse
+        </h1>
+      </div>
       <div className="body">
         <div
           className="eventsHolder"

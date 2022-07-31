@@ -58,7 +58,12 @@ function EventsCard({ event }) {
           </div>
         </div>
         {event.description.length > 74 && (
-          <p className="card-description">
+          <p
+            className="card-description"
+            style={{
+              fontSize: "20px",
+            }}
+          >
             {event.description.slice(0, 74)}
             <span className="dots">...</span>
           </p>

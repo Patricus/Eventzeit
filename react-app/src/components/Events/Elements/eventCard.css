@@ -36,6 +36,7 @@
   -o-border-radius: calc(var(--curve) * 1px); */
     overflow: hidden;
     text-decoration: none;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .card-image {
@@ -104,11 +105,13 @@
 }
 
 .card-status {
-    font-size: 0.8em;
-    color: var(--text-color);
+    font-weight: 2000;
+    font-size: 1.5em;
+    color: #A675A1;
 }
 
 .card-description {
+    font-size: 30px;
     padding: 0 2em 2em;
     margin: 0;
     color: var(--text-color);

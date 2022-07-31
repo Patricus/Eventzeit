@@ -32,7 +32,8 @@ function Homepage() {
       </div>
       <h2 id="up-coming-events" className="little-splash-title">Up and Coming Events:</h2>
       <div className="eventsHolder" style={{
-        justifyContent: "center"
+        justifyContent: "center",
+        marginLeft: "4vw"
       }}>
         {events &&
           events

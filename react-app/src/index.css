@@ -35,19 +35,23 @@ button:hover {
 }
 
 input {
+    font-size: 18px;
+    height: 40px;
     font-family: "Eina";
     border-radius: 12px;
     border-width: 1px;
     padding: 1px 5px;
-    margin: 1px 4px;
+    margin-right: 29px;
 }
 
 select {
+    font-size: 18px;
+    height: 40px;
     font-family: "Eina";
     border-radius: 12px;
     border-width: 1px;
     padding: 1px 5px;
-    margin: 1px 4px;
+    margin-right: 29px;
 }
 
 .eventsHolder {
