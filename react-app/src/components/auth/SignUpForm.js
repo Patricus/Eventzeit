@@ -89,7 +89,7 @@ const SignUpForm = ({ setShowSignup }) => {
       )}
       <div className="modal-items-container">
         <div className="modal-items">
-          <label>User Name:</label>
+          <label>User Name</label>
           <input
             type="text"
             name="username"
@@ -98,7 +98,7 @@ const SignUpForm = ({ setShowSignup }) => {
           ></input>
         </div>
         <div className="modal-items">
-          <label>Email:</label>
+          <label>Email</label>
           <input
             type="text"
             name="email"
@@ -107,7 +107,7 @@ const SignUpForm = ({ setShowSignup }) => {
           ></input>
         </div>
         <div className="modal-items">
-          <label>Avatar:</label>
+          <label>Avatar</label>
           <select
             type="text"
             name="email"
@@ -135,7 +135,7 @@ const SignUpForm = ({ setShowSignup }) => {
           </div>
         </div>
         <div className="modal-items">
-          <label>Password:</label>
+          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -144,7 +144,7 @@ const SignUpForm = ({ setShowSignup }) => {
           ></input>
         </div>
         <div className="modal-items">
-          <label>Repeat Password:</label>
+          <label>Repeat Password</label>
           <input
             type="password"
             name="repeat_password"
