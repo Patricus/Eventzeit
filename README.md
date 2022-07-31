@@ -30,21 +30,24 @@ Please Note: We based this project off of this starter https://github.com/Patric
 
 #### [Front End Routes](https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes)
 
-### Splash Page
+## Splash Page
 
-# ADD SCREEN SHOT OF FINISHED SPLASH PAGE
+![](react-app/src/images/readme-images/splash-page.png)
 
-### Events Page
+## Events Page
 
-# ADD SCREEN SHOT OF FINISHED EVENTS PAGE
+![](react-app/src/images/readme-images/events-top.png)
+![](react-app/src/images/readme-images/events-bottom.png)
 
-### Event Details Page
+## Event Details Page
 
-# ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
+![](react-app/src/images/readme-images/event-detail-page-top.png)
+![](react-app/src/images/readme-images/event-detail-page-bottom.png)
 
-### User Dashboard
+## User Dashboard
+![](react-app/src/images/readme-images/dashboard.png)
 
-### Instructions for Running Locally:
+## Instructions for Running Locally:
 
 - Pull down the project and make a local copy on your computer from this location: https://github.com/Patricus/Eventzeit
 - Set up your database locally:
@@ -66,7 +69,7 @@ Please Note: We based this project off of this starter https://github.com/Patric
 - In order to get the backend running, make sure you are in the root directory and run the "pipenv shell" command to enter your python shell. Please run "flask db migrate" followed by "flask db upgrade", followed by "flask seed all". Finally we can run the command "flask run" and your backend should start right up, connected to an already seeded database.
 - Lastly, open an additional terminal to run you your frontend. cd into react-app and use the command "npm start". This should automatically open up your app on localhost:3000
 
-### Technical Details:
+## Technical Details:
 
 - Event search and category filter was a very exciting feature to implement as no one in our group had an experience doing this before. On the events page a user can search all events listed on the site using a search bar and filter events even further by toggling category buttons. In order to do this, we first implemented useStates for each category in order to have a true of false value to pass through the filter.
 
@@ -153,7 +156,7 @@ function Events() {
           })}
 ```
 
-### Features
+## Features
 
 ## Login and Signup / Demo User
 
