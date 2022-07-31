@@ -98,7 +98,7 @@ function EventForm({ event = null, setShowModal }) {
     }
 
     const [state, setState] = useState(
-        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || ""
+        (preSelectedState && states.filter(x => x.includes(preSelectedState))[0]) || "CA - California"
     );
 
     const categories = [
