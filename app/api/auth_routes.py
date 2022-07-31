@@ -111,9 +111,9 @@ def delete_user(id):
     if user.id == 1:
         return {'error': ['You cannot delete the demo user.']}, 403
     else:
-        user.delete()
+        db.session.delete(user)
         db.session.commit()
-        return dict(user)
+        return {"message": "User deleted successfully"}, 200
 
 
 @auth_routes.route('/unauthorized')
