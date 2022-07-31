@@ -65,7 +65,6 @@ function TicketForm({
       dispatch(
         addOneTicket(data.attendee, data.user_id, data.event_id, data.event_url)
       ).then((response) => {
-        console.log(response);
         if (response.id) closeAfterPurchaseMessage();
         else setErrors(Object.values(response));
       });
