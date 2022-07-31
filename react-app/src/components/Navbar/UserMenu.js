@@ -16,6 +16,7 @@ const DropDownMenu = styled.div`
     left: 3px;
     padding: 5px;
     gap: 3px;
+    z-index: 1000;
 `;
 
 const MenuButton = styled.div`
