@@ -3,10 +3,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { acquireEvents } from "../../../store/events";
 import EventsCard from "../Elements/EventsCard";
 // import "../../../index.css";
-import sportsImg from "../../../images/sports.png";
+import sportsImg from "../../../images/sports-cat.jpg";
+import partyImg from "../../../images/party-cat.jpg";
+import concertImg from "../../../images/concert-cat.jpg";
+import dinnerImg from "../../../images/dinner-cat.jpg";
+import gameImg from "../../../images/game-cat.jpg";
+import seminarImg from "../../../images/seminar-cat.jpg";
+import conferenceImg from "../../../images/conference-cat.jpg";
+import workshopImg from "../../../images/workshop-cat.jpg";
+import socialImg from "../../../images/social-cat.jpg";
+import classImg from "../../../images/class-cat.jpg";
+import auctionImg from "../../../images/auction-cat.jpg";
+import galaImg from "../../../images/gala-cat.jpg";
+import festivalImg from "../../../images/festival-cat.jpg";
+import exerciseImg from "../../../images/exercise-cat.jpg";
+import celebrationImg from "../../../images/celebration-cat.jpg";
+import otherImg from "../../../images/other-cat.jpg";
+
+import sportsIcon from "../../../images/sports.png";
+import partyIcon from "../../../images/party.png";
+import concertIcon from "../../../images/concert.png";
+import dinnerIcon from "../../../images/dinner.png";
+import gameIcon from "../../../images/game.png";
+import seminarIcon from "../../../images/seminar.png";
+import conferenceIcon from "../../../images/conference.png";
+import workshopIcon from "../../../images/workshop.png";
+import socialIcon from "../../../images/social.png";
+import classIcon from "../../../images/class.png";
+import auctionIcon from "../../../images/auction.png";
+import galaIcon from "../../../images/gala.png";
+import festivalIcon from "../../../images/festival.png";
+import exerciseIcon from "../../../images/exercise.png";
+import celebrationIcon from "../../../images/celebration.png";
+import otherIcon from "../../../images/other.png";
 import "../Elements/eventCard.css";
 import "../../User/dashboard.css";
-// import "./events.css";
+import "./events.css";
 
 function Events() {
     const events = Object.values(useSelector(state => state.events));
@@ -97,16 +129,8 @@ function Events() {
                     style={{
                         marginTop: "2vh",
                         marginLeft: "5vw",
-                        marginRight: "5vw",
                     }}>
-                    <span
-                        style={{
-                            border: "2px solid whitesmoke",
-                            borderRadius: "5px",
-                            padding: "8px 5px",
-                            margin: "0 2px",
-                            lineHeight: "2.5em",
-                        }}>
+                    <span>
                         <label htmlFor="search">Search Events: </label>
                         <input
                             name="search"
@@ -116,43 +140,27 @@ function Events() {
                             placeholder="Search Events"
                         />
                     </span>
-                    <span
-                        style={{
-                            border: "2px solid whitesmoke",
-                            borderRadius: "5px",
-                            padding: "8px 5px",
-                            margin: "0 2px",
-                            lineHeight: "2.5em",
-                        }}>
-                        <span>
-                            <label htmlFor="startDate">Start Date: </label>
-                            <input
-                                name="startDate"
-                                type="datetime-local"
-                                max={endDate}
-                                value={startDate}
-                                onChange={e => setStartDate(e.target.value)}
-                            />
-                        </span>
-                        <span>
-                            <label htmlFor="endDate">End Date: </label>
-                            <input
-                                name="endDate"
-                                type="datetime-local"
-                                min={startDate}
-                                value={endDate}
-                                onChange={e => setEndDate(e.target.value)}
-                            />
-                        </span>
+                    <span>
+                        <label htmlFor="startDate">Start Date: </label>
+                        <input
+                            name="startDate"
+                            type="datetime-local"
+                            max={endDate}
+                            value={startDate}
+                            onChange={e => setStartDate(e.target.value)}
+                        />
                     </span>
-                    <span
-                        style={{
-                            border: "2px solid whitesmoke",
-                            borderRadius: "5px",
-                            padding: "8px 5px",
-                            margin: "0 2px",
-                            lineHeight: "2.5em",
-                        }}>
+                    <span>
+                        <label htmlFor="endDate">End Date: </label>
+                        <input
+                            name="endDate"
+                            type="datetime-local"
+                            min={startDate}
+                            value={endDate}
+                            onChange={e => setEndDate(e.target.value)}
+                        />
+                    </span>
+                    <span>
                         <label htmlFor="sortEvents">Sort Events By: </label>
                         <select
                             name="sortEvents"
@@ -163,391 +171,691 @@ function Events() {
                         </select>
                     </span>
                 </div>
+                <h1
+                    style={{
+                        marginTop: "20px",
+                        fontFamily: "Eina-bold",
+                        marginLeft: "100px",
+                    }}>
+                    Search By Category
+                </h1>
                 <div
                     style={{
                         marginLeft: "5vw",
-                        marginRight: "5vw",
-                        marginTop: "3px",
-                        border: "2px solid whitesmoke",
-                        borderRadius: "5px",
-                        width: "fit-content",
+                        marginTop: "18px",
+                        marginBottom: "20px",
                     }}>
-                    <div>
-                        <p style={{ marginLeft: "7px" }}>Category Filter:</p>
-                    </div>
                     {sport ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setSport(!sport)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
+                                    backgroundImage: { sportsImg },
                                 }}>
-                                <h4>
-                                    <span>Sport</span>
-                                </h4>
+                                <figure
+                                    className="outer-figure"
+                                    style={{
+                                        backgroundColor: "#FF521B",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Sport</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
-                                className="category-button"
+                                className=" button"
                                 onClick={() => setSport(!sport)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Sport
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + sportsImg + ")",
+                                        "--sportsIcon": "url(" + sportsIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Sport</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {party ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setParty(!party)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Party
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Sport</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className=" button"
                                 onClick={() => setParty(!party)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Party
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + partyImg + ")",
+                                        "--sportsIcon": "url(" + partyIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Party</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {concert ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setConcert(!concert)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Concert
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Concert</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className=" button"
                                 onClick={() => setConcert(!concert)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Concert
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + concertImg + ")",
+                                        "--sportsIcon": "url(" + concertIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Concert</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {dinner ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setDinner(!dinner)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Dinner
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Dinner</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className=" button"
                                 onClick={() => setDinner(!dinner)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Dinner
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + dinnerImg + ")",
+                                        "--sportsIcon": "url(" + dinnerIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Dinner</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {game ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setGame(!game)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Game
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Game</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setGame(!game)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Game
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + gameImg + ")",
+                                        "--sportsIcon": "url(" + gameIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Game</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {seminar ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setSeminar(!seminar)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Seminar
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Seminar</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className=" button"
                                 onClick={() => setSeminar(!seminar)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Seminar
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + seminarImg + ")",
+                                        "--sportsIcon": "url(" + seminarIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Seminar</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {conference ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setConference(!conference)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Conference
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Conference</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setConference(!conference)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Conference
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + conferenceImg + ")",
+                                        "--sportsIcon": "url(" + conferenceIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Conference</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {workshop ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setWorkshop(!workshop)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Workshop
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Workshop</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setWorkshop(!workshop)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Workshop
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + workshopImg + ")",
+                                        "--sportsIcon": "url(" + workshopIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Workshop</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {social ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setSocial(!social)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Social
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Social</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setSocial(!social)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Social
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + socialImg + ")",
+                                        "--sportsIcon": "url(" + socialIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Social</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {classCategory ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setClassCategory(!classCategory)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Class
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Class</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setClassCategory(!classCategory)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Class
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + classImg + ")",
+                                        "--sportsIcon": "url(" + classIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Class</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {auction ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setAuction(!auction)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Auction
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Auction</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setAuction(!auction)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Auction
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + auctionImg + ")",
+                                        "--sportsIcon": "url(" + auctionIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Auction</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {gala ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setGala(!gala)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Gala
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Gala</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setGala(!gala)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Gala
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + galaImg + ")",
+                                        "--sportsIcon": "url(" + galaIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Gala</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {festival ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setFestival(!festival)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Festival
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Festival</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setFestival(!festival)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Festival
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + festivalImg + ")",
+                                        "--sportsIcon": "url(" + festivalIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Festival</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {exercise ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setExercise(!exercise)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Exercise
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Exercise</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setExercise(!exercise)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Exercise
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + exerciseImg + ")",
+                                        "--sportsIcon": "url(" + exerciseIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Exercise</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {celebration ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setCelebration(!celebration)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Celebration
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Celebration</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setCelebration(!celebration)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Celebration
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + celebrationImg + ")",
+                                        "--sportsIcon": "url(" + celebrationIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Celebration</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                     {other ? (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setOther(!other)}
                                 style={{
                                     border: "3px solid",
                                     borderColor: "#FF521B",
                                 }}>
-                                Other
+                                <figure>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Other</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     ) : (
                         <span>
                             <button
+                                className="button"
                                 onClick={() => setOther(!other)}
                                 style={{
-                                    border: "3px solid",
+                                    // border: "3px solid",
                                     borderColor: "transparent",
                                 }}>
-                                Other
+                                <figure
+                                    style={{
+                                        "--backgroundImage": "url(" + otherImg + ")",
+                                        "--sportsIcon": "url(" + otherIcon + ")",
+                                    }}>
+                                    <figcaption>
+                                        <h4>
+                                            <span>Other</span>
+                                        </h4>
+                                    </figcaption>
+                                </figure>
                             </button>
                         </span>
                     )}
                 </div>
             </div>
+            <h1
+                style={{
+                    marginTop: "40px",
+                    fontFamily: "Eina-bold",
+                    marginLeft: "100px",
+                }}>
+                Browse
+            </h1>
             <div className="body">
                 <div
                     className="eventsHolder"
