@@ -8,41 +8,27 @@ The project is a clone of Eventbrite and was built using PostgreSQL, Flask, SQLA
 
 Checkout Eventzeit and make it to an event near you at https://eventzeit.herokuapp.com
 
+Add Blocker Warning: If you have an add blocker installed locally, it is possible that you may recieved errors because of the google maps API. We do not have any adds on our site and we ask you to please, temporarly, turn off your add blocker if you are having issues using our site. Thank you for your understanding.
+
 Please Note: We based this project off of this starter https://github.com/Patricus/Eventzeit/tree/starter
 
 ### Github Wiki Links:
 
-##### Features List (Also Listed Below)
+#### [Features List (Also Listed Below)](https://github.com/Patricus/Eventzeit/wiki/Features-List)
 
-- https://github.com/Patricus/Eventzeit/wiki/Features-List
+#### [Component File Structure](https://github.com/Patricus/Eventzeit/wiki/Component-File-Structure)
 
-##### Component File Structure
+#### [Database Schema](https://github.com/Patricus/Eventzeit/wiki/Database-Schema)
 
-- https://github.com/Patricus/Eventzeit/wiki/Component-File-Structure
+#### [Database Tables](https://github.com/Patricus/Eventzeit/wiki/Database-Tables)
 
-##### Database Schema
+#### [User Stories](https://github.com/Patricus/Eventzeit/wiki/User-Stories)
 
-- https://github.com/Patricus/Eventzeit/wiki/Database-Schema
+#### [Redux Store Shape](https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape)
 
-##### Database Tables
+#### [API Routes](https://github.com/Patricus/Eventzeit/wiki/API-Routes)
 
-- https://github.com/Patricus/Eventzeit/wiki/Database-Tables
-
-##### User Stories
-
-- https://github.com/Patricus/Eventzeit/wiki/User-Stories
-
-##### Redux Store Shape
-
-- https://github.com/Patricus/Eventzeit/wiki/Redux-Store-Shape
-
-##### API Routes
-
-- https://github.com/Patricus/Eventzeit/wiki/API-Routes
-
-##### Front End Routes
-
-- https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes
+#### [Front End Routes](https://github.com/Patricus/Eventzeit/wiki/Front-End-Routes)
 
 ### Splash Page
 
@@ -55,6 +41,8 @@ Please Note: We based this project off of this starter https://github.com/Patric
 ### Event Details Page
 
 # ADD SCREEN SHOT OF FINISHED EVENTS DETAILS PAGE
+
+### User Dashboard
 
 ### Instructions for Running Locally:
 
