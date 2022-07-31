@@ -1,15 +1,22 @@
 .image-upload-label {
+    letter-spacing: 1px;
+    font-family: "Eina-semibold";
+    font-size: 18px;
+    width: fit-content;
+    align-items: center;
+    height: 49px;
     border-radius: 15px;
-    display: inline-block;
-    padding: 1px 12px;
+    display: flex;
+    padding: 8px 12px;
     cursor: pointer;
     background-color: rgb(229, 229, 229);
-    color: #ff521b;
-    padding: 3px 12px;
+    color: #6a4b67;
+    /* color: #ff521b; */
+    /* padding: 3px 12px; */
 }
 
 .image-upload-label:hover {
-    background-color: #ff521b;
+    background-color: #A675A1;
     color: white;
     cursor: pointer;
 }
@@ -68,6 +75,7 @@ input[type="file"] {
 }
 
 .event-form-div {
+    font-size: 18px;
     margin: 8px 0px;
 }
 

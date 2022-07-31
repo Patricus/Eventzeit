@@ -37,7 +37,7 @@ function Homepage() {
               textDecoration: "none",
             }}
           >
-            <div className="find-events-btn">Find Events</div>
+            <div className="find-events-btn">Find Your Next Event</div>
           </Link>
         </div>
       </div>

@@ -39,11 +39,11 @@
   justify-content: center;
   align-items: center;
   font-family: "Eina-semibold";
-  font-size: 40px;
-  width: 280px;
-  height: 80px;
+  font-size: 26px;
+  width: 310px;
+  height: 75px;
   border-radius: 8px;
   background-color: #FF521B;
   text-decoration: none;
-  color: #191923
+  color: white
 }
