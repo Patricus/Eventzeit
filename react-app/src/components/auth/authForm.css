@@ -6,6 +6,7 @@
 }
 
 .modal-title {
+  font-family: "Eina-bold";
   display: flex;
   font-size: 23px;
   justify-content: center;

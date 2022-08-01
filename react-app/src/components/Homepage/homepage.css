@@ -15,6 +15,7 @@
 
 .little-splash-title {
   margin-top: 12px;
+  margin-bottom: 14px;
   margin-left: 5vw;
   font-family: Eina-bold;
   color: #191923;
@@ -32,3 +33,17 @@
 /* #up-coming-events {
   font-size: 31px;
 } */
+
+.find-events-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Eina-semibold";
+  font-size: 14px;
+  width: 180px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #FF521B;
+  text-decoration: none;
+  color: white
+}

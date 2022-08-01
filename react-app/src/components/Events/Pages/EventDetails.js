@@ -250,7 +250,8 @@ function EventDetailPage() {
                                     <button
                                         onClick={buyTickets}
                                         style={{
-                                            fontSize: "160%",
+                                          padding: "10px",
+                                          fontSize: "120%",
                                         }}>
                                         Buy Tickets
                                     </button>

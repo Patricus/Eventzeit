@@ -12,7 +12,7 @@ function TicketPanel({ tickets }) {
                 <h2
                     style={{
                         padding: "6px",
-                        marginLeft: "25vw",
+                        // marginLeft: "25vw",
                         fontFamily: "Eina-semibold",
                         fontSize: "40px",
                     }}>

@@ -35,17 +35,17 @@ button:hover {
 }
 
 input {
-    font-size: 18px;
+    font-size: 14px;
     height: 40px;
     font-family: "Eina";
     border-radius: 12px;
     border-width: 1px;
     padding: 1px 5px;
-    margin-right: 29px;
+    margin-right: 24px;
 }
 
 select {
-    font-size: 18px;
+    font-size: 14px;
     height: 40px;
     font-family: "Eina";
     border-radius: 12px;
@@ -67,4 +67,11 @@ textarea {
     padding: 1px 5px;
     margin: 1px 4px;
     border-radius: 12px;
+}
+
+.QRCode {
+    box-shadow: 0 0 3px 1px #0066cc;
+}
+.QRCode:hover {
+    box-shadow: 0 0 6px 1px #0073e6;
 }
