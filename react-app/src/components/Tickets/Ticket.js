@@ -29,6 +29,7 @@ const TicketBGImage = styled.img`
 `;
 
 const TicketInfo = styled.div`
+    font-family: "Eina-semibold";
     margin: 8px 0 0 60px;
     width: 110px;
 `;
@@ -73,8 +74,15 @@ function Ticket({ ticket }) {
                 <div>
                     <TicketRectangle>
                         <button
+                        className="ticket-button"
                             onClick={() => setShowTicket(true)}
-                            style={{ position: "absolute", top: "-25px", left: "95px" }}>
+                            style={{ position: "absolute",
+                            top: "-25px",
+                            left: "95px",
+                            fontSize: "14px",
+                            height: "25px",
+                            width: "fit-content"
+                            }}>
                             Update Ticket
                         </button>
                         <TicketBGImage src={ticketBG} alt="stock-ticket-image" />

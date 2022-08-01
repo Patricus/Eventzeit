@@ -5,6 +5,26 @@
     grid-template-areas:
         "create-form-image create-event-page-container"
 }
+.ticket-button {
+    letter-spacing: 1px;
+        font-family: "Eina-semibold";
+        font-size: 18px;
+        width: fit-content;
+        align-items: center;
+        height: 49px;
+        border-radius: 15px;
+        display: flex;
+        padding: 8px 12px;
+        cursor: pointer;
+        background-color: rgb(229, 229, 229);
+        color: #6a4b67;
+}
+
+.ticket-button:hover {
+    background-color: #FF521B;
+    color: white;
+    cursor: pointer;
+}
 
 .image-upload-label {
     letter-spacing: 1px;
