@@ -14,7 +14,7 @@ def get_events():
     return {'events': [event.to_dict() for event in events]}
 
 
-@event_routes.route('/<int:id>/')
+@event_routes.route('/:id/')
 def get_event(id):
     event = Event.query.get(id)
     if not event.to_dict:
@@ -84,7 +84,7 @@ def update_event(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@event_routes.route('/:id', methods=["DELETE"])
+@event_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_event(id):
     event = Event.query.filter(Event.id == id)
