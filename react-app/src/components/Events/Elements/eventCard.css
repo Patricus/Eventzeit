@@ -99,14 +99,14 @@
 .card-title {
     font-family: "Eina-semibold";
     font-weight: 500;
-    font-size: 2em;
+    font-size: 1.6em;
     margin: 0 0 0.3em;
     color: var(--text-color);
 }
 
 .card-status {
     font-weight: 2000;
-    font-size: 1.5em;
+    font-size: 1.1em;
     color: #A675A1;
 }
 

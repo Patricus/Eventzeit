@@ -3,12 +3,8 @@ import EventForm from "../Forms";
 
 function CreateEvent() {
   return (
-    <main
-      style={{
-        height: "100vh",
-      }}
-    >
-      <div className="create-container">
+    <main>
+      <div id="create-form">
         <div className="create-form-image"></div>
         <div className="create-event-page-container">
           <h1

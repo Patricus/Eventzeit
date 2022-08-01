@@ -125,7 +125,7 @@ function Events() {
           marginLeft: "5vw",
           fontFamily: "Eina-bold",
           color: "#191923",
-          fontSize: "110px",
+          fontSize: "80px",
         }}
       >
         Events
@@ -148,7 +148,7 @@ function Events() {
               className="input-label"
               style={{
                 fontFamily: "Eina-semibold",
-                fontSize: "24px",
+                fontSize: "18px",
               }}
             >
               Search Events:{" "}
@@ -160,7 +160,7 @@ function Events() {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search Events"
               style={{
-                fontSize: "20px",
+                fontSize: "14px",
                 width: "300px",
               }}
             />
@@ -171,7 +171,7 @@ function Events() {
               className="input-label"
               style={{
                 fontFamily: "Eina-semibold",
-                fontSize: "24px",
+                fontSize: "18px",
               }}
             >
               Start Date:{" "}
@@ -190,7 +190,7 @@ function Events() {
               className="input-label"
               style={{
                 fontFamily: "Eina-semibold",
-                fontSize: "24px",
+                fontSize: "18px",
               }}
             >
               End Date:{" "}
@@ -209,7 +209,7 @@ function Events() {
               className="input-label"
               style={{
                 fontFamily: "Eina-semibold",
-                fontSize: "24px",
+                fontSize: "18px",
               }}
             >
               Sort Events By:{" "}
@@ -226,7 +226,7 @@ function Events() {
         </div>
         <div
           style={{
-            fontSize: "18px",
+            fontSize: "15px",
           }}
         >
           <h1
@@ -518,13 +518,14 @@ function Events() {
                   borderColor: "#FF521B",
                 }}
               >
-                <figure>
-                  className="outer-figure" style=
-                  {{
+                <figure
+                  className="outer-figure"
+                  style={{
                     backgroundColor: "#FF521B",
                     "--icon": "url(" + seminarIcon + ")",
                     "--backgroundColor": "transparent",
                   }}
+                >
                   <figcaption>
                     <h4>
                       <span>Seminar</span>
@@ -1083,7 +1084,7 @@ function Events() {
       </div>
       <div
         style={{
-          fontSize: "33px",
+          fontSize: "23px",
         }}
       >
         <h1
@@ -1141,8 +1142,8 @@ function Events() {
                   <div
                     key={event.id}
                     style={{
-                      height: "433px",
-                      width: "433px",
+                      height: "333px",
+                      width: "363px",
                       margin: "11px",
                     }}
                   >

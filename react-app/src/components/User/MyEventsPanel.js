@@ -11,7 +11,7 @@ function MyEventsPanel() {
             <h2
                 style={{
                     padding: "6px",
-                    marginLeft: "40vw",
+                    marginLeft: "3vw",
                     fontFamily: "Eina-semibold",
                     fontSize: "40px",
                 }}>

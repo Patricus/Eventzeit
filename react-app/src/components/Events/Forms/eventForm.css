@@ -1,3 +1,11 @@
+#create-form {
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "create-form-image create-event-page-container"
+}
+
 .image-upload-label {
     letter-spacing: 1px;
     font-family: "Eina-semibold";
@@ -11,8 +19,6 @@
     cursor: pointer;
     background-color: rgb(229, 229, 229);
     color: #6a4b67;
-    /* color: #ff521b; */
-    /* padding: 3px 12px; */
 }
 
 .image-upload-label:hover {
@@ -31,30 +37,31 @@ input[type="file"] {
     height: 8px;
 }
 
-.create-container {
-    height: 100%;
+/* .create-container {
+    height: 100vh;
     width: 100%;
-}
+} */
 
 .create-event-page-container {
+    grid-area: create-event-page-container;
     margin-top: 100px;
-    height: 100%;
-    float: left;
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 50vw;
     align-items: center;
 }
 
 .create-form-image {
-    display: block;
+    grid-area: create-form-image;
+    display:inline-block;
     height: 100%;
     background-image: url("../../../images/create-form-image.jpg");
-    background-size: cover;
+    background-size:cover;
     background-color: #ff521b;
     background-position: -200px;
-    width: 50%;
-    float: left;
+    width: 50vw;
+    /* float: left; */
 }
 
 .create-event-page-container h1 {

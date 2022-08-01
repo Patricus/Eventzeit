@@ -17,7 +17,12 @@ function Homepage() {
   }, [dispatch]);
 
   return (
-    <main>
+    <main
+      style={{
+        margin: "0px",
+        padding: "0px",
+      }}
+    >
       <div
         className="landing-image"
         style={{
@@ -61,7 +66,7 @@ function Homepage() {
         className="eventsHolder"
         style={{
           justifyContent: "center",
-          marginLeft: "4vw",
+          marginLeft: "0vw",
         }}
       >
         {events &&
@@ -78,8 +83,8 @@ function Homepage() {
                 <div
                   key={event.id}
                   style={{
-                    height: "433px",
-                    width: "433px",
+                    height: "343px",
+                    width: "355px",
                     margin: "11px",
                   }}
                 >
