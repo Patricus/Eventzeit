@@ -61,3 +61,17 @@ select {
     flex-wrap: wrap;
     gap: 15px;
 }
+
+textarea {
+    font-family: "Eina";
+    padding: 1px 5px;
+    margin: 1px 4px;
+    border-radius: 12px;
+}
+
+.QRCode {
+    box-shadow: 0 0 3px 1px #0066cc;
+}
+.QRCode:hover {
+    box-shadow: 0 0 6px 1px #0073e6;
+}

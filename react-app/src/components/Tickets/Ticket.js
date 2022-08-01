@@ -34,17 +34,24 @@ const TicketInfo = styled.div`
 `;
 
 const TicketEventName = styled.p`
+    position: relative;
+    top: -20px;
     margin: 0 0 0 12px;
-    height: 80px;
-    width: 120px;
+    height: 60px;
+    width: 105px;
     font-size: 14px;
-    cursor: pointer;
 `;
 
 const AttendeeName = styled.p`
+    position: absolute;
+    bottom: 0px;
     margin: 0 0 0 12px;
     font-size: 14px;
+    overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
+    width: 105px;
+    max-height: 40px;
 `;
 
 const QRdiv = styled.div`
@@ -65,18 +72,21 @@ function Ticket({ ticket }) {
             {event && ticket && (
                 <div>
                     <TicketRectangle>
+                        <button
+                            onClick={() => setShowTicket(true)}
+                            style={{ position: "absolute", top: "-25px", left: "95px" }}>
+                            Update Ticket
+                        </button>
                         <TicketBGImage src={ticketBG} alt="stock-ticket-image" />
                         <TicketInfo>
-                            <TicketEventName onClick={() => setShowTicket(true)}>
-                                {event.name}
-                            </TicketEventName>
+                            <TicketEventName>{event.name}</TicketEventName>
                             <AttendeeName>{ticket.attendee}</AttendeeName>
                         </TicketInfo>
-                        <Link to={`events/${ticket.event_id}`}>
-                            <QRdiv>
-                                <QRCodeSVG value={ticket.event_url} size="64" />
-                            </QRdiv>
-                        </Link>
+                        <QRdiv>
+                            <Link to={`events/${ticket.event_id}`}>
+                                <QRCodeSVG value={ticket.event_url} size="64" className="QRCode" />
+                            </Link>
+                        </QRdiv>
                     </TicketRectangle>
                 </div>
             )}

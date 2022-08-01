@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../Global/Elements/Modal";
@@ -7,19 +7,9 @@ import DeleteEventModal from "../../Events/Elements/DeleteEventModal";
 import "./eventForm.css";
 
 function EventForm({ event = null, setShowModal }) {
-  (() => {
-    if (!event) return;
-    let newDate = new Date(
-      new Date(event.date).toString().split("GMT")[0] + " UTC"
-    )
-      .toISOString()
-      .split(".")[0]
-      .slice(0, -3);
-    event.date = newDate;
-  })();
   const [name, setName] = useState((event && event.name) || "");
   const [date, setDate] = useState(
-    (event && event.date) || new Date().toISOString().split(".")[0].slice(0, -3)
+    (event && event.date.slice(0, 17).replace(" ", "T")) || ""
   );
   const [category, setCategory] = useState((event && event.category) || "");
   const [description, setDescription] = useState(
@@ -42,6 +32,7 @@ function EventForm({ event = null, setShowModal }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session.user.id);
+
   const states = [
     "AK - Alaska",
     "AL - Alabama",
@@ -108,7 +99,7 @@ function EventForm({ event = null, setShowModal }) {
   const [state, setState] = useState(
     (preSelectedState &&
       states.filter((x) => x.includes(preSelectedState))[0]) ||
-      ""
+      "CA - California"
   );
 
   const categories = [
@@ -139,8 +130,8 @@ function EventForm({ event = null, setShowModal }) {
       setErrors(event);
       return;
     }
-
     setImageLoading(true);
+    setDate(date);
 
     if (!event) {
       event = await dispatch(
@@ -218,9 +209,10 @@ function EventForm({ event = null, setShowModal }) {
           <div>
             <div
               style={{
-                color: "#A675A1",
-                fontFamily: "Eina-bold",
-                fontSize: "28px",
+                display: "flex",
+                fontSize: "23px",
+                justifyContent: "center",
+                margin: "10px 2px",
               }}
             >
               <h2>Update Your Event</h2>
@@ -251,7 +243,6 @@ function EventForm({ event = null, setShowModal }) {
             className="event-input"
             name="date"
             type="datetime-local"
-            min={new Date().toISOString().split(".")[0].slice(0, -3)}
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
@@ -343,6 +334,16 @@ function EventForm({ event = null, setShowModal }) {
           />
         </div>
         <div className="event-form-div">
+          <label htmlFor="city">City</label>
+          <input
+            className="event-input"
+            name="city"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+        </div>
+        <div className="event-form-div">
           <label htmlFor="state">State</label>
           <select
             className="event-input"
@@ -360,16 +361,6 @@ function EventForm({ event = null, setShowModal }) {
               );
             })}
           </select>
-        </div>
-        <div className="event-form-div">
-          <label htmlFor="city">City</label>
-          <input
-            className="event-input"
-            name="city"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
         </div>
         <div className="event-form-div">
           <label htmlFor="zipCode">Zip Code</label>

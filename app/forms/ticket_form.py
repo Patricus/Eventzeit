@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
 
 
 def attendee_length(form, field):
     attendee = field.data
-    if len(attendee) > 30:
+    if attendee and len(attendee) > 30:
         raise ValidationError(
             'Name of Attendee must be 30 characters or less.')
 

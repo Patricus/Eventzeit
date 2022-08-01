@@ -18,12 +18,12 @@ const remove = (id) => ({
 });
 
 export const addOneBookmark =
-  ({ event_id, user_id, title }) =>
+  ({ event_id, user_id }) =>
   async (dispatch) => {
     const response = await fetch(`/api/bookmarks/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id, event_id, title }),
+      body: JSON.stringify({ user_id, event_id }),
     });
     if (response.ok) {
       const bookmark = await response.json();

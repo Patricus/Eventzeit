@@ -89,7 +89,12 @@ function EventDetailPage() {
                                 <button
                                     onClick={() => setShowModal(true)}
                                     className="event-button"
-                                    style={{ fontSize: "20px", padding: "6px 10px" }}>
+                                    style={{
+                                        fontSize: "20px",
+                                        padding: "6px 10px",
+                                        border: "2px solid white",
+                                        borderRadius: "50%",
+                                    }}>
                                     ✎
                                 </button>
                             )}
@@ -112,12 +117,10 @@ function EventDetailPage() {
                             />
                         </div>
                         <h3 className="event-time">
-                            {new Date(event.date)
-                                .toString()
-                                .split(" G")[0]
-                                .split(":")
-                                .splice(0, 2)
-                                .join(":")}{" "}
+                            {new Date(event.date).toLocaleString([], {
+                                dateStyle: "long",
+                                timeStyle: "short",
+                            })}
                         </h3>
                         {/* START */}
                         {/* IF DESCRIPTION IS MORE THAN 500 CHARS */}
