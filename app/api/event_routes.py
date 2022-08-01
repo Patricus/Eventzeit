@@ -84,7 +84,7 @@ def update_event(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@event_routes.route('/<int:id>', methods=["DELETE"])
+@event_routes.route('/:id', methods=["DELETE"])
 @login_required
 def delete_event(id):
     event = Event.query.filter(Event.id == id)
