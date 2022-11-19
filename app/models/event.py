@@ -1,5 +1,6 @@
 from sqlalchemy import ForeignKey
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
+
 
 user_events = db.Table(
     'user_events',
@@ -21,9 +22,12 @@ user_events = db.Table(
 class Event(db.Model):
     __tablename__ = 'events'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'users.id',  ondelete="CASCADE"), nullable=False)
+        add_prefix_for_prod('users.id'),  ondelete="CASCADE"), nullable=False)
     category = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     event_image_url = db.Column(db.String(255), nullable=False)

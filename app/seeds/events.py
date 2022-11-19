@@ -5,7 +5,6 @@ import datetime
 import random
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_events():
     images = [
         'https://img.freepik.com/free-vector/silhouette-crowd-party-people-starburst-background_1048-13832.jpg',

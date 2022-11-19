@@ -14,7 +14,7 @@ def get_events():
     return {'events': [event.to_dict() for event in events]}
 
 
-@event_routes.route('/:id/')
+@event_routes.route('/:id')
 def get_event(id):
     event = Event.query.get(id)
     if not event.to_dict:

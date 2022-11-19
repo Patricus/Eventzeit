@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .event import user_events
@@ -6,6 +6,9 @@ from .event import user_events
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
@@ -15,7 +18,8 @@ class User(db.Model, UserMixin):
 
     tickets = db.relationship('Ticket', back_populates='user')
     bookmarks = db.relationship('Bookmark', back_populates='user')
-    events = db.relationship('Event', secondary=user_events, back_populates='users', cascade='all, delete', passive_deletes=True)
+    events = db.relationship('Event', secondary=user_events,
+                             back_populates='users', cascade='all, delete', passive_deletes=True)
 
     @property
     def password(self):
