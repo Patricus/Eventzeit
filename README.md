@@ -6,7 +6,7 @@ Welcome to Eventzeit! Eventzeit is a web application build for sharing events, b
 
 The project is a clone of Eventbrite and was built using PostgreSQL, Flask, SQLAlchemy, React,javascript, Redux and Python.
 
-Checkout Eventzeit and make it to an event near you at https://eventzeit.herokuapp.com
+Checkout Eventzeit and make it to an event near you at https://eventzeit.onrender.com
 
 Add Blocker Warning: If you have an add blocker installed locally, it is possible that you may recieved errors because of the google maps API. We do not have any adds on our site and we ask you to please, temporarly, turn off your add blocker if you are having issues using our site. Thank you for your understanding.
 
