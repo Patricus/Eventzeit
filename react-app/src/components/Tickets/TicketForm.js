@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addOneTicket, deleteTicket, updateTicket } from "../../store/tickets";
 import { acquireEvents } from "../../store/events";
@@ -15,7 +15,7 @@ function TicketForm({ event, eventUrl = null, ticket = null, setShowTicket, setS
     const [name, setName] = useState(ticket?.attendee || "");
     const [errors, setErrors] = useState([]);
     const [purchased, setPurchased] = useState(false);
-    const [confirmRefund, setConfirmRefund] = useState(false);
+    // const [confirmRefund, setConfirmRefund] = useState(false); //For future feature Refund Tickets
     const user = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();

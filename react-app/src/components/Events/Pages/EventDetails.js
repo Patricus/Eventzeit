@@ -39,7 +39,7 @@ function EventDetailPage() {
             }
         })();
         dispatch(acquireEvents());
-    }, [dispatch]);
+    }, [dispatch, event, eventId, history]);
 
     const buyTickets = () => {
         setShowTicketForm(true);
@@ -250,8 +250,8 @@ function EventDetailPage() {
                                     <button
                                         onClick={buyTickets}
                                         style={{
-                                          padding: "10px",
-                                          fontSize: "120%",
+                                            padding: "10px",
+                                            fontSize: "120%",
                                         }}>
                                         Buy Tickets
                                     </button>
