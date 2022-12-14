@@ -7,13 +7,13 @@ user_events = db.Table(
     db.Column(
         'user_id',
         db.Integer,
-        db.ForeignKey('users.id'),
+        db.ForeignKey(add_prefix_for_prod('users.id')),
         primary_key=True
     ),
     db.Column(
         'event_id',
         db.Integer,
-        db.ForeignKey('events.id'),
+        db.ForeignKey(add_prefix_for_prod('events.id')),
         primary_key=True
     )
 )
